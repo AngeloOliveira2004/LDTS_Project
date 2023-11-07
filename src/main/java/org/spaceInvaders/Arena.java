@@ -2,6 +2,7 @@ package org.spaceInvaders;
 
 
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Arena {
@@ -31,7 +32,7 @@ public class Arena {
         this.width = width;
     }
 
-    public void draw(Screen screen)
+    public void draw(TextGraphics screen)
     {
 
     }

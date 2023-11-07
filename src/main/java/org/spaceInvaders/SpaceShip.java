@@ -47,6 +47,23 @@ public class SpaceShip{
         orientation = (orientation + 10) % 360;  // Rotate clockwise by 10 degrees
     }
 
+    public void moveRight()
+    {
+        position.setX(position.getX()+ 1);
+    }
+
+    public void moveLeft()
+    {
+        position.setX(position.getX()- 1);
+    }
+    public void moveDown()
+    {
+        position.setY(position.getY()+ 1);
+    }
+    public void moveUp()
+    {
+        position.setY(position.getY()- 1);
+    }
     public void rotateCounterClockwise() {
         orientation = (orientation - 10 + 360) % 360;  // Rotate counterclockwise by 10 degrees
     }

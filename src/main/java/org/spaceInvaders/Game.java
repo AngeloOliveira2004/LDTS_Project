@@ -25,7 +25,7 @@ public class Game {
     private long lastFrameTime;
     public Game() {
         try {
-            arena = new Arena(75 , 200);
+            arena = new Arena(50 , 100);
             Terminal terminal = new DefaultTerminalFactory()
                     .setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight()))
                     .createTerminal();
@@ -50,6 +50,25 @@ public class Game {
     }
     private void processKey(com.googlecode.lanterna.input.KeyStroke key)
     {
+        switch (key.getKeyType()) {
+            case ArrowRight -> spaceShip.moveRight();
+            case ArrowLeft -> spaceShip.moveLeft();
+            case ArrowDown -> spaceShip.moveDown();
+            case ArrowUp -> spaceShip.moveUp();
+            case Character -> {
+                char character = key.getCharacter();
+                if (character == 'D' || character == 'd') {
+                    spaceShip.moveRight();
+                } else if (character == 'A' || character == 'a') {
+                    spaceShip.moveLeft();
+                } else if (character == 'S' || character == 's') {
+                    spaceShip.moveDown();
+                } else if (character == 'W' || character == 'w') {
+                    spaceShip.moveUp();
+                }
+            }
+        }
+
         System.out.println(key);
     }
 

@@ -1,4 +1,4 @@
-package org.space.invaders;
+package org.spaceInvaders;
 
 public class Position {
     private int x;
@@ -8,6 +8,8 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
+
     public int getX() {
         return x;
     }

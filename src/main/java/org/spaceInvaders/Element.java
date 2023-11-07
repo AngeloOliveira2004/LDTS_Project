@@ -1,4 +1,4 @@
-package org.space.invaders;
+package org.spaceInvaders;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 

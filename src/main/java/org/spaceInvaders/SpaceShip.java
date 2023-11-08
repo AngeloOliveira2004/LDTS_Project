@@ -14,87 +14,147 @@ import javax.swing.JPanel;
 
 public class SpaceShip{
     org.spaceInvaders.Position position;
-    private int orientation;
-    private static final char[] shipCharacters = { '^', '/', '>', '\\', 'V', '\\' , '<', '/' };
-    private static final int characterCount = shipCharacters.length;
+    private char orientation;
+
+    private static final char[][] spaceship =
+    {
+       {'0' ,'0' ,'0' , '0', '0', '_' ,'0' , '0' ,'0','0' ,'0'},
+       {'0' , '0' , '0' ,'_' , '|' ,'0', '|' , '_' , '0' , '0' ,'0'} ,
+       {'0' ,'_' , '|' , '0' ,'0' ,'0','0','0' ,'|' ,'_' ,'0'},
+       {'|','_','_','_','0','0','0','_','_','_','|'} ,
+       {'|','_','_','|','_','_','_','|','_','_','|'}
+    };
+
+    private static final char[][] spaceshipLeft =
+            {
+                    {'0', '0', '0', '0', '0', '_', '0', '0', '0', '0', '0', '0','0','0'},
+                    {'0', '0', '0', '_', '\\', '0', '0', '\\', '_', '0', '0', '0','0','0'},
+                    {'0', '_', '\\', '0', '0', '0', '0', '0', '0', '\\', '_', '_','0','0'},
+                    {'\\', '_', '_', '_', '0', '0', '0', '0', '_', '_', '_', '_','\\','0'},
+                    {'\\', '_', '_', '\\', '_', '_', '_', '_', '\\', '_', '_', '_','_', '\\'},
+            };
+
+    private static final char[][] spaceshipRight =
+            {
+                    {'0', '0', '0', '0', '0', '0', '0', '0', '_', '0', '0', '0','0', '0'},
+                    {'0','0','0', '0', '0', '_', '/', '0', '0', '/', '_', '0', '0', '0'},
+                    {'0', '0', '_', '_', '/', '0', '0', '0', '0', '0', '0', '/','_','0'},
+                    {'0', '/', '_', '_', '_', '_', '0', '0', '0', '0', '_', '_','_','/'},
+                    {'/', '_', '_', '_', '/', '_', '_', '_', '_', '/', '_', '_','/','0'},
+            };
+
+    /*
+    *
+    *
+0000000_000000
+00000_/00/_000
+00__/000000/_0
+0/____0000___/
+/___/____/__/0
+
+    *
+    *
+    *
+00000_00000
+000_|0|_000
+0_|00000|_0
+|___000___|
+|__|___|__|
+*
+*
+*
+0000000_0000
+0000_/0/_000
+0__/00000/__
+/___0000___/
+/__/___/__/0
+*
+    *
+    * */
     SpaceShip(int x, int y) {
         super();
         // You can set x and y values for the spaceship here if needed
         position = new org.spaceInvaders.Position(x , y);
-        this.orientation = 0;
-    }
 
-    public int getPosX()
-    {
-        return position.getX();
     }
-    public int getPosY()
-    {
-        return position.getY();
-    }
-
-    public void setPositionX(int x)
-    {
-        position.setX(x);
-    }
-    public void setPositionY(int y)
-    {
-        position.setY(y);
-    }
-
-
-    public void rotateClockwise() {
-        orientation = (orientation + 10) % 360;  // Rotate clockwise by 10 degrees
-    }
-
-    public void moveRight()
+    public void moveRight(char orientation)
     {
         position.setX(position.getX()+ 1);
+        this.orientation = orientation;
     }
 
-    public void moveLeft()
+    public void moveLeft(char orientation)
     {
         position.setX(position.getX()- 1);
+        this.orientation = orientation;
     }
-    public void moveDown()
+    public void moveDown(char orientation)
     {
         position.setY(position.getY()+ 1);
+        this.orientation = orientation;
     }
-    public void moveUp()
+    public void moveUp(char orientation)
     {
         position.setY(position.getY()- 1);
-    }
-    public void rotateCounterClockwise() {
-        orientation = (orientation - 10 + 360) % 360;  // Rotate counterclockwise by 10 degrees
+        this.orientation = orientation;
     }
 
-    public void updateOrientationBasedOnMouse(int mouseX, int mouseY) {
-
-        int dx = mouseX - position.getX();
-        int dy = mouseY - position.getY();
-
-        // Calculate the angle (in degrees) from the spaceship to the mouse
-        orientation = (int) Math.toDegrees(Math.atan2(dy, dx));
+    public Position getPosition() {
+            return position;
     }
 
-    private char getRotatedCharacter(int degrees) {
-        // Rotate the character by adjusting its ASCII code based on the orientation
-        int characterIndex = (degrees / (360 / characterCount)) % characterCount;
-        return shipCharacters[characterIndex];
-    }
-
-    public void draw(TextGraphics screen) {
+    public void draw(TextGraphics screen){
         // Calculate the character index based on the orientation
-        int characterIndex = (orientation / (360 / characterCount)) % characterCount;
+        //int characterIndex = (orientation / (360 / characterCount)) % characterCount;
+        screen.fill(' ');
+        screen.setForegroundColor(TextColor.ANSI.YELLOW);
 
-        // Clear the previous character at the spaceship's position
-        screen.setCharacter(new TerminalPosition(position.getX(), position.getY()), new TextCharacter(' '));
-
-        // Draw the rotated spaceship character
-        TextCharacter character = new TextCharacter(shipCharacters[characterIndex]);
-        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-        character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-        screen.setCharacter(new TerminalPosition(position.getX(), position.getY()), character);
+        switch (orientation)
+        {
+        case 'R':
+            for(int x = 0 ; x < spaceshipRight.length ; x++)
+            {
+                for(int y = 0; y < spaceshipRight[0].length ; y++)
+                {
+                    if(spaceshipRight[x][y] != '0')
+                    {
+                        TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                        screen.setCharacter(position.getX() + y, position.getY() + x, character);
+                    }
+                }
+            }
+            this.orientation = 'N';
+            break;
+        case 'L':
+            for(int x = 0 ; x < spaceshipLeft.length ; x++)
+            {
+                for(int y = 0; y < spaceshipLeft[0].length ; y++)
+                {
+                    if(spaceshipLeft[x][y] != '0')
+                    {
+                        TextCharacter character = new TextCharacter(spaceshipLeft[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                        screen.setCharacter(position.getX() + y, position.getY() + x, character);
+                    }
+                }
+            }
+            this.orientation = 'N';
+            break;
+        default:
+            for(int x = 0 ; x < spaceship.length ; x++) {
+                for (int y = 0; y < spaceship[0].length; y++) {
+                    if (spaceship[x][y] != '0') {
+                        TextCharacter character = new TextCharacter(spaceship[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                        screen.setCharacter(position.getX() + y, position.getY() + x, character);
+                    }
+                }
+            }
+            break;
+        }
     }
-
 }

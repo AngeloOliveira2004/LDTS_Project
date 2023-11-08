@@ -19,13 +19,14 @@ public class Game {
     private Arena arena;
     private SpaceShip spaceShip;
 
+    private Menu menu;
     private static final int FRAME_RATE = 60; // Frames per second
     private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds
 
     private long lastFrameTime;
     public Game() {
         try {
-            arena = new Arena(50 , 100);
+            arena = new Arena(50, 100);
             Terminal terminal = new DefaultTerminalFactory()
                     .setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight()))
                     .createTerminal();
@@ -36,6 +37,7 @@ public class Game {
             screen.startScreen();
             screen.doResizeIfNecessary();
 
+            menu = new Menu(arena.getWidth()/2 , arena.getHeight()/2);
             spaceShip = new SpaceShip(10, 10);
 
         } catch (IOException e) {
@@ -45,7 +47,7 @@ public class Game {
     private void draw() throws IOException {
         screen.clear();
         arena.draw(screen.newTextGraphics());
-        spaceShip.draw(screen.newTextGraphics());
+        menu.draw(screen.newTextGraphics());
         screen.refresh();
     }
     private void processKey(com.googlecode.lanterna.input.KeyStroke key)
@@ -108,10 +110,16 @@ public class Game {
                     printMousePosition(MouseInfo.getPointerInfo().getLocation());
 
                     screen.refresh();
+                    long timeToSleep = FRAME_TIME - elapsedTime;
+                    if (timeToSleep > 0) {
+                        Thread.sleep(timeToSleep / 1_000_000_000); // Convert nanoseconds to milliseconds
+                    }
                 }
             }
         } catch (IOException e){
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

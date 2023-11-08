@@ -43,34 +43,6 @@ public class SpaceShip{
                     {'/', '_', '_', '_', '/', '_', '_', '_', '_', '/', '_', '_','/','0'},
             };
 
-    /*
-    *
-    *
-0000000_000000
-00000_/00/_000
-00__/000000/_0
-0/____0000___/
-/___/____/__/0
-
-    *
-    *
-    *
-00000_00000
-000_|0|_000
-0_|00000|_0
-|___000___|
-|__|___|__|
-*
-*
-*
-0000000_0000
-0000_/0/_000
-0__/00000/__
-/___0000___/
-/__/___/__/0
-*
-    *
-    * */
     SpaceShip(int x, int y) {
         super();
         // You can set x and y values for the spaceship here if needed
@@ -119,7 +91,6 @@ public class SpaceShip{
     public void draw(TextGraphics screen){
         // Calculate the character index based on the orientation
         //int characterIndex = (orientation / (360 / characterCount)) % characterCount;
-        screen.fill(' ');
         screen.setForegroundColor(TextColor.ANSI.YELLOW);
 
         switch (orientation)

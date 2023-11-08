@@ -1,127 +1,114 @@
-package org.spaceInvaders;
+    package org.spaceInvaders;
 
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.input.MouseAction;
-import com.googlecode.lanterna.input.MouseActionType;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.input.MouseActionType;
+    import com.googlecode.lanterna.TerminalSize;
+    import com.googlecode.lanterna.input.KeyType;
+    import com.googlecode.lanterna.input.MouseAction;
+    import com.googlecode.lanterna.input.MouseActionType;
+    import com.googlecode.lanterna.screen.Screen;
+    import com.googlecode.lanterna.screen.TerminalScreen;
+    import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+    import com.googlecode.lanterna.terminal.Terminal;
+    import com.googlecode.lanterna.input.MouseActionType;
 
-import java.awt.*;
-import java.io.IOException;
+    import java.awt.*;
+    import java.io.IOException;
 
 
-public class Game {
-    private boolean running = true;
-    private Screen screen;
-    private Arena arena;
-    private SpaceShip spaceShip;
-    private Shot shot;
-    private Menu menu;
-    private static final int FRAME_RATE = 30; // Frames per second
-    private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds
-    private long lastFrameTime;
-    public Game() {
-        try {
-            arena = new Arena(50, 100);
-            Terminal terminal = new DefaultTerminalFactory()
-                    .setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight()))
-                    .createTerminal();
-            lastFrameTime = System.nanoTime();
-            screen = new TerminalScreen(terminal);
+    public class Game {
+        private boolean running = true;
+        private Screen screen;
+        private Arena arena;
+        private SpaceShip spaceShip;
+        private Shot shot;
+        private Stars stars;
+        private static final int FRAME_RATE = 30; // Frames per second
+        private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds
+        private long lastFrameTime;
+        public Game() {
+            try {
+                arena = new Arena(50, 100);
+                Terminal terminal = new DefaultTerminalFactory()
+                        .setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight()))
+                        .createTerminal();
+                lastFrameTime = System.nanoTime();
+                screen = new TerminalScreen(terminal);
 
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
+                screen.setCursorPosition(null);
+                screen.startScreen();
+                screen.doResizeIfNecessary();
 
-            menu = new Menu(arena.getWidth()/2 , arena.getHeight()/2);
-            spaceShip = new SpaceShip(40, 30);
+                spaceShip = new SpaceShip(40, 30);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void draw() throws IOException{
-        screen.clear();
-        arena.draw(screen.newTextGraphics());
-        spaceShip.draw(screen.newTextGraphics());
-        //menu.draw(screen.newTextGraphics());
-        screen.refresh();
-    }
-    private void processKey(com.googlecode.lanterna.input.KeyStroke key)
-    {
-        switch (key.getKeyType()) {
-            case ArrowRight -> spaceShip.moveRight('R');
-            case ArrowLeft -> spaceShip.moveLeft('L');
-            case ArrowDown -> spaceShip.moveDown('N');
-            case ArrowUp -> spaceShip.moveUp('N');
-            case Character -> {
-                char character = key.getCharacter();
-                if (character == 'D' || character == 'd') {
-                    spaceShip.moveRight('R');
-                } else if (character == 'A' || character == 'a') {
-                    spaceShip.moveLeft('L');
-                } else if (character == 'S' || character == 's') {
-                    spaceShip.moveDown('N');
-                } else if (character == 'W' || character == 'w') {
-                    spaceShip.moveUp('N');
-                }else if(character == ' ')
-                {
-                    shot = new Shot(spaceShip.getPosition().getX()+5 , spaceShip.getPosition().getY());
-                    shot.draw(screen.newTextGraphics());
-                    shot = null;
-                }
+                stars = new Stars(50, 100);
+                stars.draw(screen.newTextGraphics());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-
-        System.out.println(key);
-    }
-
-    private void printMousePosition(Point mouseAction) {
-        int mouseX = mouseAction.x;
-        int mouseY = mouseAction.y;
-        //System.out.println("Mouse Position: X=" + mouseX + ", Y=" + mouseY);
-    }
-    public void run()
-    {
-        try {
-            while(running) {
-
-                long currentTime = System.nanoTime();
-                long elapsedTime = currentTime - lastFrameTime;
-
-                if (elapsedTime >= FRAME_TIME) {
-                    lastFrameTime = currentTime;
-
-                    draw();
-
-                    // Read user input
-                    com.googlecode.lanterna.input.KeyStroke key = screen.pollInput();
-                    if (key != null) {
-                        if (key.getKeyType() == KeyType.Escape || key.getKeyType() == KeyType.EOF) {
-                            screen.close();
-                            break;
-                        }
-                        processKey(key);
+        private void draw() throws IOException{
+            screen.clear();
+            stars.draw(screen.newTextGraphics());
+            arena.draw(screen.newTextGraphics());
+            spaceShip.draw(screen.newTextGraphics());
+            screen.refresh();
+        }
+        private void processKey(com.googlecode.lanterna.input.KeyStroke key)
+        {
+            switch (key.getKeyType()) {
+                case ArrowRight -> spaceShip.moveRight('R');
+                case ArrowLeft -> spaceShip.moveLeft('L');
+                case ArrowDown -> spaceShip.moveDown('N');
+                case ArrowUp -> spaceShip.moveUp('N');
+                case Character -> {
+                    char character = key.getCharacter();
+                    if (character == 'D' || character == 'd') {
+                        spaceShip.moveRight('R');
+                    } else if (character == 'A' || character == 'a') {
+                        spaceShip.moveLeft('L');
+                    } else if (character == 'S' || character == 's') {
+                        spaceShip.moveDown('N');
+                    } else if (character == 'W' || character == 'w') {
+                        spaceShip.moveUp('N');
+                    }else if(character == ' ')
+                    {
+                        shot = new Shot(spaceShip.getPosition().getX()+5 , spaceShip.getPosition().getY());
+                        shot.draw(screen.newTextGraphics());
+                        shot = null;
                     }
-
-                    // Update game state
-                    // Here you can update the game state, e.g., move the spaceship, handle collisions, etc.
-
-                    // Print mouse position
-                    printMousePosition(MouseInfo.getPointerInfo().getLocation());
-
-                    screen.refresh();
-                    Thread.sleep(1/10000);
                 }
             }
-        } catch (IOException e){
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+
+            System.out.println(key);
+        }
+
+        public void run()
+        {
+            try {
+                while(running) {
+
+                    long currentTime = System.nanoTime();
+                    long elapsedTime = currentTime - lastFrameTime;
+
+                    if (elapsedTime >= FRAME_TIME) {
+                        lastFrameTime = currentTime;
+
+                        draw();
+
+                        // Read user input
+                        com.googlecode.lanterna.input.KeyStroke key = screen.pollInput();
+                        if (key != null) {
+                            if (key.getKeyType() == KeyType.Escape || key.getKeyType() == KeyType.EOF) {
+                                screen.close();
+                                break;
+                            }
+                            processKey(key);
+                        }
+
+                        screen.refresh();
+                    }
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
-}

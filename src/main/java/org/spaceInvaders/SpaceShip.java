@@ -79,24 +79,37 @@ public class SpaceShip{
     }
     public void moveRight(char orientation)
     {
-        position.setX(position.getX()+ 1);
-        this.orientation = orientation;
+        if(position.getX()+ 1 + 11 <= 100)
+        {
+            position.setX(position.getX()+ 1);
+            this.orientation = orientation;
+        }
+
     }
 
     public void moveLeft(char orientation)
     {
-        position.setX(position.getX()- 1);
-        this.orientation = orientation;
+        if(position.getX() -1 >= 0)
+        {
+            position.setX(position.getX()- 1);
+            this.orientation = orientation;
+        }
     }
     public void moveDown(char orientation)
     {
-        position.setY(position.getY()+ 1);
-        this.orientation = orientation;
+        if(position.getY() -1 +7<= 50)
+        {
+            position.setY(position.getY()+ 1);
+            this.orientation = orientation;
+        }
     }
     public void moveUp(char orientation)
     {
-        position.setY(position.getY()- 1);
-        this.orientation = orientation;
+        if(position.getY()-1>= 0)
+        {
+            position.setY(position.getY()- 1);
+            this.orientation = orientation;
+        }
     }
 
     public Position getPosition() {

@@ -20,7 +20,6 @@ public class Game {
     private Arena arena;
     private SpaceShip spaceShip;
     private Shot shot;
-
     private Menu menu;
     private static final int FRAME_RATE = 30; // Frames per second
     private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds

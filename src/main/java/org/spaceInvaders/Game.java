@@ -48,7 +48,6 @@
         private void draw() throws IOException{
             screen.clear();
             stars.draw(screen.newTextGraphics());
-            arena.draw(screen.newTextGraphics());
             spaceShip.draw(screen.newTextGraphics());
             screen.refresh();
         }

@@ -26,9 +26,8 @@
         private long lastFrameTime;
         public Game() {
             try {
-                arena = new Arena(50, 100);
                 Terminal terminal = new DefaultTerminalFactory()
-                        .setInitialTerminalSize(new TerminalSize(arena.getWidth(), arena.getHeight()))
+                        .setInitialTerminalSize(new TerminalSize(100, 50))
                         .createTerminal();
                 lastFrameTime = System.nanoTime();
                 screen = new TerminalScreen(terminal);

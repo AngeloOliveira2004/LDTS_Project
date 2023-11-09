@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JPanel;
 
-public class SpaceShip{
+public class SpaceShip extends Element{
     org.spaceInvaders.Position position;
     private char orientation;
 
@@ -43,11 +43,9 @@ public class SpaceShip{
                 {'/', '_', '_', '_', '/', '_', '_', '_', '_', '/', '_', '_','/','0'},
             };
 
-    SpaceShip(int x, int y) {
-        super();
-        // You can set x and y values for the spaceship here if needed
-        position = new org.spaceInvaders.Position(x , y);
-
+    SpaceShip(int x, int y , double Yvelocity , double Xvelocity , int Health , int SpawnRate) {
+        super(x , y , Yvelocity , Xvelocity , Health , SpawnRate);
+        this.position = new Position(x , y);
     }
     public void moveRight(char orientation)
     {
@@ -84,10 +82,12 @@ public class SpaceShip{
         }
     }
 
+    @Override
     public Position getPosition() {
             return position;
     }
 
+    @Override
     public void draw(TextGraphics screen){
         // Calculate the character index based on the orientation
         //int characterIndex = (orientation / (360 / characterCount)) % characterCount;

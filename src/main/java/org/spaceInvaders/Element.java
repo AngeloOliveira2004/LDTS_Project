@@ -5,17 +5,26 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 public abstract class Element {
     private Position position;
 
-    public Element(int x, int y){
-        position = new Position(x,y);
-    }
+    private int Health , SpawnRate;
+    private double Yvelocity , Xvelocity;
 
+    public Element(int x, int y , double Yvelocity , double Xvelocity , int Health , int SpawnRate)
+    {
+        position = new Position(x,y);
+        this.Yvelocity = Yvelocity;
+        this.Xvelocity = Xvelocity;
+        this.Health = Health;
+        this.SpawnRate = SpawnRate;
+    }
     public Position getPosition() {
         return position;
     }
-
     public void setPosition(Position position) {
         this.position = position;
     }
 
-    public abstract void draw(TextGraphics screen);
+    public void draw(TextGraphics screen)
+    {
+       screen.fill(' ');
+    }
 }

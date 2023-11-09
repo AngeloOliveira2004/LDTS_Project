@@ -29,13 +29,13 @@ public class Stars {
 
             // Determine the region based on the quadrant
             if (quadrant == 0) {
-                randomX = random.nextInt(width / 2);
+                randomX = random.nextInt(width);
                 randomY = random.nextInt(height / 2);
             } else if (quadrant == 1) {
                 randomX = random.nextInt(width / 2) + width / 2;
                 randomY = random.nextInt(height / 2);
             } else if (quadrant == 2) {
-                randomX = random.nextInt(width / 2);
+                randomX = random.nextInt(width);
                 randomY = random.nextInt(height / 2) + height / 2;
             } else {
                 randomX = random.nextInt(width / 2) + width / 2;

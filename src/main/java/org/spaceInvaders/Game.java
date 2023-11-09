@@ -51,6 +51,7 @@
             spaceShip.draw(screen.newTextGraphics());
             screen.refresh();
         }
+        //divide screen into quadrants and divide the number of stars equallyy for each quadrant.
         private void processKey(com.googlecode.lanterna.input.KeyStroke key)
         {
             switch (key.getKeyType()) {

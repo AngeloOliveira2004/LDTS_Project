@@ -6,13 +6,13 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         game.run();
-        //String imagePath = "/home/jose-costa/Downloads/space.png";
+        String imagePath = "/home/jose-costa/Downloads/space.png";
 
-        // Set the desired output width for the ASCII art
-        // int outputWidth = 25;
-        // int outputHeight = 15;
+         //Set the desired output width for the ASCII art
+        int outputWidth = 30;
+        int outputHeight = 50;
 
         // Call the function to convert and print the image as ASCII art
-        // ImageToAscii.convertAndPrint(imagePath, outputWidth, outputHeight);
+        ImageToAscii.convertAndPrint(imagePath, outputWidth, outputHeight);
     }
 }

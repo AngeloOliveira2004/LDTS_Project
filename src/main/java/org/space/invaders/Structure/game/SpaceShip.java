@@ -1,10 +1,10 @@
-package org.space.invaders.spaceInvaders;
+package org.space.invaders.Structure.game;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.Element;
-import org.space.invaders.Position;
+import org.space.invaders.Structure.Element;
+import org.space.invaders.Structure.Position;
 
 public class SpaceShip extends Position implements Element{
     private char orientation;
@@ -29,7 +29,6 @@ public class SpaceShip extends Position implements Element{
         {'\\', '_', '_', '_', '0', '0', '0', '0', '_', '_', '_', '_','\\','0'},
         {'\\', '_', '_', '\\', '_', '_', '_', '_', '\\', '_', '_', '_','_', '\\'},
     };
-
     private static final char[][] spaceshipRight =
     {
         {'0', '0', '0', '0', '0', '0', '0', '0', '_', '0', '0', '0','0', '0'},
@@ -45,7 +44,7 @@ public class SpaceShip extends Position implements Element{
 
         int temp1 = getY();
     }
-    SpaceShip(int x, int y , double Yvelocity , double Xvelocity , int Health , int SpawnRate) {
+    public SpaceShip(int x, int y, double Yvelocity, double Xvelocity, int Health, int SpawnRate) {
         super(x , y);
         this.Yvelocity = Yvelocity;
         this.Xvelocity = Xvelocity;
@@ -112,6 +111,13 @@ public class SpaceShip extends Position implements Element{
                         character = character.withForegroundColor(TextColor.ANSI.YELLOW);
                         screen.setCharacter(getX() + y, getY() + x, character);
                     }
+                    else
+                    {
+                        TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.BLACK);
+                        screen.setCharacter(getX() + y, getY() + x, character);
+                    }
                 }
             }
             this.orientation = 'N';
@@ -128,6 +134,13 @@ public class SpaceShip extends Position implements Element{
                         character = character.withForegroundColor(TextColor.ANSI.YELLOW);
                         screen.setCharacter(getX() + y, getY() + x, character);
                     }
+                    else
+                    {
+                        TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.BLACK);
+                        screen.setCharacter(getX() + y, getY() + x, character);
+                    }
                 }
             }
             this.orientation = 'N';
@@ -139,6 +152,12 @@ public class SpaceShip extends Position implements Element{
                         TextCharacter character = new TextCharacter(spaceship[x][y]);
                         character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                         character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                        screen.setCharacter(getX() + y, getY() + x, character);
+                    }else
+                    {
+                        TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.BLACK);
                         screen.setCharacter(getX() + y, getY() + x, character);
                     }
                 }
@@ -163,7 +182,6 @@ public class SpaceShip extends Position implements Element{
     public void setSpawnRate(int spawnRate) {
         this.SpawnRate = 0;
     }
-
     @Override
     public double getYVelocity() {
         return this.Yvelocity;

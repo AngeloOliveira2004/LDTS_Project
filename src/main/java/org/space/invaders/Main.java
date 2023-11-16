@@ -1,7 +1,6 @@
 package org.space.invaders;
 
 import org.space.invaders.image.to.ascii.ImageToAscii;
-import org.space.invaders.spaceInvaders.Game;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,5 +1,5 @@
 // Element.java
-package org.space.invaders;
+package org.space.invaders.Structure;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 
@@ -13,4 +13,5 @@ public interface Element {
     void setYVelocity(double yVelocity);
     double getXVelocity();
     void setXVelocity(double xVelocity);
+
 }

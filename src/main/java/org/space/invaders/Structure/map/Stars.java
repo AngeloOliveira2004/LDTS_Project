@@ -1,9 +1,9 @@
-package org.space.invaders.spaceInvaders;
+package org.space.invaders.Structure.map;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.Position;
+import org.space.invaders.Structure.Position;
 
 import java.util.ArrayList;
 import java.util.List;

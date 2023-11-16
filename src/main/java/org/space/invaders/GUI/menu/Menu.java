@@ -1,10 +1,7 @@
-package org.space.invaders.menu;
-
-import static org.space.invaders.menu.Menu.Option.*;
+package org.space.invaders.GUI.menu;
 
 public class Menu {
-
-    public enum Option {START, INST, PREF, RANKING, EXIT}
+    /*public enum Option {START, INST, PREF, RANKING, EXIT};
 
     public String[] optString = {"NEW GAME", "INSTRUCTIONS", "SETTINGS", "RANKINGS", "EXIT"};
 
@@ -53,5 +50,5 @@ public class Menu {
             i--;
             selected = opt[i];
         }
-    }
+    }*/
 }

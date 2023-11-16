@@ -1,9 +1,9 @@
-package org.space.invaders.spaceInvaders;
+package org.space.invaders.Structure.game;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.Position;
+import org.space.invaders.Structure.Position;
 
 public class Shot extends Position{
 

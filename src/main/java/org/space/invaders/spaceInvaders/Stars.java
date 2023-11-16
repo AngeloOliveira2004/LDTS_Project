@@ -1,22 +1,18 @@
-package org.spaceInvaders;
+package org.space.invaders.spaceInvaders;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.spaceInvaders.Position;
+import org.space.invaders.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Stars {
-    private int width;
-    private int height;
+public class Stars extends Position{
     private List<Position> starPositions;  // List to store star positions
-
     public Stars(int x, int y) {
-        this.width = x;
-        this.height = y;
+        super(x, y);
         starPositions = new ArrayList<>();
 
         // Initialize star positions (for example, by generating random positions)
@@ -29,21 +25,21 @@ public class Stars {
 
             // Determine the region based on the quadrant
             if (quadrant == 0) {
-                randomX = random.nextInt(width);
-                randomY = random.nextInt(height / 2);
+                randomX = random.nextInt(y);
+                randomY = random.nextInt(x / 2);
             } else if (quadrant == 1) {
-                randomX = random.nextInt(width / 2) + width / 2;
-                randomY = random.nextInt(height / 2);
+                randomX = random.nextInt(x / 2) + x / 2;
+                randomY = random.nextInt(y / 2);
             } else if (quadrant == 2) {
-                randomX = random.nextInt(width);
-                randomY = random.nextInt(height / 2) + height / 2;
+                randomX = random.nextInt(x);
+                randomY = random.nextInt(y / 2) + y / 2;
             } else {
-                randomX = random.nextInt(width / 2) + width / 2;
-                randomY = random.nextInt(height / 2) + height / 2;
+                randomX = random.nextInt(x / 2) + x / 2;
+                randomY = random.nextInt(y / 2) + y / 2;
             }
 
             // Add the star position
-            starPositions.add(new Position(randomX, randomY));
+            starPositions.add(new StarPosition(randomX, randomY));
         }
 
     }
@@ -57,6 +53,12 @@ public class Stars {
             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
             character = character.withForegroundColor(TextColor.ANSI.YELLOW);
             screen.setCharacter(x, y, character);
+        }
+    }
+
+    private static class StarPosition extends Position {
+        public StarPosition(int x, int y) {
+            super(x, y);
         }
     }
 }

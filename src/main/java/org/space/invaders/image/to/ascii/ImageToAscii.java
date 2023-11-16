@@ -1,4 +1,4 @@
-package org.image.to.ascii;
+package org.space.invaders.image.to.ascii;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

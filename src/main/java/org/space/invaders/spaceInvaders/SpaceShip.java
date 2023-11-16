@@ -1,21 +1,18 @@
-package org.spaceInvaders;
+package org.space.invaders.spaceInvaders;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.MouseAction;
-import com.googlecode.lanterna.input.MouseActionType;
+import org.space.invaders.Element;
+import org.space.invaders.Element_;
+import org.space.invaders.Position;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-import javax.swing.JPanel;
-
-public class SpaceShip extends Element{
-    org.spaceInvaders.Position position;
+public class SpaceShip extends Position implements Element{
     private char orientation;
-
+    private double Yvelocity ;
+    private double Xvelocity ;
+    private int Health ;
+    private int SpawnRate;
     private static final char[][] spaceship =
     {
        {'0' ,'0' ,'0' , '0', '0', '_' ,'0' , '0' ,'0','0' ,'0'},
@@ -43,53 +40,63 @@ public class SpaceShip extends Element{
         {'/', '_', '_', '_', '/', '_', '_', '_', '_', '/', '_', '_','/','0'},
     };
 
+    public void check()
+    {
+        int temp = getX();
+
+        int temp1 = getY();
+    }
     SpaceShip(int x, int y , double Yvelocity , double Xvelocity , int Health , int SpawnRate) {
-        super(x , y , Yvelocity , Xvelocity , Health , SpawnRate);
-        this.position = new Position(x , y);
+        super(x , y);
+        this.Yvelocity = Yvelocity;
+        this.Xvelocity = Xvelocity;
+        this.Health = Health;
+        this.SpawnRate = SpawnRate;
     }
     public void moveRight(char orientation)
     {
-        if(position.getX()+ 1 + 11 <= 100)
+        if(getX()+ 1 + 11 <= 100)
         {
-            position.setX(position.getX()+ 1);
+            setX(getX()+ 1);
             this.orientation = orientation;
         }
     }
-
     public void moveLeft(char orientation)
     {
-        if(position.getX() -1 >= 0)
+        if(getX() - 1 >= 0)
         {
-            position.setX(position.getX()- 1);
+            setX(getX()- 1);
             this.orientation = orientation;
         }
     }
     public void moveDown(char orientation)
     {
-        if(position.getY() -1 +7<= 50)
+        if(getY() -1 +7<= 50)
         {
-            position.setY(position.getY()+ 1);
+            setY(getY()+ 1);
             this.orientation = orientation;
         }
     }
     public void moveUp(char orientation)
     {
-        if(position.getY()-1>= 0)
+        if(getY()-1>= 0)
         {
-            position.setY(position.getY()- 1);
+            setY(getY()- 1);
             this.orientation = orientation;
         }
     }
-
-    @Override
-    public Position getPosition() {
-            return position;
+    public int getPositionX()
+    {
+        return getX();
     }
 
+    public int getPositionY()
+    {
+        return getY();
+    }
     @Override
     public void draw(TextGraphics screen){
-        // Calculate the character index based on the orientation
-        //int characterIndex = (orientation / (360 / characterCount)) % characterCount;
+
         screen.setForegroundColor(TextColor.ANSI.YELLOW);
 
         switch (orientation)
@@ -104,7 +111,7 @@ public class SpaceShip extends Element{
                         TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
                         character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                         character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                        screen.setCharacter(position.getX() + y, position.getY() + x, character);
+                        screen.setCharacter(getX() + y, getY() + x, character);
                     }
                 }
             }
@@ -120,7 +127,7 @@ public class SpaceShip extends Element{
                         TextCharacter character = new TextCharacter(spaceshipLeft[x][y]);
                         character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                         character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                        screen.setCharacter(position.getX() + y, position.getY() + x, character);
+                        screen.setCharacter(getX() + y, getY() + x, character);
                     }
                 }
             }
@@ -133,11 +140,45 @@ public class SpaceShip extends Element{
                         TextCharacter character = new TextCharacter(spaceship[x][y]);
                         character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                         character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                        screen.setCharacter(position.getX() + y, position.getY() + x, character);
+                        screen.setCharacter(getX() + y, getY() + x, character);
                     }
                 }
             }
             break;
         }
+    }
+
+    @Override
+    public int getHealth() {
+        return this.Health;
+    }
+    @Override
+    public void setHealth(int health) {
+        this.Health = health;
+    }
+    @Override
+    public int getSpawnRate() {
+        return 0;
+    }
+    @Override
+    public void setSpawnRate(int spawnRate) {
+        this.SpawnRate = 0;
+    }
+
+    @Override
+    public double getYVelocity() {
+        return this.Yvelocity;
+    }
+    @Override
+    public void setYVelocity(double yVelocity) {
+        this.Yvelocity = yVelocity;
+    }
+    @Override
+    public double getXVelocity() {
+        return this.Xvelocity;
+    }
+    @Override
+    public void setXVelocity(double xVelocity) {
+        this.Xvelocity = xVelocity;
     }
 }

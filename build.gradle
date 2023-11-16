@@ -5,7 +5,7 @@ plugins {
 
 application
 {
-    mainClass.set("org.spaceInvaders/Main")
+    mainClass.set("org.space.invaders/Main")
 }
 
 group = 'org.space.invaders'

@@ -1,16 +1,12 @@
-    package org.spaceInvaders;
+    package org.space.invaders.spaceInvaders;
 
     import com.googlecode.lanterna.TerminalSize;
     import com.googlecode.lanterna.input.KeyType;
-    import com.googlecode.lanterna.input.MouseAction;
-    import com.googlecode.lanterna.input.MouseActionType;
     import com.googlecode.lanterna.screen.Screen;
     import com.googlecode.lanterna.screen.TerminalScreen;
     import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
     import com.googlecode.lanterna.terminal.Terminal;
-    import com.googlecode.lanterna.input.MouseActionType;
 
-    import java.awt.*;
     import java.io.IOException;
 
 
@@ -70,7 +66,8 @@
                         spaceShip.moveUp('N');
                     }else if(character == ' ')
                     {
-                        shot = new Shot(spaceShip.getPosition().getX()+5 , spaceShip.getPosition().getY());
+                        spaceShip.check();
+                        shot = new Shot(spaceShip.getPositionX()+5 , spaceShip.getPositionY());
                         shot.draw(screen.newTextGraphics());
                         shot = null;
                     }

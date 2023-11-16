@@ -1,4 +1,4 @@
-package org.spaceInvaders;
+package org.space.invaders.spaceInvaders;
 
 
 

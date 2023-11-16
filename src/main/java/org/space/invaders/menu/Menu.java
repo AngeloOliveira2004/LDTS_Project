@@ -1,6 +1,6 @@
-package org.menu;
+package org.space.invaders.menu;
 
-import static org.menu.Menu.Option.*;
+import static org.space.invaders.menu.Menu.Option.*;
 
 public class Menu {
 

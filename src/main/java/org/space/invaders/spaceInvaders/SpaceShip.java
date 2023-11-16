@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.Element;
-import org.space.invaders.Element_;
 import org.space.invaders.Position;
 
 public class SpaceShip extends Position implements Element{

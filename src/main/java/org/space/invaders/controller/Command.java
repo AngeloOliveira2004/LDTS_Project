@@ -2,7 +2,7 @@ package org.space.invaders.controller;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
-import org.space.invaders.Dimensions;
+import org.space.invaders.structure.Dimensions;
 
 import java.io.IOException;
 

@@ -3,7 +3,7 @@ package org.space.invaders.structure.map;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.Dimensions;
+import org.space.invaders.structure.Dimensions;
 import org.space.invaders.structure.Position;
 
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class Stars extends Position implements Dimensions {
     private List<Position> starPositions;  // List to store star positions
-
     private List<Quadrant> quadrants;
 
     public Stars(int x, int y) {

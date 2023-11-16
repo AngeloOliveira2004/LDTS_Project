@@ -7,6 +7,7 @@
     import com.googlecode.lanterna.screen.TerminalScreen;
     import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
     import com.googlecode.lanterna.terminal.Terminal;
+    import org.space.invaders.structure.Dimensions;
     import org.space.invaders.structure.game.Shot;
     import org.space.invaders.structure.game.SpaceShip;
     import org.space.invaders.structure.map.Stars;
@@ -14,7 +15,7 @@
     import java.io.IOException;
 
 
-    public class Game implements Dimensions{
+    public class Game implements Dimensions {
         private boolean running = true;
         private Screen screen;
         private SpaceShip spaceShip;

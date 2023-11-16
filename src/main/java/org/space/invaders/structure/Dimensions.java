@@ -1,4 +1,4 @@
-package org.space.invaders;
+package org.space.invaders.structure;
 
 public interface Dimensions {
     final static int screenHeight = 50;

@@ -1,4 +1,4 @@
-package org.space.invaders.GUI.menu;
+package org.space.invaders.GUI;
 
 public class Menu {
     /*public enum Option {START, INST, PREF, RANKING, EXIT};

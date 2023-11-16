@@ -1,5 +1,5 @@
 // Element.java
-package org.space.invaders.Structure;
+package org.space.invaders.structure;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 

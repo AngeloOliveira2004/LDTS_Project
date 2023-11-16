@@ -1,4 +1,4 @@
-package org.space.invaders.Structure;
+package org.space.invaders.structure;
 
 public abstract class Position {
     protected int x;

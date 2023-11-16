@@ -1,10 +1,10 @@
-package org.space.invaders.Structure.game;
+package org.space.invaders.structure.game;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.Structure.Element;
-import org.space.invaders.Structure.Position;
+import org.space.invaders.structure.Element;
+import org.space.invaders.structure.Position;
 
 public class SpaceShip extends Position implements Element{
     private char orientation;

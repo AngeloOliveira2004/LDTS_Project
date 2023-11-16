@@ -3,14 +3,18 @@ package org.space.invaders.Structure.map;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.Dimensions;
 import org.space.invaders.Structure.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Stars extends Position{
+public class Stars extends Position implements Dimensions {
     private List<Position> starPositions;  // List to store star positions
+
+    private List<Quadrant> quadrants;
+
     public Stars(int x, int y) {
         super(x, y);
         starPositions = new ArrayList<>();
@@ -59,6 +63,13 @@ public class Stars extends Position{
     private static class StarPosition extends Position {
         public StarPosition(int x, int y) {
             super(x, y);
+        }
+    }
+    private static class Quadrant
+    {
+        public Quadrant(Position p1 , Position p2 , Position p3 , Position p4)
+        {
+
         }
     }
 }

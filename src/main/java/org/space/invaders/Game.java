@@ -1,12 +1,12 @@
     package org.space.invaders;
 
     import com.googlecode.lanterna.TerminalSize;
+    import com.googlecode.lanterna.input.KeyStroke;
     import com.googlecode.lanterna.input.KeyType;
     import com.googlecode.lanterna.screen.Screen;
     import com.googlecode.lanterna.screen.TerminalScreen;
     import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
     import com.googlecode.lanterna.terminal.Terminal;
-    import org.space.invaders.controller.Controller;
     import org.space.invaders.Structure.game.Shot;
     import org.space.invaders.Structure.game.SpaceShip;
     import org.space.invaders.Structure.map.Stars;
@@ -14,7 +14,7 @@
     import java.io.IOException;
 
 
-    public class Game extends Controller {
+    public class Game implements Dimensions{
         private boolean running = true;
         private Screen screen;
         private SpaceShip spaceShip;
@@ -50,7 +50,7 @@
             screen.refresh();
         }
         //divide screen into quadrants and divide the number of stars equallyy for each quadrant.
-        protected void processKey(com.googlecode.lanterna.input.KeyStroke key)
+        protected void processKey(KeyStroke key)
         {
             switch (key.getKeyType()) {
                 case ArrowRight -> spaceShip.moveRight('R');

@@ -2,14 +2,14 @@ package org.space.invaders.controller;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
+import org.space.invaders.Dimensions;
 
 import java.io.IOException;
 
-public class Command {
+public class Command implements Dimensions {
     public enum COMMAND {UP, RIGHT, DOWN, LEFT, CLICK, FLAG, UNDO, ESC, QUIT, BACKSPACE, NONE}
     COMMAND command;
     Character key;
-
     public Command() {
         this.key = ' ';
         this.command = COMMAND.NONE;

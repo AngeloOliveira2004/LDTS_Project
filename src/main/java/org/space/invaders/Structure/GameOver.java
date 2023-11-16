@@ -1,4 +1,4 @@
-package org.space.invaders.controller;
+package org.space.invaders.Structure;
 
 public class GameOver extends Exception{
 }

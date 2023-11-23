@@ -1,26 +1,31 @@
-## LDTS_<T><G> - <PROJECT NAME>
-
+## LDTS_<T><G> - <WORLD THRUSTER>
+//se é suposto por coisas planeadas mas ainda nao implementadas
 > Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
 
-**Example**:
+**Description**:
 
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
+In this exciting fixed shooter game that resembles the old "Space Invaders", your main objective is to survive the longest amount of time possible. You will control a spaceship and battle several enemies through your journey to the top of the leaderboard.
+Are you able to do it?
 
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+This project was developed by *José Costa* (up202207871@fe.up.pt) , *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*email*) 
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+> audaisbd
 
 **Examples**:
 
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **Movement** - The game character will be able to 
+- **Shot** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+
 
 ### PLANNED FEATURES
 
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
+- **Shrinking** - The main character will be able to shrink it's size in order to increase his velocity but reducing the damage.
+- **Super Shot** - The main character will be able to periodically use a super shot that will have particularities when compared with the normal shot.
+- 
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:

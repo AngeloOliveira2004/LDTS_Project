@@ -1,31 +1,30 @@
-package org.space.invaders.controller.command;
+package org.space.invaders.control;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
-import org.space.invaders.controller.Command;
-import org.space.invaders.controller.Controller;
+import org.space.invaders.structure.Dimensions;
 
 import java.io.IOException;
 
-public class UserInput {
+public class Command implements Dimensions {
     public enum COMMAND {UP, RIGHT, DOWN, LEFT, CLICK, FLAG, UNDO, ESC, QUIT, BACKSPACE, NONE}
-    Command.COMMAND command;
+    COMMAND command;
     Character key;
-    public UserInput() {
+    public Command() {
         this.key = ' ';
-        this.command = Command.COMMAND.NONE;
+        this.command = COMMAND.NONE;
     }
 
     public Character getKey() {
         return key;
     }
 
-    public Command.COMMAND getCommandEnum() {
+    public COMMAND getCommandEnum() {
         return command;
     }
 
 
-    public UserInput getCommand(Screen screen) throws IOException {
+    public Command getCommand(Screen screen) throws IOException {
         KeyStroke key;
         key = screen.pollInput();
 
@@ -34,51 +33,51 @@ public class UserInput {
 
         switch (key.getKeyType()) {
             case EOF:
-                this.command = Command.COMMAND.QUIT;
+                this.command = COMMAND.QUIT;
             case ArrowUp:
-                this.command = Command.COMMAND.UP;
+                this.command = COMMAND.UP;
                 break;
             case ArrowDown:
-                this.command = Command.COMMAND.DOWN;
+                this.command = COMMAND.DOWN;
                 break;
             case ArrowRight:
-                this.command = Command.COMMAND.RIGHT;
+                this.command = COMMAND.RIGHT;
                 break;
             case ArrowLeft:
-                this.command = Command.COMMAND.LEFT;
+                this.command = COMMAND.LEFT;
                 break;
             case Enter:
-                this.command = Command.COMMAND.CLICK;
+                this.command = COMMAND.CLICK;
                 break;
             case Escape:
-                this.command = Command.COMMAND.ESC;
+                this.command = COMMAND.ESC;
                 break;
             case Backspace:
-                this.command = Command.COMMAND.BACKSPACE;
+                this.command = COMMAND.BACKSPACE;
                 break;
             case Character:
                 this.key = key.getCharacter();
                 switch (this.key) {
                     case ' ':
-                        this.command = Command.COMMAND.FLAG;
+                        this.command = COMMAND.FLAG;
                         break;
                     case 'q':
-                        this.command = Command.COMMAND.QUIT;
+                        this.command = COMMAND.QUIT;
                         break;
                     case 'z':
-                        this.command = Command.COMMAND.UNDO;
+                        this.command = COMMAND.UNDO;
                         break;
                     case 'w':
-                        this.command = Command.COMMAND.UP;
+                        this.command = COMMAND.UP;
                         break;
                     case 'a':
-                        this.command = Command.COMMAND.LEFT;
+                        this.command = COMMAND.LEFT;
                         break;
                     case 's':
-                        this.command = Command.COMMAND.DOWN;
+                        this.command = COMMAND.DOWN;
                         break;
                     case 'd':
-                        this.command = Command.COMMAND.RIGHT;
+                        this.command = COMMAND.RIGHT;
                         break;
                     default:
                         break;

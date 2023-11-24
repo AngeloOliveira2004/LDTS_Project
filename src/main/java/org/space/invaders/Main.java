@@ -1,7 +1,5 @@
 package org.space.invaders;
 
-import org.space.invaders.image.to.ascii.ImageToAscii;
-
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
@@ -12,7 +10,5 @@ public class Main {
         int outputWidth = 75;
         int outputHeight = 30;
 
-        // Call the function to convert and print the image as ASCII art
-        ImageToAscii.convertAndPrint(imagePath, outputWidth, outputHeight);
     }
 }

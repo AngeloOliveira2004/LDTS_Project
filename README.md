@@ -29,6 +29,14 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 >- **Music** - It is planned that both the menu and game will have different musics.
 >- **Sounds Effects**  - The game will have sound effects for when the spaceship moves and shot
 
+### Shooting and Enemies Movement Mockup
+<img src="./docs/Shooting.gif" alt="Example GIF" width="400"/>
+
+### Asteroids Dodging Mechanic
+<img src="./docs/Asteroids.gif" alt="Example GIF" width="400"/>
+
+
+
 ### DESIGN
 
 # Guarantying only one instance of Game
@@ -107,7 +115,7 @@ We use the Factory pattern connected with another pattern that we mentioned soon
 
 > - Complexity: This pattern simplifies client code by abstracting the instantiation details, making it easier to understand and maintain.
 
-#Creating a Game Loop
+# Creating a Game Loop
 
 **Game Loop**
 
@@ -136,6 +144,4 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 
 - John Doe: 40%
 - Jane Doe: 60%
-
-![GIF Example](https://giphy.com/gifs/zVBqnHO1lp6UkwPfXk)
 

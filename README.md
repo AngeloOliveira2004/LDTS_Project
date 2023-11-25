@@ -1,31 +1,34 @@
-## LDTS_<T><G> - <WORLD THRUSTER>
-//se é suposto por coisas planeadas mas ainda nao implementadas
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
+## LDTS_GR072 - WORLD THRUSTER
 
-**Description**:
+### Description
 
-In this exciting fixed shooter game that resembles the old "Space Invaders", your main objective is to survive the longest amount of time possible. You will control a spaceship and battle several enemies through your journey to the top of the leaderboard.
+>In this exciting fixed shooter game that resembles the old "Space Invaders", your main objective is to survive the longest amount of time possible. You will control a spaceship and battle several enemies through your journey to the top of the leaderboard.
 Are you able to do it?
 
-This project was developed by *José Costa* (up202207871@fe.up.pt) , *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*email*) 
+This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*email*) 
 
 ### IMPLEMENTED FEATURES
 
-> audaisbd
+> - **Movement** - The game character will be able to move in all major directions - up , down , left , right 
+> - **Shot** - When the space bar is pressed a beam is shot from the spaceship
+> - **Map** - Stars around the map will be well distributed across all screen
+> - **Simple Collisions** - No star will be visible if the spaceship is on top of it and the spaceship will not be able to leave the screen
+> - **Simples Animation** - When either the right arrow key or left arrow key the spaceship will lean accordingly in order to give the sensation of turning
+> - **Simple Menu** - A simple menu where you wil be able to start a game 
 
-**Examples**:
-
-- **Movement** - The game character will be able to 
-- **Shot** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
-
+//incluir foto do menu e do jogo
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+// This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
-- **Shrinking** - The main character will be able to shrink it's size in order to increase his velocity but reducing the damage.
-- **Super Shot** - The main character will be able to periodically use a super shot that will have particularities when compared with the normal shot.
-- 
+> - **Shrinking** - The main character will be able to shrink it's size in order to increase his velocity but reducing the damage and reach of the shot.
+>- **Super Shot** - The main character will be able to periodically use a super shot that will be wider and *stronger* than the normal one.
+> - **Enemies** - The main game will have several different enemies. The ones planned are: <br> **normal enemies** : simply shoot in front and stay still; <br> **asteroids** : which are immortal , can only be dodged and will track the player's position <br> **kamikazes** : will track the player's position and explode if they collide with the player <br> **boss** - a bigger and tougher enemy with more health and damage
+>- **Rest of the Menu** - Other functionalities of the menu such as Configurations , Instructions , Leaderboard and Exit
+>- **Music** - It is planned that both the menu and game will have different musics.
+>- **Sounds Effects**  - The game will have sound effects for when the spaceship moves and shot
+
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:

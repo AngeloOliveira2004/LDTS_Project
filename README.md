@@ -128,7 +128,11 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 > - Consistent Frame Rate:It aids in maintaining a steady frame rate, which is essential for giving players a fluid visual experience.
 > - Energy Consumption: The game loop's constant execution can use up a lot of CPU's power, which reduces the device's energy efficiency. In order to reduce pointless computations and enhance overall energy usage, developers must optimize the loop.
 
+# UML Model Containing all Design Patterns:
 
+<img src="./docs/UML_LDTS.jpg" alt="Example GIF" width="1400"/>
+
+Note: This image is available in the docs folder , it is recommended to open it for full coverage and better view of the design.
 
 #### KNOWN CODE SMELLS
 

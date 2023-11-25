@@ -136,3 +136,6 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 
 - John Doe: 40%
 - Jane Doe: 60%
+
+![GIF Example](https://giphy.com/gifs/zVBqnHO1lp6UkwPfXk)
+

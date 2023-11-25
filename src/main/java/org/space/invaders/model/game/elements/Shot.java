@@ -1,11 +1,12 @@
-package org.space.invaders.structure.game;
+package org.space.invaders.model.game.elements;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.structure.Position;
+import org.space.invaders.model.Position;
 
-public class Shot extends Position{
+
+public class Shot extends Position {
 
     private int yVelocity = -1;
     private boolean update = true;

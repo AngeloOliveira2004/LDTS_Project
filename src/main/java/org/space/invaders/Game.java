@@ -7,10 +7,11 @@
     import com.googlecode.lanterna.screen.TerminalScreen;
     import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
     import com.googlecode.lanterna.terminal.Terminal;
-    import org.space.invaders.structure.Dimensions;
-    import org.space.invaders.structure.game.Shot;
-    import org.space.invaders.structure.game.SpaceShip;
-    import org.space.invaders.structure.map.Stars;
+    import org.space.invaders.model.game.Dimensions;
+    import org.space.invaders.model.game.SpaceShip;
+    import org.space.invaders.model.game.elements.Shot;
+    import org.space.invaders.model.game.map.Stars;
+
 
     import java.io.IOException;
 

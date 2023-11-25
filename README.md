@@ -5,7 +5,7 @@
 >In this exciting fixed shooter game that resembles the old "Space Invaders", your main objective is to survive the longest amount of time possible. You will control a spaceship and battle several enemies through your journey to the top of the leaderboard.
 Are you able to do it?
 
-This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*email*) 
+This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*up202206009@fe.up.pt*) 
 
 ### IMPLEMENTED FEATURES
 
@@ -16,11 +16,7 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 > - **Simples Animation** - When either the right arrow key or left arrow key the spaceship will lean accordingly in order to give the sensation of turning
 > - **Simple Menu** - A simple menu where you wil be able to start a game 
 
-//incluir foto do menu e do jogo
-
 ### PLANNED FEATURES
-
-// This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
 > - **Shrinking** - The main character will be able to shrink it's size in order to increase his velocity but reducing the damage and reach of the shot.
 >- **Super Shot** - The main character will be able to periodically use a super shot that will be wider and *stronger* than the normal one.
@@ -34,6 +30,9 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 
 ### Asteroids Dodging Mechanic
 <img src="./docs/Asteroids.gif" alt="Example GIF" width="400"/>
+
+### All Instances of the Menu
+<img src="./docs/Menu.gif" alt="Example GIF" width="400"/>
 
 
 
@@ -124,6 +123,10 @@ We use the Factory pattern connected with another pattern that we mentioned soon
 The game loop pattern ensures that the game runs smoothly and consistently, creating a loop that continually processes inputs, renders outputs and updates the state of the game
 
 **Consequences**
+
+> - Responsiveness: The game loop contributes to the maintenance of a responsive user experience by continuously monitoring and reacting to user input. Gameplay becomes more fluid and dynamic by processing player actions quickly.
+> - Consistent Frame Rate:It aids in maintaining a steady frame rate, which is essential for giving players a fluid visual experience.
+> - Energy Consumption: The game loop's constant execution can use up a lot of CPU's power, which reduces the device's energy efficiency. In order to reduce pointless computations and enhance overall energy usage, developers must optimize the loop.
 
 
 

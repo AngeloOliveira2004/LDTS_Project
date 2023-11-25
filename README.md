@@ -31,48 +31,93 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 
 ### DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
+# Guarantying only one instance of Game
 
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
+**Singleton**
 
-**Example of one of such subsections**:
+**Problem in Context:**
 
-------
+Without this pattern, there could have been multiple instances of Game resulting in loss of efficiency, instead, by doing this we going to guarantee that we only have one Game instance and provide global access to that instance. With this single instance we don’t violate principles such as the open/closed principle.
 
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+**Consequences:**
+
+> - Single Instance: The Game class ensures that there is only one instance, allowing various components to interact with the same game state.
+> - Global Access: The GameClient accesses the singleton instance of the game, providing a unified point of control for game-related actions.
+> - Memory Efficiency: The Singleton pattern ensures a single instance, avoiding excessive memory usage while allowing various parts of the system to work with the same game state.
+
+# Gamemode
+
+**State**
+
+**Problem in Context:**
+
+A game usually is divided into different parts, in this game we also decided to divide it into two different states it being GameState (where we have all the behavior associated with the gameplay part) and MenuState ( in which all the configurations and additional necessary information is stored) , this is extremely important since the Game object behavior depends on which state they are currently and that state needs to be changed in run-time. 
+
+**Consequences:**
+
+> - Encapsulation: Each state encapsulates its behavior, making it easier to add new states without modifying already pre-existing code.
+> - Separation of Concerns: The State pattern helps separate the concerns related to different states, helping with a more linear and cleaner design.
+> - Flexibility: Adding new states or modifying the behavior of existing states can be done independently, without affecting other parts of the code.
+
+
+# Playing Music/Sounds depending on the state
+
+**Observer**
+
+**Problem in Context:**
+
+In this game, the sound system needs to react to changes in the game state. For example, when transitioning from a MenuState to an GameState, the audio system music needs update, and certain elements might need to be reset (Main music) or initialized (shot or enemies sound).
+
+**Consequences:**
+
+> - Loose Coupling: The Observer pattern promotes loose coupling between the game state and its observers. The game state doesn't need to know the specific details of its observers, allowing for easier maintenance and modification.
+> - Separation of Concerns: Observers are responsible for their own reactions to state changes which enhances the detachment of certain parts of the code.
+> - Unexpected updates: The issue of unexpected updates in the Observer pattern can arise, in this case, when they receive notifications too frequently. This can lead to unnecessary computations, potential performance overhead, and unintended side effects, but it can be with some minor tweaks resolved/mitigated.
+
+# Architectural Pattern
+
+**Model-View-Controller**
+
+**Problem in Context:**
+
+This design pattern in super-useful, since normally is difficult to achieve an architecture early on in a game, that doesn’t need to be changed later in the development, so for this we ensure that we separate all the concerns into their specific area without adding difficulty to maintain, modify or extend, already pre-existing components.
+To solve that problem, we implemented the MVC (Model–View–Controller) design pattern, with the following division:
+
+Model - Stores all the data structures of the game and its current state.
+
+View - Handles the interaction with the player, directly, by the press of a button or indirectly, by a graphical interface that represents the game.
+
+Controller - Coordinates all the changes that occur in the other two.
+
+**Consequences:**
+
+> - Flexibility and Extensibility: MVC supports flexibility and extensibility by allowing changes in one component without affecting the others.
+> - Better testability: By allowing individual components to be tested in isolation, it helps to identify errors in a simpler way, because testing on instance doesn’t mean we need to test all the others. 
+> - Complexity Management: Manages complexity by organizing the code into three distinct components with well-defined responsibilities.
+
+# Localizing which helper subclass is to delegate
+
+**Factory**
+
+**Problem in Context:**
+
+We use the Factory pattern connected with another pattern that we mentioned sooner, the MVC pattern, it allows a class to delegate the responsibility of instantiating its objects to its subclasses, in this case getController() and getViewer().
+
+**Consequences:**
+
+> - Complexity: This pattern simplifies client code by abstracting the instantiation details, making it easier to understand and maintain.
+
+#Creating a Game Loop
+
+**Game Loop**
 
 **Problem in Context**
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
-
-**The Pattern**
-
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
-
-**Implementation**
-
-The following figure shows how the pattern’s roles were mapped to the application classes.
-
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
-
-These classes can be found in the following files:
-
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
+The game loop pattern ensures that the game runs smoothly and consistently, creating a loop that continually processes inputs, renders outputs and updates the state of the game
 
 **Consequences**
 
-The use of the State Pattern in the current design allows the following benefits:
 
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
 
 #### KNOWN CODE SMELLS
 

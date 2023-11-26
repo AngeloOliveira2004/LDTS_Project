@@ -53,6 +53,13 @@ public class SpaceShip extends Position implements Element {
         this.Health = Health;
         this.SpawnRate = SpawnRate;
     }
+    public SpaceShip() {
+        super(0 , 0);
+        this.Yvelocity = 0;
+        this.Xvelocity = 0;
+        this.Health = 0;
+        this.SpawnRate = 0;
+    }
     public void moveRight(char orientation)
     {
         if(getX()+ 1 + 11 <= 100)
@@ -94,6 +101,7 @@ public class SpaceShip extends Position implements Element {
     {
         return getY();
     }
+
     @Override
     public void draw(TextGraphics screen){
 

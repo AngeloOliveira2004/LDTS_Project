@@ -8,8 +8,7 @@ import org.mockito.MockitoAnnotations;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.SpaceShip;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class SpaceShipTest {
 
@@ -24,39 +23,39 @@ class SpaceShipTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        spaceShip = new SpaceShip(40, 30 , 1.0 , 1.0 , 5 , 0);
-        spaceShip.setX(positionMock.getX());
-        spaceShip.setY(positionMock.getY());
+        spaceShip = new SpaceShip(40, 30, 1.0, 1.0, 5, 0);
     }
 
     @Test
     void moveRightTest() {
         orientation = 'R';
-        when(positionMock.getX()).thenReturn(40);
         spaceShip.moveRight(orientation);
+        positionMock.setX(spaceShip.getX());
         verify(positionMock).setX(41);
+        positionMock.setY(spaceShip.getX());
         assertEquals(41, spaceShip.getPositionX());
-        verify(positionMock).setY(30);
         assertEquals(30, spaceShip.getPositionY());
     }
+
+
     @Test
     void moveLeftTest() {
         orientation = 'L';
-        when(positionMock.getX()).thenReturn(40);
-        spaceShip.moveRight(orientation);
+        spaceShip.moveLeft(orientation);
+        positionMock.setX(spaceShip.getX());
         verify(positionMock).setX(39);
+        positionMock.setY(spaceShip.getY());
         assertEquals(39, spaceShip.getPositionX());
-        verify(positionMock).setY(30);
         assertEquals(30, spaceShip.getPositionY());
     }
     @Test
     void moveUpTest(){
         orientation = 'U';
-        when(positionMock.getY()).thenReturn(30);
         spaceShip.moveUp(orientation);
+        positionMock.setY(spaceShip.getY());
         verify(positionMock).setY(31);
-        assertEquals(31, spaceShip.getPositionY());
         verify(positionMock).setX(40);
+        assertEquals(31, spaceShip.getPositionY());
         assertEquals(40, spaceShip.getPositionX());
     }
     @Test

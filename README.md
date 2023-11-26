@@ -46,6 +46,8 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 
 Without this pattern, there could have been multiple instances of Game resulting in loss of efficiency, instead, by doing this we going to guarantee that we only have one Game instance and provide global access to that instance. With this single instance we don’t violate principles such as the open/closed principle.
 
+<img src="./docs/singleton.png" alt="Example GIF" width="400"/>
+
 **Consequences:**
 
 > - Single Instance: The Game class ensures that there is only one instance, allowing various components to interact with the same game state.
@@ -59,6 +61,8 @@ Without this pattern, there could have been multiple instances of Game resulting
 **Problem in Context:**
 
 A game usually is divided into different parts, in this game we also decided to divide it into two different states it being GameState (where we have all the behavior associated with the gameplay part) and MenuState ( in which all the configurations and additional necessary information is stored) , this is extremely important since the Game object behavior depends on which state they are currently and that state needs to be changed in run-time. 
+
+<img src="./docs/state.png" alt="Example GIF" width="400"/>
 
 **Consequences:**
 
@@ -74,6 +78,8 @@ A game usually is divided into different parts, in this game we also decided to 
 **Problem in Context:**
 
 In this game, the sound system needs to react to changes in the game state. For example, when transitioning from a MenuState to an GameState, the audio system music needs update, and certain elements might need to be reset (Main music) or initialized (shot or enemies sound).
+
+<img src="./docs/observer.png" alt="Example GIF" width="400"/>
 
 **Consequences:**
 
@@ -92,9 +98,15 @@ To solve that problem, we implemented the MVC (Model–View–Controller) design
 
 Model - Stores all the data structures of the game and its current state.
 
+<img src="./docs/model.png" alt="Example GIF" width="400"/>
+
 View - Handles the interaction with the player, directly, by the press of a button or indirectly, by a graphical interface that represents the game.
 
+<img src="./docs/view.png" alt="Example GIF" width="400"/>
+
 Controller - Coordinates all the changes that occur in the other two.
+
+<img src="./docs/controller.png" alt="Example GIF" width="400"/>
 
 **Consequences:**
 
@@ -110,6 +122,8 @@ Controller - Coordinates all the changes that occur in the other two.
 
 We use the Factory pattern connected with another pattern that we mentioned sooner, the MVC pattern, it allows a class to delegate the responsibility of instantiating its objects to its subclasses, in this case getController() and getViewer().
 
+<img src="./docs/factory.png" alt="Example GIF" width="400"/>
+
 **Consequences:**
 
 > - Complexity: This pattern simplifies client code by abstracting the instantiation details, making it easier to understand and maintain.
@@ -120,7 +134,9 @@ We use the Factory pattern connected with another pattern that we mentioned soon
 
 **Problem in Context**
 
-The game loop pattern ensures that the game runs smoothly and consistently, creating a loop that continually processes inputs, renders outputs and updates the state of the game
+The game loop pattern ensures that the game runs smoothly and consistently, creating a loop that continually processes inputs, renders outputs and updates the state of the game.
+
+<img src="./docs/gameloop.png" alt="Example GIF" width="400"/>
 
 **Consequences**
 
@@ -133,10 +149,6 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 <img src="./docs/UML_LDTS.jpg" alt="Example GIF" width="1400"/>
 
 Note: This image is available in the docs folder , it is recommended to open it for full coverage and better view of the design.
-
-#### KNOWN CODE SMELLS
-
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
 
 ### TESTING
 

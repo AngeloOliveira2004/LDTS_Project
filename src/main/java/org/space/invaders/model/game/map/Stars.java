@@ -16,7 +16,7 @@ public class Stars extends Position implements Dimensions {
 
     private final List<Stars.StarPosition> starPositions;
 
-    private static class StarPosition extends Position {
+    public static class StarPosition extends Position {
         public StarPosition(int x, int y) {
             super(x, y);
         }
@@ -24,6 +24,12 @@ public class Stars extends Position implements Dimensions {
     public Stars(int x, int y) {
         super(x, y);
         starPositions = generateRandomStarPositions();
+    }
+
+    public Stars()
+    {
+        super(0, 0);
+        starPositions = new ArrayList<>();
     }
 
     private List<Stars.StarPosition> generateRandomStarPositions() {
@@ -66,7 +72,6 @@ public class Stars extends Position implements Dimensions {
         return positions;
     }
 
-
     public void draw(TextGraphics screen) {
         for (Stars.StarPosition starPosition : starPositions) {
             int x = starPosition.getX();
@@ -78,5 +83,8 @@ public class Stars extends Position implements Dimensions {
 
             screen.setCharacter(x, y, character);
         }
+    }
+    public List<StarPosition> getStarPosition() {
+        return starPositions;
     }
 }

@@ -5,13 +5,19 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
 
+import java.security.PublicKey;
+
 
 public class Shot extends Position {
-
     private int yVelocity = -1;
     private boolean update = true;
+
     public Shot(int x , int y) {
         super(x , y);
+    }
+
+    public Shot(){
+        super(0,0);
     }
     public void draw(TextGraphics screen)
     {
@@ -37,5 +43,12 @@ public class Shot extends Position {
             }
 
         }
+    }
+
+    public int getPositionX() {
+        return getX();
+    }
+    public int getPositionY() {
+        return getY();
     }
 }

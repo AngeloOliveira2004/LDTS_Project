@@ -1,8 +1,9 @@
 package org.space.invaders;
 
+import org.space.invaders.model.game.menu.Menu;
+
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
-        game.run();
+        Menu menu = new Menu();
     }
 }

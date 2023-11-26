@@ -149,18 +149,3 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 <img src="./docs/UML_LDTS.jpg" alt="Example GIF" width="1400"/>
 
 Note: This image is available in the docs folder , it is recommended to open it for full coverage and better view of the design.
-
-### TESTING
-
-- Screenshot of coverage report.
-- Link to mutation testing report.
-
-### SELF-EVALUATION
-
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
-

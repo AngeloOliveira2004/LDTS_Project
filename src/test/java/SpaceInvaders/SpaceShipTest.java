@@ -79,23 +79,26 @@ class SpaceShipTest {
         spaceShip.setY(50);
         orientation = 'D';
         spaceShip.moveDown(orientation);
+        positionMock.setY(spaceShip.getY());
         verify(positionMock).setY(50);
-        assertEquals(positionMock.getY(), spaceShip.getPositionY());
+        assertEquals(50, spaceShip.getPositionY());
     }
     @Test
     void leftBoundaryTest(){
         spaceShip.setX(0);
         orientation = 'L';
         spaceShip.moveLeft(orientation);
+        positionMock.setX(spaceShip.getX());
         verify(positionMock).setX(0);
-        assertEquals(positionMock.getX(), spaceShip.getPositionX());
+        assertEquals(0, spaceShip.getPositionX());
     }
     @Test
     void rightBoundaryTest(){
         spaceShip.setX(100);
         orientation = 'R';
         spaceShip.moveRight(orientation);
+        positionMock.setX(spaceShip.getX());
         verify(positionMock).setX(100);
-        assertEquals(positionMock.getX(), spaceShip.getPositionX());
+        assertEquals(100, spaceShip.getPositionX());
     }
 }

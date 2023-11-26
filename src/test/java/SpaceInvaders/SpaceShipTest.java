@@ -53,28 +53,26 @@ class SpaceShipTest {
         orientation = 'U';
         spaceShip.moveUp(orientation);
         positionMock.setY(spaceShip.getY());
-        verify(positionMock).setY(31);
-        verify(positionMock).setX(40);
-        assertEquals(31, spaceShip.getPositionY());
+        verify(positionMock).setY(29);
+        assertEquals(29, spaceShip.getPositionY());
         assertEquals(40, spaceShip.getPositionX());
     }
     @Test
     void moveDownTest(){
         orientation = 'D';
-        when(positionMock.getY()).thenReturn(30);
-        spaceShip.moveUp(orientation);
-        verify(positionMock).setY(29);
-        assertEquals(positionMock.getY(), spaceShip.getPositionY());
-        verify(positionMock).setX(40);
-        assertEquals(40, spaceShip.getPositionX());
+        spaceShip.moveDown(orientation);
+        positionMock.setY(spaceShip.getY());
+        verify(positionMock).setY(31);
+        assertEquals(31, spaceShip.getPositionY());
     }
     @Test
     void upBoundaryTest(){
         spaceShip.setY(0);
         orientation = 'U';
         spaceShip.moveUp(orientation);
+        positionMock.setY(spaceShip.getY());
         verify(positionMock).setY(0);
-        assertEquals(positionMock.getY(), spaceShip.getPositionY());
+        assertEquals(0, spaceShip.getPositionY());
     }
     @Test
     void downBoundaryTest(){

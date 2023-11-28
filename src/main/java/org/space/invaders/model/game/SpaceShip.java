@@ -74,9 +74,9 @@ public class SpaceShip extends Element {
     public void moveUp(char orientation)
     {
         Position tempPosition= new Position(getXposition() , getYposition() - 1);
-        if(getY()-1>= 0)
+        if(getYposition()-1>= 0)
         {
-            setY(getY()- 1);
+            setPosition(tempPosition);
             this.orientation = orientation;
         }
     }
@@ -97,14 +97,14 @@ public class SpaceShip extends Element {
                             TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
                             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                             character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                            screen.setCharacter(getX() + y, getY() + x, character);
+                            screen.setCharacter(getXposition() + y, getYposition() + x, character);
                         }
                         else
                         {
                             TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
                             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                             character = character.withForegroundColor(TextColor.ANSI.BLACK);
-                            screen.setCharacter(getX() + y, getY() + x, character);
+                            screen.setCharacter(getXposition() + y, getYposition() + x, character);
                         }
                     }
                 }
@@ -120,14 +120,14 @@ public class SpaceShip extends Element {
                             TextCharacter character = new TextCharacter(spaceshipLeft[x][y]);
                             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                             character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                            screen.setCharacter(getX() + y, getY() + x, character);
+                            screen.setCharacter(getXposition() + y, getYposition() + x, character);
                         }
                         else
                         {
                             TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
                             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                             character = character.withForegroundColor(TextColor.ANSI.BLACK);
-                            screen.setCharacter(getX() + y, getY() + x, character);
+                            screen.setCharacter(getXposition() + y, getYposition() + x, character);
                         }
                     }
                 }
@@ -140,13 +140,13 @@ public class SpaceShip extends Element {
                             TextCharacter character = new TextCharacter(spaceship[x][y]);
                             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                             character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                            screen.setCharacter(getX() + y, getY() + x, character);
+                            screen.setCharacter(getXposition() + y, getYposition() + x, character);
                         }else
                         {
                             TextCharacter character = new TextCharacter(spaceshipRight[x][y]);
                             character = character.withBackgroundColor(TextColor.ANSI.BLACK);
                             character = character.withForegroundColor(TextColor.ANSI.BLACK);
-                            screen.setCharacter(getX() + y, getY() + x, character);
+                            screen.setCharacter(getXposition() + y, getYposition() + x, character);
                         }
                     }
                 }

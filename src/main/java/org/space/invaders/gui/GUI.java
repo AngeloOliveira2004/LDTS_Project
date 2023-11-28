@@ -1,21 +1,24 @@
 package org.space.invaders.gui;
 
-import javax.swing.text.Position;
+import com.googlecode.lanterna.graphics.TextGraphics;
+
+
+import org.space.invaders.model.Position;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public interface GUI {
     ACTION getNextAction() throws IOException;
 
-    void drawSpaceShip(Position position , char[][] spaceShipShape);
+    void drawSpaceShip(TextGraphics screen, Position position , char[][] spaceShipShape);
 
-    void drawShot(Position position , char[][] ShotShape);
+    void drawShot(TextGraphics screen , Position position , char[][] ShotShape);
 
-    void drawStars(ArrayList<Position> StarPositions);
+    void drawStars(TextGraphics screen , ArrayList<Position> StarPositions);
 
-    void drawEnemies(ArrayList<Position> EnemiesPosition , ArrayList<char[][]> enemiesShape);
+    void drawEnemies(TextGraphics screen , ArrayList<Position> EnemiesPosition , ArrayList<char[][]> enemiesShape);
 
-    void drawHealth(Position position, String text, String color);
+    void drawHealth(TextGraphics screen , Position position, String text, String color);
 
     void clear();
 

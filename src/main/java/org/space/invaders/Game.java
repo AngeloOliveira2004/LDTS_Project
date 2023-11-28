@@ -71,8 +71,7 @@
                         spaceShip.moveUp('N');
                     }else if(character == ' ')
                     {
-                        spaceShip.check();
-                        shot = new Shot(spaceShip.getPositionX()+5 , spaceShip.getPositionY());
+                        shot = new Shot(spaceShip.getXposition()+5 , spaceShip.getYposition());
                         shot.draw(screen.newTextGraphics());
                         shot = null;
                     }

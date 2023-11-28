@@ -1,4 +1,8 @@
 package org.space.invaders.states;
 
-public class State {
+import org.space.invaders.Game;
+
+
+public abstract class State {
+
 }

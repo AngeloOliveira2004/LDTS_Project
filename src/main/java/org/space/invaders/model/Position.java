@@ -1,5 +1,5 @@
 package org.space.invaders.model;
-public abstract class Position {
+public class Position {
     protected int x;
     protected int y;
 

@@ -1,2 +1,6 @@
-package org.space.invaders.gui;public interface MenuGUI {
+package org.space.invaders.gui;
+
+public interface MenuGUI {
+
+
 }

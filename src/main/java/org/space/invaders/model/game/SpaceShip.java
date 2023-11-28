@@ -8,7 +8,7 @@ import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.Element;
 
 
-public class SpaceShip extends Position implements Element {
+public class SpaceShip extends Element {
     private char orientation;
     private double Yvelocity ;
     private double Xvelocity ;
@@ -40,31 +40,19 @@ public class SpaceShip extends Position implements Element {
                     {'/', '_', '_', '_', '/', '_', '_', '_', '_', '/', '_', '_','/','0'},
             };
 
-    public void check()
-    {
-        int temp = getX();
 
-        int temp1 = getY();
-    }
-    public SpaceShip(int x, int y, double Yvelocity, double Xvelocity, int Health, int SpawnRate) {
-        super(x , y);
-        this.Yvelocity = Yvelocity;
-        this.Xvelocity = Xvelocity;
-        this.Health = Health;
-        this.SpawnRate = SpawnRate;
+    public SpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate) {
+        super(x , y , Yvelocity , Xvelocity , Health , SpawnRate);
     }
     public SpaceShip() {
-        super(0 , 0);
-        this.Yvelocity = 0;
-        this.Xvelocity = 0;
-        this.Health = 0;
-        this.SpawnRate = 0;
+        super(0 , 0 ,0 , 0 ,0 , 0 );
     }
     public void moveRight(char orientation)
     {
-        if(getX()+ 1 + 11 <= 100)
+        if(getXposition()+ 1 + 11 <= 100)
         {
-            setX(getX()+ 1);
+            Position tempPosition= new Position(getPositionX() +1 , getYposition());
+            setPosition(tempPosition);
             this.orientation = orientation;
         }
     }
@@ -92,17 +80,7 @@ public class SpaceShip extends Position implements Element {
             this.orientation = orientation;
         }
     }
-    public int getPositionX()
-    {
-        return getX();
-    }
 
-    public int getPositionY()
-    {
-        return getY();
-    }
-
-    @Override
     public void draw(TextGraphics screen){
 
         screen.setForegroundColor(TextColor.ANSI.YELLOW);
@@ -176,37 +154,5 @@ public class SpaceShip extends Position implements Element {
         }
     }
 
-    @Override
-    public int getHealth() {
-        return this.Health;
-    }
-    @Override
-    public void setHealth(int health) {
-        this.Health = health;
-    }
-    @Override
-    public int getSpawnRate() {
-        return 0;
-    }
-    @Override
-    public void setSpawnRate(int spawnRate) {
-        this.SpawnRate = 0;
-    }
-    @Override
-    public double getYVelocity() {
-        return this.Yvelocity;
-    }
-    @Override
-    public void setYVelocity(double yVelocity) {
-        this.Yvelocity = yVelocity;
-    }
-    @Override
-    public double getXVelocity() {
-        return this.Xvelocity;
-    }
-    @Override
-    public void setXVelocity(double xVelocity) {
-        this.Xvelocity = xVelocity;
-    }
 }
 

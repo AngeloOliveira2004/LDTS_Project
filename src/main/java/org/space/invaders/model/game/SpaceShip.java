@@ -3,6 +3,7 @@ package org.space.invaders.model.game;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.terminal.Terminal;
 
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.Element;

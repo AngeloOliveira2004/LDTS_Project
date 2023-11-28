@@ -5,24 +5,24 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import org.space.invaders.model.Position;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public interface GUI {
     ACTION getNextAction() throws IOException;
 
-    void drawSpaceShip(TextGraphics screen, Position position , char[][] spaceShipShape);
+    void drawSpaceShip(Position position , char[][] spaceShipShape);
 
-    void drawShot(TextGraphics screen , Position position , char[][] ShotShape , int yVelocity);
+    void drawShot(Position position , char[][] ShotShape , int yVelocity);
 
-    void drawStars(TextGraphics screen , ArrayList<Position> StarPositions);
+    void drawStars(ArrayList<Position> StarPositions);
 
-    void drawEnemies(TextGraphics screen , ArrayList<Position> EnemiesPosition , ArrayList<char[][]> enemiesShape);
+    void drawEnemies(ArrayList<Position> EnemiesPosition , ArrayList<char[][]> enemiesShape);
 
-    void drawHealth(TextGraphics screen , Position position, String text, String color);
+    void drawHealth(Position position, String text, String color);
 
+    void drawText(Position position , String text);
     void clear();
-
-    void refresh() throws IOException;
 
     void close() throws IOException;
 

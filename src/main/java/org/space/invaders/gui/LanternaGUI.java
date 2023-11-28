@@ -9,6 +9,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 
 
 import org.space.invaders.model.Position;
@@ -16,13 +17,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LanternaGUI implements GUI{
+    private final TextGraphics screen;
+    public LanternaGUI(TextGraphics screen) {
+        this.screen = screen;
+    }
     @Override
     public ACTION getNextAction() throws IOException {
         return null;
     }
 
     @Override
-    public void drawSpaceShip(TextGraphics screen, Position position, char[][] spaceShipShape) {
+    public void drawSpaceShip(Position position, char[][] spaceShipShape) {
         screen.setForegroundColor(TextColor.ANSI.YELLOW);
 
         for(int x = 0 ; x < spaceShipShape.length ; x++)
@@ -48,7 +53,7 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void drawShot(TextGraphics screen, Position position, char[][] ShotShape , int yVelocity) {
+    public void drawShot(Position position, char[][] ShotShape , int yVelocity) {
         boolean update = true;
         while(position.y > 0)
         {
@@ -75,28 +80,34 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void drawStars(TextGraphics screen, ArrayList<Position> StarPositions) {
+    public void drawStars(ArrayList<Position> StarPositions) {
+        TextCharacter character = new TextCharacter('*');
+        for(Position position : StarPositions)
+        {
+            screen.setCharacter(position.x , position.y , character);
+        }
+    }
+
+    @Override
+    public void drawEnemies(ArrayList<Position> EnemiesPosition, ArrayList<char[][]> enemiesShape) {
 
     }
 
     @Override
-    public void drawEnemies(TextGraphics screen, ArrayList<Position> EnemiesPosition, ArrayList<char[][]> enemiesShape) {
+    public void drawHealth(Position position, String text, String color) {
 
     }
 
     @Override
-    public void drawHealth(TextGraphics screen, Position position, String text, String color) {
+    public void drawText(Position position , String text)
+    {
 
     }
     @Override
     public void clear() {
-
+        screen.fill(' ');
     }
 
-    @Override
-    public void refresh() throws IOException {
-
-    }
 
     @Override
     public void close() throws IOException {

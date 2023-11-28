@@ -48,8 +48,30 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void drawShot(TextGraphics screen, Position position, char[][] ShotShape) {
+    public void drawShot(TextGraphics screen, Position position, char[][] ShotShape , int yVelocity) {
+        boolean update = true;
+        while(position.y > 0)
+        {
+            if(update)
+            {
+                TextCharacter character = new TextCharacter('|');
+                character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                screen.setCharacter(position.x, position.y - 1, character);
+                update = false;
+            }
 
+            position.setY(position.y+yVelocity);
+
+            if(position.y % 5  == 0)
+            {
+                TextCharacter character = new TextCharacter('|');
+                character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                screen.setCharacter(position.x, position.y, character);
+            }
+
+        }
     }
 
     @Override

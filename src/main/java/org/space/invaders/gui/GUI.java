@@ -12,7 +12,7 @@ public interface GUI {
 
     void drawSpaceShip(TextGraphics screen, Position position , char[][] spaceShipShape);
 
-    void drawShot(TextGraphics screen , Position position , char[][] ShotShape);
+    void drawShot(TextGraphics screen , Position position , char[][] ShotShape , int yVelocity);
 
     void drawStars(TextGraphics screen , ArrayList<Position> StarPositions);
 

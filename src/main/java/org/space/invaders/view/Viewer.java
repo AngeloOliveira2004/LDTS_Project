@@ -15,13 +15,12 @@ public abstract class Viewer<T>{
     public T getModel() {
         return model;
     }
-/*
+
     public void drawMnu(GUI gui) throws IOException {
         gui.clear();
         drawElements(gui);
         gui.refresh();
     }
-*/
 
     protected abstract void drawElements(GUI gui);
 }

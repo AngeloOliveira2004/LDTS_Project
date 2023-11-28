@@ -37,7 +37,7 @@
                 screen.startScreen();
                 screen.doResizeIfNecessary();
 
-                spaceShip = new SpaceShip(40, 30 , 1.0 , 1.0 , 5 , 0);
+                spaceShip = new SpaceShip(40, 30 , 1 , 1, 5 , 0);
 
                 stars = new Stars(50, 100);
                 stars.draw(screen.newTextGraphics());

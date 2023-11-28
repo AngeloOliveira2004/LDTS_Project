@@ -1,6 +1,32 @@
 package org.space.invaders.gui;
 
-public class Menu {
+import javax.swing.text.Position;
+import java.io.IOException;
+
+public class Menu implements MenuGUI {
+    @Override
+    public GUI.ACTION getNextAction() throws IOException {
+        return null;
+    }
+
+    @Override
+    public void drawText(Position position, String text, String color) {
+
+    }
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public void refresh() throws IOException {
+
+    }
+
+    @Override
+    public void close() throws IOException {
+
+    }
     /*public enum Option {START, INST, PREF, RANKING, EXIT};
 
     public String[] optString = {"NEW GAME", "INSTRUCTIONS", "SETTINGS", "RANKINGS", "EXIT"};

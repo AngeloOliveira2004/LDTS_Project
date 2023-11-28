@@ -10,10 +10,6 @@ import org.space.invaders.model.game.elements.Element;
 
 public class SpaceShip extends Element {
     private char orientation;
-    private double Yvelocity ;
-    private double Xvelocity ;
-    private int Health ;
-    private int SpawnRate;
     private static final char[][] spaceship =
             {
                     {'0' ,'0' ,'0' , '0', '0', '_' ,'0' , '0' ,'0','0' ,'0'},
@@ -51,29 +47,33 @@ public class SpaceShip extends Element {
     {
         if(getXposition()+ 1 + 11 <= 100)
         {
-            Position tempPosition= new Position(getPositionX() +1 , getYposition());
+            Position tempPosition= new Position(getXposition() +1 , getYposition());
             setPosition(tempPosition);
             this.orientation = orientation;
         }
     }
     public void moveLeft(char orientation)
     {
-        if(getX() - 1 >= 0)
+
+        if(getXposition() - 1 >= 0)
         {
-            setX(getX()- 1);
+            Position tempPosition= new Position(getXposition() - 1 , getYposition());
+            setPosition(tempPosition);
             this.orientation = orientation;
         }
     }
     public void moveDown(char orientation)
     {
-        if(getY() -1 +7<= 50)
+        if(getYposition() -1 +7<= 50)
         {
-            setY(getY()+ 1);
+            Position tempPosition= new Position(getXposition() , getYposition() + 1);
+            setPosition(tempPosition);
             this.orientation = orientation;
         }
     }
     public void moveUp(char orientation)
     {
+        Position tempPosition= new Position(getXposition() , getYposition() - 1);
         if(getY()-1>= 0)
         {
             setY(getY()- 1);

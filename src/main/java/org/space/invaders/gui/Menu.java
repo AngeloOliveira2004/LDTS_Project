@@ -1,9 +1,45 @@
 package org.space.invaders.gui;
 
-import javax.swing.text.Position;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import java.util.ArrayList;
+import java.util.List;
+
+
+import org.space.invaders.model.Position;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Menu implements MenuGUI {
+    private final Screen screen;
+    private TextGraphics textGraphics;
+
+    public Menu(int screenWidth, int screenHeight) throws Exception {
+        Terminal terminal = new DefaultTerminalFactory()
+                .setInitialTerminalSize(new TerminalSize(screenWidth, screenHeight))
+                .createTerminal();
+
+        this.screen = new TerminalScreen(terminal);
+
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
+        // Start the screen
+        screen.startScreen();
+
+        textGraphics = screen.newTextGraphics();
+    }
+    public Menu(Screen screen) {
+        this.screen = screen;
+    }
     @Override
     public GUI.ACTION getNextAction() throws IOException {
         return null;
@@ -11,21 +47,22 @@ public class Menu implements MenuGUI {
 
     @Override
     public void drawText(Position position, String text, String color) {
-
+        textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
+        textGraphics.putString(position.x, position.y, text);
     }
     @Override
     public void clear() {
-
+        screen.clear();
     }
 
     @Override
     public void refresh() throws IOException {
-
+        screen.refresh();
     }
 
     @Override
     public void close() throws IOException {
-
+        screen.close();
     }
     /*public enum Option {START, INST, PREF, RANKING, EXIT};
 

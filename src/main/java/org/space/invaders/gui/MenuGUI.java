@@ -1,6 +1,6 @@
 package org.space.invaders.gui;
 
-import javax.swing.text.Position;
+import org.space.invaders.model.Position;
 import java.io.IOException;
 import java.util.ArrayList;
 

@@ -19,9 +19,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LanternaGUI implements GUI{
-    private final TextGraphics screen;
-    public LanternaGUI(TextGraphics screen) {
+    private final Screen screen;
+    private  TextGraphics textGraphics;
+    public LanternaGUI(int screenWidth , int screenHeight) throws Exception {
+        Terminal terminal = new DefaultTerminalFactory()
+                .setInitialTerminalSize(new TerminalSize(screenWidth, screenHeight))
+                .createTerminal();
+
+        this.screen = new TerminalScreen(terminal);
+
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
+        // Start the screen
+        screen.startScreen();
+
+        textGraphics = screen.newTextGraphics();
+    }
+    public LanternaGUI(Screen screen) {
         this.screen = screen;
+    }
+    private TextCharacter createColoredCharacter(char character, TextColor foregroundColor, TextColor backgroundColor) {
+        TextCharacter textCharacter = new TextCharacter(character);
+        textCharacter = textCharacter.withForegroundColor(foregroundColor);
+        textCharacter = textCharacter.withBackgroundColor(backgroundColor);
+        return textCharacter;
     }
     @Override
     public ACTION getNextAction() throws IOException {
@@ -30,7 +52,7 @@ public class LanternaGUI implements GUI{
 
     @Override
     public void drawSpaceShip(Position position, char[][] spaceShipShape) {
-        screen.setForegroundColor(TextColor.ANSI.YELLOW);
+        textGraphics.setForegroundColor(TextColor.ANSI.YELLOW);
 
         for(int x = 0 ; x < spaceShipShape.length ; x++)
         {
@@ -38,17 +60,13 @@ public class LanternaGUI implements GUI{
             {
                 if(spaceShipShape[x][y] != '0')
                 {
-                    TextCharacter character = new TextCharacter(spaceShipShape[x][y]);
-                    character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                    character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                    screen.setCharacter(position.x + y, position.y + x, character);
+                    TextCharacter textCharacter = createColoredCharacter(spaceShipShape[x][y], TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
+                    textGraphics.setCharacter(position.x + y, position.y + x, textCharacter);
                 }
                 else
                 {
-                    TextCharacter character = new TextCharacter(spaceShipShape[x][y]);
-                    character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                    character = character.withForegroundColor(TextColor.ANSI.BLACK);
-                    screen.setCharacter(position.x + y, position.y + x, character);
+                    TextCharacter textCharacter = createColoredCharacter(spaceShipShape[x][y], TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
+                    textGraphics.setCharacter(position.x + y, position.y + x, textCharacter);
                 }
             }
         }
@@ -61,10 +79,8 @@ public class LanternaGUI implements GUI{
         {
             if(update)
             {
-                TextCharacter character = new TextCharacter('|');
-                character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                screen.setCharacter(position.x, position.y - 1, character);
+                TextCharacter textCharacter = createColoredCharacter('|', TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
+                textGraphics.setCharacter(position.x, position.y - 1, textCharacter);
                 update = false;
             }
 
@@ -72,10 +88,8 @@ public class LanternaGUI implements GUI{
 
             if(position.y % 5  == 0)
             {
-                TextCharacter character = new TextCharacter('|');
-                character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                screen.setCharacter(position.x, position.y, character);
+                TextCharacter textCharacter = createColoredCharacter('|', TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
+                textGraphics.setCharacter(position.x, position.y, textCharacter);
             }
         }
     }
@@ -85,13 +99,13 @@ public class LanternaGUI implements GUI{
         TextCharacter character = new TextCharacter('*');
         for(Position position : StarPositions)
         {
-            screen.setCharacter(position.x , position.y , character);
+            textGraphics.setCharacter(position.x , position.y , character);
         }
     }
 
     @Override
     public void drawEnemies(ArrayList<Position> EnemiesPosition, ArrayList<char[][]> enemiesShape) {
-        screen.setForegroundColor(TextColor.ANSI.YELLOW);
+        textGraphics.setForegroundColor(TextColor.ANSI.YELLOW);
 
         for(char[][] enemyShape : enemiesShape)
         {
@@ -102,17 +116,13 @@ public class LanternaGUI implements GUI{
                 {
                     if(enemyShape[x][y] != '0')
                     {
-                        TextCharacter character = new TextCharacter(enemyShape[x][y]);
-                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                        character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                        screen.setCharacter(position.x + y, position.y + x, character);
+                        TextCharacter textCharacter = createColoredCharacter(enemyShape[x][y], TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
+                        textGraphics.setCharacter(position.x + y, position.y + x, textCharacter);
                     }
                     else
                     {
-                        TextCharacter character = new TextCharacter(enemyShape[x][y]);
-                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                        character = character.withForegroundColor(TextColor.ANSI.BLACK);
-                        screen.setCharacter(position.x + y, position.y + x, character);
+                        TextCharacter textCharacter = createColoredCharacter(enemyShape[x][y], TextColor.ANSI.BLACK, TextColor.ANSI.BLACK);
+                        textGraphics.setCharacter(position.x + y, position.y + x, textCharacter);
                     }
                 }
             }
@@ -127,16 +137,18 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawText(Position position , String text)
     {
-
+        textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
+        textGraphics.putString(position.x, position.y, text);
     }
+
     @Override
     public void clear() {
-        screen.fill(' ');
+        screen.clear();
     }
 
 
     @Override
     public void close() throws IOException {
-
+        screen.close();
     }
 }

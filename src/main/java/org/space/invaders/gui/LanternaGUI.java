@@ -10,6 +10,8 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import org.space.invaders.model.Position;
@@ -75,7 +77,6 @@ public class LanternaGUI implements GUI{
                 character = character.withForegroundColor(TextColor.ANSI.YELLOW);
                 screen.setCharacter(position.x, position.y, character);
             }
-
         }
     }
 
@@ -90,7 +91,32 @@ public class LanternaGUI implements GUI{
 
     @Override
     public void drawEnemies(ArrayList<Position> EnemiesPosition, ArrayList<char[][]> enemiesShape) {
+        screen.setForegroundColor(TextColor.ANSI.YELLOW);
 
+        for(char[][] enemyShape : enemiesShape)
+        {
+            for(int x = 0 ; x < enemyShape.length ; x++)
+            {
+                Position position = EnemiesPosition.get(x);
+                for(int y = 0; y < enemyShape[0].length ; y++)
+                {
+                    if(enemyShape[x][y] != '0')
+                    {
+                        TextCharacter character = new TextCharacter(enemyShape[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.YELLOW);
+                        screen.setCharacter(position.x + y, position.y + x, character);
+                    }
+                    else
+                    {
+                        TextCharacter character = new TextCharacter(enemyShape[x][y]);
+                        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+                        character = character.withForegroundColor(TextColor.ANSI.BLACK);
+                        screen.setCharacter(position.x + y, position.y + x, character);
+                    }
+                }
+            }
+        }
     }
 
     @Override

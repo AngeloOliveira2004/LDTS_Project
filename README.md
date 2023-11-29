@@ -10,6 +10,7 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 ### IMPLEMENTED FEATURES
 
 > - **Movement** - The game character will be able to move in all major directions - up , down , left , right 
+> - **Movement** - The game character will be able to move in all major directions - up , down , left , right 
 > - **Shot** - When the space bar is pressed a beam is shot from the spaceship
 > - **Map** - Stars around the map will be well distributed across all screen
 > - **Simple Collisions** - No star will be visible if the spaceship is on top of it and the spaceship will not be able to leave the screen

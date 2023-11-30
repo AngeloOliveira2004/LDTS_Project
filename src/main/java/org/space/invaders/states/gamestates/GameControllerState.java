@@ -1,4 +1,4 @@
 package org.space.invaders.states.gamestates;
 
-public class GameState {
+public class GameControllerState {
 }

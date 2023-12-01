@@ -8,13 +8,16 @@ import java.io.IOException;
 
 public class GameState extends State {
 
-   // private final Controller controller;
-    private Screen screen;
-    private SpaceShip spaceShip;
-    private static final long FRAME_TIME = 50;
+ // private final Controller controller;
+ private Screen screen;
+ private SpaceShip spaceShip;
+ private static final long FRAME_TIME = 50;
 
-    //TODO
-    public GameState(){};
+ //TODO
+ public GameState() {
+ }
+
+ ;
 
  @Override
  public void step() {
@@ -30,10 +33,10 @@ public class GameState extends State {
  public boolean isRunning() {
   return false;
  }
-@Override
+
+ @Override
  public State nextState() {
 
-    State init = null;
-    return init;
-
+  return null;
+ }
 }

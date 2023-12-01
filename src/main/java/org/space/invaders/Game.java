@@ -7,12 +7,14 @@
     import com.googlecode.lanterna.screen.TerminalScreen;
     import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
     import com.googlecode.lanterna.terminal.Terminal;
+    import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
     import org.space.invaders.model.game.Dimensions;
     import org.space.invaders.model.game.SpaceShip;
     import org.space.invaders.model.game.elements.Shot;
     import org.space.invaders.model.game.map.Stars;
 
 
+    import java.awt.*;
     import java.io.IOException;
 
 
@@ -22,28 +24,39 @@
         private SpaceShip spaceShip;
         private Shot shot;
         private Stars stars;
-        private static final int FRAME_RATE = 30; // Frames per second
+        private static final int FRAME_RATE = 15; // Frames per second
         private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds
         private long lastFrameTime;
-        public Game() {
+        private static Game instance;
+        private Game() {
             try {
-                Terminal terminal = new DefaultTerminalFactory()
-                        .setInitialTerminalSize(new TerminalSize(screenWidth, screenHeight))
-                        .createTerminal();
+                Font myFont = new Font("Monospaced", Font.PLAIN, 2);
+                AWTTerminalFontConfiguration myFontConfiguration = AWTTerminalFontConfiguration.newInstance(myFont);
+                DefaultTerminalFactory dtf = new DefaultTerminalFactory();
+                dtf.setForceAWTOverSwing(true);
+                dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
+
+                dtf.setInitialTerminalSize(new TerminalSize(200,200));
+                Terminal terminal = dtf.createTerminal();
+
                 lastFrameTime = System.nanoTime();
                 screen = new TerminalScreen(terminal);
-
                 screen.setCursorPosition(null);
                 screen.startScreen();
-                screen.doResizeIfNecessary();
 
-                spaceShip = new SpaceShip(40, 30 , 1 , 1, 5 , 0);
-
+                spaceShip = new SpaceShip(40, 30, 1, 1, 5, 0);
                 stars = new Stars(50, 100);
                 stars.draw(screen.newTextGraphics());
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        public static Game getInstance() {
+            if (instance == null) {
+                instance = new Game();
+            }
+            return instance;
         }
         private void draw() throws IOException{
             screen.clear();
@@ -51,6 +64,7 @@
             spaceShip.draw(screen.newTextGraphics());
             screen.refresh();
         }
+
         //divide screen into quadrants and divide the number of stars equallyy for each quadrant.
         protected void processKey(KeyStroke key)
         {

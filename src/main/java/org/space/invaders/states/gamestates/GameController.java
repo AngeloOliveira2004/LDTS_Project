@@ -1,20 +1,17 @@
 package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.screen.Screen;
-import org.space.invaders.control.Controller;
 import org.space.invaders.model.game.SpaceShip;
-import org.space.invaders.states.State;
+import org.space.invaders.states.StateController;
 
-import javax.swing.plaf.PanelUI;
 import java.io.IOException;
 
-public class GameControllerState implements State {
+public class GameController implements StateController {
 
    // private final Controller controller;
     private Screen screen;
     private SpaceShip spaceShip;
-    private static final int FRAME_RATE = 30; // Frames per second
-    private static final long FRAME_TIME = 1000000000 / FRAME_RATE;
+    private static final long FRAME_TIME = 50;
     @Override
     public void run() throws IOException {
 

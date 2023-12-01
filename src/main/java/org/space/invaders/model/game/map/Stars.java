@@ -73,13 +73,12 @@ public class Stars extends Position implements Dimensions {
     }
 
     public void draw(TextGraphics screen) {
+        TextCharacter character = new TextCharacter('*');
+        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
+        character = character.withForegroundColor(TextColor.ANSI.WHITE);
         for (Stars.StarPosition starPosition : starPositions) {
             int x = starPosition.getX();
             int y = starPosition.getY();
-
-            TextCharacter character = new TextCharacter('*');
-            character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-            character = character.withForegroundColor(TextColor.ANSI.WHITE);
 
             screen.setCharacter(x, y, character);
         }

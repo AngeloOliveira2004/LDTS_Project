@@ -147,7 +147,7 @@ public class Menu {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            Game game = new Game();
+            Game game = Game.getInstance();
             game.run();
         }
 

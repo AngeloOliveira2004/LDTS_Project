@@ -36,7 +36,7 @@
                 dtf.setForceAWTOverSwing(true);
                 dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
 
-                dtf.setInitialTerminalSize(new TerminalSize(200,200));
+                dtf.setInitialTerminalSize(new TerminalSize(50,50));
                 Terminal terminal = dtf.createTerminal();
 
                 lastFrameTime = System.nanoTime();

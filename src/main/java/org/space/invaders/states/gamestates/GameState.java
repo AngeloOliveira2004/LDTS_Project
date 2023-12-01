@@ -1,8 +1,11 @@
 package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.screen.Screen;
+import org.space.invaders.control.Controller;
+import org.space.invaders.model.Model;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.states.State;
+import org.space.invaders.view.Viewer;
 
 import java.io.IOException;
 
@@ -20,12 +23,27 @@ public class GameState extends State {
  ;
 
  @Override
+ public Viewer getViewer() {
+  return null;
+ }
+
+ @Override
+ public Controller getController() {
+  return null;
+ }
+
+ @Override
+ public Model getModel() {
+  return null;
+ }
+
+ @Override
  public void step() {
 
  }
 
  @Override
- public void changeScreen() {
+ public void startScreen() {
 
  }
 

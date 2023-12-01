@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class GameControllerState implements State {
 
-    private final Controller controller;
+   // private final Controller controller;
     private Screen screen;
     private SpaceShip spaceShip;
     private static final int FRAME_RATE = 30; // Frames per second

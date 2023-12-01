@@ -27,5 +27,8 @@ public class Position {
         return (this == o) ||
                 (this.x == ((Position) o).x && this.y == ((Position) o).y);
     }
+    public Position clone(){
+        return new Position(x,y);
+    }
 }
 

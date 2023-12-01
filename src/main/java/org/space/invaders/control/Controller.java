@@ -1,6 +1,7 @@
 package org.space.invaders.control;
 
-public class Controller{
+import org.space.invaders.states.*;
 
+public class Controller{
 
 }

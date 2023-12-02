@@ -13,7 +13,6 @@ public abstract class State {
     public abstract Viewer getViewer();
     public abstract Controller getController();
     public abstract Model getModel();
-
     //Controls all the variables that have to be sent from menu to menu
     public abstract void step();
     public abstract void startScreen();

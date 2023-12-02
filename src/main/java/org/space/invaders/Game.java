@@ -44,7 +44,7 @@
                 screen.setCursorPosition(null);
                 screen.startScreen();
 
-                spaceShip = new SpaceShip(40, 30, 1, 1, 5, 0);
+                spaceShip = new SpaceShip(40, 30, 1, 1, 5, 0 , true);
                 stars = new Stars(50, 100);
                 stars.draw(screen.newTextGraphics());
             } catch (IOException e) {

@@ -1,86 +1,55 @@
 package org.space.invaders.view.menu;
 
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import org.space.invaders.gui.GUI;
+import org.space.invaders.model.Position;
+import org.space.invaders.model.game.menu.MenuModel;
+import org.space.invaders.view.Viewer;
+import org.w3c.dom.Text;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class MenuView {
-    public abstract static class Viewer<T>{
+public class MenuView extends Viewer{
 
-        protected TextGraphics graphics;
-        private TerminalScreen screen;
-        private Font font;
-        private final T model;
+    public MenuView(Object model, Screen screen) {
+        super(model, screen);
 
-        public Viewer(T model) {
-            this.model = model;
-        }
+    }
+    /*
+    @Override
+    protected void drawElements(GUI gui) {
+        gui.drawText(new Position(22,10),"W o r l d  T h r u s t e r","#008000","BLINK");
+        // gui.drawText(new Position(30, 12), "New Game", "#008000","BOLD");
+        // gui.drawText(new Position(30, 14), "LEADERBOARD", "#008000","BOLD");
+        // gui.drawText(new Position(55,29), "Insert a Coin:","#008000","BLINK");
+        gui.refresh();
+    }
+     */
+    protected void drawElements(GUI gui) {
+        MenuModel menu = new MenuModel();
 
-        public T getModel() {
-            return model;
-        }
+        for (int i = 0; i < menu.getNumberOptions(); i++) {
+            boolean isSelected = menu.isSelected(menu.getCurrentOption());
 
-        public void start() throws IOException {
-            AWTTerminalFontConfiguration cfg = new SwingTerminalFontConfiguration(true,
-                    AWTTerminalFontConfiguration.BoldMode.NOTHING, getFont());
-            Terminal terminal = new DefaultTerminalFactory()
-                    .setForceAWTOverSwing(true)
-                    .setInitialTerminalSize(getSize())
-                    .setTerminalEmulatorFontConfiguration(cfg)
-                    .createTerminal();
+            if (isSelected) {
+                gui.setBackgroundHighlightColor("#FFFFFF"); // Use the color you want
+            } else {
+                gui.setBackgroundHighlightColor("#000000"); // Use the default color or another color
+            }
 
-            screen = new TerminalScreen(terminal);
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
-
-            setGraphics(screen.newTextGraphics());
-        }
-        public void drawMenu(GUI gui) throws IOException {
-            gui.clear();
-            drawElements(gui);
-            //gui.refresh();
-        }
-        protected abstract void drawElements(GUI gui);
-        public void refresh() throws IOException {
-            screen.refresh();
-        }
-        public void close() throws IOException {
-            screen.close();
-        }
-        public void setForegroundColor(Color color){
-            graphics.setForegroundColor((TextColor) color);
-        }
-        public void setBackgroundColor(Color color){
-            graphics.setBackgroundColor((TextColor) color);
-        }
-        public TextGraphics getGraphics()
-        {
-            return graphics;
-        }
-        public abstract TerminalSize getSize();
-        public TerminalScreen getScreen() {
-            return screen;
-        }
-        public void setGraphics(TextGraphics graphics) {
-            this.graphics = graphics;
+            gui.drawText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BLINK");
         }
 
-        public Font getFont() {
-            return font;
-        }
-
-        public void setFont(Font font) {
-            this.font = font;
-        }
+        gui.refresh();
     }
 }

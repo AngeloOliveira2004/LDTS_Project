@@ -1,5 +1,6 @@
 package org.space.invaders.gui;
 
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
@@ -135,10 +136,10 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void drawText(Position position , String text)
+    public void drawText(Position position , String text, String color, String modifier)
     {
         textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
-        textGraphics.putString(position.x, position.y, text);
+        textGraphics.putString(position.x, position.y,text, SGR.valueOf(modifier));
     }
 
     @Override
@@ -153,7 +154,11 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void refresh() throws IOException {
-        screen.refresh();
+    public void refresh(){
+        try {
+            screen.refresh();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

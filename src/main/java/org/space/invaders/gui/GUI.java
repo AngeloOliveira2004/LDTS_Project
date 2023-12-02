@@ -21,12 +21,12 @@ public interface GUI {
 
     void drawHealth(Position position, String text, String color);
 
-    void drawText(Position position , String text);
+    void drawText(Position position , String text , String color, String Modifier);
     void clear();
 
     void close() throws IOException;
 
-    void refresh() throws IOException;
+    void refresh();
 
     enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
 }

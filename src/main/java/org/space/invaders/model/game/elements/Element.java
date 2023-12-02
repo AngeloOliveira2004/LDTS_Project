@@ -17,8 +17,10 @@ public abstract class Element implements Collider{
     private int Xvelocity ;
     private int Health ;
     private int SpawnRate;
-    private boolean alive = true;
-    public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive)
+    private boolean alive;
+    private int height;
+    private int width;
+    public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width)
     {
         this.position = new Position(x , y);
         this.Yvelocity = Yvelocity;
@@ -26,6 +28,8 @@ public abstract class Element implements Collider{
         this.Health = Health;
         this.SpawnRate = SpawnRate;
         this.alive = true;
+        this.height = height;
+        this.width = width;
     }
     public Position getPosition() {
         return this.position;

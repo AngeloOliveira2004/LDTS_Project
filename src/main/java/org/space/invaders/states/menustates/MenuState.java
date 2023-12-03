@@ -1,9 +1,8 @@
 package org.space.invaders.states.menustates;
 
-import org.space.invaders.control.Controller;
-import org.space.invaders.control.menu.MenuController;
-import org.space.invaders.gui.GUI;
-import org.space.invaders.gui.LanternaGUI;
+import org.space.invaders.control.MenuController;
+import org.space.invaders.control.menu.MainMenuController;
+import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
 import org.space.invaders.view.Viewer;
@@ -14,13 +13,13 @@ import java.io.IOException;
 public class MenuState extends State<MenuModel> {
     private MenuView menuView;
 
-    GUI gui;
-    private final MenuController menuController;
+    MenuGUI gui;
+    private final MainMenuController mainMenuController;
 
     private final MenuModel menuModel;
 
 
-    public MenuState(MenuModel menuModel, GUI gui) {
+    public MenuState(MenuModel menuModel, MenuGUI gui) {
         super(menuModel);
         try {
             this.gui = gui;
@@ -29,7 +28,7 @@ public class MenuState extends State<MenuModel> {
         }
         this.menuView = new MenuView(menuModel, this.gui.getScreen());
         this.menuModel = menuModel;
-        this.menuController = new MenuController(menuModel);
+        this.mainMenuController = new MainMenuController(menuModel);
     }
 
     @Override
@@ -38,8 +37,8 @@ public class MenuState extends State<MenuModel> {
     }
 
     @Override
-    public Controller getController() {
-        return menuController;
+    public MenuController getController() {
+        return mainMenuController;
     }
 
     @Override
@@ -49,15 +48,15 @@ public class MenuState extends State<MenuModel> {
 
     @Override
     public void step() {
-        GUI.ACTION action;
+        MenuGUI.ACTION action;
         try {
             action = gui.getNextAction();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(action != GUI.ACTION.NONE){
+        if(action != MenuGUI.ACTION.NONE){
             gui.clear();
-            menuController.step(null, action);
+            mainMenuController.step(null, action);
             menuView.drawElements(gui);
         }
 

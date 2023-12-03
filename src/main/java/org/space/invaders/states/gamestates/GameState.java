@@ -2,7 +2,7 @@ package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.screen.Screen;
 import org.space.invaders.Game;
-import org.space.invaders.control.Controller;
+import org.space.invaders.control.MenuController;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
@@ -29,7 +29,7 @@ public class GameState extends State<Game> {
  }
 
  @Override
- public Controller getController() {
+ public MenuController getController() {
   return null;
  }
 

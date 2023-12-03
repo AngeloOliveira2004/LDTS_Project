@@ -11,6 +11,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import org.space.invaders.gui.GUI;
+import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.view.Viewer;
@@ -26,7 +27,7 @@ public class MenuView extends Viewer{
 
     }
 
-    public void drawElements(GUI gui) {
+    public void drawElements(MenuGUI gui) {
         MenuModel menu = (MenuModel) getModel();
         gui.drawText(new Position(15,8),"W o r l d  T h r u s t e r","#008000","BLINK");
         String isSelected = menu.getCurrentOption();

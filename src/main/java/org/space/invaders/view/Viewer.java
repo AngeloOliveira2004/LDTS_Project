@@ -3,6 +3,8 @@ package org.space.invaders.view;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import org.space.invaders.gui.GUI;
+import org.space.invaders.gui.Menu;
+import org.space.invaders.gui.MenuGUI;
 
 import java.io.IOException;
 
@@ -34,12 +36,12 @@ public abstract class Viewer<T> {
         return textGraphics;
     }
 
-    public void draw(GUI gui) throws IOException {
+    public void draw(MenuGUI gui) throws IOException {
         gui.clear();
         drawElements(gui);
         gui.refresh();
     }
 
-    protected abstract void drawElements(GUI gui);
+    protected abstract void drawElements(MenuGUI gui);
 
 }

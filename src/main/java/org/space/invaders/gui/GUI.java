@@ -21,10 +21,6 @@ public interface GUI {
     void drawEnemies(ArrayList<Position> EnemiesPosition , ArrayList<char[][]> enemiesShape);
 
     void drawHealth(Position position, String text, String color);
-
-    void drawText(Position position , String text , String color, String Modifier);
-
-    void drawSelectedText(Position position , String text, String color, String modifier);
     void clear();
 
     void close() throws IOException;

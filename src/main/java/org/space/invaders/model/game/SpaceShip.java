@@ -39,10 +39,10 @@ public class SpaceShip extends Element {
 
 
     public SpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive) {
-        super(x , y , Yvelocity , Xvelocity , Health , SpawnRate , alive);
+        super(x , y , Yvelocity , Xvelocity , Health , SpawnRate , alive , 5 , 5);
     }
     public SpaceShip() {
-        super(0 , 0 ,0 , 0 ,0 , 0 , true);
+        super(0 , 0 ,0 , 0 ,0 , 0 , true , 5 ,5);
     }
     public void moveRight(char orientation)
     {

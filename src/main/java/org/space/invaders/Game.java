@@ -85,9 +85,6 @@
                         spaceShip.moveUp('N');
                     }else if(character == ' ')
                     {
-                        shot = new Shot(spaceShip.getXposition()+5 , spaceShip.getYposition());
-                        shot.draw(screen.newTextGraphics());
-                        shot = null;
                     }
                 }
             }

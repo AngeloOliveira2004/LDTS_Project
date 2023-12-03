@@ -25,29 +25,19 @@ public class MenuView extends Viewer{
         super(model, screen);
 
     }
-    /*
-    @Override
-    protected void drawElements(GUI gui) {
-        gui.drawText(new Position(22,10),"W o r l d  T h r u s t e r","#008000","BLINK");
-        // gui.drawText(new Position(30, 12), "New Game", "#008000","BOLD");
-        // gui.drawText(new Position(30, 14), "LEADERBOARD", "#008000","BOLD");
-        // gui.drawText(new Position(55,29), "Insert a Coin:","#008000","BLINK");
-        gui.refresh();
-    }
-     */
-    protected void drawElements(GUI gui) {
+
+    public void drawElements(GUI gui) {
         MenuModel menu = new MenuModel();
+        gui.drawText(new Position(22,8),"W o r l d  T h r u s t e r","#008000","BLINK");
 
         for (int i = 0; i < menu.getNumberOptions(); i++) {
             boolean isSelected = menu.isSelected(menu.getCurrentOption());
 
             if (isSelected) {
-                gui.setBackgroundHighlightColor("#FFFFFF"); // Use the color you want
+                gui.drawSelectedText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BLINK");
             } else {
-                gui.setBackgroundHighlightColor("#000000"); // Use the default color or another color
+                gui.drawText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BLINK");
             }
-
-            gui.drawText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BLINK");
         }
 
         gui.refresh();

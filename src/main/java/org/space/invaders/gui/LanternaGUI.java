@@ -138,9 +138,18 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawText(Position position , String text, String color, String modifier)
     {
-        textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
+        textGraphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         textGraphics.putString(position.x, position.y,text, SGR.valueOf(modifier));
     }
+
+    @Override
+    public void drawSelectedText(Position position , String text, String color, String modifier)
+    {
+        textGraphics.setBackgroundColor(TextColor.ANSI.WHITE);
+        textGraphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
+        textGraphics.putString(position.x, position.y,text, SGR.valueOf(modifier));
+    }
+
 
     @Override
     public void clear() {

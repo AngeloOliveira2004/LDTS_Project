@@ -4,16 +4,15 @@ import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
 import org.space.invaders.states.menustates.MenuState; // Assuming MainMenuState is the initial state
-import org.space.invaders.view.Viewer;
-import org.space.invaders.gui.GUI;
+import org.space.invaders.view.menu.MenuViewer;
 import org.space.invaders.Game;
 
 import java.io.IOException;
 
-public class MenuController<T> {
+public class MenuController<T> extends Controller {
     private State state;
     private T model;
-    private Viewer viewer;
+    private MenuViewer menuViewer;
 
     public MenuController(T model) {
         this.model = model;
@@ -29,7 +28,7 @@ public class MenuController<T> {
             state.startScreen();
         }
         while (state != null) {
-            viewer = state.getViewer();
+            menuViewer = state.getViewer();
 
             // Updates all the variables sent to the menu, like time, score, super shot charge, etc...
             while (state.isRunning()) {

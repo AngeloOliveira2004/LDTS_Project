@@ -10,11 +10,12 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 import org.space.invaders.gui.GUI;
+import org.space.invaders.view.Viewer;
 
 import java.awt.*;
 import java.io.IOException;
 
-public abstract class View {
+public abstract class View extends Viewer {
     protected int charWidth;
     protected int charHeight;
 

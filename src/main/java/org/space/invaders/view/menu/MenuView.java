@@ -34,10 +34,10 @@ public class MenuView extends Viewer{
 
         for (int i = 0; i < menu.getNumberOptions(); i++) {
 
-            if (isSelected.equals(menu.getCurrentOption())) {
-                gui.drawSelectedText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BLINK");
+            if (isSelected.equals(menu.getOption(i))) {
+                gui.drawSelectedText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BLINK");
             } else {
-                gui.drawText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BOLD");
+                gui.drawText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BOLD");
             }
             menu.setCurrentOption();
         }

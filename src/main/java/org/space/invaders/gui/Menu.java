@@ -93,8 +93,8 @@ public class Menu implements MenuGUI {
         if(keyStroke == null) return MenuGUI.ACTION.NONE;
         if(keyStroke.getKeyType() == KeyType.EOF) return MenuGUI.ACTION.QUIT;
         if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return MenuGUI.ACTION.QUIT;
-        if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'w') return MenuGUI.ACTION.UP;
-        if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 's') return MenuGUI.ACTION.DOWN;
+        if(keyStroke.getKeyType() == KeyType.ArrowUp) return MenuGUI.ACTION.UP;
+        if(keyStroke.getKeyType() == KeyType.ArrowDown) return MenuGUI.ACTION.DOWN;
         return null;
     }
 

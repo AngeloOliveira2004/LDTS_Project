@@ -42,6 +42,10 @@ public abstract class Menu {
         else
             this.currentOption = 0;
     }
+
+    public String getOption(int i){
+        return menuOptions.get(i);
+    }
     public void addMenuOptions(String string){
         this.menuOptions.add(string);
     }

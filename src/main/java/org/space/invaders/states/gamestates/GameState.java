@@ -2,11 +2,10 @@ package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.screen.Screen;
 import org.space.invaders.Game;
-import org.space.invaders.control.MenuController;
+import org.space.invaders.control.Controller;
 import org.space.invaders.model.game.SpaceShip;
-import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
-import org.space.invaders.view.Viewer;
+import org.space.invaders.view.menu.MenuViewer;
 
 public class GameState extends State<Game> {
 
@@ -23,17 +22,17 @@ public class GameState extends State<Game> {
 
  ;
  @Override
- public Viewer getViewer() {
+ public MenuViewer getViewer() {
   return null;
  }
 
  @Override
- public MenuController getController() {
+ public Controller getController() {
   return null;
  }
 
  @Override
- public MenuModel getModel() {
+ public Game getModel() {
   return null;
  }
 

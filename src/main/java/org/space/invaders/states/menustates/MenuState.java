@@ -5,7 +5,7 @@ import org.space.invaders.control.menu.MainMenuController;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
-import org.space.invaders.view.Viewer;
+import org.space.invaders.view.menu.MenuViewer;
 import org.space.invaders.view.menu.MenuView;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class MenuState extends State<MenuModel> {
     }
 
     @Override
-    public Viewer getViewer() {
+    public MenuViewer getViewer() {
         return menuView;
     }
 

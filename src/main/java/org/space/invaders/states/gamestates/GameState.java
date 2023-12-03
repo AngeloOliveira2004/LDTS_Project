@@ -20,8 +20,6 @@ public class GameState extends State {
  public GameState() {
  }
 
- ;
-
  @Override
  public Viewer getViewer() {
   return null;

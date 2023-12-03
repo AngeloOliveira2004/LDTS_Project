@@ -2,29 +2,28 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import org.space.invaders.model.game.elements.MiniSpaceShip;
+import org.space.invaders.model.game.elements.NormalSpaceShip;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 
-public class MiniSpaceShipView extends View{
-    private MiniSpaceShip miniSpaceShip;
-    private static final int CHAR_WIDTH = 3;
-    private static final int CHAR_HEIGHT = 3;
+public class NormalSpaceShipView extends View{
+    private NormalSpaceShip normalSpaceShip;
+    private static final int CHAR_WIDTH = 5;
+    private static final int CHAR_HEIGHT = 5;
     boolean isInvincible = false;
 
     //TODO implement spaceship model and then paint it
     private static final String[] SpaceShipModel = {" " , " "};
     private static final String[] SpaceShipModelWithFlames = {" " , " "};
-    public MiniSpaceShipView(MiniSpaceShip miniSpaceShip) {
+    public NormalSpaceShipView(NormalSpaceShip normalSpaceShip) {
         super(CHAR_WIDTH , CHAR_HEIGHT);
-        this.miniSpaceShip = miniSpaceShip;
+        this.normalSpaceShip = normalSpaceShip;
     }
     @Override
     public void draw()
     {
-        int x = miniSpaceShip.getPosition().getX();
-        int y = miniSpaceShip.getPosition().getY();
+        int x = normalSpaceShip.getPosition().getX();
+        int y = normalSpaceShip.getPosition().getY();
 
         if(isInvincible == false)
         {
@@ -43,10 +42,9 @@ public class MiniSpaceShipView extends View{
                     setColor(character);
                     graphics.fillRectangle(new TerminalPosition(spaceshipX * CHAR_WIDTH
                                     , spaceshipY * charHeight)
-                                    , new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
+                            , new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
                 }
             }
         }
     }
-
 }

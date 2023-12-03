@@ -1,24 +1,35 @@
 package org.space.invaders.model.game.elements;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.Constants;
 
 import org.space.invaders.model.Position;
+import org.space.invaders.model.game.Collider;
 
-public class Element {
+import javax.swing.text.StyledEditorKit;
+
+import static org.space.invaders.Constants.WIDTH;
+import static org.space.invaders.Constants.HEIGHT;
+
+public abstract class Element implements Collider{
     private Position position;
-    private int  Yvelocity ;
-    private int  Xvelocity ;
+    private int Yvelocity ;
+    private int Xvelocity ;
     private int Health ;
     private int SpawnRate;
-
-    public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate)
+    private boolean alive;
+    private int height;
+    private int width;
+    public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width)
     {
         this.position = new Position(x , y);
         this.Yvelocity = Yvelocity;
         this.Xvelocity = Xvelocity;
         this.Health = Health;
         this.SpawnRate = SpawnRate;
-
+        this.alive = true;
+        this.height = height;
+        this.width = width;
     }
     public Position getPosition() {
         return this.position;
@@ -67,6 +78,55 @@ public class Element {
     {
         this.Xvelocity = xVelocity;
     }
+    public void dies()
+    {
+        this.alive = false;
+    }
+    public boolean isAlive(){return alive;}
 
+    public void moveFoward()
+    {
+        Position previousPosition = getPosition();
+        position.y -= getYVelocity();
+        if(isInsideBorders())
+        {
+            return;
+        }
+        position = previousPosition;
+    }
+    public void moveBackwards()
+    {
+        Position previousPosition = getPosition();
+        position.y += getYVelocity();
+        if(isInsideBorders())
+        {
+            return;
+        }
+        position = previousPosition;
+    }
+    public void moveLeft()
+    {
+        Position previousPosition = getPosition();
+        position.x -= getXVelocity();
+        if(isInsideBorders())
+        {
+            return;
+        }
+        position = previousPosition;
+    }
+    public void moveRight()
+    {
+        Position previousPosition = getPosition();
+        position.x += getXVelocity();
+        if(isInsideBorders())
+        {
+            return;
+        }
+        position = previousPosition;
+    }
+    public boolean isInsideBorders()
+    {
+        return (getPosition().x > 0 && getPosition().x < WIDTH && getPosition().y > 0 && getPosition().y < HEIGHT);
+    }
 }
 

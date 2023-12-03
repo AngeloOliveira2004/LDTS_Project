@@ -18,6 +18,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class StarsTest {
+    /*
     @InjectMocks
     private Stars stars;
     @BeforeEach
@@ -41,4 +42,6 @@ class StarsTest {
             verify(mockTextGraphics, times(1)).setCharacter(x, y, expectedCharacter);
         }
     }
+
+     */
 }

@@ -22,7 +22,6 @@ public class GameState extends State<Game> {
  //TODO
 
  ;
-
  @Override
  public Viewer getViewer() {
   return null;

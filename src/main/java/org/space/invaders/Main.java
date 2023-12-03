@@ -16,7 +16,7 @@ public class Main {
         // TestClass testClass = new TestClass(200 , 100);
         MenuModel menuModel = new MenuModel();
 
-        LanternaGUI gui = new LanternaGUI(50,50);
+        LanternaGUI gui = new LanternaGUI(50,25);
         MenuController controller = new MenuController(menuModel);
         controller.run(gui);
     }

@@ -21,23 +21,24 @@ import java.io.IOException;
 
 public class MenuView extends Viewer{
 
-    public MenuView(Object model, Screen screen) {
+    public MenuView(MenuModel model, Screen screen) {
         super(model, screen);
 
     }
 
     public void drawElements(GUI gui) {
-        MenuModel menu = new MenuModel();
-        gui.drawText(new Position(22,8),"W o r l d  T h r u s t e r","#008000","BLINK");
+        MenuModel menu = (MenuModel) getModel();
+        gui.drawText(new Position(15,8),"W o r l d  T h r u s t e r","#008000","BLINK");
+        String isSelected = menu.getCurrentOption();
 
         for (int i = 0; i < menu.getNumberOptions(); i++) {
-            boolean isSelected = menu.isSelected(menu.getCurrentOption());
 
-            if (isSelected) {
+            if (isSelected.equals(menu.getCurrentOption())) {
                 gui.drawSelectedText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BLINK");
             } else {
-                gui.drawText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BLINK");
+                gui.drawText(new Position(22, 10 + i * 2), menu.getCurrentOption(), "#008000", "BOLD");
             }
+            menu.setCurrentOption();
         }
 
         gui.refresh();

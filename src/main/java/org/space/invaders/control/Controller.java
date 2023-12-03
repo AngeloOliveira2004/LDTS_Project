@@ -1,5 +1,6 @@
 package org.space.invaders.control;
 
+import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
 import org.space.invaders.states.menustates.MenuState; // Assuming MainMenuState is the initial state
 import org.space.invaders.view.Viewer;
@@ -8,7 +9,7 @@ import org.space.invaders.Game;
 
 import java.io.IOException;
 
-public abstract class Controller<T> {
+public class Controller<T> {
     private State state;
     private T model;
     private Viewer viewer;
@@ -22,6 +23,10 @@ public abstract class Controller<T> {
     }
 
     public void run(GUI gui) throws IOException {
+        if(state == null){
+            state = new MenuState((MenuModel) model,gui);
+            state.startScreen();
+        }
         while (state != null) {
             viewer = state.getViewer();
 
@@ -45,5 +50,7 @@ public abstract class Controller<T> {
         this.state = state;
     }
 
-    public abstract void step(Game game, GUI.ACTION action);
+    public void step(Game game, GUI.ACTION action){
+
+    }
 }

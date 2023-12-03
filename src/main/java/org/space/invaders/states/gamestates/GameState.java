@@ -1,22 +1,25 @@
 package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.screen.Screen;
+import org.space.invaders.Game;
 import org.space.invaders.control.Controller;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.states.State;
 import org.space.invaders.view.Viewer;
 
-public class GameState extends State {
+public class GameState extends State<Game> {
 
  // private final Controller controller;
  private Screen screen;
  private SpaceShip spaceShip;
  private static final long FRAME_TIME = 50;
 
- //TODO
- public GameState() {
+ public GameState(Game model) {
+  super(model);
  }
+
+ //TODO
 
  ;
 

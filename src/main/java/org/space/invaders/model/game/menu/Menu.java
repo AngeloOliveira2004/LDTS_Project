@@ -36,6 +36,12 @@ public abstract class Menu {
         return this.menuOptions.size();
     }
 
+    public void setCurrentOption() {
+        if(currentOption < this.menuOptions.size() - 1)
+            this.currentOption++;
+        else
+            this.currentOption = 0;
+    }
     public void addMenuOptions(String string){
         this.menuOptions.add(string);
     }

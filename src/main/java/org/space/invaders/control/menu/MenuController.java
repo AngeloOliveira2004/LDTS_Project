@@ -13,9 +13,11 @@ public class MenuController extends Controller<MenuModel> {
 
     @Override
     public void step(Game game, GUI.ACTION action) {
-        switch(action) {
-            case UP -> getModel().previousOption();
-            case DOWN -> getModel().nextOption();
+        if(action != null) {
+            switch (action) {
+                case UP -> getModel().previousOption();
+                case DOWN -> getModel().nextOption();
+            }
         }
     }
 }

@@ -14,20 +14,20 @@ import java.io.IOException;
 public class MenuState extends State<MenuModel> {
     private MenuView menuView;
 
-    LanternaGUI gui;
+    GUI gui;
     private final MenuController menuController;
 
     private final MenuModel menuModel;
 
 
-    public MenuState(MenuView menuView, MenuModel menuModel) {
-        super();
+    public MenuState(MenuModel menuModel, GUI gui) {
+        super(menuModel);
         try {
-            this.gui = new LanternaGUI(50,50);
+            this.gui = gui;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        this.menuView = menuView;
+        this.menuView = new MenuView(menuModel, this.gui.getScreen());
         this.menuModel = menuModel;
         this.menuController = new MenuController(menuModel);
     }
@@ -55,7 +55,11 @@ public class MenuState extends State<MenuModel> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        menuController.step(null, action);
+        if(action != GUI.ACTION.NONE){
+            gui.clear();
+            menuController.step(null, action);
+            menuView.drawElements(gui);
+        }
 
     }
 

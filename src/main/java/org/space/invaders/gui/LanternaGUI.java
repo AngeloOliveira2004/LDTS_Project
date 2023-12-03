@@ -48,7 +48,17 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public ACTION getNextAction() throws IOException {
+        KeyStroke keyStroke = screen.pollInput();
+        if(keyStroke == null) return ACTION.NONE;
+        if(keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
+        if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'w') return ACTION.UP;
+        if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 's') return ACTION.DOWN;
         return null;
+    }
+    @Override
+    public Screen getScreen(){
+        return screen;
     }
 
     @Override
@@ -138,6 +148,7 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawText(Position position , String text, String color, String modifier)
     {
+        textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.setForegroundColor(TextColor.ANSI.GREEN_BRIGHT);
         textGraphics.putString(position.x, position.y,text, SGR.valueOf(modifier));
     }

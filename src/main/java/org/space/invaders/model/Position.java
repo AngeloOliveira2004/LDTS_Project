@@ -30,5 +30,9 @@ public class Position {
     public Position clone(){
         return new Position(x,y);
     }
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(x) ^ Integer.hashCode(y);
+    }
 }
 

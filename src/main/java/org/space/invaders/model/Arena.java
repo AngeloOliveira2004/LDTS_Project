@@ -1,7 +1,7 @@
 package org.space.invaders.model;
 
 
-import org.space.invaders.model.game.Shot;
+import org.space.invaders.model.game.elements.Shot;
 import org.space.invaders.model.game.SpaceShip;
 
 import java.util.ArrayList;

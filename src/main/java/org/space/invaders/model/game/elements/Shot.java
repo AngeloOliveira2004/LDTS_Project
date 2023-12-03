@@ -8,47 +8,23 @@ import org.space.invaders.model.Position;
 import java.security.PublicKey;
 
 
-public class Shot extends Position {
-    private int yVelocity = -1;
-    private boolean update = true;
-
-    public Shot(int x , int y) {
-        super(x , y);
-    }
-
-    public Shot(){
-        super(0,0);
-    }
-    public void draw(TextGraphics screen)
+public class Shot extends ShotElement {
+    private int count;
+    public Shot(Position position , int yVelocity)
     {
-        while(getY() > 0)
-        {
-            if(update)
-            {
-                TextCharacter character = new TextCharacter('|');
-                character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                screen.setCharacter(getX(), getY() - 1, character);
-                update = false;
-            }
-
-            setY(getY()+yVelocity);
-
-            if(getY() % 5  == 0)
-            {
-                TextCharacter character = new TextCharacter('|');
-                character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-                character = character.withForegroundColor(TextColor.ANSI.YELLOW);
-                screen.setCharacter(getX(), getY(), character);
-            }
-
-        }
+        super(position , yVelocity);
+        count = 0;
     }
-
-    public int getPositionX() {
-        return getX();
+    public void addCount()
+    {
+        count++;
     }
-    public int getPositionY() {
-        return getY();
+    public void resetCount()
+    {
+        count = 0;
+    }
+    public int getCount()
+    {
+        return count;
     }
 }

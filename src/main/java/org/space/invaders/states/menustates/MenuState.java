@@ -12,20 +12,16 @@ import org.space.invaders.view.menu.MenuView;
 import java.io.IOException;
 
 public class MenuState implements State {
-    private MenuView menuView;
+    private final MenuView menuView;
     MenuGUI gui;
-    private final MenuController menuController;
+    private MenuController menuController;
 
     private final MenuModel menuModel;
 
 
-    public MenuState(MenuController menuController) {
+    public MenuState(MenuController menuController,MenuGUI gui) {
 
-        try {
-            this.gui = new Menu(50,25);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        this.gui = gui;
         this.menuModel = new MenuModel();
         this.menuView = new MenuView(menuModel, this.gui.getScreen());
         this.menuController = menuController;

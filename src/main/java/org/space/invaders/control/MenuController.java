@@ -17,6 +17,11 @@ public class MenuController {
     private Menu menuModel;
     private MenuGUI gui;
     public MenuController() throws IOException {
+        try {
+            this.gui = new org.space.invaders.gui.Menu(50,25);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         this.applicationState = ApplicationState.MainMenu;
         changeState(applicationState);
     }
@@ -55,7 +60,7 @@ public class MenuController {
             }
             case MenuInstructions -> {
                 this.applicationState = ApplicationState.MenuInstructions;
-                InstructionsState instructionsState = new InstructionsState();
+                InstructionsState instructionsState = new InstructionsState(this,gui);
             }
             case MenuLeaderboard -> {
                 this.applicationState = ApplicationState.MenuLeaderboard;
@@ -70,7 +75,7 @@ public class MenuController {
             }
             case MainMenu -> {
                 this.applicationState = ApplicationState.MainMenu;
-                MenuState menuState = new MenuState(this);
+                MenuState menuState = new MenuState(this,gui);
                 menuState.run();
             }
         }
@@ -81,4 +86,4 @@ public class MenuController {
         return applicationState;
     }
 
-}
+    }

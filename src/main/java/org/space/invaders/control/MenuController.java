@@ -1,27 +1,26 @@
 package org.space.invaders.control;
 
 import org.space.invaders.gui.MenuGUI;
-import org.space.invaders.model.game.menu.MenuModel;
+import org.space.invaders.model.game.menu.Menu;
+import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
+import org.space.invaders.states.menustates.InstructionsState;
+import org.space.invaders.states.menustates.LeaderBoardState;
 import org.space.invaders.states.menustates.MenuState; // Assuming MainMenuState is the initial state
-import org.space.invaders.view.menu.MenuViewer;
-import org.space.invaders.Game;
+import org.space.invaders.states.menustates.SettingsState;
 
 import java.io.IOException;
 
-public class MenuController<T> extends Controller {
+public class MenuController {
     private State state;
-    private T model;
-    private MenuViewer menuViewer;
-
-    public MenuController(T model) {
-        this.model = model;
+    private ApplicationState applicationState;
+    private Menu menuModel;
+    private MenuGUI gui;
+    public MenuController() throws IOException {
+        this.applicationState = ApplicationState.MainMenu;
+        changeState(applicationState);
     }
-
-    public T getModel() {
-        return model;
-    }
-
+/*
     public void run(MenuGUI gui) throws IOException {
         if(state == null){
             state = new MenuState((MenuModel) model,gui);
@@ -46,11 +45,40 @@ public class MenuController<T> extends Controller {
         }
     }
 
-    public void setState(State state) {
-        this.state = state;
+ */
+    public void changeState(ApplicationState state) throws IOException {
+        switch (state)
+        {
+            case Game -> {
+                this.applicationState = ApplicationState.Game;
+                GameController gameController = new GameController();
+            }
+            case MenuInstructions -> {
+                this.applicationState = ApplicationState.MenuInstructions;
+                InstructionsState instructionsState = new InstructionsState();
+            }
+            case MenuLeaderboard -> {
+                this.applicationState = ApplicationState.MenuLeaderboard;
+                LeaderBoardState leaderBoardState = new LeaderBoardState();
+            }
+            case MenuSettings -> {
+                this.applicationState = ApplicationState.MenuSettings;
+                SettingsState settingsState = new SettingsState();
+            }
+            case ExitMenu -> {
+                this.applicationState = ApplicationState.ExitMenu;
+            }
+            case MainMenu -> {
+                this.applicationState = ApplicationState.MainMenu;
+                MenuState menuState = new MenuState(this);
+                menuState.run();
+            }
+        }
     }
 
-    public void step(Game game, MenuGUI.ACTION action){
-
+    public ApplicationState getApplicationState()
+    {
+        return applicationState;
     }
+
 }

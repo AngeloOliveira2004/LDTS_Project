@@ -1,52 +1,48 @@
 package org.space.invaders.states.menustates;
 
 import org.space.invaders.control.MenuController;
-import org.space.invaders.control.menu.MainMenuController;
+import org.space.invaders.gui.Menu;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.MenuModel;
+import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.menu.MenuViewer;
 import org.space.invaders.view.menu.MenuView;
 
 import java.io.IOException;
 
-public class MenuState extends State<MenuModel> {
+public class MenuState implements State {
     private MenuView menuView;
-
     MenuGUI gui;
-    private final MainMenuController mainMenuController;
+    private final MenuController menuController;
 
     private final MenuModel menuModel;
 
 
-    public MenuState(MenuModel menuModel, MenuGUI gui) {
-        super(menuModel);
+    public MenuState(MenuController menuController) {
+
         try {
-            this.gui = gui;
+            this.gui = new Menu(50,25);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        this.menuModel = new MenuModel();
         this.menuView = new MenuView(menuModel, this.gui.getScreen());
-        this.menuModel = menuModel;
-        this.mainMenuController = new MainMenuController(menuModel);
+        this.menuController = menuController;
     }
 
-    @Override
     public MenuViewer getViewer() {
         return menuView;
     }
 
-    @Override
     public MenuController getController() {
-        return mainMenuController;
+        return menuController;
     }
 
-    @Override
     public MenuModel getModel() {
         return menuModel;
     }
 
-    @Override
     public void step() {
         MenuGUI.ACTION action;
         try {
@@ -56,26 +52,41 @@ public class MenuState extends State<MenuModel> {
         }
         if(action != MenuGUI.ACTION.NONE){
             gui.clear();
-            mainMenuController.step(null, action);
+            Action(action);
             menuView.drawElements(gui);
         }
-
+    }
+    public void Action(MenuGUI.ACTION action) {
+        if(action != null) {
+            switch (action) {
+                case UP -> getModel().previousOption();
+                case DOWN -> getModel().nextOption();
+            }
+        }
+    }
+    public void run() throws IOException {
+        while (menuController.getApplicationState() == ApplicationState.MainMenu)
+        {
+            menuView.drawElements(gui);
+            gui.refresh();
+            step();
+        }
     }
 
-    @Override
     public void startScreen() {
         menuView.drawElements(gui);
         gui.refresh();
     }
 
-    @Override
     public boolean isRunning() {
         return true;
     }
 
-    @Override
+/*
     public State nextState() {
         //Mudar depois de aplicar próximos states;
         return null;
     }
+
+ */
 }

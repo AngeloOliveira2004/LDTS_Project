@@ -10,6 +10,7 @@ public class MenuModel extends Menu{
         addMenuOptions("New Game");
         addMenuOptions("Instructions");
         addMenuOptions("Settings");
+        addMenuOptions("Leaderboard");
         addMenuOptions("Exit");
     }
 

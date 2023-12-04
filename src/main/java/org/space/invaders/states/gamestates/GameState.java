@@ -2,36 +2,32 @@ package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.screen.Screen;
 import org.space.invaders.Game;
-import org.space.invaders.control.Controller;
+
+import org.space.invaders.control.GameController;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.states.State;
 import org.space.invaders.view.menu.MenuViewer;
 
-public class GameState extends State<Game> {
+import java.io.IOException;
 
- // private final Controller controller;
+public class GameState implements State {
+
+private final GameController gameController;
  private Screen screen;
  private SpaceShip spaceShip;
  private static final long FRAME_TIME = 50;
 
- public GameState(Game model) {
-  super(model);
+ public GameState(GameController gameController) {
+   this.gameController = gameController;
  }
-
- //TODO
-
- ;
- @Override
  public MenuViewer getViewer() {
   return null;
  }
 
- @Override
- public Controller getController() {
-  return null;
+ public GameController getController() {
+   return gameController;
  }
 
- @Override
  public Game getModel() {
   return null;
  }
@@ -52,8 +48,7 @@ public class GameState extends State<Game> {
  }
 
  @Override
- public State nextState() {
+ public void run() throws IOException {
 
-  return null;
  }
 }

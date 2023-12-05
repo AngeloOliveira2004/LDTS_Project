@@ -11,6 +11,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import org.space.invaders.control.GameController;
 import org.space.invaders.model.Arena;
+import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.states.ApplicationState;
 
 import java.awt.*;
@@ -39,9 +40,13 @@ public class GameViewer {
 
     }
 
-    public void drawElements() {
+    public void drawElements(Arena arena) {
         // TODO: Implement drawing game elements based on the game state
-        textGraphics.putString(5, 5, "Game is running...");
+        for(Element element : arena.getObjects())
+        {
+            element.draw(textGraphics);
+            System.out.println(element.getClass());
+        }
         refresh();
     }
 
@@ -62,7 +67,7 @@ public class GameViewer {
                 // TODO: Implement game state update logic
                 System.out.println("here");
                 // Draw game elements
-                drawElements();
+                drawElements(arena);
 
                 // Introduce some delay to control frame rate
                 refresh();
@@ -95,4 +100,5 @@ public class GameViewer {
     public void close() throws IOException {
         screen.close();
     }
+    public TextGraphics getTextGraphics(){return textGraphics;}
 }

@@ -2,8 +2,10 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.game.elements.NormalSpaceShip;
 
+import javax.print.DocFlavor;
 import java.io.IOException;
 
 public class AsteroidView extends View{
@@ -15,8 +17,8 @@ public class AsteroidView extends View{
     //TODO implement spaceship model and then paint it
     private static final String[] SpaceShipModel = {" " , " "};
     private static final String[] SpaceShipModelWithFlames = {" " , " "};
-    public AsteroidView(NormalSpaceShip normalSpaceShip) {
-        super(CHAR_WIDTH , CHAR_HEIGHT);
+    public AsteroidView(TextGraphics textGraphics ) {
+        super(CHAR_WIDTH , CHAR_HEIGHT , textGraphics);
         this.normalSpaceShip = normalSpaceShip;
     }
     @Override

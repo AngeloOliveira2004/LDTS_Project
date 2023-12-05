@@ -21,12 +21,18 @@ public class Arena {
         this.shots = new ArrayList<>();
         //this.tempScreen = new GameViewer();
     }
-    private void addObject(Element object)
+    public void addObject(Element object)
     {
         objects.add(object);
     }
-    private void removeObject(Element object)
+    public void removeObject(Element object)
     {
         objects.remove(object);
     }
+    public ArrayList<Element> getObjects()
+    {
+        return objects;
+    }
+    public ArrayList<ShotElement> getShots(){return shots;}
+    public ArrayList<Position> getStarPositions(){return starPositions;}
 }

@@ -1,5 +1,6 @@
 package org.space.invaders.model.game.elements;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
 import org.space.invaders.view.game.MiniSpaceShipView;
 
@@ -28,7 +29,7 @@ public class MiniSpaceShip extends Element{
             //TODO creator create shot
         }
     }
-    public void draw()
+    public void draw(TextGraphics textGraphics)
     {
 
     }

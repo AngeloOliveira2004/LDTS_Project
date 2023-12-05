@@ -2,6 +2,7 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.game.elements.MiniSpaceShip;
 
@@ -18,8 +19,8 @@ public class MiniSpaceShipView extends View{
     //TODO implement spaceship model and then paint it
     private static final String[] SpaceShipModel = {" " , " "};
     private static final String[] SpaceShipModelWithFlames = {" " , " "};
-    public MiniSpaceShipView(MiniSpaceShip miniSpaceShip) {
-        super(CHAR_WIDTH , CHAR_HEIGHT);
+    public MiniSpaceShipView(MiniSpaceShip miniSpaceShip , TextGraphics textGraphics) {
+        super(CHAR_WIDTH , CHAR_HEIGHT , textGraphics);
         this.miniSpaceShip = miniSpaceShip;
     }
     @Override

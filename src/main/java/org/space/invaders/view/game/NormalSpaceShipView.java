@@ -2,6 +2,7 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.game.elements.NormalSpaceShip;
 
@@ -17,8 +18,8 @@ public class NormalSpaceShipView extends View{
     //TODO implement spaceship model and then paint it
     private static final String[] SpaceShipModel = {" " , " "};
     private static final String[] SpaceShipModelWithFlames = {" " , " "};
-    public NormalSpaceShipView(NormalSpaceShip normalSpaceShip) {
-        super(CHAR_WIDTH , CHAR_HEIGHT);
+    public NormalSpaceShipView(NormalSpaceShip normalSpaceShip , TextGraphics textGraphics) {
+        super(CHAR_WIDTH , CHAR_HEIGHT , textGraphics);
         this.normalSpaceShip = normalSpaceShip;
     }
     @Override
@@ -29,7 +30,7 @@ public class NormalSpaceShipView extends View{
 
         if(isInvincible == false)
         {
-            // TODO select model and call draw String[] spaceship =
+            getGraphics().putString(5, 5, "Lambe me os colhoes");
         }
     }
 

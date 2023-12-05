@@ -56,7 +56,6 @@ public class MenuController {
         {
             case Game -> {
                 this.applicationState = ApplicationState.Game;
-
                 GameController gameController = new GameController(this);
             }
             case MenuInstructions -> {

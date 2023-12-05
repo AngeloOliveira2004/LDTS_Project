@@ -1,13 +1,18 @@
 package org.space.invaders.model.game.elements;
 
-public class NormalSpaceShip extends Element{
+import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.view.game.NormalSpaceShipView;
+
+public class NormalSpaceShip extends Element {
     private boolean invincible;
     private boolean visible;
     private boolean shoot;
+    private NormalSpaceShipView normalSpaceShipView;
     public NormalSpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width) {
         super(x, y, Yvelocity, Xvelocity, Health, SpawnRate , alive , height , width);
         visible = true;
     }
+
     public boolean getInvencibility(){return invincible;}
     public void setInvincible(boolean invincible){this.invincible = invincible;}
     public void setVisible(boolean visible){this.visible = visible;}
@@ -19,8 +24,9 @@ public class NormalSpaceShip extends Element{
     {
         //TODO actually shot
     }
-    public void draw()
+    public void draw(TextGraphics textGraphics)
     {
-
+        normalSpaceShipView = new NormalSpaceShipView(this , textGraphics);
+        normalSpaceShipView.draw();
     }
 }

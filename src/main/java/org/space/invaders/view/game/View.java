@@ -20,9 +20,10 @@ public abstract class View extends Viewer {
     protected int charHeight;
 
     protected TextGraphics graphics;
-    public View(int charWidth ,int charHeight){
+    public View(int charWidth ,int charHeight, TextGraphics textGraphics){
         this.charWidth = charWidth;
         this.charHeight = charHeight;
+        this.graphics = textGraphics;
     }
     public TextGraphics getGraphics() {
         return graphics;

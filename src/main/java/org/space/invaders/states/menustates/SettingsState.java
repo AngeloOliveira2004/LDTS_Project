@@ -49,6 +49,7 @@ public class SettingsState implements State {
                 case ENTER -> {
                     if(menuModel.validateApplicationState() != null) {
                         try {
+                            menuModel.saveHashMapToFile(menuModel.getValuesMap(),"sound.txt");
                             ApplicationState applicationState = menuModel.validateApplicationState();
                             menuController.setApplicationState(applicationState);
                             menuController.changeState(applicationState);

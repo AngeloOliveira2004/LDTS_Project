@@ -1,0 +1,3 @@
+Effects Volume:,1
+Difficulty:,2
+Music Volume:,2

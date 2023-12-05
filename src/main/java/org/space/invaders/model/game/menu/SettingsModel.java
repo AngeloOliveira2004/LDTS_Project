@@ -3,6 +3,7 @@ package org.space.invaders.model.game.menu;
 import org.space.invaders.model.Model;
 import org.space.invaders.states.ApplicationState;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ public class SettingsModel extends Menu {
         valuesMap.put("Music Volume:",5);
         valuesMap.put("Effects Volume:",5);
         valuesMap.put("Difficulty:",3);
+        readValuesFromFile(valuesMap, "sound.txt");
 
     }
 
@@ -39,6 +41,36 @@ public class SettingsModel extends Menu {
             valuesMap.replace(keyString, valuesMap.get(keyString) + 1);
         }
     }
+
+    public void saveHashMapToFile(Map<String, Integer> hashMap, String fileName) {
+        String filePath = "/home/angelo/Downloads/Universidade/LDTS/project-l07gr02/src/main/Resources/sound.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+                writer.write(entry.getKey() + "," + entry.getValue());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readValuesFromFile(Map<String, Integer> hashMap, String fileName) {
+        String filePath = "/home/angelo/Downloads/Universidade/LDTS/project-l07gr02/src/main/Resources/sound.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] keyValue = line.split(",");
+                if (keyValue.length == 2) {
+                    String key = keyValue[0].trim();
+                    int intValue = Integer.parseInt(keyValue[1].trim());
+                    hashMap.replace(key, intValue);
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public SettingsModel(List<String> menuOptions) {
         super(menuOptions);

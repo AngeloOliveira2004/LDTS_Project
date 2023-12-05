@@ -74,6 +74,7 @@ public class MenuController {
             }
             case ExitMenu -> {
                 this.applicationState = ApplicationState.ExitMenu;
+                System.exit(0);
             }
             case MainMenu -> {
                 this.applicationState = ApplicationState.MainMenu;

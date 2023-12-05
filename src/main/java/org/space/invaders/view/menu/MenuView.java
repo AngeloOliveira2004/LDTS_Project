@@ -20,9 +20,9 @@ public class MenuView extends MenuViewer {
         for (int i = 0; i < menu.getNumberOptions(); i++) {
 
             if (isSelected.equals(menu.getOption(i))) {
-                gui.drawSelectedText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BLINK");
+                gui.drawSelectedText(new Position(20, 8 + i * 2), menu.getOption(i), "#008000", "BLINK");
             } else {
-                gui.drawText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BOLD");
+                gui.drawText(new Position(20, 8 + i * 2), menu.getOption(i), "#008000", "BOLD");
             }
             menu.setCurrentOption();
         }

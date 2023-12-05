@@ -57,6 +57,16 @@ public class SettingsState implements State {
                         }
                     }
                 }
+                case LEFT -> {
+                        if(menuModel.validateApplicationState() == null) {
+                            menuModel.LowerValueMap(menuModel.getCurrentOption());
+                        }
+                }
+                case RIGHT -> {
+                        if(menuModel.validateApplicationState() == null){
+                            menuModel.UpperValueMap(menuModel.getCurrentOption());
+                        }
+                }
             }
         }
     }

@@ -29,6 +29,18 @@ public class SettingsView extends MenuViewer {
             }
             menu.setCurrentOption();
         }
+
         gui.refresh();
+
+        drawSettings(gui);
+    }
+
+    public void drawSettings(MenuGUI gui){
+        SettingsModel menu = (SettingsModel) getModel();
+        String tempChar = "#";
+        for (int i = 0; i < menu.getValuesMap().size(); i++) {
+            String currentValue = menu.getOption(i);
+            gui.drawText(new Position(30, 7 + i * 2), tempChar.repeat(menu.getValuesMap().get(currentValue)), "#008000", "BOLD");
+        }
     }
 }

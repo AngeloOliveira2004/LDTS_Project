@@ -49,15 +49,15 @@ public class MenuState implements State {
         if(action != MenuGUI.ACTION.NONE){
             gui.clear();
             Action(action);
-            menuView.drawElements(gui);
         }
     }
     public void Action(MenuGUI.ACTION action) {
         if(action != null) {
             switch (action) {
                 case UP -> getModel().previousOption();
-                case DOWN -> getModel().nextOption();
+                //case DOWN -> getModel().nextOption();
                 case ENTER -> {
+                    System.out.println("hihi");
                     ApplicationState applicationState = ApplicationState.MenuLeaderboard;
                     menuController.setApplicationState(applicationState);
                     try {

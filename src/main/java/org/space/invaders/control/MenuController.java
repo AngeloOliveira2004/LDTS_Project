@@ -22,7 +22,7 @@ public class MenuController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        this.applicationState = ApplicationState.MenuLeaderboard;
+        this.applicationState = ApplicationState.MainMenu;
         changeState(applicationState);
     }
 /*

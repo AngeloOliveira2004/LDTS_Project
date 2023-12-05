@@ -16,5 +16,6 @@ public interface MenuGUI {
 
     void drawSelectedText(Position position , String text, String color, String modifier);
     void close() throws IOException;
-    enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT,ENTER}
+
+    enum ACTION {DOWN, ENTER, LEFT, NONE, QUIT, RIGHT, SELECT, UP}
 }

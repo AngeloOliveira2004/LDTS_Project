@@ -1,0 +1,5 @@
+1,Paulo Seixo,550
+2,Ana Cacho,530
+3,Jalambi Pau,510
+4,Jacome Cu,490
+5,Tomas Turbando,470

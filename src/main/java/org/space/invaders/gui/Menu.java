@@ -95,6 +95,7 @@ public class Menu implements MenuGUI {
         if(keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return MenuGUI.ACTION.QUIT;
         if(keyStroke.getKeyType() == KeyType.ArrowUp) return MenuGUI.ACTION.UP;
         if(keyStroke.getKeyType() == KeyType.ArrowDown) return MenuGUI.ACTION.DOWN;
+        if(keyStroke.getKeyType() == KeyType.Enter) return MenuGUI.ACTION.ENTER;
         return null;
     }
 

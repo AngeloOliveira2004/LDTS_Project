@@ -1,5 +1,6 @@
 package org.space.invaders.model.game.elements;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
 
 import java.time.Year;
@@ -46,4 +47,5 @@ public abstract class ShotElement {
     {
         return (getPosition().x > 0 && getPosition().x < WIDTH && getPosition().y > 0 && getPosition().y < HEIGHT);
     }
+    public abstract void draw(TextGraphics textGraphics);
 }

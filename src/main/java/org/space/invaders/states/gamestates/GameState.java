@@ -21,7 +21,7 @@ public class GameState implements State {
   private GameViewer gameViewer;
   private SpaceShip spaceShip;
   private PlayerController playerController;
-  private static final int FRAME_RATE = 15; // Frames per second
+  private static final int FRAME_RATE = 30; // Frames per second
   private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds
   private long lastFrameTime;
   private boolean running;
@@ -59,7 +59,7 @@ public void run() throws IOException{
         long elapsedTime = now - lastFrameTime;
 
 
-        update(elapsedTime);
+        //update(elapsedTime);
         handleInput(gameViewer.handleInput());
 
         gameViewer.drawElements(arena);
@@ -91,7 +91,7 @@ public void run() throws IOException{
                 gameController.changeState(ApplicationState.MainMenu);
             }else
             {
-                playerController.keyPressed(keyStroke);
+                playerController.keyPressed(keyStroke , arena);
                 System.out.println("Key Type: " + keyStroke.getKeyType());
                 System.out.println("Character: " + keyStroke.getCharacter());
                 System.out.println("Ctrl: " + keyStroke.isCtrlDown());

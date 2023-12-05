@@ -11,8 +11,8 @@ public class SpaceshipView extends View{
     private static final int CHAR_HEIGHT = 5;
     private static final int CHAR_WIDTH = 5;
     private static final String[] SpaceShipModel = {"A" , " "};
-    private static final String[] SpaceShipModelWithFlames = {" " , " "};
-    private static final String[] MiniSpaceShipModel = {" " , " "};
+    private static final String[] SpaceShipModelWithFlames = {"A" , " "};
+    private static final String[] MiniSpaceShipModel = {"A" , " "};
     private static final String[] MiniSpaceShipModelWithFlames = {"A" , " "};
     public SpaceshipView(SpaceShip spaceShip , TextGraphics textGraphics)
     {
@@ -24,7 +24,6 @@ public class SpaceshipView extends View{
     {
         int x = spaceShip.getPosition().getX();
         int y = spaceShip.getPosition().getY();
-
         if(spaceShip.isMini())
         {
             drawMiniSpaceShip(x , y);
@@ -43,8 +42,7 @@ public class SpaceshipView extends View{
                 char character = MiniSpaceShipModel[y].charAt(x);
                 if (character != ' ') {
                     setColor(character);
-                    getGraphics().putString(spaceshipX*charWidth , spaceshipY*charHeight , "It works");
-                    System.out.println("here");
+                    getGraphics().putString(spaceshipX , spaceshipY , "Minispaceship");
                     getGraphics().fillRectangle(new TerminalPosition(spaceshipX * CHAR_WIDTH
                                     , spaceshipY * charHeight)
                             , new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
@@ -61,7 +59,7 @@ public class SpaceshipView extends View{
                 char character = SpaceShipModel[y].charAt(x);
                 if (character != ' ') {
                     setColor(character);
-                    getGraphics().putString(spaceshipX , spaceshipY , "It works");
+                    getGraphics().putString(spaceshipX , spaceshipY , "Spaceship");
                     graphics.fillRectangle(new TerminalPosition(spaceshipX * CHAR_WIDTH
                                     , spaceshipY * charHeight)
                             , new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');

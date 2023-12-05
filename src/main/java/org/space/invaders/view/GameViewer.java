@@ -14,6 +14,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import org.space.invaders.control.GameController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.game.elements.Element;
+import org.space.invaders.model.game.elements.ShotElement;
 import org.space.invaders.states.ApplicationState;
 
 import java.awt.*;
@@ -47,11 +48,14 @@ public class GameViewer {
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.fillRectangle(new TerminalPosition(0, 0), screen.getTerminalSize(), ' ');
 
-        System.out.println(arena.getObjects().size());
         for(Element element : arena.getObjects())
         {
             element.draw(textGraphics);
-            System.out.println(element.getClass());
+        }
+        System.out.println(arena.getShots().size());
+        for(ShotElement shotElement : arena.getShots())
+        {
+            shotElement.draw(textGraphics);
         }
         refresh();
     }

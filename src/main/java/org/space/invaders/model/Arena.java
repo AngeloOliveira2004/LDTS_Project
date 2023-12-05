@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Arena {
-    private MiniSpaceShip miniSpaceShip;
-    private NormalSpaceShip normalSpaceShip;
     private ArrayList<Element> objects;
     private ArrayList<ShotElement> shots;
     private final ArrayList<Position> starPositions;
@@ -35,4 +33,9 @@ public class Arena {
     }
     public ArrayList<ShotElement> getShots(){return shots;}
     public ArrayList<Position> getStarPositions(){return starPositions;}
+
+    public void addShot(ShotElement shotElement)
+    {
+        shots.add(shotElement);
+    }
 }

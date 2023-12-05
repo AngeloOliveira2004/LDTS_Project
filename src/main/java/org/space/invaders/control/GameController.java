@@ -58,8 +58,7 @@ public class GameController {
                 this.applicationState = ApplicationState.Game;
                 GameState gameState = new GameState(this);
                 this.state = gameState;
-                new Thread(gameState).start(); // Start the thread
-                break;
+                gameState.run();
             }
             case PauseMenu -> {
                 this.applicationState = ApplicationState.PauseMenu;
@@ -95,4 +94,5 @@ public class GameController {
             System.out.println();
         }
     }
+
 }

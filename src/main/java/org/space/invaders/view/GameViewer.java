@@ -1,6 +1,8 @@
 package org.space.invaders.view;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -31,7 +33,7 @@ public class GameViewer {
         DefaultTerminalFactory dtf = new DefaultTerminalFactory();
         dtf.setForceAWTOverSwing(true);
         dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
-        dtf.setInitialTerminalSize(new TerminalSize(40, 20));
+        dtf.setInitialTerminalSize(new TerminalSize(200, 100));
 
         Terminal terminal = dtf.createTerminal();
         screen = new TerminalScreen(terminal);
@@ -42,6 +44,10 @@ public class GameViewer {
 
     public void drawElements(Arena arena) {
         // TODO: Implement drawing game elements based on the game state
+        textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        textGraphics.fillRectangle(new TerminalPosition(0, 0), screen.getTerminalSize(), ' ');
+
+        System.out.println(arena.getObjects().size());
         for(Element element : arena.getObjects())
         {
             element.draw(textGraphics);
@@ -57,45 +63,9 @@ public class GameViewer {
             e.printStackTrace();
         }
     }
-
-    public void runGameLoop(Arena arena) {
-        try {
-            if(gameController.getApplicationState() == ApplicationState.Game) {
-                // Process user input
-                handleInput();
-                // Update game state
-                // TODO: Implement game state update logic
-                System.out.println("here");
-                // Draw game elements
-                drawElements(arena);
-
-                // Introduce some delay to control frame rate
-                refresh();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void handleInput() throws IOException {
+    public KeyStroke handleInput() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
-        if (keyStroke != null) {
-            if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-                System.out.println("Key Type: " + keyStroke.getKeyType());
-                screen.close();
-                // Exit the game
-                gameController.changeState(ApplicationState.MainMenu);
-            }else
-            {
-                System.out.println("Key Type: " + keyStroke.getKeyType());
-                System.out.println("Character: " + keyStroke.getCharacter());
-                System.out.println("Ctrl: " + keyStroke.isCtrlDown());
-                System.out.println("Alt: " + keyStroke.isAltDown());
-                System.out.println("Shift: " + keyStroke.isShiftDown());
-                System.out.println();
-            }
-            // TODO: Handle other key events based on your game's requirements
-        }
+        return keyStroke;
     }
     public void close() throws IOException {
         screen.close();

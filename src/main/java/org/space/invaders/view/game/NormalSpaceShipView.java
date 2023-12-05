@@ -30,7 +30,7 @@ public class NormalSpaceShipView extends View{
 
         if(isInvincible == false)
         {
-            getGraphics().putString(5, 5, "Lambe me os colhoes");
+            getGraphics().putString(x, y, "Lambe me os colhoes");
         }
     }
 
@@ -49,5 +49,9 @@ public class NormalSpaceShipView extends View{
                 }
             }
         }
+    }
+    public void sendInput()
+    {
+
     }
 }

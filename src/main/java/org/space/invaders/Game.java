@@ -1,4 +1,5 @@
-    package org.space.invaders;
+/*
+package org.space.invaders;
 
     import com.googlecode.lanterna.TerminalSize;
     import com.googlecode.lanterna.input.KeyStroke;
@@ -124,3 +125,5 @@
         }
 
     }
+
+ */

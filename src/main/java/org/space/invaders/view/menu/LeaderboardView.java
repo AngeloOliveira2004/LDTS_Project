@@ -18,7 +18,7 @@ public class LeaderboardView extends MenuViewer {
 
     public void drawElements(MenuGUI gui) {
         LeaderboardModel menu = (LeaderboardModel) getModel();
-        gui.drawText(new Position(15,3),"L E A D E R B O A R D","#008000","BLINK");
+        gui.drawText(new Position(16,3),"L E A D E R B O A R D","#008000","BLINK");
 
         gui.drawSelectedText(new Position(20, 5), menu.getOption(0), "#008000", "BLINK");
 
@@ -35,7 +35,7 @@ public class LeaderboardView extends MenuViewer {
             int i = 1;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                gui.drawText(new Position(14, 5 + i * 2),parts[0]+ ". " + parts[1] + " Score: " + parts[2]  , "#008000", "BOLD");
+                gui.drawText(new Position(13, 6 + i * 2),parts[0]+ ". " + parts[1] + " Score: " + parts[2]  , "#008000", "BOLD");
                 i++;
             }
         } catch (IOException e) {

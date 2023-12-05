@@ -46,6 +46,7 @@ public class LeaderBoardState implements State {
             switch (action) {
                 case ENTER -> {
                     try {
+                        menuController.setApplicationState(ApplicationState.MainMenu);
                         menuController.changeState(ApplicationState.MainMenu);
                     } catch (IOException e) {
                         throw new RuntimeException(e);

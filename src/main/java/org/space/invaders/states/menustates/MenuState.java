@@ -55,10 +55,9 @@ public class MenuState implements State {
         if(action != null) {
             switch (action) {
                 case UP -> getModel().previousOption();
-                //case DOWN -> getModel().nextOption();
+                case DOWN -> getModel().nextOption();
                 case ENTER -> {
-                    System.out.println("hihi");
-                    ApplicationState applicationState = ApplicationState.MenuLeaderboard;
+                    ApplicationState applicationState = getModel().validateApplicationState();
                     menuController.setApplicationState(applicationState);
                     try {
                         menuController.changeState(applicationState);
@@ -76,6 +75,7 @@ public class MenuState implements State {
             gui.refresh();
             step();
         }
+
     }
 
     public void startScreen() {

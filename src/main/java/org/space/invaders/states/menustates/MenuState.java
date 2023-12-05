@@ -57,6 +57,15 @@ public class MenuState implements State {
             switch (action) {
                 case UP -> getModel().previousOption();
                 case DOWN -> getModel().nextOption();
+                case ENTER -> {
+                    ApplicationState applicationState = ApplicationState.MenuLeaderboard;
+                    menuController.setApplicationState(applicationState);
+                    try {
+                        menuController.changeState(applicationState);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
     }

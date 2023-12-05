@@ -22,7 +22,7 @@ public class MenuController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        this.applicationState = ApplicationState.MainMenu;
+        this.applicationState = ApplicationState.MenuLeaderboard;
         changeState(applicationState);
     }
 /*
@@ -64,7 +64,8 @@ public class MenuController {
             }
             case MenuLeaderboard -> {
                 this.applicationState = ApplicationState.MenuLeaderboard;
-                LeaderBoardState leaderBoardState = new LeaderBoardState();
+                LeaderBoardState leaderBoardState = new LeaderBoardState(this,gui);
+                leaderBoardState.run();
             }
             case MenuSettings -> {
                 this.applicationState = ApplicationState.MenuSettings;
@@ -84,6 +85,11 @@ public class MenuController {
     public ApplicationState getApplicationState()
     {
         return applicationState;
+    }
+
+    public void setApplicationState(ApplicationState applicationState)
+    {
+        this.applicationState = applicationState;
     }
 
     }

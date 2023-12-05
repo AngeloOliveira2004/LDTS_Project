@@ -2,6 +2,7 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.game.elements.MiniSpaceShip;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.file.FileAlreadyExistsException;
 
 public class MiniSpaceShipView extends View{
     private MiniSpaceShip miniSpaceShip;
+    private PlayerController playerController;
     private static final int CHAR_WIDTH = 3;
     private static final int CHAR_HEIGHT = 3;
     boolean isInvincible = false;
@@ -21,14 +23,14 @@ public class MiniSpaceShipView extends View{
         this.miniSpaceShip = miniSpaceShip;
     }
     @Override
-    public void draw()
-    {
+    public void draw() throws IOException {
         int x = miniSpaceShip.getPosition().getX();
         int y = miniSpaceShip.getPosition().getY();
 
         if(isInvincible == false)
         {
             // TODO select model and call draw String[] spaceship =
+            drawSpaceShip(SpaceShipModel , x , y);
         }
     }
 

@@ -154,6 +154,9 @@ public class SpaceShip extends Element {
                 break;
         }
     }
+    public void draw()
+    {
 
+    }
 }
 

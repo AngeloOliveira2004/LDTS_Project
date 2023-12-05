@@ -11,7 +11,6 @@ public class MenuView extends MenuViewer {
         super(model, screen);
 
     }
-
     public void drawElements(MenuGUI gui) {
         MenuModel menu = (MenuModel) getModel();
         gui.drawText(new Position(15,8),"W o r l d  T h r u s t e r","#008000","BLINK");

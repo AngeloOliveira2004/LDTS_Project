@@ -1,6 +1,7 @@
 package org.space.invaders.model.game.elements;
 
 import org.space.invaders.model.Position;
+import org.space.invaders.view.game.MiniSpaceShipView;
 
 import java.awt.*;
 
@@ -8,6 +9,7 @@ public class MiniSpaceShip extends Element{
     private boolean invincible;
     private boolean visible;
     private boolean shooting;
+    MiniSpaceShipView miniSpaceShipView;
 
     public MiniSpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width) {
         super(x, y, Yvelocity, Xvelocity, Health, SpawnRate , alive , height , width);
@@ -25,6 +27,10 @@ public class MiniSpaceShip extends Element{
         {
             //TODO creator create shot
         }
+    }
+    public void draw()
+    {
+
     }
 
 }

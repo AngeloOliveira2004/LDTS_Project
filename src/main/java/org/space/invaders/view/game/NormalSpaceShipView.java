@@ -2,12 +2,14 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.game.elements.NormalSpaceShip;
 
 import java.io.IOException;
 
 public class NormalSpaceShipView extends View{
     private NormalSpaceShip normalSpaceShip;
+    private PlayerController playerController;
     private static final int CHAR_WIDTH = 5;
     private static final int CHAR_HEIGHT = 5;
     boolean isInvincible = false;

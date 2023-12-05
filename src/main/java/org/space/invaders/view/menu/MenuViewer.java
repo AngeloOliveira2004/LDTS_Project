@@ -18,7 +18,6 @@ public abstract class MenuViewer<T> extends Viewer {
         this.screen = screen;
         this.textGraphics = this.screen.newTextGraphics();
     }
-
     public T getModel() {
         return model;
     }

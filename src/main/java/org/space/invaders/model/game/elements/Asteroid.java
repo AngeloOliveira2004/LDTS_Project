@@ -8,4 +8,5 @@ public class Asteroid extends Element{
     {
         return true;
     }
+    public void draw(){}
 }

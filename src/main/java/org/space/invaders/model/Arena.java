@@ -1,29 +1,32 @@
 package org.space.invaders.model;
 
 
-import org.space.invaders.model.game.elements.Shot;
-import org.space.invaders.model.game.SpaceShip;
+import org.space.invaders.model.game.elements.*;
+import org.space.invaders.view.GameViewer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Arena {
-    //Add enimies and enimies list
-    private final SpaceShip spaceShip;
+    private MiniSpaceShip miniSpaceShip;
+    private NormalSpaceShip normalSpaceShip;
+    private ArrayList<Element> objects;
+    private ArrayList<ShotElement> shots;
     private final ArrayList<Position> starPositions;
+    GameViewer tempScreen;
 
-    public Arena()
-    {
+    public Arena() throws IOException {
         this.starPositions = new ArrayList<>();
-        this.spaceShip = new SpaceShip();
+        this.objects = new ArrayList<>();
+        this.shots = new ArrayList<>();
+        //this.tempScreen = new GameViewer();
     }
-
-    public void update()
+    private void addObject(Element object)
     {
-
+        objects.add(object);
     }
-
-    public void getScore()
+    private void removeObject(Element object)
     {
-
+        objects.remove(object);
     }
 }

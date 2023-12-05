@@ -41,7 +41,6 @@ public abstract class View extends Viewer {
         if (c!=null)
             setBackgroundColor(c);
     }
-
     public void drawLine(String line, int X, int Y){
         int x = 0;
         for (char c : line.toCharArray()){

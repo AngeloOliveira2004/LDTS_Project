@@ -15,9 +15,7 @@ public class MenuState implements State {
     private final MenuView menuView;
     MenuGUI gui;
     private MenuController menuController;
-
     private final MenuModel menuModel;
-
 
     public MenuState(MenuController menuController,MenuGUI gui) {
 

@@ -5,50 +5,52 @@ import org.space.invaders.Game;
 
 import org.space.invaders.control.GameController;
 import org.space.invaders.model.game.SpaceShip;
+import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
-import org.space.invaders.view.menu.MenuViewer;
+import org.space.invaders.view.GameViewer;
 
 import java.io.IOException;
 
 public class GameState implements State {
+  private final GameController gameController;
+  private GameViewer gameViewer;
+  private SpaceShip spaceShip;
+  private static final int FRAME_RATE = 15; // Frames per second
+  private static final long FRAME_TIME = 1000000000 / FRAME_RATE; // Time per frame in nanoseconds
+  private long lastFrameTime;
+  private boolean running;
+  public GameState(GameController gameController) throws IOException {
+     this.running = true;
+     this.gameController = gameController;
+     this.gameViewer = new GameViewer(this.gameController);
+  }
 
-private final GameController gameController;
- private Screen screen;
- private SpaceShip spaceShip;
- private static final long FRAME_TIME = 50;
+  public GameController getController() {
+    return gameController;
+  }
 
- public GameState(GameController gameController) {
-   this.gameController = gameController;
- }
- public MenuViewer getViewer() {
-  return null;
- }
+  public void step() {
 
- public GameController getController() {
-   return gameController;
- }
+  }
+  public void startScreen()
+  {
 
- public Game getModel() {
-  return null;
- }
+  }
+  public boolean isRunning()
+  {
+      return running;
+  }
+  public void run()
+  {
+      while (gameController.getApplicationState() == ApplicationState.Game)
+      {
+        /*
+        gameViewer.drawElements(gui);
+        gui.refresh();
+        step();
 
- @Override
- public void step() {
-
- }
-
- @Override
- public void startScreen() {
-
- }
-
- @Override
- public boolean isRunning() {
-  return false;
- }
-
- @Override
- public void run() throws IOException {
-
- }
+         */
+      }
+  }
 }
+

@@ -19,4 +19,8 @@ public class NormalSpaceShip extends Element{
     {
         //TODO actually shot
     }
+    public void draw()
+    {
+
+    }
 }

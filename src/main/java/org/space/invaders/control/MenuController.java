@@ -22,7 +22,7 @@ public class MenuController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        this.applicationState = ApplicationState.MainMenu;
+        this.applicationState = ApplicationState.Game;
         changeState(applicationState);
     }
 /*
@@ -56,7 +56,8 @@ public class MenuController {
         {
             case Game -> {
                 this.applicationState = ApplicationState.Game;
-                GameController gameController = new GameController();
+                gui.close();
+                GameController gameController = new GameController(this);
             }
             case MenuInstructions -> {
                 this.applicationState = ApplicationState.MenuInstructions;

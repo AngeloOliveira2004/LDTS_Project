@@ -10,6 +10,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import org.space.invaders.control.GameController;
+import org.space.invaders.model.Arena;
 import org.space.invaders.states.ApplicationState;
 
 import java.awt.*;
@@ -36,8 +37,6 @@ public class GameViewer {
         screen.startScreen();
         textGraphics = screen.newTextGraphics();
 
-        // Start the game loop in a separate thread
-        new Thread(this::runGameLoop).start();
     }
 
     public void drawElements() {
@@ -46,7 +45,7 @@ public class GameViewer {
         refresh();
     }
 
-    private void refresh() {
+    public void refresh() {
         try {
             screen.refresh();
         } catch (IOException e) {
@@ -54,23 +53,20 @@ public class GameViewer {
         }
     }
 
-    private void runGameLoop() {
+    public void runGameLoop(Arena arena) {
         try {
-            while (gameController.getApplicationState() == ApplicationState.Game) {
+            if(gameController.getApplicationState() == ApplicationState.Game) {
                 // Process user input
                 handleInput();
-
                 // Update game state
                 // TODO: Implement game state update logic
-
+                System.out.println("here");
                 // Draw game elements
                 drawElements();
 
                 // Introduce some delay to control frame rate
-                Thread.sleep(100);
+                refresh();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -80,6 +76,8 @@ public class GameViewer {
         KeyStroke keyStroke = screen.pollInput();
         if (keyStroke != null) {
             if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
+                System.out.println("Key Type: " + keyStroke.getKeyType());
+                screen.close();
                 // Exit the game
                 gameController.changeState(ApplicationState.MainMenu);
             }else
@@ -93,5 +91,8 @@ public class GameViewer {
             }
             // TODO: Handle other key events based on your game's requirements
         }
+    }
+    public void close() throws IOException {
+        screen.close();
     }
 }

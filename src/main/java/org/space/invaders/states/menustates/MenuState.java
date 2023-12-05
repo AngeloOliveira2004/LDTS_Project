@@ -67,6 +67,11 @@ public class MenuState implements State {
         }
     }
 
+    @Override
+    public void close() throws IOException {
+        menuView.close();
+    }
+
     public void startScreen() {
         menuView.drawElements(gui);
         gui.refresh();

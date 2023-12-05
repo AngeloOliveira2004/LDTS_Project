@@ -1,5 +1,7 @@
 package org.space.invaders.control;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.Menu;
 import org.space.invaders.states.ApplicationState;
@@ -13,7 +15,6 @@ import org.space.invaders.states.menustates.SettingsState;
 import java.io.IOException;
 
 public class GameController {
-
     private State state;
     private ApplicationState applicationState;
     MenuController menuController;
@@ -56,8 +57,17 @@ public class GameController {
             case Game -> {
                 this.applicationState = ApplicationState.Game;
                 GameState gameState = new GameState(this);
+                this.state = gameState;
+                new Thread(gameState).start(); // Start the thread
+                break;
             }
             case PauseMenu -> {
+                this.applicationState = ApplicationState.PauseMenu;
+                menuController.changeState(this.applicationState);
+                break;
+            }
+            case MainMenu ->
+            {
                 this.applicationState = ApplicationState.MainMenu;
                 menuController.changeState(this.applicationState);
             }
@@ -69,4 +79,20 @@ public class GameController {
         return applicationState;
     }
 
+    public void handleInput(KeyStroke keyStroke) throws IOException {
+        if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
+            System.out.println("Key Type: " + keyStroke.getKeyType());
+            state.close();
+            // Exit the game
+            changeState(ApplicationState.MainMenu);
+        }else
+        {
+            System.out.println("Key Type: " + keyStroke.getKeyType());
+            System.out.println("Character: " + keyStroke.getCharacter());
+            System.out.println("Ctrl: " + keyStroke.isCtrlDown());
+            System.out.println("Alt: " + keyStroke.isAltDown());
+            System.out.println("Shift: " + keyStroke.isShiftDown());
+            System.out.println();
+        }
+    }
 }

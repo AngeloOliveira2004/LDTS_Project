@@ -9,4 +9,6 @@ public interface State {
     public abstract void startScreen();
     public abstract boolean isRunning();
     public abstract void run() throws IOException;
+
+    void close() throws IOException;
 }

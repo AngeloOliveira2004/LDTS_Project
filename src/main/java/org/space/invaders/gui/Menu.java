@@ -20,23 +20,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Menu implements MenuGUI {
-    private final Screen screen;
+    private Screen screen;
     private TextGraphics textGraphics;
-
+    private boolean visible = true;
     public Menu(int screenWidth, int screenHeight) throws Exception {
-        Terminal terminal = new DefaultTerminalFactory()
-                .setInitialTerminalSize(new TerminalSize(screenWidth, screenHeight))
-                .createTerminal();
+        if(visible)
+        {
+            Terminal terminal = new DefaultTerminalFactory()
+                    .setInitialTerminalSize(new TerminalSize(screenWidth, screenHeight))
+                    .createTerminal();
 
-        this.screen = new TerminalScreen(terminal);
+            this.screen = new TerminalScreen(terminal);
 
-        screen.setCursorPosition(null);
-        screen.startScreen();
-        screen.doResizeIfNecessary();
-        // Start the screen
-        screen.startScreen();
+            screen.setCursorPosition(null);
+            screen.startScreen();
+            screen.doResizeIfNecessary();
+            // Start the screen
+            screen.startScreen();
 
-        textGraphics = screen.newTextGraphics();
+            textGraphics = screen.newTextGraphics();
+        }
     }
     public Menu(Screen screen) {
         this.screen = screen;
@@ -97,7 +100,7 @@ public class Menu implements MenuGUI {
         if(keyStroke.getKeyType() == KeyType.ArrowDown) return MenuGUI.ACTION.DOWN;
         return null;
     }
-
+    public void setVisible(boolean visible){this.visible = visible;}
     /*public enum Option {START, INST, PREF, RANKING, EXIT};
 
     public String[] optString = {"NEW GAME", "INSTRUCTIONS", "SETTINGS", "RANKINGS", "EXIT"};

@@ -5,6 +5,8 @@ import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.menu.MenuModel;
 
+import java.io.IOException;
+
 public class MenuView extends MenuViewer {
 
     public MenuView(MenuModel model, Screen screen) {
@@ -27,5 +29,8 @@ public class MenuView extends MenuViewer {
         }
 
         gui.refresh();
+    }
+    public void close() throws IOException {
+        screen.close();
     }
 }

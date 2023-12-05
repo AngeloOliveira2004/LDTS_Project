@@ -69,7 +69,8 @@ public class MenuController {
             }
             case MenuSettings -> {
                 this.applicationState = ApplicationState.MenuSettings;
-                SettingsState settingsState = new SettingsState();
+                SettingsState settingsState = new SettingsState(this,gui);
+                settingsState.run();
             }
             case ExitMenu -> {
                 this.applicationState = ApplicationState.ExitMenu;

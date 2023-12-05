@@ -22,8 +22,6 @@ public class LeaderboardView extends MenuViewer {
 
         gui.drawSelectedText(new Position(20, 5), menu.getOption(0), "#008000", "BLINK");
 
-        gui.refresh();
-
         drawLeaderboard(gui);
     }
 

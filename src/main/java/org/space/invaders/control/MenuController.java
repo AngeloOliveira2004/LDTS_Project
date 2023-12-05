@@ -61,6 +61,7 @@ public class MenuController {
             case MenuInstructions -> {
                 this.applicationState = ApplicationState.MenuInstructions;
                 InstructionsState instructionsState = new InstructionsState(this,gui);
+                instructionsState.run();
             }
             case MenuLeaderboard -> {
                 this.applicationState = ApplicationState.MenuLeaderboard;

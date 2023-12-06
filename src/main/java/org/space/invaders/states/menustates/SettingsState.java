@@ -91,4 +91,9 @@ public class SettingsState implements State {
             step();
         }
     }
+
+    @Override
+    public void close() throws IOException {
+
+    }
 }

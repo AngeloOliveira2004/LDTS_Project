@@ -76,4 +76,9 @@ public class LeaderBoardState implements State {
             step();
         }
     }
+
+    @Override
+    public void close() throws IOException {
+
+    }
 }

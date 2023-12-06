@@ -79,4 +79,9 @@ public class InstructionsState implements State {
         }
 
     }
+
+    @Override
+    public void close() throws IOException {
+
+    }
 }

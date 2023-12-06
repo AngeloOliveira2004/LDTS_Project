@@ -6,6 +6,7 @@ import org.space.invaders.view.GameViewer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Arena {
     private ArrayList<Element> objects;
@@ -38,4 +39,24 @@ public class Arena {
     {
         shots.add(shotElement);
     }
+    public void update() {
+        // Remove elements from 'objects' list
+        Iterator<Element> objectIterator = objects.iterator();
+        while (objectIterator.hasNext()) {
+            Element element = objectIterator.next();
+            if (!element.isInsideBorders()) {
+                objectIterator.remove();
+            }
+        }
+
+        // Remove elements from 'shots' list
+        Iterator<ShotElement> shotIterator = shots.iterator();
+        while (shotIterator.hasNext()) {
+            ShotElement shotElement = shotIterator.next();
+            if (!shotElement.isInsideBorders()) {
+                shotIterator.remove();
+            }
+        }
+    }
+
 }

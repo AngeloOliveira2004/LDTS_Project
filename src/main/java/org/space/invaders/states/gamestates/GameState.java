@@ -5,9 +5,12 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 import org.space.invaders.control.GameController;
+import org.space.invaders.control.command.EnemiesController;
 import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.game.SpaceShip;
+import org.space.invaders.model.game.creator.EnemiesFactory;
+import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.NormalSpaceShip;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
@@ -26,14 +29,16 @@ public class GameState implements State {
   private long lastFrameTime;
   private boolean running;
   private Arena arena;
+  private EnemiesController enemiesController;
   public GameState(GameController gameController) throws IOException {
-         spaceShip = new SpaceShip(10, 10, 1, 1, 1, 0 , true , 3 , 3);
+         spaceShip = new SpaceShip(10, 10, 3, 1, 1, 0 , true , 3 , 3);
          this.arena = new Arena();
          this.running = true;
          this.gameController = gameController;
          this.gameViewer = new GameViewer(this.gameController);
          this.playerController = new PlayerController(spaceShip);
          arena.addObject(spaceShip);
+         this.enemiesController = new EnemiesController(this.arena , new EnemiesFactory() , new ShotFactory());
   }
   public GameController getController() {
     return gameController;
@@ -57,8 +62,9 @@ public void run() throws IOException{
     while (running) {
         long now = System.nanoTime();
         long elapsedTime = now - lastFrameTime;
+        arena.update();
 
-
+        enemiesController.KamizeSpawner();
         //update(elapsedTime);
         handleInput(gameViewer.handleInput());
 

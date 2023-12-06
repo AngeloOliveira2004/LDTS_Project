@@ -57,6 +57,7 @@ public class GameViewer {
         {
             shotElement.draw(textGraphics);
         }
+
         refresh();
     }
 

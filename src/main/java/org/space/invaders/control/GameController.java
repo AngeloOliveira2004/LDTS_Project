@@ -3,6 +3,7 @@ package org.space.invaders.control;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import org.space.invaders.gui.MenuGUI;
+import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.menu.Menu;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
@@ -20,9 +21,11 @@ public class GameController {
     MenuController menuController;
     private Menu menuModel;
     private MenuGUI gui;
+    private EnemiesFactory enemiesFactory;
     public GameController(MenuController menuController) throws IOException {
         this.menuController = menuController;
         this.applicationState = ApplicationState.Game;
+        this.enemiesFactory = new EnemiesFactory();
         changeState(applicationState);
     }
     /*

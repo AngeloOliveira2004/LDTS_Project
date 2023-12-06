@@ -8,6 +8,8 @@ import org.space.invaders.model.game.Collider;
 
 import javax.swing.text.StyledEditorKit;
 
+import java.io.IOException;
+
 import static org.space.invaders.Constants.WIDTH;
 import static org.space.invaders.Constants.HEIGHT;
 
@@ -128,7 +130,7 @@ public abstract class Element implements Collider{
     {
         return (getPosition().x > 0 && getPosition().x < WIDTH && getPosition().y > 0 && getPosition().y < HEIGHT);
     }
-    public abstract void draw(TextGraphics textGraphics);
+    public abstract void draw(TextGraphics textGraphics) throws IOException;
 
 }
 

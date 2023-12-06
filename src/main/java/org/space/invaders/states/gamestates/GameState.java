@@ -64,13 +64,14 @@ public void run() throws IOException{
         long elapsedTime = now - lastFrameTime;
         arena.update();
 
-        enemiesController.KamizeSpawner();
+        enemiesController.KamizeSpawner(spaceShip.getPosition());
         //update(elapsedTime);
         handleInput(gameViewer.handleInput());
 
         gameViewer.drawElements(arena);
 
         gameViewer.refresh();
+        enemiesController.update();
         // Control frame rate
         try {
             Thread.sleep(Math.max(0, (FRAME_TIME - elapsedTime) / 1_000_000)); // Convert nanoseconds to milliseconds

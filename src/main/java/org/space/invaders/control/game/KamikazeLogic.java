@@ -1,17 +1,18 @@
 package org.space.invaders.control.game;
 
 import org.space.invaders.model.Position;
+import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.NormalSpaceShip;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class KamikazeLogic implements PathFinding {
-    private NormalSpaceShip normalSpaceShip;
-    private org.space.invaders.model.game.elements.KamikazeEnemy kamikazeEnemy;
+public class KamikazeLogic implements EnemyLogic , PathFinding {
+    private Position spaceshipPosition;
+    private KamikazeEnemy kamikazeEnemy;
 
-    public KamikazeLogic(NormalSpaceShip normalSpaceShip, org.space.invaders.model.game.elements.KamikazeEnemy kamikazeEnemy) {
-        this.normalSpaceShip = normalSpaceShip;
+    public KamikazeLogic(Position position, KamikazeEnemy kamikazeEnemy) {
+        this.spaceshipPosition = position;
         this.kamikazeEnemy = kamikazeEnemy;
     }
 
@@ -24,8 +25,8 @@ public class KamikazeLogic implements PathFinding {
     }
 
     public void move() {
-        org.space.invaders.model.Position start = kamikazeEnemy.getPosition();
-        org.space.invaders.model.Position goal = normalSpaceShip.getPosition();
+        Position start = kamikazeEnemy.getPosition();
+        Position goal = spaceshipPosition;
 
         // Find the direct path
         List<Position> path = findPath(start, goal, null);
@@ -35,5 +36,9 @@ public class KamikazeLogic implements PathFinding {
             Position nextPosition = path.get(0);
             kamikazeEnemy.setPosition(nextPosition);
         }
+    }
+    public void update()
+    {
+        move();
     }
 }

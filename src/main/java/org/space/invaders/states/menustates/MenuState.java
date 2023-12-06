@@ -47,7 +47,6 @@ public class MenuState implements State {
         if(action != MenuGUI.ACTION.NONE){
             gui.clear();
             Action(action);
-            menuView.drawElements(gui);
         }
     }
     public void Action(MenuGUI.ACTION action) {
@@ -55,6 +54,15 @@ public class MenuState implements State {
             switch (action) {
                 case UP -> getModel().previousOption();
                 case DOWN -> getModel().nextOption();
+                case ENTER -> {
+                    ApplicationState applicationState = getModel().validateApplicationState();
+                    menuController.setApplicationState(applicationState);
+                    try {
+                        menuController.changeState(applicationState);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
     }
@@ -65,6 +73,7 @@ public class MenuState implements State {
             gui.refresh();
             step();
         }
+
     }
 
     @Override

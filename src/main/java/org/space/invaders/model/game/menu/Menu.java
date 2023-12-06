@@ -1,5 +1,7 @@
 package org.space.invaders.model.game.menu;
 
+import org.space.invaders.states.ApplicationState;
+
 import java.util.List;
 
 public abstract class Menu {
@@ -43,11 +45,14 @@ public abstract class Menu {
             this.currentOption = 0;
     }
 
+    public int getOptionIndex() {return currentOption;}
     public String getOption(int i){
         return menuOptions.get(i);
     }
     public void addMenuOptions(String string){
         this.menuOptions.add(string);
     }
+
+    public abstract ApplicationState validateApplicationState();
 
 }

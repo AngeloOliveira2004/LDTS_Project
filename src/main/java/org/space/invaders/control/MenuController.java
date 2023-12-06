@@ -61,17 +61,21 @@ public class MenuController {
             case MenuInstructions -> {
                 this.applicationState = ApplicationState.MenuInstructions;
                 InstructionsState instructionsState = new InstructionsState(this,gui);
+                instructionsState.run();
             }
             case MenuLeaderboard -> {
                 this.applicationState = ApplicationState.MenuLeaderboard;
-                LeaderBoardState leaderBoardState = new LeaderBoardState();
+                LeaderBoardState leaderBoardState = new LeaderBoardState(this,gui);
+                leaderBoardState.run();
             }
             case MenuSettings -> {
                 this.applicationState = ApplicationState.MenuSettings;
-                SettingsState settingsState = new SettingsState();
+                SettingsState settingsState = new SettingsState(this,gui);
+                settingsState.run();
             }
             case ExitMenu -> {
                 this.applicationState = ApplicationState.ExitMenu;
+                System.exit(0);
             }
             case MainMenu -> {
                 this.applicationState = ApplicationState.MainMenu;
@@ -85,6 +89,11 @@ public class MenuController {
     public ApplicationState getApplicationState()
     {
         return applicationState;
+    }
+
+    public void setApplicationState(ApplicationState applicationState)
+    {
+        this.applicationState = applicationState;
     }
 
     }

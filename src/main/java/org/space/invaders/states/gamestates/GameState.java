@@ -11,7 +11,6 @@ import org.space.invaders.model.Arena;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.GameViewer;
@@ -31,7 +30,7 @@ public class GameState implements State {
   private Arena arena;
   private EnemiesController enemiesController;
   public GameState(GameController gameController) throws IOException {
-         spaceShip = new SpaceShip(10, 10, 3, 1, 1, 0 , true , 3 , 3);
+         spaceShip = new SpaceShip(50, 50, 3, 1, 1, 0 , true , 3 , 3);
          this.arena = new Arena();
          this.running = true;
          this.gameController = gameController;

@@ -2,15 +2,9 @@ package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-import org.space.invaders.gui.GUI;
 import org.space.invaders.view.Viewer;
+import org.space.invaders.view.Color;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,23 +26,25 @@ public abstract class View extends Viewer {
         this.graphics = graphics;
     }
     public void setForegroundColor(Color color){
-        getGraphics().setForegroundColor((TextColor) color);
+        getGraphics().setForegroundColor( color.getColor());
     }
     public void setBackgroundColor(Color color){
-        getGraphics().setBackgroundColor((TextColor) color);
+        getGraphics().setBackgroundColor( color.getColor());
     }
-    public void setColor(char color){
-        Color c = Color.getColor(String.valueOf(color));
-        if (c!=null)
-            setBackgroundColor(c);
+    public void setColor(char colorChar){
+        Color color = Color.getColor(colorChar);
+        if (color != null) {
+            setBackgroundColor(color);
+        }
     }
+
     public void drawLine(String line, int X, int Y){
         int x = 0;
         for (char c : line.toCharArray()){
             if (c!=' '){
                 setColor(c);
                 graphics.fillRectangle(new TerminalPosition(X + x, Y),
-                        new TerminalSize(charWidth, charHeight), ' ');
+                        new TerminalSize(charWidth*1, charHeight*3), ' ');
             }
             x+=charWidth;
         }

@@ -1,14 +1,16 @@
 package org.space.invaders.model;
 
 
+import org.space.invaders.model.game.Collider;
 import org.space.invaders.model.game.elements.*;
 import org.space.invaders.view.GameViewer;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Arena {
+public class Arena implements Collider {
     private ArrayList<Element> objects;
     private ArrayList<ShotElement> shots;
     private final ArrayList<Position> starPositions;
@@ -42,14 +44,6 @@ public class Arena {
     public void update() {
         // Remove elements from 'objects' list
         Iterator<Element> objectIterator = objects.iterator();
-        while (objectIterator.hasNext()) {
-            Element element = objectIterator.next();
-            if (!element.isInsideBorders()) {
-                objectIterator.remove();
-            }
-        }
-
-        // Remove elements from 'shots' list
         Iterator<ShotElement> shotIterator = shots.iterator();
         while (shotIterator.hasNext()) {
             ShotElement shotElement = shotIterator.next();
@@ -57,6 +51,20 @@ public class Arena {
                 shotIterator.remove();
             }
         }
+        Iterator<ShotElement> newShotIterator = shots.iterator();
+        while (objectIterator.hasNext())
+        {
+            Element object = objectIterator.next();
+            while (newShotIterator.hasNext()) {
+                ShotElement shotElement = newShotIterator.next();
+                String[] tempString = {" " , " "};
+                if(collision(object.getPosition() , object.getDesign() , shotElement.getPosition() , tempString))
+                {
+                    objectIterator.remove();
+                }
+            }
+        }
+        // Remove elements from 'shots' list
     }
 
 }

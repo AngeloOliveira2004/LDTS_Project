@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.game.SpaceShip;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
 
 public class SpaceshipView extends View{
     private SpaceShip spaceShip;
@@ -71,4 +70,5 @@ public class SpaceshipView extends View{
     {
 
     }
+    public String[] getDesign(){return  SpaceShipModel;}
 }

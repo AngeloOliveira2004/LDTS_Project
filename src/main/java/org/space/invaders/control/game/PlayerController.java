@@ -3,8 +3,6 @@ package org.space.invaders.control.game;
 import com.googlecode.lanterna.input.KeyStroke;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.game.SpaceShip;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
-import org.space.invaders.model.game.elements.MiniSpaceShip;
 import org.space.invaders.model.game.elements.Shot;
 
 import java.awt.event.KeyEvent;

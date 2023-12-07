@@ -4,14 +4,29 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
-
+import org.space.invaders.view.Color;
 import java.io.IOException;
 
 public class KamikazeView extends View{
     private KamikazeEnemy kamikazeEnemy;
-    private static final int CHAR_HEIGHT = 3;
-    private static final int CHAR_WIDTH = 3;
-    private static final String[] KamikazeModel = {"K" , " "};
+    private static final int CHAR_HEIGHT = 1;
+    private static final int CHAR_WIDTH = 1;
+
+    private static final String[] KamikazeModel = new String[]{
+            "          YY  ",
+            "        YYYccYY",
+            "      YYYYYccYY",
+            "     YYYYYYYccYY",
+            "    YYYYYYYYYYYY",
+            "    YYYYYYYYYYYY",
+            "  PPPPPPPPPPPPPPP",
+            " PPPPPPPPPPPPPPPP",
+            "pRpRpppRpppRpppRpRp",
+            " PpCcccccccccccCpP",
+            "  PpCcccccccccCpP",
+            "    CcccccccccC",
+    };
+
 
     public KamikazeView(KamikazeEnemy kamikazeEnemy , TextGraphics textGraphics) {
         super(CHAR_WIDTH, CHAR_HEIGHT, textGraphics);
@@ -20,22 +35,12 @@ public class KamikazeView extends View{
 
     public void drawKamikaze()
     {
-        for(int y = 0 ; y < KamikazeModel.length ; y++)
-        {
-            for(int x = 0 ; x < KamikazeModel[0].length() ; x++)
-            {
-                char character = KamikazeModel[y].charAt(x);
-                if (character != ' ') {
-                    setColor(character);
-                    getGraphics().putString(kamikazeEnemy.getXposition() , kamikazeEnemy.getYposition() , "Kamikaze");
-                    getGraphics().fillRectangle(new TerminalPosition(kamikazeEnemy.getXposition() * CHAR_WIDTH
-                                    , kamikazeEnemy.getYposition() * charHeight)
-                            , new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
-                }
-            }
-        }
+        int x = (int)kamikazeEnemy.getPosition().getX();
+        int y = (int)kamikazeEnemy.getPosition().getY();
+        drawImage(KamikazeModel, x, y);
     }
     @Override
     public void draw() throws IOException {
     }
+    public String[] getDesign(){return  KamikazeModel;}
 }

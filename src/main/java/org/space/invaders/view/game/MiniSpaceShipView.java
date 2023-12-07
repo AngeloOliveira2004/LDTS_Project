@@ -1,10 +1,10 @@
+/*
 package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.control.game.PlayerController;
-import org.space.invaders.model.game.elements.MiniSpaceShip;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -53,3 +53,4 @@ public class MiniSpaceShipView extends View{
     }
 
 }
+*/

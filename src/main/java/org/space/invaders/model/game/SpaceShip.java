@@ -7,7 +7,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.Element;
-import org.space.invaders.view.game.NormalSpaceShipView;
 import org.space.invaders.view.game.SpaceshipView;
 
 
@@ -55,6 +54,11 @@ public class SpaceShip extends Element {
     {
         spaceshipView = new SpaceshipView(this , textGraphics);
         spaceshipView.draw();
+    }
+
+    @Override
+    public String[] getDesign() {
+        return spaceshipView.getDesign();
     }
 
 }

@@ -1,4 +1,4 @@
-package org.space.invaders.model.game.elements;
+/*package org.space.invaders.model.game.elements;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
@@ -35,3 +35,5 @@ public class MiniSpaceShip extends Element{
     }
 
 }
+
+ */

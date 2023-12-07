@@ -29,12 +29,12 @@ public class GameViewer {
     public GameViewer(GameController gameController) throws IOException {
         this.gameController = gameController;
 
-        Font myFont = new Font("Monospaced", Font.PLAIN, 10);
+        Font myFont = new Font("Monospaced", Font.PLAIN, 3);
         AWTTerminalFontConfiguration myFontConfiguration = AWTTerminalFontConfiguration.newInstance(myFont);
         DefaultTerminalFactory dtf = new DefaultTerminalFactory();
         dtf.setForceAWTOverSwing(true);
         dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
-        dtf.setInitialTerminalSize(new TerminalSize(200, 100));
+        dtf.setInitialTerminalSize(new TerminalSize(600, 300));
 
         Terminal terminal = dtf.createTerminal();
         screen = new TerminalScreen(terminal);
@@ -52,7 +52,6 @@ public class GameViewer {
         {
             element.draw(textGraphics);
         }
-        System.out.println(arena.getShots().size());
         for(ShotElement shotElement : arena.getShots())
         {
             shotElement.draw(textGraphics);

@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
 import org.space.invaders.model.game.elements.SuperShot;
 import org.space.invaders.Constants;
 import org.space.invaders.view.Color;
@@ -29,7 +28,7 @@ public class SuperShotVIew extends View {
         this.superShot = superShot;
     }
 
-    public void Actualdraw(NormalSpaceShip normalSpaceShip) throws IOException {
+    public void Actualdraw() throws IOException {
         if(Yposition < HEIGHT)
         {
             for(int y = 0 ; y < superShotModel.length ; y++)
@@ -39,7 +38,7 @@ public class SuperShotVIew extends View {
                     char c = superShotModel[y].charAt(x);
                     setColor(c);
 
-                    graphics.fillRectangle(new TerminalPosition((int)(normalSpaceShip.getPosition().x*CHAR_WIDTH),
+                    graphics.fillRectangle(new TerminalPosition((int)(superShot.getPosition().x*CHAR_WIDTH),
                                     (int)(Yposition + yVelocity)),
                             new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
                     Yposition -= yVelocity;

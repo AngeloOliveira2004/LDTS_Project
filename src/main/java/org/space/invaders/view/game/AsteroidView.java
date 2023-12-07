@@ -3,29 +3,23 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
 
 import javax.print.DocFlavor;
 import java.io.IOException;
 
 public class AsteroidView extends View{
-    private NormalSpaceShip normalSpaceShip;
     private static final int CHAR_WIDTH = 3;
     private static final int CHAR_HEIGHT = 3;
     boolean isInvincible = false;
 
     //TODO implement spaceship model and then paint it
-    private static final String[] SpaceShipModel = {" " , " "};
-    private static final String[] SpaceShipModelWithFlames = {" " , " "};
+    private static final String[] AsteroidModel = {" " , " "};
     public AsteroidView(TextGraphics textGraphics ) {
         super(CHAR_WIDTH , CHAR_HEIGHT , textGraphics);
-        this.normalSpaceShip = normalSpaceShip;
     }
     @Override
     public void draw()
     {
-        int x = normalSpaceShip.getPosition().getX();
-        int y = normalSpaceShip.getPosition().getY();
 
         if(isInvincible == false)
         {
@@ -49,4 +43,6 @@ public class AsteroidView extends View{
             }
         }
     }
+
+    public String[] getAsteroidModel(){return AsteroidModel;}
 }

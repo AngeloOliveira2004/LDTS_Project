@@ -131,6 +131,6 @@ public abstract class Element implements Collider{
         return (getPosition().x > 0 && getPosition().x < WIDTH && getPosition().y > 0 && getPosition().y < HEIGHT);
     }
     public abstract void draw(TextGraphics textGraphics) throws IOException;
-
+    public abstract String[] getDesign();
 }
 

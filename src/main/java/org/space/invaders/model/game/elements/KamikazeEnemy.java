@@ -14,4 +14,9 @@ public class KamikazeEnemy extends Element{
         kamikazeView = new KamikazeView(this , textGraphics);
         kamikazeView.drawKamikaze();
     }
+
+    @Override
+    public String[] getDesign() {
+        return kamikazeView.getDesign();
+    }
 }

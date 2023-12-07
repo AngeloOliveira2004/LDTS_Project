@@ -18,6 +18,7 @@ public class EnemiesController {
     private ShotFactory shotFactory;
     private KamikazeLogic kamikazeLogic;
     private ArrayList<EnemyLogic> logics;
+    private int instance;
     public EnemiesController(Arena arena , EnemiesFactory enemiesFactory , ShotFactory shotFactory)
     {
         this.arena = arena;
@@ -28,23 +29,27 @@ public class EnemiesController {
 
     public void KamizeSpawner(Position position)
     {
-        //todo change to set maybe
-        ArrayList<Integer> list = new ArrayList<>();
-        KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
-
-        for(int i = 0 ; i <= 1000 ; i++)
+        if(instance == 0)
         {
-            list.add(i);
-        }
-        Random random = new Random();
+            //todo change to set maybe
+            ArrayList<Integer> list = new ArrayList<>();
+            KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
 
-        // Generate a random integer within the specified range
-        int randomInt = random.nextInt((10000) + 1);
-        if(list.contains(randomInt))
-        {
-            arena.addObject(tempKamikaze);
+            for(int i = 0 ; i <= 10000 ; i++)
+            {
+                list.add(i);
+            }
+            Random random = new Random();
+
+            // Generate a random integer within the specified range
+            int randomInt = random.nextInt((10000) + 1);
+            if(list.contains(randomInt))
+            {
+                arena.addObject(tempKamikaze);
+            }
+            logics.add(new KamikazeLogic(position , tempKamikaze));
+            instance++;
         }
-        logics.add(new KamikazeLogic(position , tempKamikaze));
     }
     public void update()
     {

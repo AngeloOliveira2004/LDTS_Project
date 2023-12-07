@@ -1,4 +1,4 @@
-package org.space.invaders.view.game;
+/*package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -55,3 +55,4 @@ public class NormalSpaceShipView extends View{
 
     }
 }
+*/

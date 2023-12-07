@@ -2,8 +2,6 @@ package org.space.invaders.control.game;
 
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +9,11 @@ public class KamikazeLogic implements EnemyLogic , PathFinding {
     private Position spaceshipPosition;
     private KamikazeEnemy kamikazeEnemy;
 
+    private int iterations;
     public KamikazeLogic(Position position, KamikazeEnemy kamikazeEnemy) {
         this.spaceshipPosition = position;
         this.kamikazeEnemy = kamikazeEnemy;
+        this.iterations = 0;
     }
 
     @Override
@@ -28,17 +28,33 @@ public class KamikazeLogic implements EnemyLogic , PathFinding {
         Position start = kamikazeEnemy.getPosition();
         Position goal = spaceshipPosition;
 
-        // Find the direct path
-        List<Position> path = findPath(start, goal, null);
+        // Calculate the vector from the kamikaze enemy to the spaceship
+        int dx = goal.getX() - start.getX();
+        int dy = goal.getY() - start.getY();
 
-        // Move towards the NormalSpaceShip
-        if (path != null && !path.isEmpty()) {
-            Position nextPosition = path.get(0);
-            kamikazeEnemy.setPosition(nextPosition);
-        }
+        // Determine the direction (sign) of the velocities
+        int signX = Integer.compare(dx, 0);
+        int signY = Integer.compare(dy, 0);
+
+        // Set the kamikaze enemy's velocities based on the direction
+        kamikazeEnemy.setXVelocity(signX);
+        kamikazeEnemy.setYVelocity(signY);
+
+        // Update the kamikaze enemy's position based on velocities
+        int newX = start.getX() + kamikazeEnemy.getXVelocity();
+        int newY = start.getY() + kamikazeEnemy.getYVelocity();
+
+        kamikazeEnemy.setPosition(new Position(newX, newY));
     }
+
+
     public void update()
     {
-        move();
+        if(iterations == 3)
+        {
+            move();
+            iterations = -1;
+        }
+        iterations++;
     }
 }

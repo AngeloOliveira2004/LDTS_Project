@@ -14,17 +14,19 @@ public interface Collider {
     }
     private void extractNonEmptyPositions(Position position, String[] object, Set<Position> positions) {
         for (int y = 0; y < object.length; y++) {
-            for (int x = 0; x < object[0].length(); x++) {
-                if (object[x].charAt(y) != ' ') {
-                    positions.add(new Position(x+position.x, y+position.y));
+            for (int x = 0; x < object[y].length(); x++) {
+                if (object[y].charAt(x) != ' ') {
+                    System.out.println(position);
+                    positions.add(new Position(x + position.x, y + position.y));
                 }
             }
         }
     }
+
     private boolean checkCollision(Position position, String[] object, Set<Position> positions) {
         for (int y = 0; y < object.length; y++) {
-            for (int x = 0; x < object[0].length(); x++) {
-                if (object[x].charAt(y) != ' ') {
+            for (int x = 0; x < object[y].length(); x++) {
+                if (object[y].charAt(x) != ' ') {
                     Position arbitraryPosition = new Position(x + position.x, y + position.y);
                     if (positions.contains(arbitraryPosition)) {
                         return true;

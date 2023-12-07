@@ -5,7 +5,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.control.game.ShotController;
 import org.space.invaders.model.Position;
-import org.space.invaders.model.game.elements.NormalSpaceShip;
 import org.space.invaders.model.game.elements.Shot;
 
 import java.io.IOException;

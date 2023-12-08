@@ -3,15 +3,17 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.view.Color;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class KamikazeView extends View{
     private KamikazeEnemy kamikazeEnemy;
     private static final int CHAR_HEIGHT = 1;
     private static final int CHAR_WIDTH = 1;
-
+    ArrayList<Position> positions;
     private static final String[] KamikazeModel = new String[]{
             "          YY  ",
             "        YYYccYY",
@@ -27,18 +29,36 @@ public class KamikazeView extends View{
             "    CcccccccccC",
     };
 
-
+    private int check;
     public KamikazeView(KamikazeEnemy kamikazeEnemy , TextGraphics textGraphics) {
         super(CHAR_WIDTH, CHAR_HEIGHT, textGraphics);
         this.kamikazeEnemy = kamikazeEnemy;
+
+        this.positions = new ArrayList<>();
+        this.check = 0;
     }
 
     public void drawKamikaze()
     {
+        ArrayList<Position> positions = new ArrayList<>();
         int x = (int)kamikazeEnemy.getPosition().getX();
         int y = (int)kamikazeEnemy.getPosition().getY();
-        drawImage(KamikazeModel, x, y);
-    }
+        drawImage(KamikazeModel, x, y , positions);
+        kamikazeEnemy.setOccupiedPositions(positions);
+        /*
+        if (check == 0) {
+            for (Position position : positions) {
+                System.out.println(position.x);
+                System.out.println(position.y);
+                this.check++;
+                System.out.println("-------------------------------------------------------------");
+            }
+
+        } else {
+            System.out.println("Check is already false.");
+        }
+         */
+      }
     @Override
     public void draw() throws IOException {
     }

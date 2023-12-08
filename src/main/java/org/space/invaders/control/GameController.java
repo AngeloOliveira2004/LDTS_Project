@@ -83,18 +83,9 @@ public class GameController {
 
     public void handleInput(KeyStroke keyStroke) throws IOException {
         if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-            System.out.println("Key Type: " + keyStroke.getKeyType());
             state.close();
             // Exit the game
             changeState(ApplicationState.MainMenu);
-        }else
-        {
-            System.out.println("Key Type: " + keyStroke.getKeyType());
-            System.out.println("Character: " + keyStroke.getCharacter());
-            System.out.println("Ctrl: " + keyStroke.isCtrlDown());
-            System.out.println("Alt: " + keyStroke.isAltDown());
-            System.out.println("Shift: " + keyStroke.isShiftDown());
-            System.out.println();
         }
     }
 

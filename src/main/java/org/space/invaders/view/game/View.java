@@ -3,16 +3,17 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.model.Position;
 import org.space.invaders.view.Viewer;
 import org.space.invaders.view.Color;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public abstract class View extends Viewer {
     protected int charWidth;
     protected int charHeight;
-
     protected TextGraphics graphics;
     public View(int charWidth ,int charHeight, TextGraphics textGraphics){
         this.charWidth = charWidth;
@@ -38,21 +39,22 @@ public abstract class View extends Viewer {
         }
     }
 
-    public void drawLine(String line, int X, int Y){
+    public void drawLine(String line, int X, int Y , ArrayList<Position> positions){
         int x = 0;
         for (char c : line.toCharArray()){
             if (c!=' '){
                 setColor(c);
                 graphics.fillRectangle(new TerminalPosition(X + x, Y),
                         new TerminalSize(charWidth, charHeight), ' ');
+                positions.add(new Position(X + x , Y));
             }
             x+=charWidth;
         }
     }
-    public void drawImage(String[] image, int x, int Y) {
+    public void drawImage(String[] image, int x, int Y , ArrayList<Position> positions) {
         int y = Y;
         for (String line : image){
-            drawLine(line, x, y);
+            drawLine(line, x, y , positions);
             y+=charHeight;
         }
     }

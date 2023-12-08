@@ -3,14 +3,14 @@ package org.space.invaders.control.command;
 import org.space.invaders.control.game.DefaultEnemyController;
 import org.space.invaders.control.game.EnemyLogic;
 import org.space.invaders.control.game.KamikazeLogic;
+import org.space.invaders.control.game.StrongEnemyController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
-import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
-import org.space.invaders.view.game.NormalEnemyView;
+import org.space.invaders.model.game.elements.StrongEnemy;
 
 import java.util.Random;
 
@@ -27,6 +27,8 @@ public class EnemiesController {
     private int instance;
 
     private int normalEnemyCount;
+
+    private int strongEnemyCount;
     public EnemiesController(Arena arena , EnemiesFactory enemiesFactory , ShotFactory shotFactory)
     {
         this.arena = arena;
@@ -79,6 +81,28 @@ public class EnemiesController {
 
             logics.add(new DefaultEnemyController(tempDefaultEnemy));
             normalEnemyCount++;
+        }
+    }
+
+    public void StrongEnemySpawner(Position position) {
+        if (strongEnemyCount == 0) {
+
+            ArrayList<Integer> list = new ArrayList<>();
+            StrongEnemy tempStrongEnemy= (StrongEnemy) enemiesFactory.createStrongerEnemy();
+
+            for (int i = 0; i <= 10000; i++) {
+                list.add(i);
+            }
+
+            Random random = new Random();
+
+            int randomInt = random.nextInt((10000) + 1);
+            if (list.contains(randomInt)) {
+                arena.addObject(tempStrongEnemy);
+            }
+
+            logics.add(new StrongEnemyController(tempStrongEnemy));
+            strongEnemyCount++;
         }
     }
 

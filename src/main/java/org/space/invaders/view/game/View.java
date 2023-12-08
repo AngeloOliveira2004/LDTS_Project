@@ -44,7 +44,7 @@ public abstract class View extends Viewer {
             if (c!=' '){
                 setColor(c);
                 graphics.fillRectangle(new TerminalPosition(X + x, Y),
-                        new TerminalSize(charWidth*1, charHeight*3), ' ');
+                        new TerminalSize(charWidth, charHeight), ' ');
             }
             x+=charWidth;
         }

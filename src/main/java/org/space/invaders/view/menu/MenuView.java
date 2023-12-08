@@ -15,15 +15,15 @@ public class MenuView extends MenuViewer {
     }
     public void drawElements(MenuGUI gui) {
         MenuModel menu = (MenuModel) getModel();
-        gui.drawText(new Position(15,8),"W o r l d  T h r u s t e r","#008000","BLINK");
+        gui.drawText(new Position(14,3),"W o r l d  T h r u s t e r","#008000","BLINK");
         String isSelected = menu.getCurrentOption();
 
         for (int i = 0; i < menu.getNumberOptions(); i++) {
 
             if (isSelected.equals(menu.getOption(i))) {
-                gui.drawSelectedText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BLINK");
+                gui.drawSelectedText(new Position(20, 8 + i * 2), menu.getOption(i), "#008000", "BLINK");
             } else {
-                gui.drawText(new Position(22, 10 + i * 2), menu.getOption(i), "#008000", "BOLD");
+                gui.drawText(new Position(20, 8 + i * 2), menu.getOption(i), "#008000", "BOLD");
             }
             menu.setCurrentOption();
         }

@@ -20,7 +20,7 @@ public class Shot extends ShotElement {
     }
     @Override
     public void draw(TextGraphics textGraphics) {
-        shotView = new ShotView(textGraphics , this);
+        shotView = new ShotView(textGraphics, this);
         shotView.draw();
     }
 

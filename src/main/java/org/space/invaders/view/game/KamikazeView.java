@@ -13,18 +13,21 @@ public class KamikazeView extends View{
     private static final int CHAR_WIDTH = 1;
 
     private static final String[] KamikazeModel = new String[]{
-            "          YY  ",
-            "        YYYccYY",
-            "      YYYYYccYY",
-            "     YYYYYYYccYY",
-            "    YYYYYYYYYYYY",
-            "    YYYYYYYYYYYY",
-            "  PPPPPPPPPPPPPPP",
-            " PPPPPPPPPPPPPPPP",
-            "pRpRpppRpppRpppRpRp",
-            " PpCcccccccccccCpP",
-            "  PpCcccccccccCpP",
-            "    CcccccccccC",
+            "BBBBBBOYYOBBBBBB",
+            "BBBBBBBOOBBBBBBB",
+            "BCBBBBBCCBBBBBCB",
+            "CWCCBBCWWCBBCCWC",
+            "CWWWCCWWOWCCWWWC",
+            "CWWWWWWOWWWWWWWC",
+            "BCWWWWWBBWWWWWCB",
+            "BBCWWWBBBBWWWCBB",
+            "BBBCWWBBBBWWCBBB",
+            "BBBBCWWBBWWCBBBB",
+            "BBBBCWWWWWWCBBBB",
+            "BBBBBCWWWWCBBBBB",
+            "BBBBBCWWWWCBBBBB",
+            "BBBBBBCWWCBBBBBB",
+            "BBBBBBBCCBBBBBBB",
     };
 
 

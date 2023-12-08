@@ -8,6 +8,7 @@ import org.space.invaders.control.GameController;
 import org.space.invaders.control.command.EnemiesController;
 import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.Arena;
+import org.space.invaders.model.Position;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
@@ -64,6 +65,7 @@ public void run() throws IOException{
         arena.update();
 
         enemiesController.KamizeSpawner(spaceShip.getPosition());
+        enemiesController.DefaultEnemySpawner(new Position(50,50));
         //update(elapsedTime);
         handleInput(gameViewer.handleInput());
 

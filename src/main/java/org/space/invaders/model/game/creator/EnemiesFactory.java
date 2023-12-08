@@ -1,6 +1,7 @@
 package org.space.invaders.model.game.creator;
 
 import org.space.invaders.model.Position;
+import org.space.invaders.model.game.elements.DefaultEnemy;
 import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.ShotElement;
@@ -12,7 +13,7 @@ public class EnemiesFactory {
         this.shotFactory = new ShotFactory();
     }
     public Element createDefaultEnemy() {
-        return null;
+        return new DefaultEnemy(250,10 , 1 , 1, 10 , 1 , true , 3 , 3);
     }
     public Element createStrongerEnemy() {
         return null;

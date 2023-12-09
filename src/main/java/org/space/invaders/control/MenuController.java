@@ -4,10 +4,7 @@ import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.Menu;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
-import org.space.invaders.states.menustates.InstructionsState;
-import org.space.invaders.states.menustates.LeaderBoardState;
-import org.space.invaders.states.menustates.MenuState; // Assuming MainMenuState is the initial state
-import org.space.invaders.states.menustates.SettingsState;
+import org.space.invaders.states.menustates.*;
 
 import java.io.IOException;
 
@@ -82,6 +79,11 @@ public class MenuController {
                 this.applicationState = ApplicationState.MainMenu;
                 MenuState menuState = new MenuState(this,gui);
                 menuState.run();
+            }
+            case PauseMenu ->
+            {
+                this.applicationState = ApplicationState.PauseMenu;
+                PauseMenuState pauseMenuState = new PauseMenuState(this);
             }
         }
     }

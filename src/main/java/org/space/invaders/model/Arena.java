@@ -50,13 +50,14 @@ public class Arena implements Collider {
         removeOutofBoundsShots();
         Iterator<Element> objectIterator = objects.iterator();
         Iterator<ShotElement> shotElementIterator = shots.iterator();
-
+        int iterations = 0;
         while (objectIterator.hasNext())
         {
             Element object = objectIterator.next();
-            int iterations = 0;
+            System.out.println(iterations);
             if(object.getClass() != SpaceShip.class)
             {
+                iterations++;
                 while (shotElementIterator.hasNext()) {
                     ShotElement shotElement = shotElementIterator.next();
                     if(checkColisionsWithShots(object.getOccupiedPositions() , shotElement.getPosition()))

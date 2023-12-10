@@ -83,7 +83,7 @@ public class MenuController {
             case PauseMenu ->
             {
                 this.applicationState = ApplicationState.PauseMenu;
-                PauseMenuState pauseMenuState = new PauseMenuState(this);
+                //PauseMenuState pauseMenuState = new PauseMenuState(this);
             }
         }
     }

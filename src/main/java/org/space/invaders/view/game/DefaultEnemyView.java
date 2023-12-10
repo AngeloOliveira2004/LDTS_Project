@@ -1,7 +1,10 @@
 package org.space.invaders.view.game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.DefaultEnemy;
+
+import java.util.ArrayList;
 
 public class DefaultEnemyView extends View {
     private DefaultEnemy defaultEnemy;
@@ -33,9 +36,11 @@ public class DefaultEnemyView extends View {
     }
 
     public void drawDefaultEnemy() {
+        ArrayList<Position> positions = new ArrayList<>();
         int x = (int) defaultEnemy.getPosition().getX();
         int y = (int) defaultEnemy.getPosition().getY();
-        drawImage(DefaultEnemyModel, x, y);
+        drawImage(DefaultEnemyModel, x, y,positions);
+        defaultEnemy.setOccupiedPositions(positions);
     }
 
     @Override

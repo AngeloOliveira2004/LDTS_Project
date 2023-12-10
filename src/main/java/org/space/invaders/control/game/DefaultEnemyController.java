@@ -27,7 +27,7 @@ public class DefaultEnemyController implements EnemyLogic {
     public void update() {
         if(defaultEnemy.getPosition().x - 1 == 0 || defaultEnemy.getPosition().x + 1 == 590 ){
             directionX *= -1;
-            defaultEnemy.setPosition(new Position(defaultEnemy.getPosition().x, defaultEnemy.getPosition().y+5));
+            defaultEnemy.setPosition(new Position(defaultEnemy.getPosition().x+directionX, defaultEnemy.getPosition().y+16));
         }
         if (iterations < 5) {
             move();

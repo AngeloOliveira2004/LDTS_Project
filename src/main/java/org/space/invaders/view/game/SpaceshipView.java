@@ -13,7 +13,7 @@ public class SpaceshipView extends View{
     private static final int CHAR_HEIGHT = 5;
     private static final int CHAR_WIDTH = 5;
     private static final String[] SpaceShipModel = new String[]{
-            "   A   ",
+            "    A   ",
             "   AAA  ",
             "  AAAAA ",
             " AAAAAAA",

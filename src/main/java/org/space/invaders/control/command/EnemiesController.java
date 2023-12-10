@@ -45,7 +45,7 @@ public class EnemiesController {
 
         if (ShouldSpawn(10000)) {
             if(kamikazeEnemyCount < 10){
-            arena.addObject(tempKamikaze);
+                arena.addObject(tempKamikaze);
             }
         }
         logics.add(new KamikazeLogic(position , tempKamikaze));

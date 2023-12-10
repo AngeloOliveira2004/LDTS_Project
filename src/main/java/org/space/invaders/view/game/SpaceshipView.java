@@ -10,25 +10,55 @@ import java.util.ArrayList;
 
 public class SpaceshipView extends View{
     private SpaceShip spaceShip;
-    private static final int CHAR_HEIGHT = 5;
-    private static final int CHAR_WIDTH = 5;
+    private static final int CHAR_HEIGHT = 3;
+    private static final int CHAR_WIDTH = 3;
     private static final String[] SpaceShipModel = new String[]{
-            "    A   ",
-            "   AAA  ",
-            "  AAAAA ",
-            " AAAAAAA",
-            "AAAAAAAA",
-            " AAAAAAA",
-            "  AAAAA ",
-            "   AAA  ",
-            "    A   "
+            "            RR            ",
+            "           RRRR           ",
+            "          CCbbCC          ",
+            "         CRCbbCRC         ",
+            "         CRRbbRRC         ",
+            "         CCCbbCCC         ",
+            "        CRCbbbbCRC        ",
+            "        CCCbbbbCCC        ",
+            " C      CRCbbbbCRC      C ",
+            "RcR     CcRCCCCRcC     RcR",
+            "RccC    CccRCCRccC    CccR",
+            "CccC    CCccRRccCC    CccC",
+            "RRRCC  CcCccccccCcC  CCRRR",
+            "RRCcCCCCcCCCRRCCCcCCCCcCRR",
+            "CcccRcRRCcCCccCCcCRRcRcccC",
+            "RcccRccRRCcCccCcCRRccRcccR",
+            " RccRcccRRCRRRRCRRcccRccR ",
+            " CRccRcccCRccccRCcccRccRC ",
+            "  CRccRRCccCCCCccCRRccRC  ",
+            "   CRcccCRRccccRRCcccRC   ",
+            "    CRcRR CRccRC RRcRC    ",
+            "     CCC  CCRRCC  CCC     ",
+            "     ROR   CCCC   ROR     ",
+            "     OYO   ROOR   OYO     ",
+            "      Y   ROYYOR   Y      ",
+            "            YY            ",
     };
 
     private static final String[] SpaceShipModelWithFlames = {"A" , " "};
     private static final String[] MiniSpaceShipModel = new String[]{
-            " A ",
-            "AAA",
-            " A "
+            "       RR       ",
+            "      RRRR      ",
+            "      CbbC      ",
+            "      CbbC      ",
+            "     CRCCRC     ",
+            "  C  CcRRcC  C  ",
+            " CR  CRCCRC  RC ",
+            " CcC CCccCC CcC ",
+            " CRcCcRCCRcCcRC ",
+            "  CcCRccccRCcC  ",
+            "   CcCcRRcCcC   ",
+            "  CcRcRccRcRcC  ",
+            "  CCCRCRRCRCCC  ",
+            "     CCCCCC     ",
+            "      ROOR      ",
+            "     ROYYOR     ",
     };
 
     private static final String[] MiniSpaceShipModelWithFlames = {"A" , " "};

@@ -13,9 +13,9 @@ import java.security.PublicKey;
 public class Shot extends ShotElement {
     private ShotView shotView;
     private int count;
-    public Shot(Position position , int yVelocity)
+    public Shot(Position position , int yVelocity , int damage)
     {
-        super(position , yVelocity);
+        super(position , yVelocity , damage);
         count = 0;
     }
     @Override

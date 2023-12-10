@@ -75,6 +75,6 @@ public class PlayerController  {
 
     private void shot(Arena arena)
     {
-        arena.addShot(new Shot(spaceShip.getPosition(), 1));
+        arena.addShot(new Shot(spaceShip.getPosition(), 1 , 5));
     }
 }

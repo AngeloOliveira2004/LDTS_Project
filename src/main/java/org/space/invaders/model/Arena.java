@@ -55,17 +55,22 @@ public class Arena implements Collider {
         {
             for(ShotElement shotElement : shots)
             {
+                if(element.getClass() == KamikazeEnemy.class){
+                    System.out.println(element.getHealth());
+                }
                 if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
                 {
+                    int newHealth = element.getHealth() - shotElement.getDamage();
+                    element.setHealth(newHealth);
+                    int temp = element.getHealth();
+                    if(element.getHealth() <= 0)
+                    {
+                        objectToRemove.add(element);
+                    }
                     shotsToRemove.add(shotElement);
-                    objectToRemove.add(element);
                 }
             }
         }
-        Iterator<Element> objectIterator = objects.iterator();
-        Iterator<Element> objectToRemoveIterator = objectToRemove.iterator();
-        Iterator<ShotElement> shotElementIterator = shots.iterator();
-        Iterator<ShotElement> shotsToRemoveIterator = shotsToRemove.iterator();
 
         for (Element elementToRemove : objectToRemove) {
             objects.remove(elementToRemove);

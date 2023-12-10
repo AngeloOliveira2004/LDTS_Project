@@ -56,7 +56,7 @@ public abstract class Element implements Collider{
     }
     public void setHealth(int health)
     {
-        this.Health = Health;
+        this.Health = health;
     }
     public int getSpawnRate()
     {

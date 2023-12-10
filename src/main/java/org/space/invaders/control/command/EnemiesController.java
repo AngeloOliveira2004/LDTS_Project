@@ -43,7 +43,7 @@ public class EnemiesController {
     public void KamizeSpawner(Position position) {
         KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
 
-        if (ShouldSpawn(10000)) {
+        if (ShouldSpawn(1000)) {
             if(kamikazeEnemyCount < 10){
                 arena.addObject(tempKamikaze);
             }

@@ -10,11 +10,13 @@ import static org.space.invaders.Constants.WIDTH;
 
 public abstract class ShotElement {
     private Position position;
+    private int damage;
     private int yVelocity ;
-    public ShotElement(Position position , int yVelocity)
+    public ShotElement(Position position , int yVelocity , int damage)
     {
         this.position = position;
         this.yVelocity = yVelocity;
+        this.damage = damage;
     }
     public Position getPosition() {
         return this.position;
@@ -48,4 +50,5 @@ public abstract class ShotElement {
         return (getPosition().x > 0 && getPosition().x < WIDTH && getPosition().y > 0 && getPosition().y < HEIGHT);
     }
     public abstract void draw(TextGraphics textGraphics);
+    public int getDamage(){return damage;}
 }

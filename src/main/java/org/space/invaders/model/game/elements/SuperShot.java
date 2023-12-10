@@ -9,9 +9,9 @@ public class SuperShot extends ShotElement{
     private SuperShotVIew superShotVIew;
     private int count;
     private int iterations;
-    public SuperShot(Position position , int yVelocity)
+    public SuperShot(Position position , int yVelocity , int damage)
     {
-        super(position , yVelocity);
+        super(position , yVelocity , 20);
         iterations = 0;
         count = 5;
     }

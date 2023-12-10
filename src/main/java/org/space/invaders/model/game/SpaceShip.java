@@ -19,6 +19,7 @@ public class SpaceShip extends Element {
     public SpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width) {
         super(x, y, Yvelocity, Xvelocity, Health, SpawnRate , alive , height , width);
         this.isMini = false;
+        toggleMini(isMini);
     }
     public boolean isInvincible() {
         return invincible;
@@ -41,6 +42,15 @@ public class SpaceShip extends Element {
 
     public void toggleMini(boolean mini) {
         isMini = mini;
+        if(mini)
+        {
+            setXVelocity(5);
+            setYVelocity(5);
+        }else
+        {
+            setXVelocity(1);
+            setYVelocity(1);
+        }
     }
     public void shot()
     {

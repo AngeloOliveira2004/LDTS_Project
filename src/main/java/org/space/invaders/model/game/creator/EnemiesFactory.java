@@ -13,7 +13,7 @@ public class EnemiesFactory {
         return new DefaultEnemy(250,10 , 1 , 1, 10 , 1 , true , 3 , 3);
     }
     public Element createStrongerEnemy() {
-        return new StrongEnemy(100,10 , 1 , 1, 20 , 1 , true , 3 , 3);
+        return new StrongEnemy(200,10 , 1 , 1, 20 , 1 , true , 3 , 3);
     }
     public Element createBoss() {
         return null;

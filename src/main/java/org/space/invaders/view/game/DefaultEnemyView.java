@@ -12,22 +12,22 @@ public class DefaultEnemyView extends View {
     private static final int CHAR_WIDTH = 1;
 
     private static final String[] DefaultEnemyModel = new String[]{
-            "BBBBBCBBBCBBBBBB",
-            "BBBBBCBBBCBBBBBB",
-            "BBBBAAAAAAAGGBBB",
-            "BBBAAAAAAAAAGGBB",
-            "BBCCCCCCCCCAAGBB",
-            "BBCCCCCCCCCAAABB",
-            "BBRRRRRRRRCAAABB",
-            "BBCCCCCCCCCAAABB",
-            "BBBAAAAAAAAAABBB",
-            "BBBBBBBCCBBBBBBB",
-            "BGGABBAAAABBAGGB",
-            "BGAACCARRACCAAGB",
-            "BBBCBBAAAABBCBBB",
-            "BBCCCBBBBBBCCCBB",
-            "BCBCBCBBBBCBCBCB",
-            "BCBBBCBBBBCBBBCB",
+            "     C   C      ",
+            "     C   C      ",
+            "    AAAAAAAGG   ",
+            "   AAAAAAAAAGG  ",
+            "  CCCCCCCCCAAG  ",
+            "  CCCCCCCCCAAA  ",
+            "  RRRRRRRRCAAA  ",
+            "  CCCCCCCCCAAA  ",
+            "   AAAAAAAAAA   ",
+            "       CC       ",
+            " GGA  AAAA  AGG ",
+            " GAACCARRACCAAG ",
+            "   C  AAAA  C   ",
+            "  CCC      CCC  ",
+            " C C C    C C C ",
+            " C   C    C   C ",
     };
 
     public DefaultEnemyView(DefaultEnemy defaultEnemy, TextGraphics textGraphics) {

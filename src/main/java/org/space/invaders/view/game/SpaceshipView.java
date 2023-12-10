@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class SpaceshipView extends View{
     private SpaceShip spaceShip;
-    private static final int CHAR_HEIGHT = 3;
-    private static final int CHAR_WIDTH = 3;
+    private static final int CHAR_HEIGHT = 1;
+    private static final int CHAR_WIDTH = 1;
     private static final String[] SpaceShipModel = new String[]{
             "            RR            ",
             "           RRRR           ",

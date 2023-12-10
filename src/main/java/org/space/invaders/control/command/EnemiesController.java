@@ -24,84 +24,53 @@ public class EnemiesController {
 
     private DefaultEnemyController defaultEnemyController;
     private ArrayList<EnemyLogic> logics;
-    private int instance;
+    private int kamikazeEnemyCount;
 
-    private int normalEnemyCount;
+    private int defaultenemycount;
 
     private int strongEnemyCount;
     public EnemiesController(Arena arena , EnemiesFactory enemiesFactory , ShotFactory shotFactory)
     {
         this.arena = arena;
+        this.kamikazeEnemyCount = 0;
+        this.defaultenemycount = 0;
+        this.strongEnemyCount = 0;
         this.enemiesFactory = enemiesFactory;
         this.shotFactory = shotFactory;
         this.logics = new ArrayList<>();
     }
 
-    public void KamizeSpawner(Position position)
-    {
-        //todo change to set maybe
-        ArrayList<Integer> list = new ArrayList<>();
+    public void KamizeSpawner(Position position) {
         KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
 
-        for(int i = 0 ; i <= 150 ; i++)
-        {
-            list.add(i);
-        }
-        Random random = new Random();
-
-        // Generate a random integer within the specified range
-        int randomInt = random.nextInt((10000) + 1);
-        if(list.contains(randomInt))
-        {
+        if (ShouldSpawn(10000)) {
+            if(kamikazeEnemyCount < 10){
             arena.addObject(tempKamikaze);
+            }
         }
         logics.add(new KamikazeLogic(position , tempKamikaze));
-        instance++;
+        kamikazeEnemyCount++;
 
     }
 
     public void DefaultEnemySpawner(Position position) {
-        if (normalEnemyCount == 0) {
+        DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
 
-            ArrayList<Integer> list = new ArrayList<>();
-            DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
-
-            for (int i = 0; i <= 10000; i++) {
-                list.add(i);
-            }
-
-            Random random = new Random();
-
-            int randomInt = random.nextInt((10000) + 1);
-            if (list.contains(randomInt)) {
-                arena.addObject(tempDefaultEnemy);
-            }
-
+        if (ShouldSpawn(100) && defaultenemycount < 10) {
+            arena.addObject(tempDefaultEnemy);
             logics.add(new DefaultEnemyController(tempDefaultEnemy));
-            normalEnemyCount++;
-        }
+            defaultenemycount++;
+        } //Retirar a este valor quando matar
     }
 
     public void StrongEnemySpawner(Position position) {
-        if (strongEnemyCount == 0) {
-
-            ArrayList<Integer> list = new ArrayList<>();
-            StrongEnemy tempStrongEnemy= (StrongEnemy) enemiesFactory.createStrongerEnemy();
-
-            for (int i = 0; i <= 10000; i++) {
-                list.add(i);
-            }
-
-            Random random = new Random();
-
-            int randomInt = random.nextInt((10000) + 1);
-            if (list.contains(randomInt)) {
-                arena.addObject(tempStrongEnemy);
-            }
-
+        StrongEnemy tempStrongEnemy = (StrongEnemy) enemiesFactory.createStrongerEnemy();
+        if (ShouldSpawn(100) && strongEnemyCount < 10) {
+            arena.addObject(tempStrongEnemy);
             logics.add(new StrongEnemyController(tempStrongEnemy));
-            strongEnemyCount++;
-        }
+            kamikazeEnemyCount++;
+        } //Retirar a este valor quando matar
+
     }
 
     public void update()
@@ -111,4 +80,13 @@ public class EnemiesController {
             enemyLogic.update();
         }
     }
+
+    private boolean ShouldSpawn(int probability) {
+        int randomInt = new Random().nextInt(10000) + 1;
+        return randomInt <= probability;
+    }
+
+
 }
+
+

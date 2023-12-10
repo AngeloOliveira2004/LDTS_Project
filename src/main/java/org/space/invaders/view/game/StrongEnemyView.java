@@ -13,22 +13,22 @@ public class StrongEnemyView extends View {
 
 
     private static final String[] StrongEnemyModel = new String[]{
-            "BBBBBCBBBCBBBBBB",
-            "BBBBBCBBBCBBBBBB",
-            "BBBBRRRRRRRGGBBB",
-            "BBBRRRRRRRRRGGBB",
-            "BBCCCCCCCCCRRGBB",
-            "BBCCCCCCCCCRRRBB",
-            "BBGGGGGGGGCRRRBB",
-            "BBCCCCCCCCCRRRBB",
-            "BBBRRRRRRRRRRBBB",
-            "BBBBBBBCCBBBBBBB",
-            "BGGRBBRRRRBBRGGB",
-            "BGRRCCRGGRCCRRGB",
-            "BBBCBBRRRRBBCBBB",
-            "BBCCCBBBBBBCCCBB",
-            "BCBCBCBBBBCBCBCB",
-            "BCBBBCBBBBCBBBCB",
+            "     C   C      ",
+            "     C   C      ",
+            "    RRRRRRRGG   ",
+            "   RRRRRRRRRGG  ",
+            "  CCCCCCCCCRRG  ",
+            "  CCCCCCCCCRRR  ",
+            "  GGGGGGGGCRRR  ",
+            "  CCCCCCCCCRRR  ",
+            "   RRRRRRRRRR   ",
+            "       CC       ",
+            " GGR  RRRR  RGG ",
+            " GRRCCRGGRCCRRG ",
+            "   C        C   ",
+            "  CCC      CCC  ",
+            " C C C    C C C ",
+            " C   C    C   C ",
     };
 
     public StrongEnemyView(StrongEnemy strongEnemy, TextGraphics textGraphics) {

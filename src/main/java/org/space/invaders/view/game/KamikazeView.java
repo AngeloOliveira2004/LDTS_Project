@@ -15,21 +15,21 @@ public class KamikazeView extends View{
     private static final int CHAR_WIDTH = 1;
     ArrayList<Position> positions;
     private static final String[] KamikazeModel = new String[]{
-            "BBBBBBOYYOBBBBBB",
-            "BBBBBBBOOBBBBBBB",
-            "BCBBBBBCCBBBBBCB",
-            "CWCCBBCWWCBBCCWC",
+            "      OYYO      ",
+            "       OO       ",
+            " C     CC     C ",
+            "CWCC  CWWC  CCWC",
             "CWWWCCWWOWCCWWWC",
             "CWWWWWWOWWWWWWWC",
-            "BCWWWWWBBWWWWWCB",
-            "BBCWWWBBBBWWWCBB",
-            "BBBCWWBBBBWWCBBB",
-            "BBBBCWWBBWWCBBBB",
-            "BBBBCWWWWWWCBBBB",
-            "BBBBBCWWWWCBBBBB",
-            "BBBBBCWWWWCBBBBB",
-            "BBBBBBCWWCBBBBBB",
-            "BBBBBBBCCBBBBBBB",
+            " CWWWWWBBWWWWWC ",
+            "  CWWWBBBBWWWC  ",
+            "   CWWBBBBWWC   ",
+            "    CWWBBWWC    ",
+            "    CWWWWWWC    ",
+            "     CWWWWC     ",
+            "     CWWWWC     ",
+            "      CWWC      ",
+            "       CC       ",
     };
 
     private int check;

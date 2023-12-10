@@ -48,27 +48,32 @@ public class Arena implements Collider {
     public void update() {
         // Remove elements from 'objects' list
         removeOutofBoundsShots();
-        Iterator<Element> objectIterator = objects.iterator();
-        Iterator<ShotElement> shotElementIterator = shots.iterator();
-        int iterations = 0;
-        while (objectIterator.hasNext())
+        ArrayList<Element> objectToRemove = new ArrayList<>();
+        ArrayList<ShotElement> shotsToRemove = new ArrayList<>();
+
+        for(Element element : objects)
         {
-            Element object = objectIterator.next();
-            System.out.println(iterations);
-            if(object.getClass() != SpaceShip.class)
+            for(ShotElement shotElement : shots)
             {
-                iterations++;
-                while (shotElementIterator.hasNext()) {
-                    ShotElement shotElement = shotElementIterator.next();
-                    if(checkColisionsWithShots(object.getOccupiedPositions() , shotElement.getPosition()))
-                    {
-                        objectIterator.remove();
-                        shotElementIterator.remove();
-                    }
+                if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
+                {
+                    shotsToRemove.add(shotElement);
+                    objectToRemove.add(element);
                 }
             }
         }
-        // Remove elements from 'shots' list
-    }
+        Iterator<Element> objectIterator = objects.iterator();
+        Iterator<Element> objectToRemoveIterator = objectToRemove.iterator();
+        Iterator<ShotElement> shotElementIterator = shots.iterator();
+        Iterator<ShotElement> shotsToRemoveIterator = shotsToRemove.iterator();
 
+        for (Element elementToRemove : objectToRemove) {
+            objects.remove(elementToRemove);
+        }
+
+        // Remove elements from 'shots' list
+        for (ShotElement shotToRemove : shotsToRemove) {
+            shots.remove(shotToRemove);
+        }
+    }
 }

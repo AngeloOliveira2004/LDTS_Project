@@ -71,7 +71,6 @@ public void run() throws IOException{
         handleInput(gameViewer.handleInput());
 
         gameViewer.drawElements(arena);
-
         gameViewer.refresh();
         enemiesController.update();
         // Control frame rate
@@ -94,19 +93,12 @@ public void run() throws IOException{
     private void handleInput(KeyStroke keyStroke) throws IOException {
         if (keyStroke != null) {
             if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-                System.out.println("Key Type: " + keyStroke.getKeyType());
                 gameViewer.close();
                 // Exit the game
                 gameController.changeState(ApplicationState.MainMenu);
             }else
             {
                 playerController.keyPressed(keyStroke , arena);
-                System.out.println("Key Type: " + keyStroke.getKeyType());
-                System.out.println("Character: " + keyStroke.getCharacter());
-                System.out.println("Ctrl: " + keyStroke.isCtrlDown());
-                System.out.println("Alt: " + keyStroke.isAltDown());
-                System.out.println("Shift: " + keyStroke.isShiftDown());
-                System.out.println();
             }
         }
     }

@@ -2,6 +2,7 @@ package org.space.invaders.model;
 
 
 import org.space.invaders.model.game.Collider;
+import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.elements.*;
 import org.space.invaders.view.GameViewer;
 
@@ -14,7 +15,6 @@ public class Arena implements Collider {
     private ArrayList<Element> objects;
     private ArrayList<ShotElement> shots;
     private final ArrayList<Position> starPositions;
-    GameViewer tempScreen;
 
     public Arena() throws IOException {
         this.starPositions = new ArrayList<>();
@@ -41,26 +41,30 @@ public class Arena implements Collider {
     {
         shots.add(shotElement);
     }
+    private void removeOutofBoundsShots()
+    {
+        shots.removeIf(shotElement -> !shotElement.isInsideBorders());
+    }
     public void update() {
         // Remove elements from 'objects' list
+        removeOutofBoundsShots();
         Iterator<Element> objectIterator = objects.iterator();
-        Iterator<ShotElement> shotIterator = shots.iterator();
-        while (shotIterator.hasNext()) {
-            ShotElement shotElement = shotIterator.next();
-            if (!shotElement.isInsideBorders()) {
-                shotIterator.remove();
-            }
-        }
-        Iterator<ShotElement> newShotIterator = shots.iterator();
+        Iterator<ShotElement> shotElementIterator = shots.iterator();
+        int iterations = 0;
         while (objectIterator.hasNext())
         {
             Element object = objectIterator.next();
-            while (newShotIterator.hasNext()) {
-                ShotElement shotElement = newShotIterator.next();
-                String[] tempString = {" " , " "};
-                if(collision(object.getPosition() , object.getDesign() , shotElement.getPosition() , tempString))
-                {
-                    objectIterator.remove();
+            System.out.println(iterations);
+            if(object.getClass() != SpaceShip.class)
+            {
+                iterations++;
+                while (shotElementIterator.hasNext()) {
+                    ShotElement shotElement = shotElementIterator.next();
+                    if(checkColisionsWithShots(object.getOccupiedPositions() , shotElement.getPosition()))
+                    {
+                        objectIterator.remove();
+                        shotElementIterator.remove();
+                    }
                 }
             }
         }

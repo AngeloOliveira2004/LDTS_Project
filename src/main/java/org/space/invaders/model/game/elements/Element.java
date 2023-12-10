@@ -9,6 +9,7 @@ import org.space.invaders.model.game.Collider;
 import javax.swing.text.StyledEditorKit;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.space.invaders.Constants.WIDTH;
 import static org.space.invaders.Constants.HEIGHT;
@@ -22,6 +23,7 @@ public abstract class Element implements Collider{
     private boolean alive;
     private int height;
     private int width;
+    private ArrayList<Position> OccupiedPositions;
     public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width)
     {
         this.position = new Position(x , y);
@@ -132,5 +134,13 @@ public abstract class Element implements Collider{
     }
     public abstract void draw(TextGraphics textGraphics) throws IOException;
     public abstract String[] getDesign();
+
+    public ArrayList<Position> getOccupiedPositions() {
+        return OccupiedPositions;
+    }
+
+    public void setOccupiedPositions(ArrayList<Position> occupiedPositions) {
+        OccupiedPositions = occupiedPositions;
+    }
 }
 

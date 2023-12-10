@@ -39,7 +39,6 @@ public class PlayerController  {
 
     public void keyPressed(KeyStroke key , Arena arena) {
 
-        System.out.println(key.getCharacter());
         switch (key.getKeyType()) {
             case ArrowLeft:
                 spaceShip.moveLeft();

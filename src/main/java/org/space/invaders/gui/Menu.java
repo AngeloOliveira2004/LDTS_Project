@@ -23,7 +23,7 @@ public class Menu implements MenuGUI {
     private Screen screen;
     private TextGraphics textGraphics;
     private boolean visible = true;
-    public Menu(int screenWidth, int screenHeight) throws Exception {
+    public Menu(int screenWidth, int screenHeight) throws IOException {
         if(visible)
         {
             Terminal terminal = new DefaultTerminalFactory()

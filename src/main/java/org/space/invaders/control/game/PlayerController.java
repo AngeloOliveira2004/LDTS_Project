@@ -44,33 +44,38 @@ public class PlayerController {
 
         switch (key.getKeyType()) {
             case ArrowLeft:
-                if(isInsideBorders(spaceShip.getPosition()))
-                    spaceShip.moveLeft();
-                else
+                spaceShip.moveLeft();
+                if(!isInsideBorders(spaceShip.getPosition()))
                 {
                     spaceShip.moveRight();
                 }
                 break;
             case ArrowRight:
-                if(isInsideBorders(spaceShip.getPosition()))
-                    spaceShip.moveRight();
+                spaceShip.moveRight();
+                Position position = new Position(spaceShip.getXposition() , spaceShip.getYposition());
+                if(spaceShip.isMini())
+                {
+                    position = new Position(spaceShip.getXposition() + 13 , spaceShip.getYposition());
+                }
                 else
+                {
+                    position = new Position(spaceShip.getXposition() + 26 , spaceShip.getYposition());
+                }
+                if(!isInsideBorders(position))
                 {
                     spaceShip.moveLeft();
                 }
                 break;
             case ArrowUp:
-                if(isInsideBorders(spaceShip.getPosition()))
-                    spaceShip.moveFoward();
-                else
+                spaceShip.moveFoward();
+                if(!isInsideBorders(spaceShip.getPosition()))
                 {
                     spaceShip.moveBackwards();
                 }
                 break;
             case ArrowDown:
-                if(isInsideBorders(spaceShip.getPosition()))
-                    spaceShip.moveBackwards();
-                else
+                spaceShip.moveBackwards();
+                if(!isInsideBorders(spaceShip.getPosition()))
                 {
                     spaceShip.moveFoward();
                 }

@@ -2,13 +2,16 @@ package org.space.invaders.control.game;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import org.space.invaders.model.Arena;
+import org.space.invaders.model.Position;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.elements.Shot;
+import static org.space.invaders.Constants.HEIGHT;
+import static org.space.invaders.Constants.WIDTH;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class PlayerController  {
+public class PlayerController {
     private SpaceShip spaceShip;
 
     //getState of the spaceship ig to determine
@@ -41,16 +44,36 @@ public class PlayerController  {
 
         switch (key.getKeyType()) {
             case ArrowLeft:
-                spaceShip.moveLeft();
+                if(isInsideBorders(spaceShip.getPosition()))
+                    spaceShip.moveLeft();
+                else
+                {
+                    spaceShip.moveRight();
+                }
                 break;
             case ArrowRight:
-                spaceShip.moveRight();
+                if(isInsideBorders(spaceShip.getPosition()))
+                    spaceShip.moveRight();
+                else
+                {
+                    spaceShip.moveLeft();
+                }
                 break;
             case ArrowUp:
-                spaceShip.moveFoward();
+                if(isInsideBorders(spaceShip.getPosition()))
+                    spaceShip.moveFoward();
+                else
+                {
+                    spaceShip.moveBackwards();
+                }
                 break;
             case ArrowDown:
-                spaceShip.moveBackwards();
+                if(isInsideBorders(spaceShip.getPosition()))
+                    spaceShip.moveBackwards();
+                else
+                {
+                    spaceShip.moveFoward();
+                }
                 break;
             case Enter:
                 spaceShip.toggleMini(!spaceShip.isMini());
@@ -76,5 +99,9 @@ public class PlayerController  {
     private void shot(Arena arena)
     {
         arena.addShot(new Shot(spaceShip.getPosition(), 1 , 5));
+    }
+    private boolean isInsideBorders(Position position)
+    {
+        return position.x > -1 && position.y > -1 && position.x < WIDTH && position.y < HEIGHT - 25;
     }
 }

@@ -38,7 +38,13 @@ public abstract class View extends Viewer {
             setBackgroundColor(color);
         }
     }
-
+    public void setColorForeground(char colorChar)
+    {
+        Color color = Color.getColor(colorChar);
+        if (color != null) {
+            setForegroundColor(color);
+        }
+    }
     public void drawLine(String line, int X, int Y , ArrayList<Position> positions){
         int x = 0;
         for (char c : line.toCharArray()){
@@ -57,6 +63,14 @@ public abstract class View extends Viewer {
             drawLine(line, x, y , positions);
             y+=charHeight;
         }
+    }
+
+    public void drawNumbers(char number , int x , int y)
+    {
+        setColor('W');
+        graphics.fillRectangle(new TerminalPosition(x, y),
+                new TerminalSize(charWidth, charHeight), number);
+
     }
     public abstract void draw() throws IOException;
 }

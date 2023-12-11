@@ -72,13 +72,30 @@ public class SpaceshipView extends View{
     {
         int x = spaceShip.getPosition().getX();
         int y = spaceShip.getPosition().getY();
-        if(spaceShip.isMini())
+        if(!spaceShip.isInvincible())
         {
-            drawMiniSpaceShip(x , y);
-        }
-        else
+            if(spaceShip.isMini())
+            {
+                drawMiniSpaceShip(x , y);
+            }
+            else
+            {
+                drawSpaceShip(x , y);
+            }
+
+        }else
         {
-            drawSpaceShip(x , y);
+            if(drawWithInvincibility())
+            {
+                if(spaceShip.isMini())
+                {
+                    drawMiniSpaceShip(x , y);
+                }
+                else
+                {
+                    drawSpaceShip(x , y);
+                }
+            }
         }
     }
     private void drawMiniSpaceShip(int spaceshipX , int spaceshipY)
@@ -95,11 +112,12 @@ public class SpaceshipView extends View{
         int x = (int)spaceShip.getPosition().getX();
         int y = (int)spaceShip.getPosition().getY();
         drawImage(SpaceShipModel, x, y , positions);
-        spaceShip.setOccupiedPositions(positions);
     }
-    public void sendInput()
+    private int wait = 863;
+    public boolean drawWithInvincibility()
     {
-
+        System.out.println(wait);
+        return wait % 863 == 0;
     }
     public String[] getDesign(){return  SpaceShipModel;}
 }

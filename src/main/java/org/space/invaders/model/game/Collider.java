@@ -36,6 +36,16 @@ public interface Collider {
         }
         return false;
     }
+
+    public default boolean checkColisions(ArrayList<Position> positions , ArrayList<Position> positions2)
+    {
+        if(positions2 == null || positions == null) return false;
+        for(Position position : positions)
+        {
+            if(positions2.contains(position)) return true;
+        }
+        return false;
+    }
     public default boolean checkColisionsWithShots(ArrayList<Position> positions, Position position)
     {
         /*

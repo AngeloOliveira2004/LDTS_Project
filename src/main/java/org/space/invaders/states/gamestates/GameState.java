@@ -62,7 +62,7 @@ public void run() throws IOException{
     while (running) {
         long now = System.nanoTime();
         long elapsedTime = now - lastFrameTime;
-        arena.update();
+        arena.update(spaceShip);
 
         enemiesController.KamizeSpawner(spaceShip.getPosition());
         enemiesController.DefaultEnemySpawner(new Position(50,50));

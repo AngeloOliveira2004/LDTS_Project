@@ -15,6 +15,7 @@ public class SpaceShip extends Element {
     private boolean shooting;
     private boolean isMini;
     private SpaceshipView spaceshipView;
+    private long time;
 
     public SpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width) {
         super(x, y, Yvelocity, Xvelocity, Health, SpawnRate , alive , height , width);
@@ -27,6 +28,7 @@ public class SpaceShip extends Element {
 
     public void setInvincible(boolean invincible) {
         this.invincible = invincible;
+        if (invincible == true) time = System.currentTimeMillis();
     }
     public boolean isShooting() {
         return shooting;
@@ -70,6 +72,12 @@ public class SpaceShip extends Element {
     public String[] getDesign() {
         return spaceshipView.getDesign();
     }
-
+    public void calculateInvincibility()
+    {
+        if((double) (System.currentTimeMillis() - time) /1000 > (2+0.5))
+        {
+            setInvincible(false);
+        }
+    }
 }
 

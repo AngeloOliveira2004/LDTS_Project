@@ -34,7 +34,7 @@ public class GameViewer {
         DefaultTerminalFactory dtf = new DefaultTerminalFactory();
         dtf.setForceAWTOverSwing(true);
         dtf.setTerminalEmulatorFontConfiguration(myFontConfiguration);
-        dtf.setInitialTerminalSize(new TerminalSize(600, 300));
+        dtf.setInitialTerminalSize(new TerminalSize(600, 325));
 
         Terminal terminal = dtf.createTerminal();
         screen = new TerminalScreen(terminal);
@@ -56,6 +56,8 @@ public class GameViewer {
         {
             shotElement.draw(textGraphics);
         }
+
+        arena.getTime().draw(textGraphics);
 
         refresh();
     }

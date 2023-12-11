@@ -9,6 +9,7 @@ import org.space.invaders.model.Position;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
+import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.StrongEnemy;
 
@@ -20,15 +21,20 @@ public class EnemiesController {
     private Arena arena;
     private EnemiesFactory enemiesFactory;
     private ShotFactory shotFactory;
-    private KamikazeLogic kamikazeLogic;
-
-    private DefaultEnemyController defaultEnemyController;
     private ArrayList<EnemyLogic> logics;
     private int kamikazeEnemyCount;
+
 
     private int defaultenemycount;
 
     private int strongEnemyCount;
+    private long lastSpawnCycleTimeDefault;
+    private long lastSpawnCycleTimeKamikaze;
+    private long lastSpawnCycleTimeStrong;
+
+    private int currentCycle;
+
+
     public EnemiesController(Arena arena , EnemiesFactory enemiesFactory , ShotFactory shotFactory)
     {
         this.arena = arena;
@@ -38,39 +44,59 @@ public class EnemiesController {
         this.enemiesFactory = enemiesFactory;
         this.shotFactory = shotFactory;
         this.logics = new ArrayList<>();
-    }
-
-    public void KamizeSpawner(Position position) {
-        KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
-
-        if (ShouldSpawn(10000)) {
-            if(kamikazeEnemyCount < 10){
-                arena.addObject(tempKamikaze);
-            }
-        }
-        logics.add(new KamikazeLogic(position , tempKamikaze));
-        kamikazeEnemyCount++;
+        this.lastSpawnCycleTimeDefault = System.currentTimeMillis();
+        this.lastSpawnCycleTimeStrong = System.currentTimeMillis();
+        this.lastSpawnCycleTimeKamikaze = System.currentTimeMillis();
+        this.currentCycle = 0;
 
     }
-
     public void DefaultEnemySpawner(Position position) {
-        DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
+        long currentTime = System.currentTimeMillis();
 
-        if (ShouldSpawn(100) && defaultenemycount < 10) {
+        if (currentCycle % 2 == 0 && (currentTime - lastSpawnCycleTimeDefault) >= 2000 && defaultenemycount < 10) {
+            DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
             arena.addObject(tempDefaultEnemy);
             logics.add(new DefaultEnemyController(tempDefaultEnemy));
             defaultenemycount++;
-        } //Retirar a este valor quando matar
+
+            lastSpawnCycleTimeDefault = currentTime;
+
+            updateCycle();
+        }
+    }
+
+    public void KamizeSpawner(Position position) {
+        long currentTime = System.currentTimeMillis();
+
+        if (currentCycle == 4 && (currentTime - lastSpawnCycleTimeKamikaze) >= 8000 && kamikazeEnemyCount < 10) {
+            KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
+            arena.addObject(tempKamikaze);
+            logics.add(new KamikazeLogic(position, tempKamikaze));
+            kamikazeEnemyCount++;
+
+            lastSpawnCycleTimeKamikaze = currentTime;
+
+            updateCycle();
+        }
     }
 
     public void StrongEnemySpawner(Position position) {
-        StrongEnemy tempStrongEnemy = (StrongEnemy) enemiesFactory.createStrongerEnemy();
-        if (ShouldSpawn(100) && strongEnemyCount < 10) {
+        long currentTime = System.currentTimeMillis();
+
+        if ((currentCycle % 2 != 0) && (currentTime - lastSpawnCycleTimeStrong) >= 4000 && strongEnemyCount < 10) {
+            StrongEnemy tempStrongEnemy = (StrongEnemy) enemiesFactory.createStrongerEnemy();
             arena.addObject(tempStrongEnemy);
             logics.add(new StrongEnemyController(tempStrongEnemy));
-            kamikazeEnemyCount++;
-        } //Retirar a este valor quando matar
+            strongEnemyCount++;
 
+            lastSpawnCycleTimeStrong = currentTime;
+
+            updateCycle();
+        }
+    }
+
+    private void updateCycle() {
+        currentCycle = (currentCycle + 1) % 5;
     }
 
     public void update()
@@ -80,13 +106,6 @@ public class EnemiesController {
             enemyLogic.update();
         }
     }
-
-    private boolean ShouldSpawn(int probability) {
-        int randomInt = new Random().nextInt(10000) + 1;
-        return randomInt <= probability;
-    }
-
-
 }
 
 

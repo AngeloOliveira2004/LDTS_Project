@@ -1,32 +1,27 @@
 package org.space.invaders.states.menustates;
 
 import org.space.invaders.control.MenuController;
-import org.space.invaders.gui.Menu;
 import org.space.invaders.gui.MenuGUI;
-import org.space.invaders.model.game.menu.InstructionsModel;
-import org.space.invaders.model.game.menu.MenuModel;
+import org.space.invaders.model.game.menu.GameOverModel;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
-import org.space.invaders.view.menu.InstructionsView;
-import org.space.invaders.view.menu.MenuView;
-import org.space.invaders.view.menu.MenuViewer;
+import org.space.invaders.view.menu.GameOverVIew;
 
 import java.io.IOException;
 
-public class InstructionsState implements State {
-    private final InstructionsView menuView;
+public class GameOverState implements State {
+    private final GameOverVIew gameOverVIew;
     MenuGUI gui;
     private MenuController menuController;
 
-    private final InstructionsModel menuModel;
-
-    public InstructionsState(MenuController menuController, MenuGUI gui) {
-        this.gui = gui;
-        this.menuModel = new InstructionsModel();
-        this.menuView = new InstructionsView(menuModel, this.gui.getScreen());
+    private final GameOverModel gameOverModel;
+    public GameOverState(MenuController menuController, MenuGUI gui)
+    {
         this.menuController = menuController;
+        this.gui = gui;
+        this.gameOverModel = new GameOverModel();
+        this.gameOverVIew = new GameOverVIew(gameOverModel , gui.getScreen());
     }
-
     @Override
     public void step() {
         MenuGUI.ACTION action;
@@ -38,10 +33,9 @@ public class InstructionsState implements State {
         if(action != MenuGUI.ACTION.NONE){
             gui.clear();
             Action(action);
-            menuView.drawElements(gui);
+            gameOverVIew.drawElements(gui);
         }
     }
-
     public void Action(MenuGUI.ACTION action) {
         if(action != null) {
             switch (action) {
@@ -56,10 +50,9 @@ public class InstructionsState implements State {
             }
         }
     }
-
     @Override
     public void startScreen() {
-        menuView.drawElements(gui);
+        gameOverVIew.drawElements(gui);
         gui.refresh();
     }
 
@@ -70,17 +63,16 @@ public class InstructionsState implements State {
 
     @Override
     public void run() throws IOException {
-        while (menuController.getApplicationState() == ApplicationState.MenuInstructions)
+        while (menuController.getApplicationState() == ApplicationState.GameOverMenu)
         {
-            menuView.drawElements(gui);
+            gameOverVIew.drawElements(gui);
             gui.refresh();
             step();
         }
-
     }
 
     @Override
     public void close() throws IOException {
-
+        gui.close();
     }
 }

@@ -85,6 +85,13 @@ public class MenuController {
                 this.applicationState = ApplicationState.PauseMenu;
                 //PauseMenuState pauseMenuState = new PauseMenuState(this);
             }
+            case GameOverMenu ->
+            {
+                this.applicationState = ApplicationState.GameOverMenu;
+                this.gui = new org.space.invaders.gui.Menu(50,25);
+                GameOverState gameOverState = new GameOverState(this , gui);
+                gameOverState.run();
+            }
         }
     }
 

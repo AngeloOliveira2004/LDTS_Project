@@ -95,7 +95,9 @@ public void run() throws IOException{
             if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
                 gameViewer.close();
                 // Exit the game
-                gameController.changeState(ApplicationState.MainMenu);
+                gameController.changeState(ApplicationState.GameOverMenu);
+
+                gameController.changeState(ApplicationState.GameOverMenu);
             }else
             {
                 playerController.keyPressed(keyStroke , arena);

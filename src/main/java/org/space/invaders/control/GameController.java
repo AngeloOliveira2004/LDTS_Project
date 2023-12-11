@@ -8,10 +8,6 @@ import org.space.invaders.model.game.menu.Menu;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.states.gamestates.GameState;
-import org.space.invaders.states.menustates.InstructionsState;
-import org.space.invaders.states.menustates.LeaderBoardState;
-import org.space.invaders.states.menustates.MenuState;
-import org.space.invaders.states.menustates.SettingsState;
 
 import java.io.IOException;
 
@@ -45,6 +41,10 @@ public class GameController {
             case MainMenu ->
             {
                 this.applicationState = ApplicationState.MainMenu;
+                menuController.changeState(this.applicationState);
+            }
+            case GameOverMenu -> {
+                this.applicationState = ApplicationState.GameOverMenu;
                 menuController.changeState(this.applicationState);
             }
         }

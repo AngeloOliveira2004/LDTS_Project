@@ -28,32 +28,6 @@ public class GameController {
         this.enemiesFactory = new EnemiesFactory();
         changeState(applicationState);
     }
-    /*
-        public void run(MenuGUI gui) throws IOException {
-            if(state == null){
-                state = new MenuState((MenuModel) model,gui);
-                state.startScreen();
-            }
-            while (state != null) {
-                menuViewer = state.getViewer();
-
-                // Updates all the variables sent to the menu, like time, score, super shot charge, etc...
-                while (state.isRunning()) {
-                    state.step();
-                }
-
-                gui.close();
-
-                // Logic for going to the next state
-                setState(state.nextState());
-
-                if (state != null) {
-                    state.startScreen();
-                }
-            }
-        }
-
-     */
     public void changeState(ApplicationState state) throws IOException {
         switch (state)
         {

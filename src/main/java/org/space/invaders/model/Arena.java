@@ -64,19 +64,31 @@ public class Arena implements Collider {
         {
             for(ShotElement shotElement : shots)
             {
-                if(element.getClass() == KamikazeEnemy.class){
-                    System.out.println(element.getHealth());
-                }
-                if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
-                {
-                    int newHealth = element.getHealth() - shotElement.getDamage();
-                    element.setHealth(newHealth);
-                    int temp = element.getHealth();
-                    if(element.getHealth() <= 0)
+                if(element.getClass() == SpaceShip.class && shotElement.getYVelocity() == -1){
+                    if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
                     {
-                        objectToRemove.add(element);
+                        int newHealth = element.getHealth() - shotElement.getDamage();
+                        element.setHealth(newHealth);
+                        int temp = element.getHealth();
+                        if(element.getHealth() <= 0)
+                        {
+                            objectToRemove.add(element);
+                        }
+                        shotsToRemove.add(shotElement);
                     }
-                    shotsToRemove.add(shotElement);
+                }else if(element.getClass() != SpaceShip.class && shotElement.getYVelocity() == 1)
+                {
+                    if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
+                    {
+                        int newHealth = element.getHealth() - shotElement.getDamage();
+                        element.setHealth(newHealth);
+                        int temp = element.getHealth();
+                        if(element.getHealth() <= 0)
+                        {
+                            objectToRemove.add(element);
+                        }
+                        shotsToRemove.add(shotElement);
+                    }
                 }
             }
         }

@@ -31,7 +31,7 @@ public class ScoreView extends View {
     public void draw() throws IOException {
         String scoreStringValue = String.valueOf(score.getScore());
 
-        Position position = new Position(150, 295);
+        Position position = new Position(10, 305);
         actualDraw(position, scoreString,scoreStringValue);
     }
 
@@ -42,7 +42,7 @@ public class ScoreView extends View {
 
         if (first_time) {
             drawImage(model, x, y, positions);
-            x += 40;
+            x += 45;
             first_time = false;
         }
         for (int i = 0; i < score.length(); i++) {

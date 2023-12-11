@@ -59,6 +59,8 @@ public class GameViewer {
 
         arena.getTime().draw(textGraphics);
 
+        arena.getScore().draw(textGraphics);
+
         refresh();
     }
 

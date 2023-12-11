@@ -34,5 +34,6 @@ public class Position {
     public int hashCode() {
         return Integer.hashCode(x) ^ Integer.hashCode(y);
     }
+
 }
 

@@ -1,6 +1,7 @@
 package org.space.invaders.model;
 
 
+import org.space.invaders.control.command.EnemiesController;
 import org.space.invaders.model.game.Collider;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.elements.*;
@@ -81,4 +82,6 @@ public class Arena implements Collider {
             shots.remove(shotToRemove);
         }
     }
+
+
 }

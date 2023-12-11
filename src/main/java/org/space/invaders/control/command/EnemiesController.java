@@ -34,6 +34,8 @@ public class EnemiesController {
 
     private int currentCycle;
 
+    private int difficulty;
+
 
     public EnemiesController(Arena arena , EnemiesFactory enemiesFactory , ShotFactory shotFactory)
     {
@@ -48,12 +50,13 @@ public class EnemiesController {
         this.lastSpawnCycleTimeStrong = System.currentTimeMillis();
         this.lastSpawnCycleTimeKamikaze = System.currentTimeMillis();
         this.currentCycle = 0;
+        this.difficulty = 1;
 
     }
     public void DefaultEnemySpawner(Position position) {
         long currentTime = System.currentTimeMillis();
 
-        if (currentCycle % 2 == 0 && (currentTime - lastSpawnCycleTimeDefault) >= 2000 && defaultenemycount < 10) {
+        if (currentCycle % 2 == 0 && (currentTime - lastSpawnCycleTimeDefault) >= 4000/difficulty) {
             DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
             arena.addObject(tempDefaultEnemy);
             logics.add(new DefaultEnemyController(tempDefaultEnemy));
@@ -68,7 +71,7 @@ public class EnemiesController {
     public void KamizeSpawner(Position position) {
         long currentTime = System.currentTimeMillis();
 
-        if (currentCycle == 4 && (currentTime - lastSpawnCycleTimeKamikaze) >= 8000 && kamikazeEnemyCount < 10) {
+        if (currentCycle == 4 && (currentTime - lastSpawnCycleTimeKamikaze) >= 16000/difficulty) {
             KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
             arena.addObject(tempKamikaze);
             logics.add(new KamikazeLogic(position, tempKamikaze));
@@ -83,7 +86,7 @@ public class EnemiesController {
     public void StrongEnemySpawner(Position position) {
         long currentTime = System.currentTimeMillis();
 
-        if ((currentCycle % 2 != 0) && (currentTime - lastSpawnCycleTimeStrong) >= 4000 && strongEnemyCount < 10) {
+        if ((currentCycle % 2 != 0) && (currentTime - lastSpawnCycleTimeStrong) >= 8000/difficulty) {
             StrongEnemy tempStrongEnemy = (StrongEnemy) enemiesFactory.createStrongerEnemy();
             arena.addObject(tempStrongEnemy);
             logics.add(new StrongEnemyController(tempStrongEnemy));

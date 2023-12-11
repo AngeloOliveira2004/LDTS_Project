@@ -13,13 +13,13 @@ public class EnemiesFactory {
         return new DefaultEnemy(250,10 , 1 , 2, 10 , 1 , true , 3 , 3);
     }
     public Element createStrongerEnemy() {
-        return new StrongEnemy(200,10 , 1 , 1, 20 , 1 , true , 3 , 3);
+        return new StrongEnemy(150,10 , 1 , 1, 20 , 1 , true , 3 , 3);
     }
     public Element createBoss() {
         return null;
     }
     public Element createAsteroid(){return null;}
-    public Element createKamikaze(){return new KamikazeEnemy(10,10 , 1 , 1, 5 , 1 , true , 3 , 3);}
+    public Element createKamikaze(){return new KamikazeEnemy(150,10 , 1 , 1, 5 , 1 , true , 3 , 3);}
     public ShotFactory getShotFactory() {
         return shotFactory;
     }

@@ -28,7 +28,7 @@ public class StrongEnemyController implements EnemyLogic {
     public void update() {
         if(strongEnemy.getPosition().x - 1 == 0 || strongEnemy.getPosition().x + 1 == 590){
             directionX *= -1;
-            strongEnemy.setPosition(new Position(strongEnemy.getPosition().x+directionX, strongEnemy.getPosition().y+10));
+            strongEnemy.setPosition(new Position(strongEnemy.getPosition().x+directionX, strongEnemy.getPosition().y+16));
         }
         if (iterations < 5) {
             move();

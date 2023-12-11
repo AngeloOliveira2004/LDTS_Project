@@ -69,7 +69,7 @@ public class Arena implements Collider {
                     {
                         int newHealth = element.getHealth() - shotElement.getDamage();
                         element.setHealth(newHealth);
-                        int temp = element.getHealth();
+
                         if(element.getHealth() <= 0)
                         {
                             objectToRemove.add(element);
@@ -82,7 +82,7 @@ public class Arena implements Collider {
                     {
                         int newHealth = element.getHealth() - shotElement.getDamage();
                         element.setHealth(newHealth);
-                        int temp = element.getHealth();
+
                         if(element.getHealth() <= 0)
                         {
                             objectToRemove.add(element);

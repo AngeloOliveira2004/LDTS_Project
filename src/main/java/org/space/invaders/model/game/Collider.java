@@ -58,6 +58,10 @@ public interface Collider {
         System.out.println(position.x);
         System.out.println(position.y);
         */
-        return positions.contains(position);
+        if(positions != null)
+        {
+            return positions.contains(position);
+        }
+        return false;
     }
 }

@@ -20,7 +20,5 @@ public class ScoreView extends View{
     @Override
     public void draw() throws IOException {
         String scoreString = String.valueOf(score.getScore());
-
-
     }
 }

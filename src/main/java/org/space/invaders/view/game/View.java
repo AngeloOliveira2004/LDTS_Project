@@ -72,5 +72,6 @@ public abstract class View extends Viewer {
                 new TerminalSize(charWidth, charHeight), number);
 
     }
+
     public abstract void draw() throws IOException;
 }

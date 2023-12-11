@@ -80,7 +80,7 @@ public class Arena implements Collider {
                 }
             }
         }
-        System.out.println(spaceShip.isInvincible());
+
         if(!spaceShip.isInvincible()) {
             for (Element element : objects) {
                 if (element.getClass() != SpaceShip.class) {
@@ -88,8 +88,8 @@ public class Arena implements Collider {
                     {
                         lifes.decrementLifes();
                         spaceShip.setInvincible(true);
+                        break;
                     }
-                    break;
                 }
             }
         }

@@ -48,16 +48,6 @@ public interface Collider {
     }
     public default boolean checkColisionsWithShots(ArrayList<Position> positions, Position position)
     {
-        /*
-        for(Position position1 : positions)
-        {
-            System.out.println(position1.x);
-            System.out.println(position1.y);
-        }
-        System.out.println("----------------------------------------------------------------------");
-        System.out.println(position.x);
-        System.out.println(position.y);
-        */
         if(positions != null)
         {
             return positions.contains(position);

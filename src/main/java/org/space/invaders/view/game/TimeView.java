@@ -43,7 +43,7 @@ public class TimeView extends View{
         int x = (int) position.getX();
         int y = (int) position.getY();
         if(first_time) {
-            drawImage(timeString, x, y, positions);
+            drawImage(model, x, y, positions);
             x += 40;
             first_time = false;
         }

@@ -2,7 +2,6 @@ package org.space.invaders.model.game.UI;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.view.game.ScoreView;
-import org.space.invaders.view.game.TimeView;
 
 import java.io.IOException;
 

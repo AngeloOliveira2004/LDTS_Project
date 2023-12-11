@@ -40,8 +40,35 @@ public class SpaceshipView extends View{
             "      Y   ROYYOR   Y      ",
             "            YY            ",
     };
+    private static final String[] InvincibleSpaceShipModel = new String[]{
+            "            RR            ",
+            "           RRRR           ",
+            "          CCbbCC          ",
+            "         CRCbbCRC         ",
+            "         CRRbbRRC         ",
+            "         CCCbbCCC         ",
+            "        CRCbbbbCRC        ",
+            "        CCCbbbbCCC        ",
+            " C      CRCbbbbCRC      C ",
+            "RcR     CcRCCCCRcC     RcR",
+            "RWWC    CWWRWWRWW    WWCWW",
+            "WWWC    WWWRWWWWWW    WWCWW",
+            "RRRWW  WWWWWWWWWWWW  WWRRR",
+            "RWWWWWWWWWWWWRRWWWWWWWWWWCRR",
+            "WWWWRWRRWWWWWWWWWWWWRRWWWWC",
+            "RWWWRWWRRWWWWWWWWWWRRWWRWWW",
+            " RWRRWRRRWRRRRRWRRRWRRWRR ",
+            " CRWWRWRRCRWWWWRCRRWRRWRC ",
+            "  CRWWRRWCRWWWWCRWRRWRCW  ",
+            "   CRWRRRCWWWWWRWWRCRW   ",
+            "    CRWRR WRWWRC RRWRC    ",
+            "     CCC  CRRCC  CCC     ",
+            "     ROR   CCCW   ROR     ",
+            "     OYO   RORR   OYO     ",
+            "      Y   RYWYOR   Y      ",
+            "            YY            ",
+    };
 
-    private static final String[] SpaceShipModelWithFlames = {"A" , " "};
     private static final String[] MiniSpaceShipModel = new String[]{
             "       RR       ",
             "      RRRR      ",
@@ -60,6 +87,24 @@ public class SpaceshipView extends View{
             "      ROOR      ",
             "     ROYYOR     ",
     };
+    private static final String[] InvincibleMiniSpaceShipModel = new String[]{
+            "       RR       ",
+            "      RRRR      ",
+            "      CbbC      ",
+            "      CbbC      ",
+            "     CRCCRC     ",
+            "  C  CWRRW  C  ",
+            " CR  CRCCRC  RW ",
+            " CWC CCWWCC WC ",
+            " CRWCRWRCRWCRWRC ",
+            "  CWCRWWWRWCRW  ",
+            "   CWCRWRRWCRW   ",
+            "  CWRCRWCCRWCRW  ",
+            "  CCCRCRRCRCCC  ",
+            "     CCCCCC     ",
+            "      ROOR      ",
+            "     ROYYOR     ",
+    };
 
     private static final String[] MiniSpaceShipModelWithFlames = {"A" , " "};
     public SpaceshipView(SpaceShip spaceShip , TextGraphics textGraphics)
@@ -70,35 +115,29 @@ public class SpaceshipView extends View{
     @Override
     public void draw()
     {
-        int x = spaceShip.getPosition().getX();
-        int y = spaceShip.getPosition().getY();
         if(!spaceShip.isInvincible())
         {
             if(spaceShip.isMini())
             {
-                drawMiniSpaceShip(x , y);
+                drawMiniSpaceShip();
             }
             else
             {
-                drawSpaceShip(x , y);
+                drawSpaceShip();
             }
 
         }else
         {
-            if(drawWithInvincibility())
+            if(spaceShip.isMini()) {
+                drawWithInvincibilityMini();
+            }
+            else
             {
-                if(spaceShip.isMini())
-                {
-                    drawMiniSpaceShip(x , y);
-                }
-                else
-                {
-                    drawSpaceShip(x , y);
-                }
+                drawWithInvincibilityNormal();
             }
         }
     }
-    private void drawMiniSpaceShip(int spaceshipX , int spaceshipY)
+    private void drawMiniSpaceShip()
     {
         ArrayList<Position> positions = new ArrayList<>();
         int x = (int)spaceShip.getPosition().getX();
@@ -106,7 +145,7 @@ public class SpaceshipView extends View{
         drawImage(MiniSpaceShipModel, x, y , positions);
         spaceShip.setOccupiedPositions(positions);
     }
-    private void drawSpaceShip(int spaceshipX , int spaceshipY)
+    private void drawSpaceShip()
     {
         ArrayList<Position> positions = new ArrayList<>();
         int x = (int)spaceShip.getPosition().getX();
@@ -114,10 +153,20 @@ public class SpaceshipView extends View{
         drawImage(SpaceShipModel, x, y , positions);
     }
     private int wait = 863;
-    public boolean drawWithInvincibility()
+    private void drawWithInvincibilityMini()
     {
-        System.out.println(wait);
-        return wait % 863 == 0;
+        ArrayList<Position> positions = new ArrayList<>();
+        int x = (int)spaceShip.getPosition().getX();
+        int y = (int)spaceShip.getPosition().getY();
+        drawImage(InvincibleMiniSpaceShipModel, x, y , positions);
+    }
+
+    private void drawWithInvincibilityNormal()
+    {
+        ArrayList<Position> positions = new ArrayList<>();
+        int x = (int)spaceShip.getPosition().getX();
+        int y = (int)spaceShip.getPosition().getY();
+        drawImage(InvincibleSpaceShipModel, x, y , positions);
     }
     public String[] getDesign(){return  SpaceShipModel;}
 }

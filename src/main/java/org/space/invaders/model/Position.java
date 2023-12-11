@@ -35,10 +35,5 @@ public class Position {
         return Integer.hashCode(x) ^ Integer.hashCode(y);
     }
 
-    public double distanceTo(Position other) {
-        int deltaX = other.x - this.x;
-        int deltaY = other.y - this.y;
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    }
 }
 

@@ -34,21 +34,18 @@ public class LeaderboardView extends MenuViewer {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            int lineNumber = 0;
             while ((line = br.readLine()) != null) {
-                lineNumber++;
                 String[] parts = line.split(",");
                 if (parts.length != 2) {
-                    System.err.println("Invalid format at line " + lineNumber);
                     continue;
                 }
 
                 try {
                     int score = Integer.parseInt(parts[0]);
-                    String name = parts[1].trim(); // Remove leading/trailing whitespaces
+                    String name = parts[1].trim();
                     entries.add(new String[]{String.valueOf(score), name});
                 } catch (NumberFormatException e) {
-                    System.err.println("Invalid score format at line " + lineNumber);
+                    e.printStackTrace();
                 }
             }
         } catch (IOException e) {
@@ -57,11 +54,10 @@ public class LeaderboardView extends MenuViewer {
 
         entries.sort((entry1, entry2) -> Integer.compare(Integer.parseInt(entry2[0]), Integer.parseInt(entry1[0])));
 
-        // Print the top five entries
         int maxEntries = Math.min(5, entries.size());
         for (int i = 0; i < maxEntries; i++) {
             String[] entry = entries.get(i);
-            gui.drawText(new Position(13, 8 + i * 2), (i + 1) + ". " + entry[1] + " Score: " + entry[0], "#008000", "BOLD");
+            gui.drawText(new Position(16, 8 + i * 2), (i + 1) + ". " + entry[1] + " Score: " + entry[0], "#008000", "BOLD");
         }
     }
 

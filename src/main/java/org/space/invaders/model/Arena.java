@@ -23,6 +23,8 @@ public class Arena implements Collider {
     private Score score;
     private Lifes lifes;
     private Time time;
+
+    private Planet planet;
     public Arena() throws IOException {
         this.starPositions = new ArrayList<>();
         this.objects = new ArrayList<>();
@@ -31,6 +33,7 @@ public class Arena implements Collider {
         //TODO MUDAR CONSOANTE O SCORE E DIFICULDADE
         this.lifes = new Lifes();
         this.time = new Time();
+        this.planet = new Planet(15,250,0,0,0,0,true,3,3);
     }
     public void addObject(Element object)
     {
@@ -130,4 +133,6 @@ public class Arena implements Collider {
     public Time getTime() {
         return time;
     }
+
+    public Planet getPlanet() { return planet;}
 }

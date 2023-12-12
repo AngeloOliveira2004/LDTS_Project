@@ -63,6 +63,8 @@ public class GameViewer {
 
         arena.getLifes().draw(textGraphics);
 
+        arena.getPlanet().draw(textGraphics);
+
         refresh();
     }
 

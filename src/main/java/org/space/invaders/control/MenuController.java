@@ -4,6 +4,7 @@ import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.Menu;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
+import org.space.invaders.states.gamestates.GameState;
 import org.space.invaders.states.menustates.*;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ public class MenuController {
     private ApplicationState applicationState;
     private Menu menuModel;
     private MenuGUI gui;
+    private GameController gameController;
     public MenuController() throws IOException {
         try {
             this.gui = new org.space.invaders.gui.Menu(50,25);
@@ -54,7 +56,23 @@ public class MenuController {
             case Game -> {
                 this.applicationState = ApplicationState.Game;
                 this.gui.close();
-                GameController gameController = new GameController(this);
+                if(this.gameController == null)
+                {
+                    this.gameController = new GameController(this);
+                    this.gameController.changeState(this.applicationState);
+                }
+                else
+                {
+                    if(gameController.getGameState().isPaused())
+                    {
+                        gameController.getGameState().setPaused(false);
+                        this.applicationState = ApplicationState.Game;
+                        this.gameController.changeState(this.applicationState);
+                    }
+                    this.applicationState = ApplicationState.Game;
+                    this.gameController = new GameController(this);
+                    gameController.changeState(this.applicationState);
+                }
             }
             case MenuInstructions -> {
                 this.applicationState = ApplicationState.MenuInstructions;
@@ -76,14 +94,27 @@ public class MenuController {
                 System.exit(0);
             }
             case MainMenu -> {
+                this.applicationState = state;
+                if(this.gameController != null)
+                {
+                    GameState gameState = gameController.getGameState();
+                    if(gameState != null)
+                    {
+                        gameState.close();
+                    }
+                }
+                gameController = null;
                 this.applicationState = ApplicationState.MainMenu;
                 MenuState menuState = new MenuState(this,gui);
                 menuState.run();
             }
             case PauseMenu ->
             {
+                gameController.getGameState().setPaused(true);
                 this.applicationState = ApplicationState.PauseMenu;
-                //PauseMenuState pauseMenuState = new PauseMenuState(this);
+                this.gui = new org.space.invaders.gui.Menu(50,25);
+                PauseMenuState pauseMenuState = new PauseMenuState(this , gui);
+                pauseMenuState.run();
             }
             case GameOverMenu ->
             {

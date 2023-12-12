@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PauseMenuModel extends Menu{
+
     List<ApplicationState> appvalue = new ArrayList<>();
     public PauseMenuModel() {
         super(new ArrayList<>());
         addMenuOptions("Back to Game");
-        addMenuOptions("Back to Menu");
+        addMenuOptions("Back to Menu Without Save");
         appvalue.add(ApplicationState.Game);
         appvalue.add(ApplicationState.MainMenu);
     }

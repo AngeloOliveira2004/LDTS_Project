@@ -2,10 +2,8 @@ package org.space.invaders.states.gamestates;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 
 import org.space.invaders.control.GameController;
-import org.space.invaders.control.MusicController;
 import org.space.invaders.control.command.EnemiesController;
 import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.Arena;
@@ -17,14 +15,8 @@ import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.GameViewer;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.SQLOutput;
 
 public class GameState implements State {
   private final GameController gameController;

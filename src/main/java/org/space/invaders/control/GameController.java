@@ -15,20 +15,16 @@ public class GameController {
     private State state;
     private ApplicationState applicationState;
     MenuController menuController;
-    MusicController musicController;
     private Menu menuModel;
     private MenuGUI gui;
     private EnemiesFactory enemiesFactory;
     private GameState gameState;
 
-    public GameController(MenuController menuController, MusicController musicController) throws IOException {
+    public GameController(MenuController menuController) throws IOException {
         this.menuController = menuController;
         this.applicationState = ApplicationState.Game;
         this.enemiesFactory = new EnemiesFactory();
-        this.musicController = new MusicController();
-        musicController.setFile(0); //background music index
-        musicController.play();
-        musicController.loop();
+
     }
     public void changeState(ApplicationState state) throws IOException {
         switch (state)

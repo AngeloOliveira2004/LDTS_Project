@@ -15,7 +15,6 @@ public class MenuController {
     private Menu menuModel;
     private MenuGUI gui;
     private GameController gameController;
-    private MusicController musicController;
     public MenuController() throws IOException {
         try {
             this.gui = new org.space.invaders.gui.Menu(50,25);
@@ -24,10 +23,6 @@ public class MenuController {
         }
         this.applicationState = ApplicationState.MainMenu;
         changeState(applicationState);
-        this.musicController = new MusicController();
-        musicController.setFile(1); //menu background music index
-        musicController.play();
-        musicController.loop();
     }
 /*
     public void run(MenuGUI gui) throws IOException {
@@ -63,7 +58,7 @@ public class MenuController {
                 this.gui.close();
                 if(this.gameController == null)
                 {
-                    this.gameController = new GameController(this, this.musicController);
+                    this.gameController = new GameController(this);
                     this.gameController.changeState(this.applicationState);
                 }
                 else
@@ -75,7 +70,7 @@ public class MenuController {
                         this.gameController.changeState(this.applicationState);
                     }
                     this.applicationState = ApplicationState.Game;
-                    this.gameController = new GameController(this, this.musicController);
+                    this.gameController = new GameController(this);
                     gameController.changeState(this.applicationState);
                 }
             }
@@ -140,13 +135,6 @@ public class MenuController {
     {
         this.applicationState = applicationState;
     }
-    public void playMusic(){
-        musicController.setFile(0);
-        musicController.play();
-        musicController.loop();
-    }
-    public void stopMusic(){
-        musicController.stop();
-    }
+
 }
 

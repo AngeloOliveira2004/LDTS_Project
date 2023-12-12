@@ -2,11 +2,10 @@ package org.space.invaders.model.game.elements;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
-import org.space.invaders.view.game.ShotView;
-import org.space.invaders.view.game.SuperShotVIew;
+import org.space.invaders.view.game.SuperShotView;
 
 public class SuperShot extends ShotElement{
-    private SuperShotVIew superShotVIew;
+    private SuperShotView superShotVIew;
     private int count;
     private int iterations;
     public SuperShot(Position position , int yVelocity , int damage)
@@ -18,7 +17,7 @@ public class SuperShot extends ShotElement{
 
     @Override
     public void draw(TextGraphics textGraphics) {
-        superShotVIew = new SuperShotVIew(this , textGraphics);
+        superShotVIew = new SuperShotView(this , textGraphics);
     }
 
     public void addCount()

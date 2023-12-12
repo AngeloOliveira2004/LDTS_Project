@@ -61,6 +61,8 @@ public class GameViewer {
 
         arena.getScore().draw(textGraphics);
 
+        arena.getLifes().draw(textGraphics);
+
         refresh();
     }
 

@@ -3,16 +3,13 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.SuperShot;
-import org.space.invaders.Constants;
-import org.space.invaders.view.Color;
 
 import java.io.IOException;
 
 import static org.space.invaders.Constants.HEIGHT;
 
-public class SuperShotVIew extends View {
+public class SuperShotView extends View {
     private SuperShot superShot;
     private static final int CHAR_WIDTH = 3;
 
@@ -22,7 +19,7 @@ public class SuperShotVIew extends View {
     int yVelocity = 1;
     int Yposition;
 
-    public SuperShotVIew(SuperShot superShot , TextGraphics textGraphics)
+    public SuperShotView(SuperShot superShot , TextGraphics textGraphics)
     {
         super(CHAR_WIDTH , CHAR_HEIGHT , textGraphics);
         this.superShot = superShot;

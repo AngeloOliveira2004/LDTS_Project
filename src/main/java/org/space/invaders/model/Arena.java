@@ -82,26 +82,29 @@ public class Arena implements Collider {
 
     public Planet getPlanet() { return planet;}
     private void updateCycle() {
-        currentCycle = (currentCycle + 1) % 5;
+        currentCycle = (currentCycle + 1) % 100;
     }
-
-    public void enemiesShot()
+    public ArrayList<ShotElement> getEnemiesShots(){return enemiesShots;}
+    public void enemiesShots()
     {
+        System.out.println(currentCycle);
         for(Element enemy : objects){
             if(enemy.getClass() != SpaceShip.class)
             {
-                if(enemy.getClass() != DefaultEnemy.class)
+                if(enemy.getClass() == DefaultEnemy.class)
                 {
-                    if(currentCycle % 17 == 1)
+                    if(currentCycle % 729 == 1)
                     {
-                        addEnemyShot(shotFactory.createEnemyShot(enemy.getPosition()));
+                        Position position_ = new Position( enemy.getPosition().x , enemy.getPosition().y + 12);
+                        addEnemyShot(shotFactory.createEnemyShot(position_));
                     }
                 }
-                if(enemy.getClass() != StrongEnemy.class)
+                if(enemy.getClass() == StrongEnemy.class)
                 {
-                    if(currentCycle % 3 == 1)
+                    if(currentCycle % 997 == 1)
                     {
-                       addEnemyShot(shotFactory.createEnemyShot(enemy.getPosition()));
+                       Position position_ = new Position( enemy.getPosition().x , enemy.getPosition().y + 12);
+                       addEnemyShot(shotFactory.createEnemyShot(position_));
                     }
                 }
             }
@@ -113,7 +116,7 @@ public class Arena implements Collider {
         removeOutofBoundsShots();
         ArrayList<Element> objectToRemove = new ArrayList<>();
         ArrayList<ShotElement> shotsToRemove = new ArrayList<>();
-        System.out.println(lifes.getLifes());
+
         for(Element element : objects)
         {
             for(ShotElement shotElement : shots)
@@ -188,7 +191,7 @@ public class Arena implements Collider {
             spaceShip.calculateInvincibility();
 
 
-        enemiesShot();
+        enemiesShots();
         updateCycle();
     }
 

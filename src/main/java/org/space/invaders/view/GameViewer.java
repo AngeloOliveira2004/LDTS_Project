@@ -56,7 +56,10 @@ public class GameViewer {
         {
             shotElement.draw(textGraphics);
         }
-
+        for(ShotElement shotElement : arena.getEnemiesShots())
+        {
+            shotElement.draw(textGraphics);
+        }
         arena.getTime().draw(textGraphics);
 
         arena.getScore().draw(textGraphics);

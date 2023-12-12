@@ -18,20 +18,30 @@ public class GameController {
     private Menu menuModel;
     private MenuGUI gui;
     private EnemiesFactory enemiesFactory;
+    private GameState gameState;
     public GameController(MenuController menuController) throws IOException {
         this.menuController = menuController;
         this.applicationState = ApplicationState.Game;
         this.enemiesFactory = new EnemiesFactory();
-        changeState(applicationState);
     }
     public void changeState(ApplicationState state) throws IOException {
         switch (state)
         {
             case Game -> {
                 this.applicationState = ApplicationState.Game;
-                GameState gameState = new GameState(this);
-                this.state = gameState;
-                gameState.run();
+                if(this.gameState == null)
+                {
+                    GameState gameState = new GameState(this);
+                    this.gameState = gameState;
+                    this.state = gameState;
+                    this.gameState.run();
+
+                }else
+                {
+                    gameState.setRunning(true);
+                    gameState.setPaused(false);
+                    gameState.run();
+                }
             }
             case PauseMenu -> {
                 this.applicationState = ApplicationState.PauseMenu;
@@ -62,5 +72,9 @@ public class GameController {
             changeState(ApplicationState.MainMenu);
         }
     }
+    public GameState getGameState(){return gameState;}
 
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
 }

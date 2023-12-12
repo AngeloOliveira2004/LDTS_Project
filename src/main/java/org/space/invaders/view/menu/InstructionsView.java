@@ -22,8 +22,5 @@ public class InstructionsView extends MenuViewer{
         gui.drawText(new Position(10,9),"SHIFT: Morph into Mini Spaceship","#008000","BOLD");
         gui.drawText(new Position(10,11),"SPACE: Normal Shot","#008000","BOLD");
         gui.drawText(new Position(10,13),"Q: Activate Super Shot","#008000","BOLD");
-
-
-
     }
 }

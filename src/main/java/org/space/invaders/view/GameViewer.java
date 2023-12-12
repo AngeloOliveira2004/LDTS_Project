@@ -77,6 +77,7 @@ public class GameViewer {
     }
     public void close() throws IOException {
         screen.close();
+        gameController.setGameState(null);
     }
     public TextGraphics getTextGraphics(){return textGraphics;}
 }

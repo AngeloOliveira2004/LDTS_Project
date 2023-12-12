@@ -30,6 +30,7 @@ public class GameState implements State {
   private boolean running;
   private Arena arena;
   private EnemiesController enemiesController;
+  private boolean isPaused;
   public GameState(GameController gameController) throws IOException {
          spaceShip = new SpaceShip(50, 50, 3, 1, 1, 0 , true , 3 , 3);
          this.arena = new Arena();
@@ -39,6 +40,7 @@ public class GameState implements State {
          this.playerController = new PlayerController(spaceShip);
          arena.addObject(spaceShip);
          this.enemiesController = new EnemiesController(this.arena , new EnemiesFactory() , new ShotFactory());
+         this.isPaused = false;
   }
   public GameController getController() {
     return gameController;
@@ -51,11 +53,12 @@ public class GameState implements State {
   {
 
   }
+  public void setRunning(boolean running){this.running = running;}
   public boolean isRunning()
   {
       return running;
   }
-  //todo passar para aqui as cenas do game viewer praticamente e a cada ciclo desenhar as cenas
+
 public void run() throws IOException{
     lastFrameTime = System.nanoTime();
 
@@ -99,8 +102,8 @@ public void run() throws IOException{
         }
         if (keyStroke != null) {
             if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-                gameViewer.close();
                 // Exit the game
+                running = false;
                 gameController.changeState(ApplicationState.PauseMenu);
             }else
             {
@@ -109,6 +112,13 @@ public void run() throws IOException{
         }
     }
 
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
+    }
 }
 
 

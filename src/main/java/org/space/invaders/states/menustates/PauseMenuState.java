@@ -19,14 +19,11 @@ public class PauseMenuState implements State {
     private MenuController menuController;
     private final PauseMenuModel pauseMenuModel;
 
-    public PauseMenuState(MenuController menuController) throws Exception {
-        this.gui = constructGUI();
+    public PauseMenuState(MenuController menuController , MenuGUI gui) {
+        this.gui = gui;
         this.pauseMenuModel = new PauseMenuModel();
         this.menuController = menuController;
         this.pauseMenuVIew = new PauseMenuView(pauseMenuModel, this.gui.getScreen());
-    }
-    public Menu constructGUI() throws Exception {
-        return new Menu(30,30);
     }
     public PauseMenuModel getModel() {
         return pauseMenuModel;
@@ -51,7 +48,6 @@ public class PauseMenuState implements State {
                 case DOWN -> getModel().nextOption();
                 case ENTER -> {
                     ApplicationState applicationState = getModel().validateApplicationState();
-                    menuController.setApplicationState(applicationState);
                     try {
                         menuController.changeState(applicationState);
                     } catch (Exception e) {

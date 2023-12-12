@@ -16,8 +16,11 @@ import java.util.List;
 public class MiniTrackingShot extends ShotElement{
     private MiniTrackingShotView miniTrackingShotView;
     Position position;
-    public MiniTrackingShot(Position position, int yVelocity) {
+
+    private Arena arena;
+    public MiniTrackingShot(Position position, int yVelocity,Arena arena) {
         super(position, yVelocity,5);
+        this.arena = arena;
     }
     public Position findClosestEnemy(Arena arena,Position Shotposition){
         List<Position> enemyPositions = new ArrayList<>();

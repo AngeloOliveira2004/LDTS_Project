@@ -15,14 +15,17 @@ public class GameController {
     private State state;
     private ApplicationState applicationState;
     MenuController menuController;
+    MusicController musicController;
     private Menu menuModel;
     private MenuGUI gui;
     private EnemiesFactory enemiesFactory;
     private GameState gameState;
-    public GameController(MenuController menuController) throws IOException {
+
+    public GameController(MenuController menuController, MusicController musicController) throws IOException {
         this.menuController = menuController;
         this.applicationState = ApplicationState.Game;
         this.enemiesFactory = new EnemiesFactory();
+        this.musicController = musicController;
     }
     public void changeState(ApplicationState state) throws IOException {
         switch (state)
@@ -31,7 +34,7 @@ public class GameController {
                 this.applicationState = ApplicationState.Game;
                 if(this.gameState == null)
                 {
-                    GameState gameState = new GameState(this);
+                    GameState gameState = new GameState(this, this.musicController);
                     this.gameState = gameState;
                     this.state = gameState;
                     this.gameState.run();

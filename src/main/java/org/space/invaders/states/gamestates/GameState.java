@@ -5,6 +5,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 import org.space.invaders.control.GameController;
+import org.space.invaders.control.MusicController;
 import org.space.invaders.control.command.EnemiesController;
 import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.Arena;
@@ -21,6 +22,7 @@ import java.sql.SQLOutput;
 
 public class GameState implements State {
   private final GameController gameController;
+  private final MusicController musicController;
   private GameViewer gameViewer;
   private SpaceShip spaceShip;
   private PlayerController playerController;
@@ -31,11 +33,12 @@ public class GameState implements State {
   private Arena arena;
   private EnemiesController enemiesController;
   private boolean isPaused;
-  public GameState(GameController gameController) throws IOException {
+  public GameState(GameController gameController, MusicController musicController) throws IOException {
          spaceShip = new SpaceShip(50, 50, 3, 1, 1, 0 , true , 3 , 3);
          this.arena = new Arena();
          this.running = true;
          this.gameController = gameController;
+         this.musicController = musicController;
          this.gameViewer = new GameViewer(this.gameController);
          this.playerController = new PlayerController(spaceShip);
          arena.addObject(spaceShip);
@@ -61,7 +64,6 @@ public class GameState implements State {
 
 public void run() throws IOException{
     lastFrameTime = System.nanoTime();
-
     while (running) {
         long now = System.nanoTime();
         long elapsedTime = now - lastFrameTime;

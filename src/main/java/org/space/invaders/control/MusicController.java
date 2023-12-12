@@ -9,11 +9,13 @@ import java.net.URL;
 
 public class MusicController {
     Clip clip;
-    URL soundURL[] = new URL[3];
+    URL soundURL[] = new URL[5];
     public MusicController(){
         soundURL[0] = getClass().getResource("/Resources/Background.wav");
-        soundURL[1] = getClass().getResource("/Resources/Moving.wav");
-        soundURL[2] = getClass().getResource("/Resources/Shot.wav");
+        soundURL[1] = getClass().getResource("/Resources/MenuBackground.wav");
+        soundURL[2] = getClass().getResource("/Resources/Moving.wav");
+        soundURL[3] = getClass().getResource("/Resources/Shot.wav");
+        soundURL[4] = getClass().getResource("/Resources/GotHit.wav");
     }
     public void setFile(int i) {
         try {

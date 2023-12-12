@@ -25,7 +25,10 @@ public class GameController {
         this.menuController = menuController;
         this.applicationState = ApplicationState.Game;
         this.enemiesFactory = new EnemiesFactory();
-        this.musicController = musicController;
+        this.musicController = new MusicController();
+        musicController.setFile(0); //background music index
+        musicController.play();
+        musicController.loop();
     }
     public void changeState(ApplicationState state) throws IOException {
         switch (state)
@@ -34,7 +37,7 @@ public class GameController {
                 this.applicationState = ApplicationState.Game;
                 if(this.gameState == null)
                 {
-                    GameState gameState = new GameState(this, this.musicController);
+                    GameState gameState = new GameState(this);
                     this.gameState = gameState;
                     this.state = gameState;
                     this.gameState.run();

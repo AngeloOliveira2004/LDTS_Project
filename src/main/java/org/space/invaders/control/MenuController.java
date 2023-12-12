@@ -24,7 +24,10 @@ public class MenuController {
         }
         this.applicationState = ApplicationState.MainMenu;
         changeState(applicationState);
-        musicController = new MusicController();
+        this.musicController = new MusicController();
+        musicController.setFile(1); //menu background music index
+        musicController.play();
+        musicController.loop();
     }
 /*
     public void run(MenuGUI gui) throws IOException {

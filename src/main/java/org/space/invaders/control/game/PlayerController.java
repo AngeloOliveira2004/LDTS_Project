@@ -104,6 +104,7 @@ public class PlayerController {
     private void shot(Arena arena)
     {
         arena.addShot(new Shot(spaceShip.getPosition(), 1 , 5));
+
     }
     private boolean isInsideBorders(Position position)
     {

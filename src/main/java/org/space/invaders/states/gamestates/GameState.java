@@ -91,13 +91,17 @@ public void run() throws IOException{
         gameViewer.close();
     }
     private void handleInput(KeyStroke keyStroke) throws IOException {
+        if(arena.getLifes().getLifes() == 0)
+        {
+            gameViewer.close();
+            // Exit the game
+            gameController.changeState(ApplicationState.GameOverMenu);
+        }
         if (keyStroke != null) {
             if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
                 gameViewer.close();
                 // Exit the game
-                gameController.changeState(ApplicationState.GameOverMenu);
-
-                gameController.changeState(ApplicationState.GameOverMenu);
+                gameController.changeState(ApplicationState.PauseMenu);
             }else
             {
                 playerController.keyPressed(keyStroke , arena);

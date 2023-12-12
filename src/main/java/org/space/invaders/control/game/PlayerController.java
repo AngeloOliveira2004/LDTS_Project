@@ -4,29 +4,24 @@ import com.googlecode.lanterna.input.KeyStroke;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.SpaceShip;
+import org.space.invaders.model.game.creator.ShotFactory;
+import org.space.invaders.model.game.elements.MiniShot;
 import org.space.invaders.model.game.elements.Shot;
 import static org.space.invaders.Constants.HEIGHT;
 import static org.space.invaders.Constants.WIDTH;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.PrimitiveIterator;
 
 public class PlayerController {
     private SpaceShip spaceShip;
+    private ShotFactory shotFactory;
 
-    //getState of the spaceship ig to determine
-    private boolean canTransform()
-    {
-        /*
-        if(isMiniSpaceship){
-             check if theres space to transform
-        }
-         */
-        return true;
-    }
     public PlayerController(SpaceShip spaceShip)
     {
         this.spaceShip = spaceShip;
+        this.shotFactory = new ShotFactory();
     }
     public SpaceShip getSpaceShip() {
         return spaceShip;
@@ -85,13 +80,12 @@ public class PlayerController {
             case Character:
                 if (key.getCharacter() == ' ') {
                     if (spaceShip.isMini()) {
-                        spaceShip.miniShot();
-                        shot(arena);
+                        arena.addShot(shotFactory.createMiniShot(spaceShip.getPosition()));
                     } else if(key.getCharacter() == 'm') {
                         spaceShip.toggleMini(!spaceShip.isMini());
                     }else
                     {
-                        shot(arena);
+                        arena.addShot(shotFactory.createShot(spaceShip.getPosition()));
                     }
                 }
                 break;
@@ -99,12 +93,6 @@ public class PlayerController {
             default:
                 break;
         }
-    }
-
-    private void shot(Arena arena)
-    {
-        arena.addShot(new Shot(spaceShip.getPosition(), 1 , 5));
-
     }
     private boolean isInsideBorders(Position position)
     {

@@ -2,18 +2,15 @@ package org.space.invaders.control.command;
 
 import org.space.invaders.control.game.DefaultEnemyController;
 import org.space.invaders.control.game.EnemyLogic;
-import org.space.invaders.control.game.KamikazeLogic;
+import org.space.invaders.control.game.KamikazeController;
 import org.space.invaders.control.game.StrongEnemyController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
-import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.StrongEnemy;
-
-import java.util.Random;
 
 import java.util.ArrayList;
 
@@ -74,7 +71,7 @@ public class EnemiesController {
         if (currentCycle == 4 && (currentTime - lastSpawnCycleTimeKamikaze) >= 16000/difficulty) {
             KamikazeEnemy tempKamikaze = (KamikazeEnemy) enemiesFactory.createKamikaze();
             arena.addObject(tempKamikaze);
-            logics.add(new KamikazeLogic(position, tempKamikaze));
+            logics.add(new KamikazeController(position, tempKamikaze));
             kamikazeEnemyCount++;
 
             lastSpawnCycleTimeKamikaze = currentTime;

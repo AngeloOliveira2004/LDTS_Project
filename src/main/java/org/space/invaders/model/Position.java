@@ -35,5 +35,10 @@ public class Position {
         return Integer.hashCode(x) ^ Integer.hashCode(y);
     }
 
+    public double calculateDistance(Position position2) {
+        return Math.sqrt(Math.pow(position2.getX() - this.x, 2) + Math.pow(position2.getY() - this.y, 2));
+    }
+
+
 }
 

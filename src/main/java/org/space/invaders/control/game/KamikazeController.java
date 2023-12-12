@@ -5,12 +5,12 @@ import org.space.invaders.model.game.elements.KamikazeEnemy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KamikazeLogic implements EnemyLogic , PathFinding {
+public class KamikazeController implements EnemyLogic , PathFinding {
     private Position spaceshipPosition;
     private KamikazeEnemy kamikazeEnemy;
 
     private int iterations;
-    public KamikazeLogic(Position position, KamikazeEnemy kamikazeEnemy) {
+    public KamikazeController(Position position, KamikazeEnemy kamikazeEnemy) {
         this.spaceshipPosition = position;
         this.kamikazeEnemy = kamikazeEnemy;
         this.iterations = 0;

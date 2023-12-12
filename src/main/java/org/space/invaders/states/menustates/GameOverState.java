@@ -47,6 +47,18 @@ public class GameOverState implements State {
                         throw new RuntimeException(e);
                     }
                 }
+                case UP -> {
+                        gameOverModel.setAcronymletterUP();
+                }
+                case DOWN -> {
+                    gameOverModel.setAcronymletterDOWN();
+                }
+                case LEFT -> {
+                        gameOverModel.previousOptionIndex();
+                }
+                case RIGHT -> {
+                        gameOverModel.nextOptionIndex();
+                }
             }
         }
     }

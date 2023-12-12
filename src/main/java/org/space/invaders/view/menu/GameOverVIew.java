@@ -16,9 +16,18 @@ public class GameOverVIew extends MenuViewer{
     public void drawElements(MenuGUI gui) {
         GameOverModel menu = (GameOverModel) getModel();
         gui.drawText(new Position(14,3),"G A M E O V E R :)","#008000","BLINK");
+        gui.drawText(new Position(14,6),"INSERT YOUR ACRONYM","#008000","BLINK");
 
-        gui.drawSelectedText(new Position(20, 5), menu.getOption(0), "#008000", "BLINK");
+        int currentIndex = menu.getCurrentIndex();
 
-        gui.drawText(new Position(10,7),"PRESS ENTER TO RETURN TO MENU","#008000","BOLD");
+        for(int i = 0; i < menu.getAcronym().length;i++){
+            if(currentIndex == i){
+                gui.drawSelectedText(new Position(22 + i,12), menu.getAcronymValue(menu.getAcronym()[i]), "#008000", "BOLD");
+            }else{
+                gui.drawText(new Position(22 + i,12), menu.getAcronymValue(menu.getAcronym()[i]), "#008000","BOLD");
+            }
+        }
+        gui.drawText(new Position(9,8),"PRESS ENTER TO SAVE YOUR SCORE","#008000","BOLD");
+        gui.drawText(new Position(14,9),"AND GO BACK TO MENU","#008000","BOLD");
     }
 }

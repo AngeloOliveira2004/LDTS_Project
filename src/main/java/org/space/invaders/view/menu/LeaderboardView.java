@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LeaderboardView extends MenuViewer {
     public LeaderboardView(LeaderboardModel model, Screen screen) {
@@ -26,18 +28,37 @@ public class LeaderboardView extends MenuViewer {
     }
 
     public void drawLeaderboard(MenuGUI gui) {
-        String filePath = "/home/angelo/Downloads/Universidade/LDTS/project-l07gr02/src/main/Resources/Leaderboard.txt";
+        String filePath = String.format("%s/%s", System.getProperty("user.dir"), "/src/main/Resources/Leaderboard.txt");
+
+        List<String[]> entries = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            int i = 1;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                gui.drawText(new Position(13, 6 + i * 2),parts[0]+ ". " + parts[1] + " Score: " + parts[2]  , "#008000", "BOLD");
-                i++;
+                if (parts.length != 2) {
+                    continue;
+                }
+
+                try {
+                    int score = Integer.parseInt(parts[0]);
+                    String name = parts[1].trim();
+                    entries.add(new String[]{String.valueOf(score), name});
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        entries.sort((entry1, entry2) -> Integer.compare(Integer.parseInt(entry2[0]), Integer.parseInt(entry1[0])));
+
+        int maxEntries = Math.min(5, entries.size());
+        for (int i = 0; i < maxEntries; i++) {
+            String[] entry = entries.get(i);
+            gui.drawText(new Position(16, 8 + i * 2), (i + 1) + ". " + entry[1] + " Score: " + entry[0], "#008000", "BOLD");
+        }
     }
+
 }

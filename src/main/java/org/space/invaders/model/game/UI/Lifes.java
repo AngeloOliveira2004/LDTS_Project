@@ -17,6 +17,8 @@ public class Lifes {
     public int getLifes() {
         return lifes;
     }
+
+    public void killAllLifes() {this.lifes = 0;}
     public void draw(TextGraphics textGraphics) throws IOException {
         LifesView lifesView = new LifesView(this, textGraphics);
         lifesView.draw();

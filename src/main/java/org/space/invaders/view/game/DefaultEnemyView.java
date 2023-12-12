@@ -50,4 +50,4 @@ public class DefaultEnemyView extends View {
     public String[] getDesign() {
         return DefaultEnemyModel;
     }
-}
+    }

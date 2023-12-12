@@ -21,18 +21,14 @@ public class EnemiesController {
     private ArrayList<EnemyLogic> logics;
     private int kamikazeEnemyCount;
 
-
     private int defaultenemycount;
 
     private int strongEnemyCount;
     private long lastSpawnCycleTimeDefault;
     private long lastSpawnCycleTimeKamikaze;
     private long lastSpawnCycleTimeStrong;
-
     private int currentCycle;
-
     private int difficulty;
-
 
     public EnemiesController(Arena arena , EnemiesFactory enemiesFactory , ShotFactory shotFactory)
     {

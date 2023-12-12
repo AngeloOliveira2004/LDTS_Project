@@ -19,6 +19,7 @@ import java.util.List;
 public class Arena implements Collider {
     private ArrayList<Element> objects;
     private ArrayList<ShotElement> shots;
+    private ArrayList<ShotElement> enemiesShots;
     private final ArrayList<Position> starPositions;
     private Score score;
     private Lifes lifes;

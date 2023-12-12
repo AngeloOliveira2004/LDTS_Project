@@ -1,5 +1,7 @@
 package org.space.invaders.control;
 
+import org.space.invaders.control.music.MusicController;
+import org.space.invaders.control.music.Musics;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.Menu;
 import org.space.invaders.states.ApplicationState;
@@ -9,12 +11,14 @@ import org.space.invaders.states.menustates.*;
 
 import java.io.IOException;
 
+
 public class MenuController {
     private State state;
     private ApplicationState applicationState;
     private Menu menuModel;
     private MenuGUI gui;
     private GameController gameController;
+    private MusicController musicController;
     public MenuController() throws IOException {
         try {
             this.gui = new org.space.invaders.gui.Menu(50,25);
@@ -24,36 +28,11 @@ public class MenuController {
         this.applicationState = ApplicationState.MainMenu;
         changeState(applicationState);
     }
-/*
-    public void run(MenuGUI gui) throws IOException {
-        if(state == null){
-            state = new MenuState((MenuModel) model,gui);
-            state.startScreen();
-        }
-        while (state != null) {
-            menuViewer = state.getViewer();
-
-            // Updates all the variables sent to the menu, like time, score, super shot charge, etc...
-            while (state.isRunning()) {
-                state.step();
-            }
-
-            gui.close();
-
-            // Logic for going to the next state
-            setState(state.nextState());
-
-            if (state != null) {
-                state.startScreen();
-            }
-        }
-    }
-
- */
     public void changeState(ApplicationState state) throws IOException {
         switch (state)
         {
             case Game -> {
+                //musicController.playMusic(Musics.BACKGROUND);
                 this.applicationState = ApplicationState.Game;
                 this.gui.close();
                 if(this.gameController == null)
@@ -94,6 +73,7 @@ public class MenuController {
                 System.exit(0);
             }
             case MainMenu -> {
+                this.musicController = new MusicController(Musics.MENUSOUND);
                 this.applicationState = state;
                 if(this.gameController != null)
                 {

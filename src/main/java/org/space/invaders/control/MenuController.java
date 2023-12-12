@@ -98,7 +98,10 @@ public class MenuController {
                 if(this.gameController != null)
                 {
                     GameState gameState = gameController.getGameState();
-                    gameState.close();
+                    if(gameState != null)
+                    {
+                        gameState.close();
+                    }
                 }
                 gameController = null;
                 this.applicationState = ApplicationState.MainMenu;

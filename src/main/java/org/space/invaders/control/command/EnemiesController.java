@@ -6,9 +6,11 @@ import org.space.invaders.control.game.KamikazeController;
 import org.space.invaders.control.game.StrongEnemyController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
+import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
+import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.StrongEnemy;
 
@@ -102,4 +104,5 @@ public class EnemiesController {
             enemyLogic.update();
         }
     }
+
 }

@@ -10,7 +10,7 @@ public class EnemiesFactory {
         this.shotFactory = new ShotFactory();
     }
     public Element createDefaultEnemy() {
-        return new DefaultEnemy(250,10 , 1 , 20, 10 , 1 , true , 3 , 3);
+        return new DefaultEnemy(250,10 , 1 , 2, 10 , 1 , true , 3 , 3);
     }
     public Element createStrongerEnemy() {
         return new StrongEnemy(150,10 , 1 , 1, 20 , 1 , true , 3 , 3);

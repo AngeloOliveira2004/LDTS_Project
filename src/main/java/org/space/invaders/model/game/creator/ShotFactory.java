@@ -16,6 +16,10 @@ public class ShotFactory {
         Position position_ = new Position(position.x + 3 , position.y - 4);
         return new MiniShot(position_, 1);
     }
+    public ShotElement createEnemyShot(Position position) {
+        Position position_ = new Position(position.x + 8 , position.y - 4);
+        return new Shot(position_ , -1 , 5);
+    }
     public ShotElement createTrackingShot()
     {
         return null;

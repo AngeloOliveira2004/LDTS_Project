@@ -7,6 +7,7 @@ import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.UI.Lifes;
 import org.space.invaders.model.game.UI.Score;
 import org.space.invaders.model.game.UI.Time;
+import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.*;
 import org.space.invaders.view.GameViewer;
 
@@ -24,8 +25,9 @@ public class Arena implements Collider {
     private Score score;
     private Lifes lifes;
     private Time time;
-
+    private ShotFactory shotFactory;
     private Planet planet;
+    private int currentCycle;
     public Arena() throws IOException {
         this.starPositions = new ArrayList<>();
         this.objects = new ArrayList<>();
@@ -35,10 +37,17 @@ public class Arena implements Collider {
         this.lifes = new Lifes();
         this.time = new Time();
         this.planet = new Planet(15,250,0,0,0,0,true,3,3);
+        this.enemiesShots = new ArrayList<>();
+        this.shotFactory = new ShotFactory();
+        this.currentCycle = 0;
     }
     public void addObject(Element object)
     {
         objects.add(object);
+    }
+
+    public void addEnemyShot(ShotElement shotElement){
+        enemiesShots.add(shotElement);
     }
     public void removeObject(Element object)
     {
@@ -58,6 +67,47 @@ public class Arena implements Collider {
     {
         shots.removeIf(shotElement -> !shotElement.isInsideBorders());
     }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public Lifes getLifes() {
+        return lifes;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public Planet getPlanet() { return planet;}
+    private void updateCycle() {
+        currentCycle = (currentCycle + 1) % 5;
+    }
+
+    public void enemiesShot()
+    {
+        for(Element enemy : objects){
+            if(enemy.getClass() != SpaceShip.class)
+            {
+                if(enemy.getClass() != DefaultEnemy.class)
+                {
+                    if(currentCycle % 17 == 1)
+                    {
+                        addEnemyShot(shotFactory.createEnemyShot(enemy.getPosition()));
+                    }
+                }
+                if(enemy.getClass() != StrongEnemy.class)
+                {
+                    if(currentCycle % 3 == 1)
+                    {
+                       addEnemyShot(shotFactory.createEnemyShot(enemy.getPosition()));
+                    }
+                }
+            }
+        }
+    }
+
     public void update(SpaceShip spaceShip) {
         // Remove elements from 'objects' list
         removeOutofBoundsShots();
@@ -106,6 +156,7 @@ public class Arena implements Collider {
                 if (element.getClass() != SpaceShip.class) {
                     if (checkColisions(spaceShip.getOccupiedPositions(), element.getOccupiedPositions()))
                     {
+                        if(element.getClass() == KamikazeEnemy.class){objectToRemove.add(element);}
                         lifes.decrementLifes();
                         spaceShip.setInvincible(true);
                         break;
@@ -114,6 +165,17 @@ public class Arena implements Collider {
             }
         }
 
+        if(!spaceShip.isInvincible()) {
+            for (ShotElement shotElement : enemiesShots) {
+                if (checkColisionsWithShots(spaceShip.getOccupiedPositions(), shotElement.getPosition()))
+                {
+                    lifes.decrementLifes();
+                    spaceShip.setInvincible(true);
+                    shotsToRemove.add(shotElement);
+                    break;
+                }
+            }
+        }
         for (Element elementToRemove : objectToRemove) {
             objects.remove(elementToRemove);
         }
@@ -124,20 +186,11 @@ public class Arena implements Collider {
         }
         if(spaceShip.isInvincible())
             spaceShip.calculateInvincibility();
-        //TODO CHECK IF LIVES ARE <0 AND ENDGAME
+
+
+        enemiesShot();
+        updateCycle();
     }
 
-    public Score getScore() {
-        return score;
-    }
 
-    public Lifes getLifes() {
-        return lifes;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public Planet getPlanet() { return planet;}
 }

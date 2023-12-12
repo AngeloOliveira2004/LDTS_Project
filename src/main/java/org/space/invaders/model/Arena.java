@@ -94,6 +94,10 @@ public class Arena implements Collider {
                     }
                 }
             }
+            if (element.getPosition().getX() >= 0 && element.getPosition().getX() <= 20 && element.getPosition().getY() >= 240 && element.getPosition().getY() <= 280) {
+                lifes.killAllLifes();
+                break;
+            }
         }
 
         if(!spaceShip.isInvincible()) {

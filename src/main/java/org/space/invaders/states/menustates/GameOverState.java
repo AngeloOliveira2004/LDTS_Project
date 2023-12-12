@@ -5,12 +5,13 @@ import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.GameOverModel;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
-import org.space.invaders.view.menu.GameOverVIew;
+import org.space.invaders.view.menu.GameOverView;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class GameOverState implements State {
-    private final GameOverVIew gameOverVIew;
+    private final GameOverView gameOverVIew;
     MenuGUI gui;
     private MenuController menuController;
 
@@ -20,7 +21,7 @@ public class GameOverState implements State {
         this.menuController = menuController;
         this.gui = gui;
         this.gameOverModel = new GameOverModel();
-        this.gameOverVIew = new GameOverVIew(gameOverModel , gui.getScreen());
+        this.gameOverVIew = new GameOverView(gameOverModel , gui.getScreen());
     }
     @Override
     public void step() {
@@ -41,8 +42,11 @@ public class GameOverState implements State {
             switch (action) {
                 case ENTER -> {
                     try {
+                        String path = String.format("%s/%s", System.getProperty("user.dir"), "/src/main/Resources/Leaderboard.txt");
+                        writeFinalAcronymToFile(gameOverModel.getNamedAcronym(), path);
                         menuController.setApplicationState(ApplicationState.MainMenu);
                         menuController.changeState(ApplicationState.MainMenu);
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -86,5 +90,14 @@ public class GameOverState implements State {
     @Override
     public void close() throws IOException {
         gui.close();
+    }
+
+    public static void writeFinalAcronymToFile(String[] acronym, String filename) {
+        try (FileWriter writer = new FileWriter(filename, true)) {
+            String finalString = acronym[0] + acronym[1] + acronym[2];
+            writer.write(finalString + '\n');
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

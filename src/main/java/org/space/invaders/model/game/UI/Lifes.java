@@ -10,7 +10,7 @@ public class Lifes {
     private int lifes;
     public Lifes()
     {
-        this.lifes = 1;
+        this.lifes = 5;
     }
     public void decrementLifes(){this.lifes--;}
     public void incrementLifes(){this.lifes++;}

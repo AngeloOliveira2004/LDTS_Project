@@ -4,11 +4,10 @@ import com.googlecode.lanterna.screen.Screen;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.menu.GameOverModel;
-import org.space.invaders.model.game.menu.InstructionsModel;
 
-public class GameOverVIew extends MenuViewer{
+public class GameOverView extends MenuViewer{
 
-    public GameOverVIew(GameOverModel model, Screen screen) {
+    public GameOverView(GameOverModel model, Screen screen) {
         super(model, screen);
     }
 
@@ -30,4 +29,7 @@ public class GameOverVIew extends MenuViewer{
         gui.drawText(new Position(9,8),"PRESS ENTER TO SAVE YOUR SCORE","#008000","BOLD");
         gui.drawText(new Position(14,9),"AND GO BACK TO MENU","#008000","BOLD");
     }
+
+
+
 }

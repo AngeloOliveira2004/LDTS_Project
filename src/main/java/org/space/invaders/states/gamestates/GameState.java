@@ -16,7 +16,13 @@ import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.GameViewer;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLOutput;
 
 public class GameState implements State {
@@ -97,7 +103,8 @@ public void run() throws IOException{
         if(arena.getLifes().getLifes() == 0)
         {
             gameViewer.close();
-            // Exit the game
+            String path = String.format("%s/%s", System.getProperty("user.dir"), "/src/main/Resources/Leaderboard.txt");
+            writeFinalScoreToFile(arena.getScore().getScore(),path);
             gameController.changeState(ApplicationState.GameOverMenu);
         }
         if (keyStroke != null) {
@@ -118,6 +125,15 @@ public void run() throws IOException{
 
     public void setPaused(boolean paused) {
         isPaused = paused;
+    }
+
+    public static void writeFinalScoreToFile(long finalScore, String filename) {
+        try (FileWriter writer = new FileWriter(filename, true)) {
+            int writeValue = (int) finalScore;
+            writer.write(String.valueOf(finalScore) + ",");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

@@ -50,6 +50,11 @@ public class GameOverModel extends Menu{
         return currentIndex;
     }
 
+    public String[] getNamedAcronym(){
+        String[] acronym = {getAcronymValue(getAcronym()[0]),getAcronymValue(getAcronym()[1]),getAcronymValue(getAcronym()[2])};
+        return acronym;
+    }
+
 
     public void setAcronymletterUP() {
         if (currentIndex >= 0 && currentIndex < acronym.length) {

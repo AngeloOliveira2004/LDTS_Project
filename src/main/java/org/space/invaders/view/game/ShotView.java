@@ -13,12 +13,15 @@ public class ShotView extends View{
     private ShotController shotController;
     int yVelocity = 1;
     private int bool;
+    private Shot shot;
     private Position position;
     public ShotView(TextGraphics textGraphics , Shot shot) {
         super(0,0 , textGraphics);
         this.position = shot.getPosition();
         this.yVelocity = 1;
+        this.shot = shot;
         shotController = new ShotController(shot);
+        this.bool = bool;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class ShotView extends View{
                         (int)(position.y + yVelocity + 5)),
                 new TerminalSize(1,1), ' ');
         shotController.update();
-        bool = 0;
+        shot.resetCount();
 
     }
 }

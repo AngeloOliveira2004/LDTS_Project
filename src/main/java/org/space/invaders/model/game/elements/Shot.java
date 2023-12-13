@@ -1,14 +1,9 @@
 package org.space.invaders.model.game.elements;
 
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.TextColor;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.model.Position;
 import org.space.invaders.view.game.ShotView;
-import org.space.invaders.view.game.SpaceshipView;
-
-import java.security.PublicKey;
-
 
 public class Shot extends ShotElement {
     private ShotView shotView;
@@ -20,8 +15,10 @@ public class Shot extends ShotElement {
     }
     @Override
     public void draw(TextGraphics textGraphics) {
+
         shotView = new ShotView(textGraphics, this);
         shotView.draw();
+        resetCount();
     }
 
     public void addCount()

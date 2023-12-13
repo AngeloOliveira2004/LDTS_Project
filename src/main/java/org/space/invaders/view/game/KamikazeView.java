@@ -48,19 +48,6 @@ public class KamikazeView extends View{
         int y = (int)kamikazeEnemy.getPosition().getY();
         drawImage(KamikazeModel, x, y , positions);
         kamikazeEnemy.setOccupiedPositions(positions);
-        /*
-        if (check == 0) {
-            for (Position position : positions) {
-                System.out.println(position.x);
-                System.out.println(position.y);
-                this.check++;
-                System.out.println("-------------------------------------------------------------");
-            }
-
-        } else {
-            System.out.println("Check is already false.");
-        }
-         */
       }
     @Override
     public void draw() throws IOException {

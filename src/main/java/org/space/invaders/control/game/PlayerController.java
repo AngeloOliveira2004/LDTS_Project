@@ -1,20 +1,12 @@
 package org.space.invaders.control.game;
 
 import com.googlecode.lanterna.input.KeyStroke;
-import org.space.invaders.control.music.MusicController;
-import org.space.invaders.control.music.Musics;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.creator.ShotFactory;
-import org.space.invaders.model.game.elements.MiniShot;
-import org.space.invaders.model.game.elements.Shot;
 import static org.space.invaders.Constants.HEIGHT;
 import static org.space.invaders.Constants.WIDTH;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.PrimitiveIterator;
 
 public class PlayerController {
     private SpaceShip spaceShip;

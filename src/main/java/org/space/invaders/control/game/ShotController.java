@@ -11,8 +11,6 @@ public class ShotController {
     {
         this.shot = shot;
     }
-    //todo maybe receive arena as parameter and take remove element if its out of bounds
-    //todo
     public void update()
     {
         Position position = new Position(shot.getXposition() , shot.getYposition() - shot.getYVelocity());

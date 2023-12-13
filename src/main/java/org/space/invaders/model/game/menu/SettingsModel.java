@@ -1,8 +1,5 @@
 package org.space.invaders.model.game.menu;
-
-import org.space.invaders.model.Model;
 import org.space.invaders.states.ApplicationState;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;

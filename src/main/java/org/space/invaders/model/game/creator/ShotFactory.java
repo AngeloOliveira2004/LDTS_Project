@@ -4,7 +4,6 @@ import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.MiniShot;
 import org.space.invaders.model.game.elements.Shot;
 import org.space.invaders.model.game.elements.ShotElement;
-import org.space.invaders.model.game.elements.SuperShot;
 
 public class ShotFactory {
     public ShotElement createShot(Position position) {

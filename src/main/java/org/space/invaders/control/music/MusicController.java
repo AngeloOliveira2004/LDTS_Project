@@ -15,13 +15,13 @@ public class MusicController {
     {
     }
 
-
     public void changeMusic(Musics musics)
     {
         this.musics = musics;
         switch (musics)
         {
             case MENUSOUND -> {
+
                 if(this.clip != null)
                 {
                     clip.stop();
@@ -56,6 +56,7 @@ public class MusicController {
                 clip.open(audioInputStream);
                 this.clip = clip;
                 this.volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                volumeControl.setValue(Float.NEGATIVE_INFINITY);
                 adjustVolume();
                 clip.start();
             }

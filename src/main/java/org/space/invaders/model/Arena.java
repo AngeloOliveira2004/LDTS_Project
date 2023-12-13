@@ -135,7 +135,7 @@ public class Arena implements Collider {
                         }
                         shotsToRemove.add(shotElement);
                     }
-                }else if(element.getClass() != SpaceShip.class && shotElement.getYVelocity() == 1)
+                }else if(element.getClass() != SpaceShip.class && shotElement.getYVelocity() == 4 || shotElement.getYVelocity() == 1)
                 {
                     if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
                     {

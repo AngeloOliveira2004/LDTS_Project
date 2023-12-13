@@ -22,7 +22,7 @@ public class MiniShotView extends View{
     @Override
     public void draw() throws IOException {
         {
-            setColor('W');
+            setColor('Y');
             graphics.putString(position.x +4, position.y - yVelocity, "|");
             graphics.fillRectangle(new TerminalPosition((int)(position.x +4),
                             (int)(position.y + yVelocity + 5)),

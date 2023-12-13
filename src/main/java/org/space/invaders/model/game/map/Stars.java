@@ -1,10 +1,10 @@
 package org.space.invaders.model.game.map;
 
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.space.invaders.Constants;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.Dimensions;
+import org.space.invaders.view.game.StarsView;
 
 
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Stars extends Position implements Dimensions {
-    private static final int NUM_STARS = 50;
-
+    private static final int NUM_STARS = 150;
+    public static final double STAR_SPEED = 1;
     private final List<Stars.StarPosition> starPositions;
 
     public static class StarPosition extends Position {
@@ -29,7 +29,7 @@ public class Stars extends Position implements Dimensions {
     public Stars()
     {
         super(0, 0);
-        starPositions = new ArrayList<>();
+        starPositions = generateRandomStarPositions();
     }
 
     private List<Stars.StarPosition> generateRandomStarPositions() {
@@ -46,17 +46,17 @@ public class Stars extends Position implements Dimensions {
                 int randomX, randomY;
 
                 if (quadrant == 0) {
-                    randomX = random.nextInt(Dimensions.screenWidth / 2);
-                    randomY = random.nextInt(Dimensions.screenHeight);
+                    randomX = random.nextInt(Constants.WIDTH/ 2);
+                    randomY = random.nextInt(Constants.HEIGHT);
                 } else if (quadrant == 1) {
-                    randomX = random.nextInt(Dimensions.screenWidth / 2) + Dimensions.screenWidth / 2;
-                    randomY = random.nextInt(Dimensions.screenHeight / 2);
+                    randomX = random.nextInt(Constants.WIDTH / 2) + Constants.WIDTH / 2;
+                    randomY = random.nextInt(Constants.HEIGHT / 2);
                 } else if (quadrant == 2) {
-                    randomX = random.nextInt(Dimensions.screenWidth);
-                    randomY = random.nextInt(Dimensions.screenHeight / 2) + Dimensions.screenHeight / 2;
+                    randomX = random.nextInt(Constants.WIDTH);
+                    randomY = random.nextInt(Constants.HEIGHT / 2) + Constants.HEIGHT / 2;
                 } else {
-                    randomX = random.nextInt(Dimensions.screenWidth / 2) + Dimensions.screenWidth / 2;
-                    randomY = random.nextInt(Dimensions.screenHeight / 2) + Dimensions.screenHeight / 2;
+                    randomX = random.nextInt(Constants.WIDTH / 2) + Constants.WIDTH / 2;
+                    randomY = random.nextInt(Constants.HEIGHT / 2) + Constants.HEIGHT / 2;
                 }
                 positions.add(new Stars.StarPosition(randomX, randomY));
                 remainingStars--;
@@ -64,8 +64,8 @@ public class Stars extends Position implements Dimensions {
         }
 
         for (int i = 0; i < remainingStars; i++) {
-            int randomX = random.nextInt(Dimensions.screenWidth);
-            int randomY = random.nextInt(Dimensions.screenHeight);
+            int randomX = random.nextInt(Constants.WIDTH);
+            int randomY = random.nextInt(Constants.HEIGHT);
             positions.add(new Stars.StarPosition(randomX, randomY));
         }
 
@@ -73,17 +73,11 @@ public class Stars extends Position implements Dimensions {
     }
 
     public void draw(TextGraphics screen) {
-        TextCharacter character = new TextCharacter('*');
-        character = character.withBackgroundColor(TextColor.ANSI.BLACK);
-        character = character.withForegroundColor(TextColor.ANSI.WHITE);
-        for (Stars.StarPosition starPosition : starPositions) {
-            int x = starPosition.getX();
-            int y = starPosition.getY();
-
-            screen.setCharacter(x, y, character);
-        }
+        StarsView starsView = new StarsView(screen, this);
+        starsView.draw();
+        starsView.moveStars();
     }
-    public List<StarPosition> getStarPosition() {
+    public List<Stars.StarPosition> getStarPosition() {
         return starPositions;
     }
 }

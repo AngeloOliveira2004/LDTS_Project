@@ -1,9 +1,5 @@
 package org.space.invaders.model;
 
-
-import org.space.invaders.control.command.EnemiesController;
-import org.space.invaders.control.music.MusicController;
-import org.space.invaders.control.music.Musics;
 import org.space.invaders.model.game.Collider;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.UI.Lifes;
@@ -11,13 +7,12 @@ import org.space.invaders.model.game.UI.Score;
 import org.space.invaders.model.game.UI.Time;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.*;
-import org.space.invaders.view.GameViewer;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
+import org.space.invaders.model.game.map.Stars;
 
 public class Arena implements Collider {
     private ArrayList<Element> objects;
@@ -30,6 +25,7 @@ public class Arena implements Collider {
     private ShotFactory shotFactory;
     private Planet planet;
     private int currentCycle;
+    private Stars stars;
     public Arena() throws IOException {
         this.starPositions = new ArrayList<>();
         this.objects = new ArrayList<>();
@@ -41,6 +37,7 @@ public class Arena implements Collider {
         this.enemiesShots = new ArrayList<>();
         this.shotFactory = new ShotFactory();
         this.currentCycle = 0;
+        this.stars = new Stars();
     }
     public void addObject(Element object)
     {
@@ -58,8 +55,11 @@ public class Arena implements Collider {
     {
         return objects;
     }
+    public List<Stars.StarPosition> getStarPositions(){return stars.getStarPosition();}
     public ArrayList<ShotElement> getShots(){return shots;}
-    public ArrayList<Position> getStarPositions(){return starPositions;}
+    public Stars getStars(){
+        return stars;
+    }
     public void addShot(ShotElement shotElement)
     {
         shots.add(shotElement);

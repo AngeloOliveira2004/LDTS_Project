@@ -47,7 +47,7 @@ public class GameViewer {
         // TODO: Implement drawing game elements based on the game state
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.fillRectangle(new TerminalPosition(0, 0), screen.getTerminalSize(), ' ');
-
+        arena.getStars().draw(textGraphics);
         for(Element element : arena.getObjects())
         {
             element.draw(textGraphics);
@@ -60,6 +60,7 @@ public class GameViewer {
         {
             shotElement.draw(textGraphics);
         }
+
         arena.getTime().draw(textGraphics);
 
         arena.getScore().draw(textGraphics);

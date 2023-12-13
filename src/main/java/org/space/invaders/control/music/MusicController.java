@@ -81,6 +81,7 @@ public class MusicController {
             if (clip.isRunning()) {
                 // If the clip is running, adjust the volume without restarting
                 switch (musicVolume) {
+                    case 0 -> volumeControl.setValue(Float.NEGATIVE_INFINITY);
                     case 1 -> volumeControl.setValue(-6f);
                     case 2 -> volumeControl.setValue(-3f);
                     case 3 -> volumeControl.setValue(0f);

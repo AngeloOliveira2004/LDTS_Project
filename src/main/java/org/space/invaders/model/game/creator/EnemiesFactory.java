@@ -19,7 +19,7 @@ public class EnemiesFactory {
         return null;
     }
     public Element createAsteroid(){return null;}
-    public Element createKamikaze(){return new KamikazeEnemy(150,10 , 1 , 1, 5 , 1 , true , 3 , 3);}
+    public Element createKamikaze(){return new KamikazeEnemy(150,10 , 7 , 7, 5 , 1 , true , 3 , 3);}
     public ShotFactory getShotFactory() {
         return shotFactory;
     }

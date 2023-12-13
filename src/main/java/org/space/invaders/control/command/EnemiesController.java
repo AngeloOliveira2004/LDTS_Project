@@ -49,6 +49,10 @@ public class EnemiesController {
         this.lastSpawnCycleTimeKamikaze = System.currentTimeMillis();
         this.currentCycle = 0;
         this.difficulty = getDifficulty();
+        if(this.difficulty == 0)
+        {
+            difficulty = 1;
+        }
     }
     public void DefaultEnemySpawner(Position position) {
         long currentTime = System.currentTimeMillis();

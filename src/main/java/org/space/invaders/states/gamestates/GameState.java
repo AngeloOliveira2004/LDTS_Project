@@ -31,7 +31,7 @@ public class GameState implements State {
   private EnemiesController enemiesController;
   private boolean isPaused;
   public GameState(GameController gameController) throws IOException {
-         spaceShip = new SpaceShip(50, 50, 3, 1, 1, 0 , true , 3 , 3);
+         spaceShip = new SpaceShip(275, 200, 3, 1, 1, 0 , true , 3 , 3);
          this.arena = new Arena();
          this.running = true;
          this.gameController = gameController;

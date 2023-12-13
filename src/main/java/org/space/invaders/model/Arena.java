@@ -35,7 +35,6 @@ public class Arena implements Collider {
         this.objects = new ArrayList<>();
         this.shots = new ArrayList<>();
         this.score = new Score();
-        //TODO MUDAR CONSOANTE O SCORE E DIFICULDADE
         this.lifes = new Lifes();
         this.time = new Time();
         this.planet = new Planet(15,250,0,0,0,0,true,3,3 , 0);
@@ -89,7 +88,6 @@ public class Arena implements Collider {
     public ArrayList<ShotElement> getEnemiesShots(){return enemiesShots;}
     public void enemiesShots()
     {
-        System.out.println(currentCycle);
         for(Element enemy : objects){
             if(enemy.getClass() != SpaceShip.class)
             {
@@ -135,7 +133,7 @@ public class Arena implements Collider {
                         }
                         shotsToRemove.add(shotElement);
                     }
-                }else if(element.getClass() != SpaceShip.class && shotElement.getYVelocity() == 4 || shotElement.getYVelocity() == 1)
+                }else if(element.getClass() != SpaceShip.class && (shotElement.getYVelocity() == 4 || shotElement.getYVelocity() == 1))
                 {
                     if(checkColisionsWithShots(element.getOccupiedPositions() , shotElement.getPosition()))
                     {
@@ -186,7 +184,6 @@ public class Arena implements Collider {
             score.incrementScore(elementToRemove.getScore());
         }
 
-        // Remove elements from 'shots' list
         for (ShotElement shotToRemove : shotsToRemove) {
             shots.remove(shotToRemove);
         }

@@ -77,19 +77,28 @@ public class MusicController {
 
         int musicVolume = readMusicVolume(filePath);
         System.out.println(musicVolume);
-
+        boolean musicsTemporary = musics.equals(Musics.MENUSOUND);
         if (clip != null && volumeControl != null) {
             if (clip.isRunning()) {
-                // If the clip is running, adjust the volume without restarting
-                switch (musicVolume) {
-                    case 0 -> volumeControl.setValue(Float.NEGATIVE_INFINITY);
-                    case 1 -> volumeControl.setValue(-6f);
-                    case 2 -> volumeControl.setValue(-3f);
-                    case 3 -> volumeControl.setValue(0f);
-                    case 4 -> volumeControl.setValue(3f);
-                    case 5 -> volumeControl.setValue(6f);
+                if(musicsTemporary) {
+                    switch (musicVolume) {
+                        case 0 -> volumeControl.setValue(Float.NEGATIVE_INFINITY);
+                        case 1 -> volumeControl.setValue(-6f);
+                        case 2 -> volumeControl.setValue(-3f);
+                        case 3 -> volumeControl.setValue(0f);
+                        case 4 -> volumeControl.setValue(3f);
+                        case 5 -> volumeControl.setValue(6f);
+                    }
+                }else{
+                    switch (musicVolume) {
+                        case 0 -> volumeControl.setValue(Float.NEGATIVE_INFINITY);
+                        case 1 -> volumeControl.setValue(-19f);
+                        case 2 -> volumeControl.setValue(-18f);
+                        case 3 -> volumeControl.setValue(-16f);
+                        case 4 -> volumeControl.setValue(-15f);
+                        case 5 -> volumeControl.setValue(-14f);
+                    }
                 }
-
                 this.volume = musicVolume;
             } else {
                 // If the clip is not running, start it with the adjusted volume

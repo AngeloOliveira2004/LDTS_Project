@@ -1,2 +1,2 @@
-Difficulty:,5
-Music Volume:,5
+Difficulty:,4
+Music Volume:,1

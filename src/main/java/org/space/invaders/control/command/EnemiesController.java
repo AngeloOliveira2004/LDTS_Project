@@ -14,6 +14,9 @@ import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.StrongEnemy;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EnemiesController {
@@ -45,12 +48,11 @@ public class EnemiesController {
         this.lastSpawnCycleTimeStrong = System.currentTimeMillis();
         this.lastSpawnCycleTimeKamikaze = System.currentTimeMillis();
         this.currentCycle = 0;
-        this.difficulty = 1;
-
+        this.difficulty = getDifficulty();
     }
     public void DefaultEnemySpawner(Position position) {
         long currentTime = System.currentTimeMillis();
-
+        System.out.println(difficulty);
         if (currentCycle % 2 == 0 && (currentTime - lastSpawnCycleTimeDefault) >= 4000/difficulty) {
             DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
             arena.addObject(tempDefaultEnemy);
@@ -105,4 +107,24 @@ public class EnemiesController {
         }
     }
 
+    private int getDifficulty()
+    {
+        String fileName = "sound.txt";
+        String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Difficulty:")) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 2) {
+                        return Integer.parseInt(parts[1].trim());
+                    }
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
 }

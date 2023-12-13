@@ -19,7 +19,7 @@ public class InstructionsView extends MenuViewer{
         gui.drawSelectedText(new Position(20, 5), menu.getOption(0), "#008000", "BLINK");
 
         gui.drawText(new Position(10,7),"ARROW KEYS: Move your Spaceship","#008000","BOLD");
-        gui.drawText(new Position(10,9),"SHIFT: Morph into Mini Spaceship","#008000","BOLD");
+        gui.drawText(new Position(10,9),"ENTER: Morph into Mini Spaceship","#008000","BOLD");
         gui.drawText(new Position(10,11),"SPACE: Normal Shot","#008000","BOLD");
         gui.drawText(new Position(12,16),"Your only motto should be:","#008000","BOLD");
         gui.drawText(new Position(10,17),"Defend the earth or die trying","#008000","BOLD");

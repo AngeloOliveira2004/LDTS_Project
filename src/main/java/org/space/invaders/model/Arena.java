@@ -2,6 +2,8 @@ package org.space.invaders.model;
 
 
 import org.space.invaders.control.command.EnemiesController;
+import org.space.invaders.control.music.MusicController;
+import org.space.invaders.control.music.Musics;
 import org.space.invaders.model.game.Collider;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.UI.Lifes;
@@ -36,7 +38,7 @@ public class Arena implements Collider {
         //TODO MUDAR CONSOANTE O SCORE E DIFICULDADE
         this.lifes = new Lifes();
         this.time = new Time();
-        this.planet = new Planet(15,250,0,0,0,0,true,3,3);
+        this.planet = new Planet(15,250,0,0,0,0,true,3,3 , 0);
         this.enemiesShots = new ArrayList<>();
         this.shotFactory = new ShotFactory();
         this.currentCycle = 0;
@@ -181,6 +183,7 @@ public class Arena implements Collider {
         }
         for (Element elementToRemove : objectToRemove) {
             objects.remove(elementToRemove);
+            score.incrementScore(elementToRemove.getScore());
         }
 
         // Remove elements from 'shots' list

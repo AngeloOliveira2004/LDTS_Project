@@ -1,6 +1,8 @@
 package org.space.invaders.control.game;
 
 import com.googlecode.lanterna.input.KeyStroke;
+import org.space.invaders.control.music.MusicController;
+import org.space.invaders.control.music.Musics;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.SpaceShip;

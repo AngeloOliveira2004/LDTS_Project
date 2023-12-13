@@ -2,7 +2,7 @@ package org.space.invaders.model.game.elements;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.space.invaders.view.game.AsteroidView;
-
+/*
 public class Asteroid extends Element{
     private AsteroidView asteroidView;
     public Asteroid(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width) {
@@ -21,3 +21,4 @@ public class Asteroid extends Element{
         return asteroidView.getAsteroidModel();
     }
 }
+*/

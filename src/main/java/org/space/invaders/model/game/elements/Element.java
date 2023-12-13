@@ -23,8 +23,9 @@ public abstract class Element implements Collider{
     private boolean alive;
     private int height;
     private int width;
+    private int score;
     private ArrayList<Position> OccupiedPositions;
-    public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width)
+    public Element(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width , int score)
     {
         this.position = new Position(x , y);
         this.Yvelocity = Yvelocity;
@@ -34,6 +35,7 @@ public abstract class Element implements Collider{
         this.alive = true;
         this.height = height;
         this.width = width;
+        this.score = score;
     }
     public Position getPosition() {
         return this.position;
@@ -141,6 +143,10 @@ public abstract class Element implements Collider{
 
     public void setOccupiedPositions(ArrayList<Position> occupiedPositions) {
         OccupiedPositions = occupiedPositions;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
 

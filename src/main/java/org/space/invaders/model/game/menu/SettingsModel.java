@@ -43,7 +43,10 @@ public class SettingsModel extends Menu {
     }
 
     public void saveHashMapToFile(Map<String, Integer> hashMap, String fileName) {
-        String filePath = "/home/angelo/Downloads/Universidade/LDTS/project-l07gr02/src/main/Resources/sound.txt";
+        fileName = "sound.txt";
+
+        String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
                 writer.write(entry.getKey() + "," + entry.getValue());
@@ -55,7 +58,9 @@ public class SettingsModel extends Menu {
     }
 
     private void readValuesFromFile(Map<String, Integer> hashMap, String fileName) {
-        String filePath = "/home/angelo/Downloads/Universidade/LDTS/project-l07gr02/src/main/Resources/sound.txt";
+        fileName = "sound.txt";
+
+        String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {

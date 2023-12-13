@@ -7,7 +7,7 @@ public class StrongEnemy extends Element {
     private StrongEnemyView strongEnemyView;
 
     public StrongEnemy(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate, boolean alive, int height, int width) {
-        super(x, y, Yvelocity, Xvelocity, Health, SpawnRate, alive, height, width);
+        super(x, y, Yvelocity, Xvelocity, Health, SpawnRate, alive, height, width , 250);
     }
 
     public void draw(TextGraphics textGraphics) {

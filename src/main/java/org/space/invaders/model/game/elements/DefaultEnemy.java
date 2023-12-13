@@ -6,7 +6,7 @@ import org.space.invaders.view.game.DefaultEnemyView;
 public class DefaultEnemy extends Element {
     private DefaultEnemyView defaultEnemyView;
     public DefaultEnemy(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate, boolean alive, int height, int width) {
-        super(x, y, Yvelocity, Xvelocity, Health, SpawnRate, alive, height, width);
+        super(x, y, Yvelocity, Xvelocity, Health, SpawnRate, alive, height, width , 150);
     }
 
     public void draw(TextGraphics textGraphics) {

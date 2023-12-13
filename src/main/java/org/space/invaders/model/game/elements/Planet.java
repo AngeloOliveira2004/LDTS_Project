@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Planet extends Element{
 
-    public Planet(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate, boolean alive, int height, int width) {
-        super(x, y, 0, 0, 10000000, 0, true, 3, 3);
+    public Planet(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate, boolean alive, int height, int width , int score) {
+        super(x, y, 0, 0, 10000000, 0, true, 3, 3 , 0);
     }
 
     @Override

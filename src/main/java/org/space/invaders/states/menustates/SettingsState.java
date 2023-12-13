@@ -1,6 +1,7 @@
 package org.space.invaders.states.menustates;
 
 import org.space.invaders.control.MenuController;
+import org.space.invaders.control.music.MusicController;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.LeaderboardModel;
 import org.space.invaders.model.game.menu.SettingsModel;
@@ -16,14 +17,15 @@ public class SettingsState implements State {
     private final SettingsView menuView;
     MenuGUI gui;
     private MenuController menuController;
-
     private final SettingsModel menuModel;
 
-    public SettingsState(MenuController menuController,MenuGUI gui) {
+    private final MusicController musicController;
+    public SettingsState(MenuController menuController, MenuGUI gui , MusicController musicController) {
         this.menuController = menuController;
         this.gui = gui;
         this.menuModel = new SettingsModel();
         this.menuView = new SettingsView(menuModel,this.gui.getScreen());
+        this.musicController = musicController;
     }
 
     @Override
@@ -42,6 +44,7 @@ public class SettingsState implements State {
     }
 
     public void Action(MenuGUI.ACTION action) {
+
         if(action != null) {
             switch (action) {
                 case UP -> menuModel.previousOption();

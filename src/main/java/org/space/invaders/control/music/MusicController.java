@@ -1,13 +1,23 @@
 package org.space.invaders.control.music;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.sound.sampled.*;
 
 public class MusicController {
     Clip clip;
     FloatControl volumeControl;
     float volume;
-    public MusicController(Musics musics)
+
+    Musics musics;
+    public MusicController()
     {
+    }
+
+    public void changeMusic(Musics musics)
+    {
+        this.musics = musics;
         switch (musics)
         {
             case MENUSOUND -> {
@@ -15,28 +25,25 @@ public class MusicController {
                 {
                     clip.stop();
                 }
-                String path = "Background.wav";
-                playMusic(path);
-            }
-            case HIT -> {
-                String path = "GotHit.wav";
-                playOnce(path);
+                String fileName = "Background.wav";
+                String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
+
+                playMusic(filePath);
+                adjustVolume();
             }
             case BACKGROUND -> {
-                String path = "MenuSound.wav";
-                playOnce(path);
-            }
-            case SHOOT -> {
-                String path = "Shot.wav";
-                playOnce(path);
-            }
-            case MOVING -> {
-                String path = "Moving.wav";
-                playOnce(path);
+                if(this.clip != null)
+                {
+                    clip.stop();
+                }
+                String fileName = "MenuSound.wav";
+                String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
+
+                playMusic(filePath);
+                adjustVolume();
             }
         }
     }
-
     public void playMusic(String location)
     {
         try {
@@ -48,7 +55,7 @@ public class MusicController {
                 clip.open(audioInputStream);
                 this.clip = clip;
                 this.volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                adjustVolume(-10.0f);
+                adjustVolume();
                 clip.start();
             }
             else
@@ -62,41 +69,51 @@ public class MusicController {
         }
     }
 
-    private void playOnce(String location){
-        try {
-            File musicPath = new File(location);
+    public void adjustVolume() {
+        String fileName = "sound.txt";
+        String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
 
-            if(musicPath.exists()){
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(musicPath);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
+        int musicVolume = readMusicVolume(filePath);
+        System.out.println(musicVolume);
 
-                clip.start();
-                clip.drain();
-                clip.stop();
+        if (clip != null && volumeControl != null) {
+            if (clip.isRunning()) {
+                // If the clip is running, adjust the volume without restarting
+                switch (musicVolume) {
+                    case 1 -> volumeControl.setValue(-6f);
+                    case 2 -> volumeControl.setValue(-3f);
+                    case 3 -> volumeControl.setValue(0f);
+                    case 4 -> volumeControl.setValue(3f);
+                    case 5 -> volumeControl.setValue(6f);
+                }
+
+                this.volume = musicVolume;
+            } else {
+                // If the clip is not running, start it with the adjusted volume
+                playMusic(filePath);
             }
-            else
-            {
-
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
         }
     }
 
-    public void adjustVolume(float value){
-        this.volume = value;
-        this.volumeControl.setValue(value);
+
+    private static int readMusicVolume(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Music Volume:")) {
+                    // Extract the number after "Music Volume:"
+                    String[] parts = line.split(",");
+                    if (parts.length == 2) {
+                        return Integer.parseInt(parts[1].trim());
+                    }
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
+
+    public Musics getMusics(){return musics;}
 }
-
-/*
-        soundURL[0] = getClass().getResource("/Resources/Background.wav");
-                soundURL[1] = getClass().getResource("/Resources/MenuBackground.wav");
-                soundURL[2] = getClass().getResource("/Resources/Moving.wav");
-                soundURL[3] = getClass().getResource("/Resources/Shot.wav");
-                soundURL[4] = getClass().getResource("/Resources/GotHit.wav");
-
- */

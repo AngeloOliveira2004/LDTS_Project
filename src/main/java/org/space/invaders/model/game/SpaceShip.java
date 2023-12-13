@@ -18,7 +18,7 @@ public class SpaceShip extends Element {
     private long time;
 
     public SpaceShip(int x, int y, int Yvelocity, int Xvelocity, int Health, int SpawnRate , boolean alive , int height , int width) {
-        super(x, y, Yvelocity, Xvelocity, Health, SpawnRate , alive , height , width);
+        super(x, y, Yvelocity, Xvelocity, Health, SpawnRate , alive , height , width , 0);
         this.isMini = false;
         toggleMini(isMini);
     }

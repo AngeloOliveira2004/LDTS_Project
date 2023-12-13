@@ -32,7 +32,7 @@ public class MenuController {
         switch (state)
         {
             case Game -> {
-                //musicController.playMusic(Musics.BACKGROUND);
+                this.musicController.changeMusic(Musics.BACKGROUND);
                 this.applicationState = ApplicationState.Game;
                 this.gui.close();
                 if(this.gameController == null)
@@ -65,7 +65,7 @@ public class MenuController {
             }
             case MenuSettings -> {
                 this.applicationState = ApplicationState.MenuSettings;
-                SettingsState settingsState = new SettingsState(this,gui);
+                SettingsState settingsState = new SettingsState(this,gui , musicController);
                 settingsState.run();
             }
             case ExitMenu -> {
@@ -73,7 +73,12 @@ public class MenuController {
                 System.exit(0);
             }
             case MainMenu -> {
-                this.musicController = new MusicController(Musics.MENUSOUND);
+                if(this.musicController == null || musicController.getMusics() == Musics.BACKGROUND)
+                {
+                    this.musicController = new MusicController();
+                    musicController.changeMusic(Musics.MENUSOUND);
+                }
+                musicController.adjustVolume();
                 this.applicationState = state;
                 if(this.gameController != null)
                 {

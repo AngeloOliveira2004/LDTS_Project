@@ -119,4 +119,8 @@ public class MusicController {
     }
 
     public Musics getMusics(){return musics;}
+    public void Stop()
+    {
+        clip.stop();
+    }
 }

@@ -19,7 +19,6 @@ import java.util.PrimitiveIterator;
 public class PlayerController {
     private SpaceShip spaceShip;
     private ShotFactory shotFactory;
-
     public PlayerController(SpaceShip spaceShip)
     {
         this.spaceShip = spaceShip;

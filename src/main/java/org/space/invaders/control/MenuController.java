@@ -33,6 +33,7 @@ public class MenuController {
         {
             case Game -> {
                 this.musicController.changeMusic(Musics.BACKGROUND);
+                System.out.println(musicController.getMusics());
                 this.applicationState = ApplicationState.Game;
                 this.gui.close();
                 if(this.gameController == null)
@@ -75,6 +76,10 @@ public class MenuController {
             case MainMenu -> {
                 if(this.musicController == null || musicController.getMusics() == Musics.BACKGROUND)
                 {
+                    if(musicController != null)
+                    {
+                        musicController.Stop();
+                    }
                     this.musicController = new MusicController();
                     musicController.changeMusic(Musics.MENUSOUND);
                 }

@@ -12,6 +12,7 @@ import java.io.IOException;
 public class ShotView extends View{
     private ShotController shotController;
     int yVelocity = 1;
+    private int bool;
     private Position position;
     public ShotView(TextGraphics textGraphics , Shot shot) {
         super(0,0 , textGraphics);
@@ -29,5 +30,7 @@ public class ShotView extends View{
                         (int)(position.y + yVelocity + 5)),
                 new TerminalSize(1,1), ' ');
         shotController.update();
+        bool = 0;
+
     }
 }

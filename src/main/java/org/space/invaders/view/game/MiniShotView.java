@@ -19,7 +19,6 @@ public class MiniShotView extends View{
         this.yVelocity = 1;
         shotController = new ShotController(miniShot);
     }
-
     @Override
     public void draw() throws IOException {
         {

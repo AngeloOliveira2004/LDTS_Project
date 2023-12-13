@@ -9,7 +9,7 @@ import org.space.invaders.model.game.elements.SuperShot;
 public class ShotFactory {
     public ShotElement createShot(Position position) {
         Position position_ = new Position(position.x + 8 , position.y - 4);
-        return new Shot(position_ , 4 , 5);
+        return new Shot(position_ , 1 , 5);
     }
     public ShotElement createMiniShot(Position position)
     {

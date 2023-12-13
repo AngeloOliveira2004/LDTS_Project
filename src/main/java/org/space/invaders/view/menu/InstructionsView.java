@@ -21,6 +21,9 @@ public class InstructionsView extends MenuViewer{
         gui.drawText(new Position(10,7),"ARROW KEYS: Move your Spaceship","#008000","BOLD");
         gui.drawText(new Position(10,9),"SHIFT: Morph into Mini Spaceship","#008000","BOLD");
         gui.drawText(new Position(10,11),"SPACE: Normal Shot","#008000","BOLD");
-        gui.drawText(new Position(10,13),"Q: Activate Super Shot","#008000","BOLD");
+        gui.drawText(new Position(12,16),"Your only motto should be:","#008000","BOLD");
+        gui.drawText(new Position(10,17),"Defend the earth or die trying","#008000","BOLD");
+        gui.drawText(new Position(17,19),"Good luck pilot","#008000","BOLD");
+        gui.drawText(new Position(15,20),"The Planet needs you","#008000","BOLD");
     }
 }

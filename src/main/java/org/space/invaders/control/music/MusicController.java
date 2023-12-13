@@ -9,7 +9,6 @@ public class MusicController {
     Clip clip;
     FloatControl volumeControl;
     float volume;
-
     Musics musics;
     public MusicController()
     {
@@ -77,10 +76,10 @@ public class MusicController {
 
         int musicVolume = readMusicVolume(filePath);
         System.out.println(musicVolume);
-        boolean musicsTemporary = musics.equals(Musics.MENUSOUND);
+
         if (clip != null && volumeControl != null) {
             if (clip.isRunning()) {
-                if(musicsTemporary) {
+                if(musics == Musics.MENUSOUND) {
                     switch (musicVolume) {
                         case 0 -> volumeControl.setValue(Float.NEGATIVE_INFINITY);
                         case 1 -> volumeControl.setValue(-6f);
@@ -89,14 +88,15 @@ public class MusicController {
                         case 4 -> volumeControl.setValue(3f);
                         case 5 -> volumeControl.setValue(6f);
                     }
-                }else{
+                }else
+                {
                     switch (musicVolume) {
                         case 0 -> volumeControl.setValue(Float.NEGATIVE_INFINITY);
                         case 1 -> volumeControl.setValue(-19f);
                         case 2 -> volumeControl.setValue(-18f);
-                        case 3 -> volumeControl.setValue(-16f);
-                        case 4 -> volumeControl.setValue(-15f);
-                        case 5 -> volumeControl.setValue(-14f);
+                        case 3 -> volumeControl.setValue(-17f);
+                        case 4 -> volumeControl.setValue(-16f);
+                        case 5 -> volumeControl.setValue(-15f);
                     }
                 }
                 this.volume = musicVolume;

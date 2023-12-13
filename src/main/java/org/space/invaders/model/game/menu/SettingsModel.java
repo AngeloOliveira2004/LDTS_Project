@@ -16,15 +16,12 @@ public class SettingsModel extends Menu {
     public SettingsModel(){
         super(new ArrayList<>());
         addMenuOptions("Music Volume:");
-        addMenuOptions("Effects Volume:");
         addMenuOptions("Difficulty:");
         addMenuOptions("Back to Main Menu");
         appvalue.add(null);
         appvalue.add(null);
-        appvalue.add(null);
         appvalue.add(ApplicationState.MainMenu);
         valuesMap.put("Music Volume:",5);
-        valuesMap.put("Effects Volume:",5);
         valuesMap.put("Difficulty:",3);
         readValuesFromFile(valuesMap, "sound.txt");
 

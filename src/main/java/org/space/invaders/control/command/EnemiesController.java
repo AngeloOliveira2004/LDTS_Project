@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class EnemiesController {
     private Arena arena;
@@ -99,7 +100,7 @@ public class EnemiesController {
         }
     }
 
-    private void updateCycle() {
+    public void updateCycle() {
         currentCycle = (currentCycle + 1) % 5;
     }
 
@@ -130,5 +131,13 @@ public class EnemiesController {
             e.printStackTrace();
         }
         return 1;
+    }
+
+    public ArrayList<EnemyLogic> getLogics() {
+        return logics;
+    }
+
+    public long getLastSpawnCycleTimeDefault() {
+        return lastSpawnCycleTimeDefault;
     }
 }

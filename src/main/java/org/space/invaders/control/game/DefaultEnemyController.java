@@ -41,4 +41,8 @@ public class DefaultEnemyController implements EnemyLogic {
     public void setDirectionX(int x){
         this.directionX = x;
     }
+
+    public int getDirectionX() {
+        return directionX;
+    }
 }

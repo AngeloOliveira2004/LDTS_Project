@@ -15,6 +15,8 @@ import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
 import org.space.invaders.model.game.elements.Element;
+import org.space.invaders.model.game.elements.KamikazeEnemy;
+import org.space.invaders.model.game.elements.StrongEnemy;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,8 +39,12 @@ public class EnemiesControllerTest {
         ShotFactory shotFactory = Mockito.mock(ShotFactory.class);
 
         DefaultEnemy defaultEnemyMock = Mockito.mock(DefaultEnemy.class);
+        StrongEnemy strongEnemyMock = Mockito.mock(StrongEnemy.class);
+        KamikazeEnemy kamikazeEnemyMock = Mockito.mock(KamikazeEnemy.class);
 
         when(enemiesFactory.createDefaultEnemy()).thenReturn(defaultEnemyMock);
+        when(enemiesFactory.createStrongerEnemy()).thenReturn(strongEnemyMock);
+        when(enemiesFactory.createKamikaze()).thenReturn(kamikazeEnemyMock);
 
         enemiesController = new EnemiesController(arena, enemiesFactory, shotFactory);
     }
@@ -50,7 +56,7 @@ public class EnemiesControllerTest {
         ArrayList<EnemyLogic> logics = enemiesController.getLogics();
 
         enemiesController.setCycles(2);
-        enemiesController.setlastSpawnCycleTimeDefault(0);
+        enemiesController.setTimesToZero();
 
         enemiesController.DefaultEnemySpawner();
 
@@ -63,8 +69,47 @@ public class EnemiesControllerTest {
         assertTrue(enemiesController.getLastSpawnCycleTimeDefault() >= currentTime);
     }
 
-    // Similar tests for KamizeSpawner and StrongEnemySpawner methods
+    @Test
+    public void testKamizeSpawner()
+    {
+        long currentTime = System.currentTimeMillis();
+        ArrayList<Element> arenaObjects = arena.getObjects();
+        ArrayList<EnemyLogic> logics = enemiesController.getLogics();
 
+        enemiesController.setCycles(4);
+        enemiesController.setTimesToZero();
+
+        enemiesController.KamizeSpawner(new Position(0,0));
+
+        assertTrue(arenaObjects.stream().anyMatch(obj -> obj instanceof KamikazeEnemy));
+        assertTrue(logics.stream().anyMatch(Objects::nonNull));
+
+        verify(arena, times(1)).addObject(any(KamikazeEnemy.class));
+        verify(enemiesFactory, times(1)).createKamikaze();
+
+        assertTrue(enemiesController.getLastSpawnCycleTimeKamikaze() >= currentTime);
+    }
+
+    @Test
+    public void testStrongEnemySpawner()
+    {
+        long currentTime = System.currentTimeMillis();
+        ArrayList<Element> arenaObjects = arena.getObjects();
+        ArrayList<EnemyLogic> logics = enemiesController.getLogics();
+
+        enemiesController.setCycles(3);
+        enemiesController.setTimesToZero();
+
+        enemiesController.StrongEnemySpawner();
+
+        assertTrue(arenaObjects.stream().anyMatch(obj -> obj instanceof StrongEnemy));
+        assertTrue(logics.stream().anyMatch(Objects::nonNull));
+
+        verify(arena, times(1)).addObject(any(StrongEnemy.class));
+        verify(enemiesFactory, times(1)).createStrongerEnemy();
+
+        assertTrue(enemiesController.getLastSpawnCycleTimeStrong() >= currentTime);
+    }
     @Test
     public void testUpdate() {
         // Mock enemy logic

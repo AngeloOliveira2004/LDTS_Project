@@ -80,7 +80,7 @@ public class EnemiesController {
         }
     }
 
-    public void StrongEnemySpawner(Position position) {
+    public void StrongEnemySpawner() {
         long currentTime = System.currentTimeMillis();
 
         if ((currentCycle % 2 != 0) && (currentTime - lastSpawnCycleTimeStrong) >= 8000/difficulty) {
@@ -135,14 +135,18 @@ public class EnemiesController {
     public long getLastSpawnCycleTimeDefault() {
         return lastSpawnCycleTimeDefault;
     }
+    public long getLastSpawnCycleTimeKamikaze(){return lastSpawnCycleTimeKamikaze;}
+    public long getLastSpawnCycleTimeStrong(){return lastSpawnCycleTimeStrong;}
 
     public void setCycles(int a)
     {
         this.currentCycle = a;
     }
 
-    public void setlastSpawnCycleTimeDefault(long a)
+    public void setTimesToZero()
     {
-        this.lastSpawnCycleTimeDefault = a;
+        this.lastSpawnCycleTimeDefault = 0;
+        this.lastSpawnCycleTimeStrong = 0;
+        this.lastSpawnCycleTimeKamikaze = 0;
     }
 }

@@ -66,7 +66,7 @@ public void run() throws IOException{
         arena.update(spaceShip);
 
         enemiesController.KamizeSpawner(spaceShip.getPosition());
-        enemiesController.DefaultEnemySpawner(new Position(50,50));
+        enemiesController.DefaultEnemySpawner();
         enemiesController.StrongEnemySpawner(new Position(20,20));
         //update(elapsedTime);
         handleInput(gameViewer.handleInput());

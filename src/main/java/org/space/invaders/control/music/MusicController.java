@@ -66,7 +66,7 @@ public class MusicController {
         }
         catch (Exception e)
         {
-            System.out.println(e);
+
         }
     }
 
@@ -75,7 +75,6 @@ public class MusicController {
         String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
 
         int musicVolume = readMusicVolume(filePath);
-        System.out.println(musicVolume);
 
         if (clip != null && volumeControl != null) {
             if (clip.isRunning()) {

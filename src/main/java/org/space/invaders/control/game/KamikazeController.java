@@ -5,23 +5,14 @@ import org.space.invaders.model.game.elements.KamikazeEnemy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KamikazeController implements EnemyLogic , PathFinding {
+public class KamikazeController implements EnemyLogic {
     private Position spaceshipPosition;
     private KamikazeEnemy kamikazeEnemy;
-
     private int iterations;
     public KamikazeController(Position position, KamikazeEnemy kamikazeEnemy) {
         this.spaceshipPosition = position;
         this.kamikazeEnemy = kamikazeEnemy;
         this.iterations = 0;
-    }
-
-    @Override
-    public List<Position> findPath(Position start, Position goal, Grid grid) {
-        // This is a simple implementation without a grid
-        List<Position> path = new ArrayList<>();
-        path.add(goal);  // Move directly to the goal position
-        return path;
     }
 
     public void move() {
@@ -57,4 +48,7 @@ public class KamikazeController implements EnemyLogic , PathFinding {
         }
         iterations++;
     }
+
+    public  int getIterations(){return iterations;}
+    public KamikazeEnemy getKamikazeEnemy(){return kamikazeEnemy;}
 }

@@ -6,11 +6,9 @@ import org.space.invaders.control.game.KamikazeController;
 import org.space.invaders.control.game.StrongEnemyController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.Position;
-import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
-import org.space.invaders.model.game.elements.Element;
 import org.space.invaders.model.game.elements.KamikazeEnemy;
 import org.space.invaders.model.game.elements.StrongEnemy;
 
@@ -18,7 +16,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class EnemiesController {
     private Arena arena;
@@ -26,7 +23,6 @@ public class EnemiesController {
     private ShotFactory shotFactory;
     private ArrayList<EnemyLogic> logics;
     private int kamikazeEnemyCount;
-
     private int defaultenemycount;
 
     private int strongEnemyCount;
@@ -55,9 +51,8 @@ public class EnemiesController {
             difficulty = 1;
         }
     }
-    public void DefaultEnemySpawner(Position position) {
+    public void DefaultEnemySpawner() {
         long currentTime = System.currentTimeMillis();
-        System.out.println(difficulty);
         if (currentCycle % 2 == 0 && (currentTime - lastSpawnCycleTimeDefault) >= 4000/difficulty) {
             DefaultEnemy tempDefaultEnemy = (DefaultEnemy) enemiesFactory.createDefaultEnemy();
             arena.addObject(tempDefaultEnemy);
@@ -85,7 +80,7 @@ public class EnemiesController {
         }
     }
 
-    public void StrongEnemySpawner(Position position) {
+    public void StrongEnemySpawner() {
         long currentTime = System.currentTimeMillis();
 
         if ((currentCycle % 2 != 0) && (currentTime - lastSpawnCycleTimeStrong) >= 8000/difficulty) {
@@ -139,5 +134,19 @@ public class EnemiesController {
 
     public long getLastSpawnCycleTimeDefault() {
         return lastSpawnCycleTimeDefault;
+    }
+    public long getLastSpawnCycleTimeKamikaze(){return lastSpawnCycleTimeKamikaze;}
+    public long getLastSpawnCycleTimeStrong(){return lastSpawnCycleTimeStrong;}
+
+    public void setCycles(int a)
+    {
+        this.currentCycle = a;
+    }
+
+    public void setTimesToZero()
+    {
+        this.lastSpawnCycleTimeDefault = 0;
+        this.lastSpawnCycleTimeStrong = 0;
+        this.lastSpawnCycleTimeKamikaze = 0;
     }
 }

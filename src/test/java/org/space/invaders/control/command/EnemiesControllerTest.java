@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.space.invaders.control.command.EnemiesController;
 import org.space.invaders.control.game.DefaultEnemyController;
 import org.space.invaders.control.game.EnemyLogic;
@@ -13,65 +14,109 @@ import org.space.invaders.model.Position;
 import org.space.invaders.model.game.creator.EnemiesFactory;
 import org.space.invaders.model.game.creator.ShotFactory;
 import org.space.invaders.model.game.elements.DefaultEnemy;
+import org.space.invaders.model.game.elements.Element;
+import org.space.invaders.model.game.elements.KamikazeEnemy;
+import org.space.invaders.model.game.elements.StrongEnemy;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class EnemiesControllerTest {
-    @Mock
+    @Spy
     private Arena arena;
     @Mock
     private EnemiesFactory enemiesFactory;
-    @Mock
-    private ShotFactory shotFactory;
     private EnemiesController enemiesController;
 
     @BeforeEach
-    public void setUp() throws IOException {
-        Arena arena = mock(Arena.class);
+    public void setUp() {
+        arena = spy(Arena.class);
+        enemiesFactory = Mockito.mock(EnemiesFactory.class);
         ShotFactory shotFactory = Mockito.mock(ShotFactory.class);
-        this.enemiesFactory = new EnemiesFactory(/* initialize parameters if needed */);
 
-        // Use the mocked version instead of creating a new instance
-        DefaultEnemy mock = Mockito.mock(DefaultEnemy.class);
-        EnemiesFactory EnemyFactoryMock = Mockito.mock(EnemiesFactory.class);
-        when(EnemyFactoryMock.createDefaultEnemy()).thenReturn(new DefaultEnemy(0, 0, 0, 0, 0, 0, true, 0, 0));
+        DefaultEnemy defaultEnemyMock = Mockito.mock(DefaultEnemy.class);
+        StrongEnemy strongEnemyMock = Mockito.mock(StrongEnemy.class);
+        KamikazeEnemy kamikazeEnemyMock = Mockito.mock(KamikazeEnemy.class);
 
-        // Use the mocked version instead of creating a new instance
+        when(enemiesFactory.createDefaultEnemy()).thenReturn(defaultEnemyMock);
+        when(enemiesFactory.createStrongerEnemy()).thenReturn(strongEnemyMock);
+        when(enemiesFactory.createKamikaze()).thenReturn(kamikazeEnemyMock);
+
         enemiesController = new EnemiesController(arena, enemiesFactory, shotFactory);
     }
 
-
     @Test
     public void testDefaultEnemySpawner() {
-        Position position = new Position(1, 1);
-
         long currentTime = System.currentTimeMillis();
-        EnemiesFactory EnemyFactoryMock = Mockito.mock(EnemiesFactory.class);
-        when(EnemyFactoryMock.createDefaultEnemy()).thenReturn(new DefaultEnemy(0, 0, 0, 0, 0, 0, true, 0, 0));
+        ArrayList<Element> arenaObjects = arena.getObjects();
+        ArrayList<EnemyLogic> logics = enemiesController.getLogics();
 
-        enemiesController.DefaultEnemySpawner(position);
+        enemiesController.setCycles(2);
+        enemiesController.setTimesToZero();
+
+        enemiesController.DefaultEnemySpawner();
+
+        assertTrue(arenaObjects.stream().anyMatch(obj -> obj instanceof DefaultEnemy));
+        assertTrue(logics.stream().anyMatch(Objects::nonNull));
 
         verify(arena, times(1)).addObject(any(DefaultEnemy.class));
         verify(enemiesFactory, times(1)).createDefaultEnemy();
-        verify(arena, times(1)).addObject(any(DefaultEnemy.class));
-        verify(arena, times(1)).addObject(any(DefaultEnemy.class));
 
-        // Verify that the last spawn cycle time is updated
         assertTrue(enemiesController.getLastSpawnCycleTimeDefault() >= currentTime);
     }
 
-    // Similar tests for KamizeSpawner and StrongEnemySpawner methods
+    @Test
+    public void testKamizeSpawner()
+    {
+        long currentTime = System.currentTimeMillis();
+        ArrayList<Element> arenaObjects = arena.getObjects();
+        ArrayList<EnemyLogic> logics = enemiesController.getLogics();
 
+        enemiesController.setCycles(4);
+        enemiesController.setTimesToZero();
+
+        enemiesController.KamizeSpawner(new Position(0,0));
+
+        assertTrue(arenaObjects.stream().anyMatch(obj -> obj instanceof KamikazeEnemy));
+        assertTrue(logics.stream().anyMatch(Objects::nonNull));
+
+        verify(arena, times(1)).addObject(any(KamikazeEnemy.class));
+        verify(enemiesFactory, times(1)).createKamikaze();
+
+        assertTrue(enemiesController.getLastSpawnCycleTimeKamikaze() >= currentTime);
+    }
+
+    @Test
+    public void testStrongEnemySpawner()
+    {
+        long currentTime = System.currentTimeMillis();
+        ArrayList<Element> arenaObjects = arena.getObjects();
+        ArrayList<EnemyLogic> logics = enemiesController.getLogics();
+
+        enemiesController.setCycles(3);
+        enemiesController.setTimesToZero();
+
+        enemiesController.StrongEnemySpawner();
+
+        assertTrue(arenaObjects.stream().anyMatch(obj -> obj instanceof StrongEnemy));
+        assertTrue(logics.stream().anyMatch(Objects::nonNull));
+
+        verify(arena, times(1)).addObject(any(StrongEnemy.class));
+        verify(enemiesFactory, times(1)).createStrongerEnemy();
+
+        assertTrue(enemiesController.getLastSpawnCycleTimeStrong() >= currentTime);
+    }
     @Test
     public void testUpdate() {
         // Mock enemy logic
         EnemyLogic mockEnemyLogic = mock(DefaultEnemyController.class);
         EnemiesFactory EnemyFactoryMock = Mockito.mock(EnemiesFactory.class);
         when(EnemyFactoryMock.createDefaultEnemy()).thenReturn(new DefaultEnemy(0, 0, 0, 0, 0, 0, true, 0, 0));
-        enemiesController.DefaultEnemySpawner(new Position(1, 1));
+        enemiesController.DefaultEnemySpawner();
         enemiesController.getLogics().add(mockEnemyLogic);
 
         // Test the update method

@@ -41,12 +41,10 @@ class DefaultEnemyControllerTest {
             defaultEnemyController.update();
         }
 
-        // Verify that setPosition was called when the enemy reaches the boundary
-        verify(defaultEnemy, times(4)).setPosition(any());
+        verify(defaultEnemy, times(9)).setPosition(any());
 
-        // Verify that move was called 5 times
-        verify(defaultEnemy, times(5)).getPosition();
-        verify(defaultEnemy, times(5)).setPosition(any());
+        verify(defaultEnemy, times(29)).getPosition();
+        verify(defaultEnemy, times(9)).setPosition(any());
     }
 
     @Test

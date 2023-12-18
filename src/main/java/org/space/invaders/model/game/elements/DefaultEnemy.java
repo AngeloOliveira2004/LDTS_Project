@@ -9,6 +9,10 @@ public class DefaultEnemy extends Element {
         super(x, y, Yvelocity, Xvelocity, Health, SpawnRate, alive, height, width , 150);
     }
 
+    public DefaultEnemy() {
+        super(0, 0, 0, 0, 0, 0, true, 0, 0 , 150);
+    }
+
     public void draw(TextGraphics textGraphics) {
         defaultEnemyView = new DefaultEnemyView(this, textGraphics);
         defaultEnemyView.drawDefaultEnemy();
@@ -17,5 +21,13 @@ public class DefaultEnemy extends Element {
     @Override
     public String[] getDesign() {
         return defaultEnemyView.getDesign();
+    }
+
+    public DefaultEnemyView getDefaultEnemyView(){
+        return this.defaultEnemyView;
+    }
+
+    public void setDefaultEnemyView(DefaultEnemyView defaultEnemyView){
+       this.defaultEnemyView = defaultEnemyView;
     }
 }

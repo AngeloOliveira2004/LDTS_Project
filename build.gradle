@@ -29,3 +29,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+pitest {
+    targetClasses = ["org.space.invaders.model.game.creator.EnemiesFactory"]
+}

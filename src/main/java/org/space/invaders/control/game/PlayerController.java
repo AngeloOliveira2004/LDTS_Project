@@ -70,19 +70,11 @@ public class PlayerController {
                 break;
             case Enter:
                 spaceShip.toggleMini(!spaceShip.isMini());
-            case Character:
-                if (key.getCharacter() == ' ') {
-                    if (spaceShip.isMini()) {
-                        arena.addShot(shotFactory.createMiniShot(spaceShip.getPosition()));
-                    } else if(key.getCharacter() == 'm') {
-                        spaceShip.toggleMini(!spaceShip.isMini());
-                    }else
-                    {
-                        arena.addShot(shotFactory.createShot(spaceShip.getPosition()));
-                    }
-                }
                 break;
-            // Handle other cases if needed
+            case Character:
+                playerShots(arena);
+                break;
+
             default:
                 break;
         }
@@ -90,5 +82,15 @@ public class PlayerController {
     private boolean isInsideBorders(Position position)
     {
         return position.x > -1 && position.y > -1 && position.x < WIDTH && position.y < HEIGHT - 25;
+    }
+
+    public void playerShots(Arena arena)
+    {
+        if (spaceShip.isMini()) {
+            arena.addShot(shotFactory.createMiniShot(spaceShip.getPosition()));
+        } else
+        {
+            arena.addShot(shotFactory.createShot(spaceShip.getPosition()));
+        }
     }
 }

@@ -7,18 +7,18 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.space.invaders.model.Position;
-import org.space.invaders.model.game.elements.DefaultEnemy;
+import org.space.invaders.model.game.elements.StrongEnemy;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.Mockito.*;
 
-public class DefaultEnemyViewTest {
+public class StrongEnemyViewTest {
 
     @Mock
     private TextGraphics textGraphics;
 
     @Mock
-    private DefaultEnemy defaultEnemy;
+    private StrongEnemy strongEnemy;
 
     @Before
     public void setUp() {
@@ -26,20 +26,19 @@ public class DefaultEnemyViewTest {
     }
 
     @Test
-    public void testDrawDefaultEnemy() {
-        when(defaultEnemy.getPosition()).thenReturn(new Position(10, 20));
+    public void testDrawStrongEnemyMethod() {
+        when(strongEnemy.getPosition()).thenReturn(new Position(10, 20));
 
-        DefaultEnemyView defaultEnemyView = new DefaultEnemyView(defaultEnemy, textGraphics);
+        StrongEnemyView strongEnemyView = new StrongEnemyView(strongEnemy, textGraphics);
 
-        defaultEnemyView.drawDefaultEnemy();
+        strongEnemyView.drawStrongEnemy();
 
         int expectedX = 10;
         int expectedY = 20;
 
-        for (int i = 0; i < DefaultEnemyView.DefaultEnemyModel.length; i++) {
+        for (int i = 0; i < StrongEnemyView.StrongEnemyModel.length; i++) {
             verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
         }
-
     }
 }
 

@@ -7,18 +7,16 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.space.invaders.model.Position;
-import org.space.invaders.model.game.elements.DefaultEnemy;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import org.space.invaders.model.game.elements.KamikazeEnemy;
 import static org.mockito.Mockito.*;
 
-public class DefaultEnemyViewTest {
+public class KamikazeViewTest {
 
     @Mock
     private TextGraphics textGraphics;
 
     @Mock
-    private DefaultEnemy defaultEnemy;
+    private KamikazeEnemy kamikazeEnemy;
 
     @Before
     public void setUp() {
@@ -26,20 +24,18 @@ public class DefaultEnemyViewTest {
     }
 
     @Test
-    public void testDrawDefaultEnemy() {
-        when(defaultEnemy.getPosition()).thenReturn(new Position(10, 20));
+    public void testDrawKamikazeMethod() {
+        when(kamikazeEnemy.getPosition()).thenReturn(new Position(10, 20));
 
-        DefaultEnemyView defaultEnemyView = new DefaultEnemyView(defaultEnemy, textGraphics);
+        KamikazeView kamikazeView = new KamikazeView(kamikazeEnemy, textGraphics);
 
-        defaultEnemyView.drawDefaultEnemy();
+        kamikazeView.drawKamikaze();
 
         int expectedX = 10;
         int expectedY = 20;
 
-        for (int i = 0; i < DefaultEnemyView.DefaultEnemyModel.length; i++) {
+        for (int i = 0; i < KamikazeView.KamikazeModel.length; i++) {
             verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
         }
-
     }
 }
-

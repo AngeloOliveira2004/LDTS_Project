@@ -33,5 +33,4 @@ public class StarsView extends View{
             int y = starPosition.getY();
         }
     }
-
 }

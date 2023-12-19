@@ -12,11 +12,14 @@ public class Planet extends Element{
         super(x, y, 0, 0, 10000000, 0, true, 3, 3 , 0);
     }
 
+    public Planet() {
+        super(0, 0, 0, 0, 10000000, 0, true, 3, 3 , 0);
+    }
+
     @Override
     public void draw(TextGraphics textGraphics) throws IOException {
         PlanetView planetView = new PlanetView(this, textGraphics);
         planetView.draw();
-
     }
 
     @Override

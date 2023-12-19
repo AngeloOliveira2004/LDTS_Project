@@ -38,4 +38,12 @@ public class StrongEnemyController implements EnemyLogic {
 
         iterations++;
     }
+    public void setDirectionX(int x){
+        this.directionX = x;
+    }
+
+    public int getDirectionX() {
+        return directionX;
+    }
+    public void setIterations(int a){this.iterations = a;}
 }

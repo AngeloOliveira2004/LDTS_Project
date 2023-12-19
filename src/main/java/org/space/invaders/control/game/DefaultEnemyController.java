@@ -45,4 +45,5 @@ public class DefaultEnemyController implements EnemyLogic {
     public int getDirectionX() {
         return directionX;
     }
+    public void setIterations(int a){this.iterations = a;}
 }

@@ -55,4 +55,31 @@ class DefaultEnemyControllerTest {
         int directionX = defaultEnemyController.getDirectionX();
         assertEquals(-1, directionX);
     }
+/*
+    @Test
+    void testChangeDirections()
+    {
+        defaultEnemy = new DefaultEnemy(50,50,1,1,1,0,true,1,1);
+        defaultEnemyController = new DefaultEnemyController(defaultEnemy);
+        int ExpectedX = defaultEnemy.getPosition().x;
+        int ExpectedY = defaultEnemy.getPosition().y;
+        int increment = 1;
+        for(int i = 0 ; i < 1000 ; i++)
+        {
+            defaultEnemyController.setIterations(3);
+            defaultEnemyController.update();
+            ExpectedX += increment;
+
+            if(ExpectedX - 1 <= 0 || ExpectedX + 1 >= 585)
+            {
+                increment = increment*-1;
+                ExpectedY += 1;
+                ExpectedX -= 1;
+                ExpectedX += increment;
+            }
+
+            assertEquals(ExpectedX , defaultEnemy.getPosition().x);
+        }
+    }
+ */
 }

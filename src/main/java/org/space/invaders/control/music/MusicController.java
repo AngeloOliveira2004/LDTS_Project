@@ -107,7 +107,7 @@ public class MusicController {
     }
 
 
-    private static int readMusicVolume(String filePath) {
+    public static int readMusicVolume(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -130,5 +130,13 @@ public class MusicController {
     public void Stop()
     {
         clip.stop();
+    }
+    public void stop() {
+        this.clip.stop();
+    }
+    public Clip getClip(){return clip;}
+
+    public FloatControl getVolumeControl() {
+        return volumeControl;
     }
 }

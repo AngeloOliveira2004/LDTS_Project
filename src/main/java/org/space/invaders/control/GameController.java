@@ -79,4 +79,5 @@ public class GameController {
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
+    public void setState(State state){this.state = state;}
 }

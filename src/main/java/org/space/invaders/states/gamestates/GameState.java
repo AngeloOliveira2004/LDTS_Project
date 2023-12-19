@@ -53,6 +53,7 @@ public class GameState implements State {
 
   }
   public void setRunning(boolean running){this.running = running;}
+  public boolean getRunning(){return this.running;}
   public boolean isRunning()
   {
       return running;

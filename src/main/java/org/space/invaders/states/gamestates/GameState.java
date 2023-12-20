@@ -86,9 +86,6 @@ public void run() throws IOException{
     }
 }
 
-    private void update(long elapsedTime) {
-        // TODO: Implement game state update logic based on elapsed time
-    }
     public void close() throws IOException {
         gameViewer.close();
     }

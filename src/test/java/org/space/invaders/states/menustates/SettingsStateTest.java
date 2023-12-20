@@ -55,21 +55,23 @@ class SettingsStateTest {
     }
     @Test
     void testStep() throws IOException {
-        //TODO do this test
-        /*
-        // Stub/mock the getNextAction method to return a specific action
+        settingsState = new SettingsState(menuController, menuGui, musicController);
+
+        SettingsView settingsView = mock(SettingsView.class);
+        SettingsModel mockSettingsModel = mock(SettingsModel.class);
+
+        settingsState.setMenuModel(mockSettingsModel);
+        settingsState.setMenuView(settingsView);
+
+        //doNothing().when(settingsView.drawElements(any()));
         when(menuGui.getNextAction()).thenReturn(MenuGUI.ACTION.UP);
 
-        // Use the same mock instance for the SettingsModel in the setup and the test
-        SettingsModel mockSettingsModel = mock(SettingsModel.class);
-        settingsState = new SettingsState(menuController, menuGui, musicController);
-        settingsState.setModel(mockSettingsModel);
 
         settingsState.step();
 
         verify(mockSettingsModel, times(1)).previousOption();
         verify(settingsView, times(1)).drawElements(menuGui);
-        */
+
     }
 
 

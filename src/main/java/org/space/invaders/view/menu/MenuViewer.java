@@ -16,7 +16,7 @@ public abstract class MenuViewer<T> extends Viewer {
     public MenuViewer(T model, Screen screen){
         this.model = model;
         this.screen = screen;
-        this.textGraphics = this.screen.newTextGraphics();
+        this.textGraphics = this.screen == null ? null : this.screen.newTextGraphics();
     }
     public T getModel() {
         return model;

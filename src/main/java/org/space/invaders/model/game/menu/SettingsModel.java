@@ -82,4 +82,9 @@ public class SettingsModel extends Menu {
     public Map<String, Integer> getValuesMap(){
         return valuesMap;
     }
+
+    public List<ApplicationState> getAppvalue()
+    {
+        return appvalue;
+    }
 }

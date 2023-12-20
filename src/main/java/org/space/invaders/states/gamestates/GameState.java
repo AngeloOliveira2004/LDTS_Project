@@ -129,6 +129,13 @@ public void run() throws IOException{
         }
     }
 
+    public Arena getArena() {
+      return arena;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
 }
 
 

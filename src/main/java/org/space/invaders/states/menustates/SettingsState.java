@@ -8,17 +8,16 @@ import org.space.invaders.model.game.menu.SettingsModel;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.menu.LeaderboardView;
+import org.space.invaders.view.menu.MenuViewer;
 import org.space.invaders.view.menu.SettingsView;
 
 import java.io.IOException;
 
 public class SettingsState implements State {
-
-    private final SettingsView menuView;
+    private SettingsView menuView;
     MenuGUI gui;
     private MenuController menuController;
-    private final SettingsModel menuModel;
-
+    private SettingsModel menuModel;
     private final MusicController musicController;
     public SettingsState(MenuController menuController, MenuGUI gui , MusicController musicController) {
         this.menuController = menuController;
@@ -44,7 +43,6 @@ public class SettingsState implements State {
     }
 
     public void Action(MenuGUI.ACTION action) {
-
         if(action != null) {
             switch (action) {
                 case UP -> menuModel.previousOption();
@@ -99,4 +97,25 @@ public class SettingsState implements State {
     public void close() throws IOException {
 
     }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public MenuGUI getGui() {
+        return gui;
+    }
+
+    public MusicController getMusicController() {
+        return musicController;
+    }
+    public void setMenuModel(SettingsModel settingsModel)
+    {
+        this.menuModel = settingsModel;
+    }
+    public SettingsModel getMenuModel(){return menuModel;}
+    public void setMenuController(MenuController menuController){this.menuController = menuController;}
+    public void setGui(MenuGUI gui){this.gui = gui;}
+    public void setMenuView(SettingsView settingsView){this.menuView = settingsView;}
+
 }

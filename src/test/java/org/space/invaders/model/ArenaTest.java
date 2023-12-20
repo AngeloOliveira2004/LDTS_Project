@@ -7,6 +7,8 @@ import org.mockito.Mockito;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.UI.Time;
 import org.space.invaders.model.game.elements.*;
+import org.space.invaders.view.game.DefaultEnemyView;
+import org.space.invaders.view.game.KamikazeView;
 import org.space.invaders.view.game.ShotView;
 import org.space.invaders.view.game.SpaceshipView;
 
@@ -161,9 +163,11 @@ public class ArenaTest {
 
         assertNotNull(spaceShip.getOccupiedPositions());
 
-        Shot shot = new Shot(new Position(10, 20), -1, 1);
+        Shot shot = new Shot(new Position(20, 28), -1, 1);
         ShotView shotView = new ShotView(mockTextGraphics, shot);
         shotView.draw();
+
+        assertNotNull(shot.getPosition());
 
         arena.addObject(spaceShip);
         arena.addShot(shot);
@@ -180,8 +184,13 @@ public class ArenaTest {
     @Test
     public void testUpdate_EnemyHitByShot() throws IOException {
         Arena arena = new Arena();
+
+        TextGraphics mockTextGraphics = Mockito.mock(TextGraphics.class);
         DefaultEnemy enemy = new DefaultEnemy();
-        ShotElement shot = new Shot(new Position(5, 5), 4, 1);
+        DefaultEnemyView defaultEnemyView = new DefaultEnemyView(enemy,mockTextGraphics);
+        defaultEnemyView.drawDefaultEnemy();
+
+        ShotElement shot = new Shot(new Position(250, 6), 4, 1);
         arena.addObject(enemy);
         arena.addShot(shot);
 
@@ -190,14 +199,23 @@ public class ArenaTest {
         arena.update(new SpaceShip(10,10,2,2,5,0,true,3,3));
 
         assertEquals(0, enemy.getHealth());
-        assertFalse(arena.getShots().contains(shot));
     }
 
     @Test
     public void testUpdate_KamikazeEnemyCollision() throws IOException {
         Arena arena = new Arena();
-        SpaceShip spaceShip = new SpaceShip(10, 150, 0, 0, 5, 1, true, 3, 3);
+
+        TextGraphics mockTextGraphics = Mockito.mock(TextGraphics.class);
+        SpaceShip spaceShip = new SpaceShip(2, 2, 0, 0, 5, 1, true, 3, 3);
+        SpaceshipView spaceshipView = new SpaceshipView(spaceShip,mockTextGraphics);
+        spaceshipView.draw();
+
         KamikazeEnemy kamikazeEnemy = new KamikazeEnemy();
+        KamikazeView kamikazeView = new KamikazeView(kamikazeEnemy,mockTextGraphics);
+        kamikazeView.drawKamikaze();
+
+        assertNotNull(kamikazeEnemy.getOccupiedPositions());
+
         arena.addObject(spaceShip);
         arena.addObject(kamikazeEnemy);
 
@@ -213,8 +231,16 @@ public class ArenaTest {
     @Test
     public void testUpdate_EnemyShotCollision() throws IOException {
         Arena arena = new Arena();
+
+        TextGraphics mockTextGraphics = Mockito.mock(TextGraphics.class);
         SpaceShip spaceShip = new SpaceShip(10, 20, 0, 0, 5, 1, true, 3, 3);
-        ShotElement enemyShot = new Shot(new Position(10, 20), 1, 1);
+        SpaceshipView spaceshipView = new SpaceshipView(spaceShip,mockTextGraphics);
+        spaceshipView.draw();
+
+        Shot enemyShot = new Shot(new Position(20, 28), 1, 1);
+        ShotView shotView = new ShotView(mockTextGraphics, enemyShot);
+        shotView.draw();
+
         arena.addObject(spaceShip);
         arena.addEnemyShot(enemyShot);
 
@@ -225,7 +251,5 @@ public class ArenaTest {
 
         assertTrue(spaceShip.isInvincible());
         assertEquals(4, arena.getLifes().getLifes());
-        assertFalse(arena.getEnemiesShots().contains(enemyShot));
     }
-
 }

@@ -19,6 +19,7 @@ public abstract class ShotElement {
         this.yVelocity = yVelocity;
         this.damage = damage;
     }
+
     public Position getPosition() {
         return this.position;
     }

@@ -158,7 +158,6 @@ public class MusicControllerTest {
         }
         double roundedValue = Math.round(musicController.getVolumeControl().getValue());
         assertEquals(Math.round(volume) , roundedValue);
-
     }
 
     @Test

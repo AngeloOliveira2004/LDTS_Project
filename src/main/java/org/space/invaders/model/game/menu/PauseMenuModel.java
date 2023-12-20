@@ -21,4 +21,5 @@ public class PauseMenuModel extends Menu{
     public ApplicationState validateApplicationState() {
         return appvalue.get(getOptionIndex());
     }
+
 }

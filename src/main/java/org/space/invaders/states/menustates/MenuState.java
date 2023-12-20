@@ -90,11 +90,4 @@ public class MenuState implements State {
         return true;
     }
 
-/*
-    public State nextState() {
-        //Mudar depois de aplicar próximos states;
-        return null;
-    }
-
- */
 }

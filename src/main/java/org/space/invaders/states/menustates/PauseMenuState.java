@@ -7,6 +7,7 @@ import org.space.invaders.gui.Menu;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.MenuModel;
 import org.space.invaders.model.game.menu.PauseMenuModel;
+import org.space.invaders.model.game.menu.SettingsModel;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.menu.PauseMenuView;
@@ -14,10 +15,10 @@ import org.space.invaders.view.menu.PauseMenuView;
 import java.io.IOException;
 
 public class PauseMenuState implements State {
-    private final PauseMenuView pauseMenuVIew;
+    private PauseMenuView pauseMenuVIew;
     MenuGUI gui;
     private MenuController menuController;
-    private final PauseMenuModel pauseMenuModel;
+    private PauseMenuModel pauseMenuModel;
 
     public PauseMenuState(MenuController menuController , MenuGUI gui) {
         this.gui = gui;
@@ -82,5 +83,31 @@ public class PauseMenuState implements State {
     @Override
     public void close() throws IOException {
         pauseMenuVIew.close();
+    }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public MenuGUI getGui() {
+        return gui;
+    }
+
+    public void setMenuModel(PauseMenuModel pauseMenuModel) {
+        this.pauseMenuModel = pauseMenuModel;
+    }
+    public void setPauseMenuVIew(PauseMenuView pauseMenuVIew) {
+        this.pauseMenuVIew = pauseMenuVIew;
+    }
+
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
+
+    public void setGui(MenuGUI menuGui) {
+        this.gui = menuGui;
+    }
+    public void setMenuView(PauseMenuView pauseMenuView) {
+        this.pauseMenuVIew = pauseMenuView;
     }
 }

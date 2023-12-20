@@ -55,7 +55,6 @@ public class Arena implements Collider {
     {
         return objects;
     }
-    public List<Stars.StarPosition> getStarPositions(){return stars.getStarPosition();}
     public ArrayList<ShotElement> getShots(){return shots;}
     public Stars getStars(){
         return stars;
@@ -64,7 +63,7 @@ public class Arena implements Collider {
     {
         shots.add(shotElement);
     }
-    private void removeOutofBoundsShots()
+    public void removeOutofBoundsShots()
     {
         shots.removeIf(shotElement -> !shotElement.isInsideBorders());
     }

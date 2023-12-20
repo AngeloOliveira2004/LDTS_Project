@@ -24,7 +24,6 @@ public class GameController {
         this.menuController = menuController;
         this.applicationState = ApplicationState.Game;
         this.enemiesFactory = new EnemiesFactory();
-
     }
     public void changeState(ApplicationState state) throws IOException {
         switch (state)
@@ -37,7 +36,6 @@ public class GameController {
                     this.gameState = gameState;
                     this.state = gameState;
                     this.gameState.run();
-
                 }else
                 {
                     gameState.setRunning(true);
@@ -67,13 +65,6 @@ public class GameController {
         return applicationState;
     }
 
-    public void handleInput(KeyStroke keyStroke) throws IOException {
-        if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-            state.close();
-            // Exit the game
-            changeState(ApplicationState.MainMenu);
-        }
-    }
     public GameState getGameState(){return gameState;}
 
     public void setGameState(GameState gameState) {

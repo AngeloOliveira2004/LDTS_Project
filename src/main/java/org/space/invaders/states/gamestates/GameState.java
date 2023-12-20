@@ -19,7 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class GameState implements State {
-  private final GameController gameController;
+  private GameController gameController;
   private GameViewer gameViewer;
   private SpaceShip spaceShip;
   private PlayerController playerController;
@@ -128,6 +128,7 @@ public void run() throws IOException{
             e.printStackTrace();
         }
     }
+
 }
 
 

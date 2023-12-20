@@ -33,7 +33,7 @@ public class MenuController {
         {
             case Game -> {
                 this.musicController.changeMusic(Musics.BACKGROUND);
-                this.applicationState = ApplicationState.Game;
+                swtichApplicationState(ApplicationState.Game);
                 this.gui.close();
                 if(this.gameController == null)
                 {
@@ -119,11 +119,14 @@ public class MenuController {
     {
         return applicationState;
     }
-
     public void setApplicationState(ApplicationState applicationState)
     {
         this.applicationState = applicationState;
     }
 
+    public void swtichApplicationState(ApplicationState applicationState)
+    {
+        this.applicationState = applicationState;
+    }
 }
 

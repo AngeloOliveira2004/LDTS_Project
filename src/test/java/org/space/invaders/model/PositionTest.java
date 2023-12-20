@@ -1,8 +1,5 @@
-package org.space.invaders.model.game;
-
-import org.junit.Test;
-import org.space.invaders.model.Position;
-
+package org.space.invaders.model;
+import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
 public class PositionTest {

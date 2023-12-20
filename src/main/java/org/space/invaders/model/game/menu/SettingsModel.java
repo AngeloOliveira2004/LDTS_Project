@@ -51,7 +51,7 @@ public class SettingsModel extends Menu {
         }
     }
 
-    private void readValuesFromFile(Map<String, Integer> hashMap, String fileName) {
+    public void readValuesFromFile(Map<String, Integer> hashMap, String fileName) {
         fileName = "sound.txt";
 
         String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
@@ -70,10 +70,6 @@ public class SettingsModel extends Menu {
         }
     }
 
-
-    public SettingsModel(List<String> menuOptions) {
-        super(menuOptions);
-    }
     @Override
     public ApplicationState validateApplicationState() {
         return appvalue.get(getOptionIndex());

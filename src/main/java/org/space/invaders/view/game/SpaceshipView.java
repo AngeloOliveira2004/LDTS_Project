@@ -151,7 +151,7 @@ public class SpaceshipView extends View{
         int x = (int)spaceShip.getPosition().getX();
         int y = (int)spaceShip.getPosition().getY();
         drawImage(SpaceShipModel, x, y , positions);
-        //spaceShip.setOccupiedPositions(positions);
+        spaceShip.setOccupiedPositions(positions);
     }
     private void drawWithInvincibilityMini()
     {

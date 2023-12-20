@@ -12,7 +12,6 @@ import org.space.invaders.view.game.SpaceshipView;
 
 public class SpaceShip extends Element {
     private boolean invincible;
-    private boolean shooting;
     private boolean isMini;
     private SpaceshipView spaceshipView;
     private long time;
@@ -29,13 +28,6 @@ public class SpaceShip extends Element {
     public void setInvincible(boolean invincible) {
         this.invincible = invincible;
         if (invincible == true) time = System.currentTimeMillis();
-    }
-    public boolean isShooting() {
-        return shooting;
-    }
-
-    public void setShooting(boolean shooting) {
-        this.shooting = shooting;
     }
 
     public boolean isMini() {
@@ -54,14 +46,6 @@ public class SpaceShip extends Element {
             setYVelocity(1);
         }
     }
-    public void shot()
-    {
-        //TODO actually shot
-    }
-    public void miniShot()
-    {
-
-    }
     public void draw(TextGraphics textGraphics)
     {
         spaceshipView = new SpaceshipView(this , textGraphics);
@@ -78,6 +62,10 @@ public class SpaceShip extends Element {
         {
             setInvincible(false);
         }
+    }
+
+    public void setSpaceshipView(SpaceshipView spaceshipView){
+        this.spaceshipView = spaceshipView;
     }
 }
 

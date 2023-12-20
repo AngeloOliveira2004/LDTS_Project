@@ -51,7 +51,6 @@ public abstract class Element implements Collider{
     public void setPosition(Position position) {
         this.position = position;
     }
-    //void draw(TextGraphics screen);
     public int getHealth()
     {
         return Health;
@@ -59,14 +58,6 @@ public abstract class Element implements Collider{
     public void setHealth(int health)
     {
         this.Health = health;
-    }
-    public int getSpawnRate()
-    {
-        return SpawnRate;
-    }
-    public void setSpawnRate(int spawnRate)
-    {
-        this.SpawnRate = spawnRate;
     }
     public int getYVelocity()
     {
@@ -84,11 +75,6 @@ public abstract class Element implements Collider{
     {
         this.Xvelocity = xVelocity;
     }
-    public void dies()
-    {
-        this.alive = false;
-    }
-    public boolean isAlive(){return alive;}
 
     public void moveFoward()
     {

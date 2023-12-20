@@ -21,11 +21,6 @@ public class MenuModel extends Menu{
         appvalue.add(ApplicationState.MenuLeaderboard);
         appvalue.add(ApplicationState.ExitMenu);
     }
-
-    public MenuModel(List<String> menuOptions) {
-        super(menuOptions);
-    }
-
     @Override
     public ApplicationState validateApplicationState() {
         return appvalue.get(getOptionIndex());

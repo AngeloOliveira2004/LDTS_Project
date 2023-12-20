@@ -19,6 +19,11 @@ public class MiniShot extends ShotElement{
         initialPosition = position;
     }
 
+    public MiniShot() {
+        super(new Position(0,0), 0,2);
+        initialPosition = new Position(0,0);
+    }
+
     @Override
     public void draw(TextGraphics textGraphics) throws IOException {
         miniShotView = new MiniShotView(textGraphics , this);
@@ -27,5 +32,9 @@ public class MiniShot extends ShotElement{
     @Override
     public boolean isInsideBorders(){
         return (getPosition().x > 0 && getPosition().x < WIDTH && getPosition().y > 0 && getPosition().y < HEIGHT && this.getYposition() > initialPosition.getY() - RANGE);
+    }
+
+    public void setMiniShotView(MiniShotView miniShotView) {
+        this.miniShotView = miniShotView;
     }
 }

@@ -13,18 +13,21 @@ public class Shot extends ShotElement {
         super(position , yVelocity , damage);
         count = 0;
     }
+
+    public Shot()
+    {
+        super(new Position(0,0) , 0 , 0);
+        count = 0;
+    }
+
     @Override
     public void draw(TextGraphics textGraphics) {
-
         shotView = new ShotView(textGraphics, this);
         shotView.draw();
         resetCount();
     }
 
-    public void addCount()
-    {
-        count++;
-    }
+    public void addCount() {count++;}
     public void resetCount()
     {
         count = 0;

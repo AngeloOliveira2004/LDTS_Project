@@ -33,4 +33,5 @@ public class MenuView extends MenuViewer {
     public void close() throws IOException {
         screen.close();
     }
+
 }

@@ -4,18 +4,20 @@ import org.space.invaders.control.MenuController;
 import org.space.invaders.gui.Menu;
 import org.space.invaders.gui.MenuGUI;
 import org.space.invaders.model.game.menu.MenuModel;
+import org.space.invaders.model.game.menu.PauseMenuModel;
 import org.space.invaders.states.ApplicationState;
 import org.space.invaders.states.State;
 import org.space.invaders.view.menu.MenuViewer;
 import org.space.invaders.view.menu.MenuView;
+import org.space.invaders.view.menu.PauseMenuView;
 
 import java.io.IOException;
 
 public class MenuState implements State {
-    private final MenuView menuView;
+    private MenuView menuView;
     MenuGUI gui;
     private MenuController menuController;
-    private final MenuModel menuModel;
+    private  MenuModel menuModel;
 
     public MenuState(MenuController menuController,MenuGUI gui) {
 
@@ -25,13 +27,6 @@ public class MenuState implements State {
         this.menuController = menuController;
     }
 
-    public MenuViewer getViewer() {
-        return menuView;
-    }
-
-    public MenuController getController() {
-        return menuController;
-    }
 
     public MenuModel getModel() {
         return menuModel;
@@ -90,4 +85,30 @@ public class MenuState implements State {
         return true;
     }
 
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public MenuGUI getGui() {
+        return gui;
+    }
+
+    public void setMenuModel(MenuModel menuModel) {
+        this.menuModel = menuModel;
+    }
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
+
+    public void setGui(MenuGUI menuGui) {
+        this.gui = menuGui;
+    }
+
+    public void setMenuView(MenuView menuView) {
+        this.menuView = menuView;
+    }
+
+    public MenuModel getMenuModel() {
+        return menuModel;
+    }
 }

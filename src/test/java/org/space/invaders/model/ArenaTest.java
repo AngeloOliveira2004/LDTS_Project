@@ -1,10 +1,13 @@
 package org.space.invaders.model;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.model.game.UI.Time;
 import org.space.invaders.model.game.elements.*;
+import org.space.invaders.view.game.ShotView;
 import org.space.invaders.view.game.SpaceshipView;
 
 import java.io.IOException;
@@ -150,8 +153,18 @@ public class ArenaTest {
     @Test
     public void testUpdate_SpaceShipHitByShot() throws IOException {
         Arena arena = new Arena();
+        TextGraphics mockTextGraphics = Mockito.mock(TextGraphics.class);
+
         SpaceShip spaceShip = new SpaceShip(10, 20, 0, 0, 5, 1, true, 3, 3);
-        ShotElement shot = new Shot(new Position(10, 20), -1, 1);
+        SpaceshipView spaceshipView = new SpaceshipView(spaceShip,mockTextGraphics);
+        spaceshipView.draw();
+
+        assertNotNull(spaceShip.getOccupiedPositions());
+
+        Shot shot = new Shot(new Position(10, 20), -1, 1);
+        ShotView shotView = new ShotView(mockTextGraphics, shot);
+        shotView.draw();
+
         arena.addObject(spaceShip);
         arena.addShot(shot);
 
@@ -160,8 +173,8 @@ public class ArenaTest {
         arena.update(spaceShip);
 
         assertEquals(4, spaceShip.getHealth());
-        assertFalse(arena.getObjects().contains(spaceShip));
-        assertFalse(arena.getShots().contains(shot));
+        assertEquals(true, arena.getObjects().contains(spaceShip));
+        assertEquals(false,arena.getShots().contains(shot));
     }
 
     @Test

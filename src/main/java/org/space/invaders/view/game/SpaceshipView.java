@@ -152,7 +152,6 @@ public class SpaceshipView extends View{
         int y = (int)spaceShip.getPosition().getY();
         drawImage(SpaceShipModel, x, y , positions);
     }
-    private int wait = 863;
     private void drawWithInvincibilityMini()
     {
         ArrayList<Position> positions = new ArrayList<>();

@@ -17,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class MenuControllerTest {
-/*
+
     private MenuController menuController;
+
     @BeforeEach
     void setUp() {
         // Create a mock for MenuController
         menuController = mock(MenuController.class);
     }
-
+/*
     @Test
     public void testChangeStateGame() throws IOException {
-
         menuController = mock(MenuController.class);
 
         menuController.changeState(ApplicationState.Game);
@@ -52,7 +52,7 @@ class MenuControllerTest {
     }
 
     // Add similar test methods for other ApplicationState values
-
+*/
     @Test
     void testGetApplicationState() {
         // Mock the behavior of getApplicationState method
@@ -65,6 +65,4 @@ class MenuControllerTest {
         assertEquals(ApplicationState.Game, menuController.getApplicationState());
     }
 
-    // Add more test methods as needed
-    */
 }

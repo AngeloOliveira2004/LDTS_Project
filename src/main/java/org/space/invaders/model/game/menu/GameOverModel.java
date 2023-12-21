@@ -75,5 +75,4 @@ public class GameOverModel extends Menu{
             }
         }
     }
-
 }

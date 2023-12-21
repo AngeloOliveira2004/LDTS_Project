@@ -11,11 +11,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class GameOverState implements State {
-    private final GameOverView gameOverVIew;
+    private GameOverView gameOverVIew;
     MenuGUI gui;
     private MenuController menuController;
-
-    private final GameOverModel gameOverModel;
+    private GameOverModel gameOverModel;
     public GameOverState(MenuController menuController, MenuGUI gui)
     {
         this.menuController = menuController;
@@ -99,5 +98,29 @@ public class GameOverState implements State {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public MenuGUI getGui() {
+        return gui;
+    }
+
+    public void setMenuModel(GameOverModel mockGameOverModel) {
+        this.gameOverModel = mockGameOverModel;
+    }
+
+    public void setMenuView(GameOverView gameOverView) {
+        this.gameOverVIew = gameOverView;
+    }
+
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
+
+    public void setGui(MenuGUI menuGui) {
+        this.gui = menuGui;
     }
 }

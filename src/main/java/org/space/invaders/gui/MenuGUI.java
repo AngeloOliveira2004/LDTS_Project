@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public interface MenuGUI {
     MenuGUI.ACTION getNextAction() throws IOException;
-    void drawText(Position position , String text , String color);
     void clear();
     void refresh();
 

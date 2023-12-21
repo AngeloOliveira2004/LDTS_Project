@@ -35,7 +35,6 @@ public class Menu implements MenuGUI {
             screen.setCursorPosition(null);
             screen.startScreen();
             screen.doResizeIfNecessary();
-            // Start the screen
             screen.startScreen();
 
             textGraphics = screen.newTextGraphics();
@@ -45,11 +44,6 @@ public class Menu implements MenuGUI {
         this.screen = screen;
     }
 
-    @Override
-    public void drawText(Position position, String text, String color) {
-        textGraphics.setForegroundColor(TextColor.ANSI.WHITE);
-        textGraphics.putString(position.x, position.y, text);
-    }
     @Override
     public void clear() {
         screen.clear();
@@ -104,5 +98,7 @@ public class Menu implements MenuGUI {
         return null;
     }
     public void setVisible(boolean visible){this.visible = visible;}
+
+    public void setTextGraphics(TextGraphics textGraphics){this.textGraphics = textGraphics;}
 
 }

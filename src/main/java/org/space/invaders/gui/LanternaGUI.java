@@ -22,21 +22,6 @@ import java.util.ArrayList;
 public class LanternaGUI implements GUI{
     private final Screen screen;
     private  TextGraphics textGraphics;
-    public LanternaGUI(int screenWidth , int screenHeight) throws Exception {
-        Terminal terminal = new DefaultTerminalFactory()
-                .setInitialTerminalSize(new TerminalSize(screenWidth, screenHeight))
-                .createTerminal();
-
-        this.screen = new TerminalScreen(terminal);
-
-        screen.setCursorPosition(null);
-        screen.startScreen();
-        screen.doResizeIfNecessary();
-        // Start the screen
-        screen.startScreen();
-
-        textGraphics = screen.newTextGraphics();
-    }
     public LanternaGUI(Screen screen) {
         this.screen = screen;
     }
@@ -47,65 +32,8 @@ public class LanternaGUI implements GUI{
         return textCharacter;
     }
     @Override
-    public ACTION getNextAction() throws IOException {
-        return null;
-    }
-    @Override
     public Screen getScreen(){
         return screen;
-    }
-
-    @Override
-    public void drawSpaceShip(Position position, char[][] spaceShipShape) {
-        textGraphics.setForegroundColor(TextColor.ANSI.YELLOW);
-
-        for(int x = 0 ; x < spaceShipShape.length ; x++)
-        {
-            for(int y = 0; y < spaceShipShape[0].length ; y++)
-            {
-                if(spaceShipShape[x][y] != '0')
-                {
-                    TextCharacter textCharacter = createColoredCharacter(spaceShipShape[x][y], TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
-                    textGraphics.setCharacter(position.x + y, position.y + x, textCharacter);
-                }
-                else
-                {
-                    TextCharacter textCharacter = createColoredCharacter(spaceShipShape[x][y], TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
-                    textGraphics.setCharacter(position.x + y, position.y + x, textCharacter);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void drawShot(Position position, char[][] ShotShape , int yVelocity) {
-        boolean update = true;
-        while(position.y > 0)
-        {
-            if(update)
-            {
-                TextCharacter textCharacter = createColoredCharacter('|', TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
-                textGraphics.setCharacter(position.x, position.y - 1, textCharacter);
-                update = false;
-            }
-
-            position.setY(position.y+yVelocity);
-
-            if(position.y % 5  == 0)
-            {
-                TextCharacter textCharacter = createColoredCharacter('|', TextColor.ANSI.YELLOW, TextColor.ANSI.BLACK);
-                textGraphics.setCharacter(position.x, position.y, textCharacter);
-            }
-        }
-    }
-
-    @Override
-    public void drawStars(ArrayList<Position> StarPositions) {
-        TextCharacter character = new TextCharacter('*');
-        for(Position position : StarPositions)
-        {
-            textGraphics.setCharacter(position.x , position.y , character);
-        }
     }
 
     @Override
@@ -134,11 +62,6 @@ public class LanternaGUI implements GUI{
         }
     }
 
-    @Override
-    public void drawHealth(Position position, String text, String color) {
-
-    }
-
 
     @Override
     public void clear() {
@@ -158,5 +81,8 @@ public class LanternaGUI implements GUI{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void setTextGraphics(TextGraphics textGraphics){
+        this.textGraphics = textGraphics;
     }
 }

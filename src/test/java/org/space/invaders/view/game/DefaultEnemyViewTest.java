@@ -20,16 +20,16 @@ public class DefaultEnemyViewTest {
     @Mock
     private DefaultEnemy defaultEnemy;
 
+    private DefaultEnemyView defaultEnemyView;
+
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        defaultEnemyView = new DefaultEnemyView(defaultEnemy, textGraphics);
     }
 
     @Test
     public void testDrawDefaultEnemy() {
         when(defaultEnemy.getPosition()).thenReturn(new Position(10, 20));
-
-        DefaultEnemyView defaultEnemyView = new DefaultEnemyView(defaultEnemy, textGraphics);
 
         defaultEnemyView.drawDefaultEnemy();
 

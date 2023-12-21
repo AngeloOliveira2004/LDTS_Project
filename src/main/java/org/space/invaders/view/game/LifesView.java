@@ -16,7 +16,7 @@ public class LifesView extends View{
     private Lifes lifes;
 
     private boolean first_time;
-    private static final String[] timeString = new String[]{
+    public static final String[] timeString = new String[]{
             "gg     gg  gg gg  ggggg  ggggg     ",
             "gg     gg  gg gg  gg     gg      gg",
             "gg     gg  gg gg  ggggg  ggggg     ",
@@ -46,7 +46,7 @@ public class LifesView extends View{
     }
 
 
-    private void actualDraw(Position position , String[] model,int lifeStringValue)
+    public void actualDraw(Position position, String[] model, int lifeStringValue)
     {
         ArrayList<Position> positions = new ArrayList<>();
         int x = (int) position.getX();
@@ -61,6 +61,5 @@ public class LifesView extends View{
             drawImage(heart,x + i * 8, y, positions);
             i--;
         }
-
     }
 }

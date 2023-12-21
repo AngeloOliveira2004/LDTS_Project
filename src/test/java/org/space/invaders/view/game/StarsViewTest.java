@@ -21,10 +21,11 @@ public class StarsViewTest {
 
     @Mock
     private Stars stars;
+    private StarsView starsView;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        starsView = new StarsView(textGraphics, stars);
     }
 
     @Test
@@ -34,8 +35,6 @@ public class StarsViewTest {
         List<Stars.StarPosition> starPositions = Arrays.asList(starPosition1, starPosition2);
 
         when(stars.getStarPosition()).thenReturn(starPositions);
-
-        StarsView starsView = new StarsView(textGraphics, stars);
 
         starsView.draw();
 
@@ -54,8 +53,6 @@ public class StarsViewTest {
         List<Stars.StarPosition> starPositions = Arrays.asList(starPosition1, starPosition2);
 
         when(stars.getStarPosition()).thenReturn(starPositions);
-
-        StarsView starsView = new StarsView(textGraphics, stars);
 
         starsView.moveStars();
 

@@ -18,10 +18,11 @@ public class SpaceshipViewTest {
 
     @Mock
     private SpaceShip spaceShip;
+    private SpaceshipView spaceshipView;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        spaceshipView = new SpaceshipView(spaceShip, textGraphics);
     }
 
     @Test
@@ -29,8 +30,6 @@ public class SpaceshipViewTest {
         when(spaceShip.isInvincible()).thenReturn(false);
         when(spaceShip.isMini()).thenReturn(false);
         when(spaceShip.getPosition()).thenReturn(new Position(10, 20));
-
-        SpaceshipView spaceshipView = new SpaceshipView(spaceShip, textGraphics);
 
         spaceshipView.draw();
 
@@ -60,6 +59,7 @@ public class SpaceshipViewTest {
             verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
         }
     }
+
     @Test
     public void testMiniSpaceShipDraw() {
         when(spaceShip.isInvincible()).thenReturn(false);
@@ -77,6 +77,7 @@ public class SpaceshipViewTest {
             verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
         }
     }
+
     @Test
     public void testMiniInvincibleSpaceShipDraw(){
         when(spaceShip.isInvincible()).thenReturn(true);

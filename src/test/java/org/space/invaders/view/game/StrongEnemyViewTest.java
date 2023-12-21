@@ -19,17 +19,16 @@ public class StrongEnemyViewTest {
 
     @Mock
     private StrongEnemy strongEnemy;
+    private StrongEnemyView strongEnemyView;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        strongEnemyView = new StrongEnemyView(strongEnemy, textGraphics);
     }
 
     @Test
     public void testDrawStrongEnemyMethod() {
         when(strongEnemy.getPosition()).thenReturn(new Position(10, 20));
-
-        StrongEnemyView strongEnemyView = new StrongEnemyView(strongEnemy, textGraphics);
 
         strongEnemyView.drawStrongEnemy();
 

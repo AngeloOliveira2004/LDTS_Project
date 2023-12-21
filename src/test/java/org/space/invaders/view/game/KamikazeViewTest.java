@@ -17,17 +17,16 @@ public class KamikazeViewTest {
 
     @Mock
     private KamikazeEnemy kamikazeEnemy;
+    private KamikazeView kamikazeView;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        kamikazeView = new KamikazeView(kamikazeEnemy, textGraphics);
     }
 
     @Test
     public void testDrawKamikazeMethod() {
         when(kamikazeEnemy.getPosition()).thenReturn(new Position(10, 20));
-
-        KamikazeView kamikazeView = new KamikazeView(kamikazeEnemy, textGraphics);
 
         kamikazeView.drawKamikaze();
 

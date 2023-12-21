@@ -1,0 +1,52 @@
+package org.space.invaders.view.game;
+
+import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.space.invaders.model.Position;
+import org.space.invaders.model.game.UI.Lifes;
+import org.space.invaders.view.game.LifesView;
+
+import java.io.IOException;
+
+import static org.mockito.Mockito.*;
+
+public class LifesViewTest {
+
+    @Mock
+    private TextGraphics textGraphics;
+
+    @Mock
+    private Lifes lifes;
+    @Mock
+    private Position position;
+    private LifesView lifesView;
+
+    @Before
+    public void setUp() {
+        lifesView = new LifesView(lifes, textGraphics);
+        position = new Position(500, 295);
+    }
+    @Test
+    public void testActualDrawMethod() {
+        String[] model = LifesView.timeString;
+        int lifeStringValue = 3;
+
+        lifesView.actualDraw(position, model, lifeStringValue);
+
+        int expectedX = 500;
+        int expectedY = 295;
+
+        for (int i = 0; i < LifesView.timeString.length; i++) {
+            verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
+        }
+
+        for (int i = 0; i < 3; i++) {
+            verify(textGraphics, atLeastOnce()).setCharacter(expectedX + i * 8, expectedY, any(TextCharacter.class));
+        }
+
+    }
+}

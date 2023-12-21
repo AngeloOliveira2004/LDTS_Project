@@ -28,10 +28,10 @@ public class MiniShotViewTest {
 
     @Mock
     private Position position;
-
+    private MiniShotView miniShotView;
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        miniShotView = new MiniShotView(textGraphics, miniShot);
     }
 
     @Test
@@ -39,8 +39,6 @@ public class MiniShotViewTest {
         when(miniShot.getPosition()).thenReturn(position);
         when(position.getX()).thenReturn(10);
         when(position.getY()).thenReturn(20);
-
-        MiniShotView miniShotView = new MiniShotView(textGraphics, miniShot);
 
         miniShotView.draw();
 

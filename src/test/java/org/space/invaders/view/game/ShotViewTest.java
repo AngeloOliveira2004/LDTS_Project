@@ -31,7 +31,7 @@ public class ShotViewTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        shotView = new ShotView(textGraphics, shot);
     }
 
     @Test
@@ -39,8 +39,6 @@ public class ShotViewTest {
         when(shot.getPosition()).thenReturn(position);
         when(position.getX()).thenReturn(10);
         when(position.getY()).thenReturn(20);
-
-        ShotView shotView = new ShotView(textGraphics, shot);
 
         shotView.draw();
 

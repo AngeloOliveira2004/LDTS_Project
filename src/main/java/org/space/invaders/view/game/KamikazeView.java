@@ -53,4 +53,5 @@ public class KamikazeView extends View{
     public void draw() throws IOException {
     }
     public String[] getDesign(){return  KamikazeModel;}
+    public void setKamikazeEnemy(KamikazeEnemy kamikazeEnemy){this.kamikazeEnemy = kamikazeEnemy;}
 }

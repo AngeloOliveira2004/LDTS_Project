@@ -3,7 +3,8 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.space.invaders.model.Position;
@@ -25,7 +26,7 @@ public class LifesViewTest {
     private Position position;
     private LifesView lifesView;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         lifesView = new LifesView(lifes, textGraphics);
         position = new Position(500, 295);

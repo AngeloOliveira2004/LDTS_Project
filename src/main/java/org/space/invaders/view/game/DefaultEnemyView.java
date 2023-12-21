@@ -51,4 +51,5 @@ public class DefaultEnemyView extends View {
         return DefaultEnemyModel;
     }
 
+    public void setDefaultEnemy(DefaultEnemy defaultEnemy){this.defaultEnemy = defaultEnemy;}
 }

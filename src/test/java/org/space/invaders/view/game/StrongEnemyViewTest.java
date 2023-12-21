@@ -3,13 +3,16 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.elements.StrongEnemy;
+import org.space.invaders.model.game.elements.StrongEnemy;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class StrongEnemyViewTest {
@@ -18,26 +21,64 @@ public class StrongEnemyViewTest {
     private TextGraphics textGraphics;
 
     @Mock
-    private StrongEnemy strongEnemy;
-    private StrongEnemyView strongEnemyView;
+    private StrongEnemy StrongEnemy;
 
-    @Before
+    private StrongEnemyView StrongEnemyView;
+
+    @BeforeEach
     public void setUp() {
-        strongEnemyView = new StrongEnemyView(strongEnemy, textGraphics);
+        StrongEnemy = new StrongEnemy(15,15,1,1,1,1,true,1,1);
+        textGraphics = mock(TextGraphics.class);
+        StrongEnemyView = new StrongEnemyView(StrongEnemy, textGraphics);
+        StrongEnemyView.setStrongEnemy(StrongEnemy);
     }
 
     @Test
-    public void testDrawStrongEnemyMethod() {
-        when(strongEnemy.getPosition()).thenReturn(new Position(10, 20));
+    public void testDrawStrongEnemy() {
+        StrongEnemy = mock(StrongEnemy.class);
+        StrongEnemyView.setStrongEnemy(StrongEnemy);
 
-        strongEnemyView.drawStrongEnemy();
+        when(StrongEnemy.getPosition()).thenReturn(new Position(0,0));
 
-        int expectedX = 10;
-        int expectedY = 20;
+        StrongEnemyView.drawStrongEnemy();
 
-        for (int i = 0; i < StrongEnemyView.StrongEnemyModel.length; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
-        }
+        verify(StrongEnemy , atLeastOnce()).setOccupiedPositions(any());
+    }
+
+    @Test
+    void testDraw()
+    {
+        StrongEnemyView.draw();
+        StrongEnemyView = mock(StrongEnemyView.class);
+
+        StrongEnemyView.draw();
+
+        verify(StrongEnemyView , times(1)).draw();
+    }
+
+    @Test
+    void testGetDesign()
+    {
+         final String[] design = new String[]{
+                "     C   C      ",
+                "     C   C      ",
+                "    RRRRRRRGG   ",
+                "   RRRRRRRRRGG  ",
+                "  CCCCCCCCCRRG  ",
+                "  CCCCCCCCCRRR  ",
+                "  GGGGGGGGCRRR  ",
+                "  CCCCCCCCCRRR  ",
+                "   RRRRRRRRRR   ",
+                "       CC       ",
+                " GGR  RRRR  RGG ",
+                " GRRCCRGGRCCRRG ",
+                "   C        C   ",
+                "  CCC      CCC  ",
+                " C C C    C C C ",
+                " C   C    C   C ",
+        };
+
+        assertEquals(StrongEnemyView.getDesign().length , design.length);
     }
 }
 

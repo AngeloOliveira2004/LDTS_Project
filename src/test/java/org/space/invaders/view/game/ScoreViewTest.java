@@ -3,7 +3,7 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.UI.Score;

@@ -51,4 +51,8 @@ public class StrongEnemyView extends View {
     public String[] getDesign() {
         return StrongEnemyModel;
     }
+
+    public void setStrongEnemy(StrongEnemy strongEnemy) {
+        this.strongEnemy = strongEnemy;
+    }
 }

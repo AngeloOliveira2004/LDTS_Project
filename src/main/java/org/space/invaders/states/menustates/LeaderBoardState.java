@@ -13,11 +13,11 @@ import java.io.IOException;
 
 public class LeaderBoardState implements State {
 
-    private final LeaderboardView menuView;
+    private LeaderboardView menuView;
     MenuGUI gui;
     private MenuController menuController;
 
-    private final LeaderboardModel menuModel;
+    private LeaderboardModel menuModel;
 
     public LeaderBoardState(MenuController menuController,MenuGUI gui) {
         this.gui = gui;
@@ -80,5 +80,36 @@ public class LeaderBoardState implements State {
     @Override
     public void close() throws IOException {
 
+    }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public MenuGUI getGui() {
+        return gui;
+    }
+
+    public void setLeaderBoardModel(LeaderboardModel leaderBoardModel) {
+        this.menuModel = leaderBoardModel;
+    }
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
+
+    public void setGui(MenuGUI menuGui) {
+        this.gui = menuGui;
+    }
+
+    public void setMenuView(LeaderboardView menuView) {
+        this.menuView = menuView;
+    }
+
+    public LeaderboardModel getMenuModel() {
+        return menuModel;
+    }
+
+    public void setMenuModel(LeaderboardModel mockLeaderboardModel) {
+        this.menuModel = mockLeaderboardModel;
     }
 }

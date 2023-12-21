@@ -34,8 +34,7 @@ public class ScoreViewTest {
     void ActualDraw() throws IOException {
         assertTrue(scoreView.getFirstTime());
         scoreView.draw();
-        scoreView.actualDraw(new Position(0,0) , new String[]{"a", "a"}, anyString());
-        assertFalse(scoreView.getFirstTime());
+       assertFalse(scoreView.getFirstTime());
     }
 
     @Test

@@ -31,4 +31,6 @@ public class MiniShotView extends View{
 
         }
     }
+    public void setPosition(Position position){this.position = position;}
+    public void setShotController(ShotController shotController){this.shotController = shotController;}
 }

@@ -150,6 +150,7 @@ public class SpaceshipView extends View{
         int x = (int)spaceShip.getPosition().getX();
         int y = (int)spaceShip.getPosition().getY();
         drawImage(SpaceShipModel, x, y , positions);
+        spaceShip.setOccupiedPositions(positions);
     }
     private void drawWithInvincibilityMini()
     {
@@ -166,6 +167,10 @@ public class SpaceshipView extends View{
         int y = (int)spaceShip.getPosition().getY();
         drawImage(InvincibleSpaceShipModel, x, y , positions);
     }
-    public String[] getDesign(){return  SpaceShipModel;}
+    public String[] getDesign1(){return  SpaceShipModel;}
+    public String[] getDesign2(){return  InvincibleSpaceShipModel;}
+    public String[] getDesign3(){return  MiniSpaceShipModel;}
+    public String[] getDesign4(){return  InvincibleMiniSpaceShipModel;}
+
     public void setSpaceShip(SpaceShip spaceShip){this.spaceShip = spaceShip;}
 }

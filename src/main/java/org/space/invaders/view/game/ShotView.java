@@ -36,4 +36,8 @@ public class ShotView extends View{
         shot.resetCount();
     }
     public void setShotController(ShotController shotController){this.shotController = shotController;}
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }

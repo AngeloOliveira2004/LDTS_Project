@@ -23,4 +23,5 @@ public class Lifes {
         LifesView lifesView = new LifesView(this, textGraphics);
         lifesView.draw();
     }
+    public void setLifes(int a){this.lifes = a;}
 }

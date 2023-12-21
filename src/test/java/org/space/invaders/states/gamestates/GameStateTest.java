@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import org.space.invaders.control.GameController;
+import org.space.invaders.control.game.PlayerController;
 import org.space.invaders.model.Arena;
 import org.space.invaders.model.game.SpaceShip;
 import org.space.invaders.states.ApplicationState;
@@ -18,7 +19,7 @@ import org.space.invaders.view.GameViewer;
 import java.io.IOException;
 
 class GameStateTest {
-    /*
+
     private GameController gameController;
     private GameState gameState;
     private GameViewer gameViewer;
@@ -26,6 +27,7 @@ class GameStateTest {
 
     @BeforeEach
     void setUp() throws IOException {
+        /*
         gameController = mock(GameController.class);
 
         gameState = new GameState(gameController);
@@ -40,6 +42,7 @@ class GameStateTest {
 
         gameViewer = mock(GameViewer.class);
         arena = gameState.getArena();
+        */
     }
 
     @Test
@@ -65,14 +68,26 @@ class GameStateTest {
 
     @Test
     void testHandleInput() throws IOException {
-        // Mock the behavior of gameViewer.handleInput() to return a specific KeyStroke (e.g., arrow key)
-        when(gameViewer.handleInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
+        Arena arena = new Arena();
+        GameViewer mockViewer = mock(GameViewer.class);
+        gameController = mock(GameController.class);
+
+        GameState gameState = new GameState(gameController);
+
+        gameState.setGameViewer(mockViewer);
+        mockViewer.setGameController(gameController);
+        gameState.setGameController(mock(GameController.class));
+        gameState.setPlayerController(mock(PlayerController.class));
+
+        gameState.setArena(arena);
+        arena.killAlllifes();
+
+        when(mockViewer.handleInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
 
         gameState.run(); // Run the game loop to handle input
 
-        // Add assertions based on the expected behavior during input handling
-        // For example, check if the playerController.keyPressed() method was called with the correct arguments
-        verify(gameController, atLeastOnce()).changeState(any(ApplicationState.class));
+        verify(mockViewer , times(1)).close();
+        verify(gameController, atLeastOnce()).changeState(ApplicationState.GameOverMenu);
     }
 
     @Test
@@ -88,6 +103,14 @@ class GameStateTest {
         // You may need to read the file or use additional methods to verify the outcome
     }
 
-    // Add more test methods as needed
-    */
+
+    @Test
+    void testPaused() throws IOException {
+        GameState gameState = new GameState(gameController);
+        gameState.setGameViewer(mock(GameViewer.class));
+
+        gameState.setPaused(true);
+
+        assertTrue(gameState.isPaused());
+    }
 }

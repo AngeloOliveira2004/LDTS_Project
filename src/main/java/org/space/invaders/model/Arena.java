@@ -194,5 +194,6 @@ public class Arena implements Collider {
         updateCycle();
     }
 
-
+    public void setLifes(int a){this.lifes.setLifes(a);}
+    public void killAlllifes(){this.lifes.killAllLifes();}
 }

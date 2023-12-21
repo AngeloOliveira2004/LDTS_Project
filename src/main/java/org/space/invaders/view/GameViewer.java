@@ -88,4 +88,8 @@ public class GameViewer {
         gameController.setGameState(null);
     }
     public TextGraphics getTextGraphics(){return textGraphics;}
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
 }

@@ -69,7 +69,7 @@ public void run() throws IOException{
         enemiesController.KamizeSpawner(spaceShip.getPosition());
         enemiesController.DefaultEnemySpawner();
         enemiesController.StrongEnemySpawner();
-        //update(elapsedTime);
+
         handleInput(gameViewer.handleInput());
 
         gameViewer.drawElements(arena);
@@ -99,7 +99,6 @@ public void run() throws IOException{
         }
         if (keyStroke != null) {
             if (keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-                // Exit the game
                 running = false;
                 gameController.changeState(ApplicationState.PauseMenu);
             }else
@@ -132,6 +131,17 @@ public void run() throws IOException{
 
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
+    }
+    public void setGameViewer(GameViewer gameViewer) throws IOException {
+        this.gameViewer = new GameViewer(gameController);
+    }
+
+    public void setPlayerController(PlayerController mock) {
+      this.playerController = mock;
+    }
+
+    public void setArena(Arena arena) {
+      this.arena = arena;
     }
 }
 

@@ -105,10 +105,6 @@ public class LeaderBoardState implements State {
         this.menuView = menuView;
     }
 
-    public LeaderboardModel getMenuModel() {
-        return menuModel;
-    }
-
     public void setMenuModel(LeaderboardModel mockLeaderboardModel) {
         this.menuModel = mockLeaderboardModel;
     }

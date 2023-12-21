@@ -14,11 +14,11 @@ import org.space.invaders.view.menu.MenuViewer;
 import java.io.IOException;
 
 public class InstructionsState implements State {
-    private final InstructionsView menuView;
+    private InstructionsView menuView;
     MenuGUI gui;
     private MenuController menuController;
 
-    private final InstructionsModel menuModel;
+    private InstructionsModel menuModel;
 
     public InstructionsState(MenuController menuController, MenuGUI gui) {
         this.gui = gui;
@@ -82,5 +82,29 @@ public class InstructionsState implements State {
     @Override
     public void close() throws IOException {
 
+    }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public MenuGUI getGui() {
+        return gui;
+    }
+
+    public void setMenuModel(InstructionsModel mockInstructionsModel) {
+        this.menuModel = mockInstructionsModel;
+    }
+
+    public void setMenuView(InstructionsView instructionsView) {
+        this.menuView = instructionsView;
+    }
+
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
+
+    public void setGui(MenuGUI menuGui) {
+        this.gui = menuGui;
     }
 }

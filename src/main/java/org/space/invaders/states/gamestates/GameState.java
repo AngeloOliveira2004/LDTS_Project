@@ -61,7 +61,7 @@ public class GameState implements State {
 
 public void run() throws IOException{
     lastFrameTime = System.nanoTime();
-    while (isRunning()) {
+    while (running) {
         long now = System.nanoTime();
         long elapsedTime = now - lastFrameTime;
         arena.update(spaceShip);

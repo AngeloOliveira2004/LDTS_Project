@@ -75,7 +75,6 @@ public class Stars extends Position implements Dimensions {
     public void draw(TextGraphics screen) {
         StarsView starsView = new StarsView(screen, this);
         starsView.draw();
-        starsView.moveStars();
     }
     public List<Stars.StarPosition> getStarPosition() {
         return starPositions;

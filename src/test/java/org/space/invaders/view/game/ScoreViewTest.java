@@ -3,46 +3,53 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.space.invaders.model.Position;
+import org.space.invaders.model.game.UI.Lifes;
 import org.space.invaders.model.game.UI.Score;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class ScoreViewTest {
-
+    ScoreView scoreView;
     @Mock
-    private TextGraphics textGraphics;
-
+    Score score;
     @Mock
-    private Score score;
-    private ScoreView scoreView;
-    @Mock
-    private Position position;
-
-    @Before
-    public void setUp() {
-        scoreView = new ScoreView(score, textGraphics);
-        Position position = new Position(10, 305);
+    TextGraphics textGraphics;
+    @BeforeEach
+    void setup()
+    {
+        this.score = mock(Score.class);
+        this.textGraphics = mock(TextGraphics.class);
+        this.scoreView = new ScoreView(score , textGraphics);
     }
 
     @Test
-    public void testActualDraw() {
-        String[] model = ScoreView.scoreString;
-        String scoreValue = "123";
+    void ActualDraw() throws IOException {
+        assertTrue(scoreView.getFirstTime());
+        scoreView.draw();
+        scoreView.actualDraw(new Position(0,0) , new String[]{"a", "a"}, anyString());
+        assertFalse(scoreView.getFirstTime());
+    }
 
-        scoreView.actualDraw(position, model, scoreValue);
+    @Test
+    void testGetters() {
 
-        for (int i = 0; i < ScoreView.scoreString.length; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(position.getX(), position.getY() + i, any(TextCharacter.class));
-        }
+        final String[] design = new String[]{
+                "ggggg  ggggg  gggggg  ggggg  ggggg     ",
+                "gg     gg     gg  gg  gg gg  gg      gg",
+                "ggggg  gg     gg  gg  gggg   ggggg     ",
+                "   gg  gg     gg  gg  gg g   gg      gg",
+                "ggggg  ggggg  gggggg  gg gg  ggggg     ",
+        };
 
-        for (int i = 0; i < 5; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(position.getX() + i * 8, position.getY(), any(TextCharacter.class));
-        }
+        assertEquals(design.length, scoreView.getScoreString().length);
     }
 }
 

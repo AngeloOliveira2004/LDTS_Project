@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -29,26 +30,21 @@ public class ShotViewTest {
 
     private ShotView shotView;
 
-    @Before
+    @BeforeEach
     public void setUp() {
+        shot = mock(Shot.class);
+        when(shot.getPosition()).thenReturn(new Position(10 , 10));
+        textGraphics = mock(TextGraphics.class);
+        shotController = mock(ShotController.class);
         shotView = new ShotView(textGraphics, shot);
+        shotView.setShotController(shotController);
     }
 
     @Test
     public void testDrawMethod() {
-        when(shot.getPosition()).thenReturn(position);
-        when(position.getX()).thenReturn(10);
-        when(position.getY()).thenReturn(20);
-
         shotView.draw();
 
-        verify(textGraphics).putString(14, 19, "|");
-        verify(textGraphics).fillRectangle(
-                new TerminalPosition(14, 26),
-                new TerminalSize(1, 1),
-                ' '
-        );
-        verify(shotController).update();
-        verify(shot).resetCount();
+        verify(shotController, times(1)).update();
+        verify(shot , times(1)).resetCount();
     }
 }

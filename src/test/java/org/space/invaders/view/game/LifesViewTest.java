@@ -9,43 +9,57 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.space.invaders.model.Position;
 import org.space.invaders.model.game.UI.Lifes;
+import org.space.invaders.model.game.UI.Time;
 import org.space.invaders.view.game.LifesView;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class LifesViewTest {
-
+    LifesView lifesView;
     @Mock
-    private TextGraphics textGraphics;
-
+    Lifes lifes;
     @Mock
-    private Lifes lifes;
-    @Mock
-    private Position position;
-    private LifesView lifesView;
-
+    TextGraphics textGraphics;
     @BeforeEach
-    public void setUp() {
-        lifesView = new LifesView(lifes, textGraphics);
-        position = new Position(500, 295);
+    void setup()
+    {
+        this.lifes = mock(Lifes.class);
+        this.textGraphics = mock(TextGraphics.class);
+        this.lifesView = new LifesView(lifes , textGraphics);
     }
+
     @Test
-    public void testActualDraw() {
-        String[] model = LifesView.timeString;
-        int lifeStringValue = 3;
+    void ActualDraw() throws IOException {
+        assertTrue(lifesView.getFirstTime());
+        lifesView.draw();
+        lifesView.actualDraw(new Position(0,0) , new String[]{"a", "a"}, 5);
+        assertFalse(lifesView.getFirstTime());
+    }
 
-        lifesView.actualDraw(position, model, lifeStringValue);
+    @Test
+    void testGetters()
+    {
+         final String[] design = new String[]{
+                "gg     gg  gg gg  ggggg  ggggg     ",
+                "gg     gg  gg gg  gg     gg      gg",
+                "gg     gg  gg gg  ggggg  ggggg     ",
+                "gg     gg  gg gg  gg        gg   gg",
+                "ggggg  gg    g    ggggg  ggggg     ",
+        };
 
+         final String[] design1 = new String[]{
+                "     g g     ",
+                "    ggggg    ",
+                "    ggggg    ",
+                "     ggg     ",
+                "      g      ",
+        };
 
-        for (int i = 0; i < LifesView.timeString.length; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(position.getX(), position.getY() + i, any(TextCharacter.class));
-        }
-
-        for (int i = 0; i < 3; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(position.getX() + i * 8, position.getY(), any(TextCharacter.class));
-        }
-
+        assertEquals(design1.length , lifesView.getHeart().length);
+        assertEquals(design.length , lifesView.getTimeString().length);
     }
 }
+

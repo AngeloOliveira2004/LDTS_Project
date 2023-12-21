@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PlanetView extends View{
-
     private Planet planet;
     private static final int CHAR_HEIGHT = 2;
     private static final int CHAR_WIDTH = 2;
-
     private static final String[] planetModel = new String[]{
             "     bbbbbb     ",
             "   GGbbbbbbAG   ",
@@ -51,4 +49,4 @@ public class PlanetView extends View{
         return planetModel;
     }
 
-    }
+}

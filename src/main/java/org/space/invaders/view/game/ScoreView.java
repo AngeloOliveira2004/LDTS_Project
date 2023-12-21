@@ -50,4 +50,13 @@ public class ScoreView extends View {
             drawImage(NumberEnum.values()[digit].getDesign(), x + i * 8, y, positions);
         }
     }
+
+    public boolean getFirstTime() {
+        return first_time;
+    }
+
+    public String[] getScoreString()
+    {
+        return scoreString;
+    }
 }

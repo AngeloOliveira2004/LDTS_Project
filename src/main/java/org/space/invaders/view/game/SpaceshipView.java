@@ -106,7 +106,6 @@ public class SpaceshipView extends View{
             "     ROYYOR     ",
     };
 
-    private static final String[] MiniSpaceShipModelWithFlames = {"A" , " "};
     public SpaceshipView(SpaceShip spaceShip , TextGraphics textGraphics)
     {
         super(CHAR_HEIGHT , CHAR_WIDTH , textGraphics);
@@ -152,7 +151,6 @@ public class SpaceshipView extends View{
         int y = (int)spaceShip.getPosition().getY();
         drawImage(SpaceShipModel, x, y , positions);
     }
-    private int wait = 863;
     private void drawWithInvincibilityMini()
     {
         ArrayList<Position> positions = new ArrayList<>();
@@ -169,4 +167,5 @@ public class SpaceshipView extends View{
         drawImage(InvincibleSpaceShipModel, x, y , positions);
     }
     public String[] getDesign(){return  SpaceShipModel;}
+    public void setSpaceShip(SpaceShip spaceShip){this.spaceShip = spaceShip;}
 }

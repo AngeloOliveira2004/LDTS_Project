@@ -3,6 +3,7 @@ package org.space.invaders.view.game;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -12,7 +13,6 @@ import org.space.invaders.model.game.SpaceShip;
 import static org.mockito.Mockito.*;
 
 public class SpaceshipViewTest {
-
     @Mock
     private TextGraphics textGraphics;
 
@@ -20,11 +20,24 @@ public class SpaceshipViewTest {
     private SpaceShip spaceShip;
     private SpaceshipView spaceshipView;
 
-    @Before
+    @BeforeEach
     public void setUp() {
+        spaceShip = mock(SpaceShip.class);
         spaceshipView = new SpaceshipView(spaceShip, textGraphics);
     }
 
+    @Test
+    void testDraw()
+    {
+        spaceshipView = mock(spaceshipView.getClass());
+        spaceShip = mock(SpaceShip.class);
+        spaceshipView.setSpaceShip(spaceShip);
+        when(spaceShip.isInvincible()).thenReturn(false);
+        when(spaceShip.isMini()).thenReturn(false);
+        spaceshipView.draw();
+
+
+    }
     @Test
     public void testNormalSpaceshipDraw() {
         when(spaceShip.isInvincible()).thenReturn(false);

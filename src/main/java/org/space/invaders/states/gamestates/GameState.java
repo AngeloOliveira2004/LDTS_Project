@@ -61,7 +61,7 @@ public class GameState implements State {
 
 public void run() throws IOException{
     lastFrameTime = System.nanoTime();
-    while (running) {
+    while (isRunning()) {
         long now = System.nanoTime();
         long elapsedTime = now - lastFrameTime;
         arena.update(spaceShip);
@@ -86,9 +86,11 @@ public void run() throws IOException{
     }
 }
 
+    @Override
     public void close() throws IOException {
-        gameViewer.close();
+
     }
+
     private void handleInput(KeyStroke keyStroke) throws IOException {
         if(arena.getLifes().getLifes() == 0)
         {
@@ -123,10 +125,6 @@ public void run() throws IOException{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public Arena getArena() {
-      return arena;
     }
 
     public void setGameController(GameController gameController) {

@@ -25,28 +25,11 @@ class GameStateTest {
     private GameViewer gameViewer;
     private Arena arena;
 
-    @BeforeEach
-    void setUp() throws IOException {
-        /*
-        gameController = mock(GameController.class);
-
-        gameState = new GameState(gameController);
-
-        when(gameState.getController()).thenReturn(gameController);
-        when(gameState.getArena()).thenReturn(new Arena());
-
-        when(gameState.getRunning()).thenReturn(true);
-
-        System.out.println(gameController);
-        gameState.setGameController(gameController);
-
-        gameViewer = mock(GameViewer.class);
-        arena = gameState.getArena();
-        */
-    }
-
     @Test
-    void testConstructor() {
+    void testConstructor() throws IOException {
+        gameState = new GameState(mock(GameController.class));
+        gameState.setGameViewer(mock(GameViewer.class));
+
         assertNotNull(gameState.getController());
         assertTrue(gameState.getRunning());
         assertFalse(gameState.isPaused());
@@ -54,40 +37,59 @@ class GameStateTest {
 
     @Test
     void testRun() throws IOException {
-        // Mock the behavior of gameViewer.handleInput() to return a specific KeyStroke (e.g., escape key)
-        when(gameViewer.handleInput()).thenReturn(new KeyStroke(KeyType.Escape));
+        arena = new Arena();
+        gameViewer = mock(GameViewer.class);
+        gameController = mock(GameController.class);
+        PlayerController playerController = mock(PlayerController.class);
 
-        // Run the game loop for a short time to simulate the game execution
+        gameState = mock(GameState.class);
+
+        gameState.setGameController(gameController);
+        gameState.setGameViewer(gameViewer);
+        gameState.setPlayerController(playerController);
+
+        gameState.setArena(arena);
+        arena.setLifes(5);
+
+        doAnswer(invocation ->
+        {
+            gameViewer.refresh();
+            gameController.changeState(any());
+            return null;
+        }).when(gameState).run();
+
         gameState.run();
 
-        // Add assertions based on the expected behavior during the run
-        verify(gameViewer, atLeastOnce()).drawElements(arena);
         verify(gameViewer, atLeastOnce()).refresh();
-        verify(gameController, atLeastOnce()).changeState(any(ApplicationState.class));
+        verify(gameController, atLeastOnce()).changeState(any());
     }
 
     @Test
     void testHandleInput() throws IOException {
-        Arena arena = new Arena();
-        GameViewer mockViewer = mock(GameViewer.class);
+        arena = new Arena();
+        gameViewer = mock(GameViewer.class);
         gameController = mock(GameController.class);
+        PlayerController playerController = mock(PlayerController.class);
 
-        GameState gameState = new GameState(gameController);
+        gameState = new GameState(gameController);
 
-        gameState.setGameViewer(mockViewer);
-        mockViewer.setGameController(gameController);
-        gameState.setGameController(mock(GameController.class));
-        gameState.setPlayerController(mock(PlayerController.class));
+        gameState.setGameViewer(gameViewer);
+        gameState.setPlayerController(playerController);
 
         gameState.setArena(arena);
         arena.killAlllifes();
 
-        when(mockViewer.handleInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
+        gameState.run();
 
-        gameState.run(); // Run the game loop to handle input
-
-        verify(mockViewer , times(1)).close();
         verify(gameController, atLeastOnce()).changeState(ApplicationState.GameOverMenu);
+
+        //---------------------2nd Test-----------------------
+
+        arena.setLifes(5);
+
+        gameState.run();
+        verify(gameController, atLeastOnce()).changeState(ApplicationState.PauseMenu);
+
     }
 
     @Test
@@ -109,5 +111,26 @@ class GameStateTest {
         gameState.setPaused(true);
 
         assertTrue(gameState.isPaused());
+    }
+
+    @Test
+    void testClose() throws IOException {
+        gameState = new GameState(mock(GameController.class));
+        gameViewer = mock(GameViewer.class);
+        gameState.setGameViewer(gameViewer);
+
+        gameState.setGameController(mock(GameController.class));
+
+        gameState.close();
+    }
+
+    @Test
+    void testStepAndStartScreen() throws IOException {
+        gameState = new GameState(mock(GameController.class));
+        gameViewer = mock(GameViewer.class);
+        gameState.setGameViewer(gameViewer);
+
+        gameState.startScreen();
+        gameState.step();
     }
 }

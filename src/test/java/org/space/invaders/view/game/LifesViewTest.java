@@ -31,21 +31,19 @@ public class LifesViewTest {
         position = new Position(500, 295);
     }
     @Test
-    public void testActualDrawMethod() {
+    public void testActualDraw() {
         String[] model = LifesView.timeString;
         int lifeStringValue = 3;
 
         lifesView.actualDraw(position, model, lifeStringValue);
 
-        int expectedX = 500;
-        int expectedY = 295;
 
         for (int i = 0; i < LifesView.timeString.length; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(expectedX, expectedY + i, any(TextCharacter.class));
+            verify(textGraphics, atLeastOnce()).setCharacter(position.getX(), position.getY() + i, any(TextCharacter.class));
         }
 
         for (int i = 0; i < 3; i++) {
-            verify(textGraphics, atLeastOnce()).setCharacter(expectedX + i * 8, expectedY, any(TextCharacter.class));
+            verify(textGraphics, atLeastOnce()).setCharacter(position.getX() + i * 8, position.getY(), any(TextCharacter.class));
         }
 
     }

@@ -13,7 +13,7 @@ public class ScoreView extends View {
     private static final int CHAR_WIDTH = 1;
     private Score score;
     private boolean first_time;
-    private static final String[] scoreString = new String[]{
+    static final String[] scoreString = new String[]{
             "ggggg  ggggg  gggggg  ggggg  ggggg     ",
             "gg     gg     gg  gg  gg gg  gg      gg",
             "ggggg  gg     gg  gg  gggg   ggggg     ",
@@ -35,7 +35,7 @@ public class ScoreView extends View {
         actualDraw(position, scoreString,scoreStringValue);
     }
 
-    private void actualDraw(Position position, String[] model,String score) {
+    void actualDraw(Position position, String[] model, String score) {
         ArrayList<Position> positions = new ArrayList<>();
         int x = (int) position.getX();
         int y = (int) position.getY();

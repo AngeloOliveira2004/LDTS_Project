@@ -3,7 +3,9 @@ package org.space.invaders.control;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.space.invaders.states.ApplicationState;
+import org.space.invaders.states.State;
 import org.space.invaders.states.gamestates.GameState;
+import org.space.invaders.states.menustates.GameOverState;
 
 import java.io.IOException;
 
@@ -51,4 +53,19 @@ public class GameControllerTest{
         verify(menuController, times(1)).changeState(ApplicationState.GameOverMenu);
     }
 
+
+    @Test
+    void testGetAndSetState() throws IOException {
+        gameController = new GameController(mock(MenuController.class));
+        GameOverState gameOverState = mock(GameOverState.class);
+        gameController.setState(gameOverState);
+
+        assertEquals(gameOverState , gameController.getState());
+    }
+
+    @Test
+    void testGetAppliationState() throws IOException {
+        gameController = new GameController(mock(MenuController.class));
+        assertEquals(null , gameController.getGameState());
+    }
 }

@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$/src/main" />
             <option value="$PROJECT_DIR$/src/main/Resources" />
             <option value="$PROJECT_DIR$/src/main/Tests" />
+            <option value="$PROJECT_DIR$/src/test" />
+            <option value="$PROJECT_DIR$/src/test/Resources" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -3,4 +3,6 @@ include 'src:main:Tests'
 findProject(':src:main:Tests')?.name = 'Tests'
 include 'src:main:Resources'
 findProject(':src:main:Resources')?.name = 'Resources'
+include 'src:test:Resources'
+findProject(':src:test:Resources')?.name = 'Resources'
 

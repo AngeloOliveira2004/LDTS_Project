@@ -90,9 +90,6 @@ public class LeaderBoardState implements State {
         return gui;
     }
 
-    public void setLeaderBoardModel(LeaderboardModel leaderBoardModel) {
-        this.menuModel = leaderBoardModel;
-    }
     public void setMenuController(MenuController menuController) {
         this.menuController = menuController;
     }

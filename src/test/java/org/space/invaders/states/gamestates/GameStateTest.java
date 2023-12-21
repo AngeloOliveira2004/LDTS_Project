@@ -92,15 +92,12 @@ class GameStateTest {
 
     @Test
     void testWriteFinalScoreToFile() {
-        // Test the writeFinalScoreToFile method
         long finalScore = 1000;
         String filename = "testLeaderboard.txt";
 
-        // Call the method
-        GameState.writeFinalScoreToFile(finalScore, filename);
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/" + filename;
 
-        // Add assertions to check if the file was created and written correctly
-        // You may need to read the file or use additional methods to verify the outcome
+        GameState.writeFinalScoreToFile(finalScore, filePath);
     }
 
 

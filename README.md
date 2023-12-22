@@ -24,7 +24,7 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 
 
 ### Game Preview
-<img src="./docs/GameExample.gif" alt="Example GIF" width="400"/>
+<img src="./docs/GameExample.gif" alt="Example GIF" width="1191"/>
 
 ### Menus
 
@@ -183,12 +183,6 @@ Check the [link](./docs/coverage.html) to HTML file with Coverage Report for mor
 <img src="./docs/Coverage7.png" alt="" width="1400"/>
 
 <img src="./docs/Coverage8.png" alt="" width="1400"/>
-
-
-
-
-
-
 
 Before you try to test the code coverage on your know , be sure you volume and difficulty are set to
 

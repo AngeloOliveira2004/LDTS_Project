@@ -32,6 +32,7 @@ class ShotViewTestJQWIK {
     void setup() {
         MockitoAnnotations.initMocks(this);
 
+        shotView = new ShotView(textGraphicsMock ,shot);
         // Ensure that getGraphics() on the mocked ShotView returns a non-null TextGraphics
         when(shotView.getGraphics()).thenReturn(textGraphicsMock);
     }
@@ -42,6 +43,9 @@ class ShotViewTestJQWIK {
                                                  @ForAll int bool) {
 
         shot = createMockShot(position, yVelocity, bool);
+        textGraphicsMock = mock(TextGraphics.class);
+        shotControllerMock = mock(ShotController.class);
+        shotView = new ShotView(textGraphicsMock , shot);
         shotView.setShotController(shotControllerMock);
 
         shotView.draw();
@@ -55,7 +59,11 @@ class ShotViewTestJQWIK {
                                          @ForAll("validPositions") Position newPosition,
                                          @ForAll int yVelocity,
                                          @ForAll int bool) {
-        shot = createMockShot(initialPosition, yVelocity, bool);
+
+        shot = createMockShot(newPosition, yVelocity, bool);
+        textGraphicsMock = mock(TextGraphics.class);
+        shotControllerMock = mock(ShotController.class);
+        shotView = new ShotView(textGraphicsMock , shot);
         shotView.setPosition(newPosition);
         assertEquals(newPosition, shot.getPosition());  // Use assertEquals for comparing objects
     }

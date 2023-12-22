@@ -3,6 +3,8 @@ package org.space.invaders.view;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.Terminal;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -99,5 +101,18 @@ class GameViewerTest {
         KeyStroke result = gameViewerMock.handleInput();
         assertEquals(keyStroke, result);
         verify(gameViewerMock, times(1)).handleInput();
+    }
+
+    @Test
+    void testGetScreen(){
+        assertNotNull(gameViewer.getScreen());
+    }
+
+    @Test
+    void testSetScreen(){
+        GameViewer mockGameViewer = mock(GameViewer.class);
+        Screen screen = mock(Screen.class);
+        mockGameViewer.setScreen(screen);
+        verify(mockGameViewer, times(1)).setScreen(screen);
     }
 }

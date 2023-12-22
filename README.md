@@ -151,11 +151,50 @@ Note: This image is available in the docs folder , it is recommended to open it 
 
 # Tests coverage:
 
-**Code Coverage**
+Check the [link](./docs/coverage.html) to HTML file with Coverage Report for more detailed information
+
+
+### General Test Coverage
 
 <img src="./docs/Coverage.png" alt="" width="1400"/>
 
-**Pitest**
+### Control Test Coverage
+
+<img src="./docs/Coverage1.png" alt="" width="1400"/>
+
+### GUI Test Coverage
+
+<img src="./docs/Coverage2.png" alt="" width="1400"/>
+
+### Model Test Coverage
+
+<img src="./docs/Coverage3.png" alt="" width="1400"/>
+
+<img src="./docs/Coverage4.png" alt="" width="1400"/>
+
+<img src="./docs/Coverage5.png" alt="" width="1400"/>
+
+### State Test Coverage
+
+<img src="./docs/Coverage6.png" alt="" width="1400"/>
+
+### View Test Coverage
+
+<img src="./docs/Coverage7.png" alt="" width="1400"/>
+
+<img src="./docs/Coverage8.png" alt="" width="1400"/>
+
+
+
+
+
+
+
+Before you try to test the code coverage on your know , be sure you volume and difficulty are set to
+
+**Pit Test / Mutation Test**
+
+Check the [link](./docs/pitest.html) to HTML file with Pit Test for more detailed information
 
 <img src="./docs/Pitest.png" alt="" width="1400"/>
 

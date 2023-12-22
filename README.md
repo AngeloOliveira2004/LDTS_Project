@@ -194,7 +194,9 @@ Check the [link](./docs/pitest.html) to HTML file with Pit Test for more detaile
 
 ### Code Smells 
 
-We were not able to find any code smells
+-> Long Parameter List in Arena Class
+
+-> Dead Code that resulted of inheritance
 
 ### Self-Evaluation:
 

@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.*;
 
 class GameViewerTest {
-/*
+
     private GameViewer gameViewer;
     private GameController gameController;
     private Arena mockArena;
@@ -41,6 +40,19 @@ class GameViewerTest {
     @AfterEach
     void tearDown() {
         assertDoesNotThrow(() -> gameViewer.close());
+    }
+
+    @Test
+    void testGetTextGraphics(){
+        assertNotNull(gameViewer.getTextGraphics());
+    }
+
+    @Test
+    void testRefresh() {
+        GameViewer spyGameViewer = spy(gameViewer);
+
+        assertDoesNotThrow(() -> spyGameViewer.refresh());
+        verify(spyGameViewer, times(1)).refresh();
     }
 
     @Test
@@ -76,35 +88,16 @@ class GameViewerTest {
     }
 
     @Test
-    void testRefresh() {
-        GameViewer spyGameViewer = spy(gameViewer);
+    void testHandleInput() throws IOException {
 
-        assertDoesNotThrow(() -> spyGameViewer.refresh());
-        verify(spyGameViewer, times(1)).refresh();
-    }
-
-    @Test
-    void testGetTextGraphics(){
-        assertNotNull(gameViewer.getTextGraphics());
-    }
-
-    @Test
-    void testHandleInput() throws IOException, NoSuchFieldException, IllegalAccessException {
-        Screen mockScreen = Mockito.mock(Screen.class);
-
+        Screen screenMock = mock(Screen.class);
+        GameViewer gameViewerMock = mock(GameViewer.class);
+        gameViewerMock.setScreen(screenMock);
         KeyStroke keyStroke = new KeyStroke(KeyType.Enter);
 
-        when(mockScreen.pollInput()).thenReturn(keyStroke);
-
-        GameViewer gameViewer = new GameViewer(mock(GameController.class));
-
-        Field screenField = GameViewer.class.getDeclaredField("screen");
-        screenField.setAccessible(true);
-        screenField.set(gameViewer, mockScreen);
-
-        KeyStroke result = gameViewer.handleInput();
-
+        when(gameViewerMock.handleInput()).thenReturn(keyStroke);
+        KeyStroke result = gameViewerMock.handleInput();
         assertEquals(keyStroke, result);
+        verify(gameViewerMock, times(1)).handleInput();
     }
-*/
 }

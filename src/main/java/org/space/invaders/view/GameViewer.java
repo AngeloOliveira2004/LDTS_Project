@@ -88,4 +88,9 @@ public class GameViewer {
     }
     public TextGraphics getTextGraphics(){return textGraphics;}
 
+    public Screen getScreen(){return screen;}
+
+    public void setScreen(Screen screen){this.screen = screen;}
+
+
 }

@@ -21,53 +21,78 @@ class SettingsModelTest {
         assertEquals("Back to Main Menu", settingsModel.getOption(2));
         assertNotNull(settingsModel.getValuesMap());
         assertEquals(2, settingsModel.getValuesMap().size());
-        assertEquals(Integer.valueOf(5), settingsModel.getValuesMap().get("Music Volume:"));
-        assertEquals(Integer.valueOf(3), settingsModel.getValuesMap().get("Difficulty:"));
+        int expected = getSoundVolume();
+        int expected2 = getDifficulty();
+        assertEquals(expected, settingsModel.getValuesMap().get("Music Volume:"));
+        assertEquals(expected2, settingsModel.getValuesMap().get("Difficulty:"));
     }
 
     @Test
     void testLowerValueMap() {
         SettingsModel settingsModel = new SettingsModel();
         settingsModel.LowerValueMap("Music Volume:");
-        assertEquals(Integer.valueOf(4), settingsModel.getValuesMap().get("Music Volume:"));
+        int expected = getSoundVolume();
+        if (expected == 0) expected = 1;
+        assertEquals(expected-1, settingsModel.getValuesMap().get("Music Volume:"));
         settingsModel.LowerValueMap("Difficulty:");
-        assertEquals(Integer.valueOf(2), settingsModel.getValuesMap().get("Difficulty:"));
+        int expected1 = getDifficulty();
+        if(expected1 == 0) expected1 = 1;
+        assertEquals(expected1-1, settingsModel.getValuesMap().get("Difficulty:"));
     }
 
     @Test
     void testUpperValueMap() {
         SettingsModel settingsModel = new SettingsModel();
         settingsModel.UpperValueMap("Music Volume:");
-        assertEquals(Integer.valueOf(5), settingsModel.getValuesMap().get("Music Volume:"));
+        int expected = getSoundVolume();
+        if(expected == 5)
+            expected = 4;
+        assertEquals(expected + 1, settingsModel.getValuesMap().get("Music Volume:"));
         settingsModel.UpperValueMap("Difficulty:");
-        assertEquals(Integer.valueOf(4), settingsModel.getValuesMap().get("Difficulty:"));
+        int expected2 = getDifficulty();
+        if(expected2 == 5) expected2 = 4 ;
+        assertEquals(expected2+1, settingsModel.getValuesMap().get("Difficulty:"));
     }
-/*
-    @Test
-    public void testSaveHashMapToFile() {
-        SettingsModel settingsModel = new SettingsModel();
 
-        Map<String, Integer> valuesMap = settingsModel.getValuesMap();
+    private int getDifficulty()
+    {
+        String fileName = "sound.txt";
+        String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
 
-        String fileName = "test_sound.txt";
-
-        settingsModel.saveHashMapToFile(valuesMap, fileName);
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            int lineNumber = 0;
             while ((line = reader.readLine()) != null) {
-                lineNumber++;
-                String[] keyValue = line.split(",");
-                if (keyValue.length == 2) {
-                    String key = keyValue[0].trim();
-                    int intValue = Integer.parseInt(keyValue[1].trim());
-                    assertEquals(valuesMap.get(key), intValue, "Mismatch in value at line " + lineNumber);
+                if (line.startsWith("Difficulty:")) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 2) {
+                        return Integer.parseInt(parts[1].trim());
+                    }
                 }
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
+        return 1;
     }
-*/
+
+    private int getSoundVolume()
+    {
+        String fileName = "sound.txt";
+        String filePath = System.getProperty("user.dir") + "/src/main/Resources/" + fileName;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Music Volume:")) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 2) {
+                        return Integer.parseInt(parts[1].trim());
+                    }
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
 }

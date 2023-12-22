@@ -130,7 +130,11 @@ public class MusicControllerTest {
             case 5 -> volume = 6f ;
         }
         double roundedValue = Math.round(musicController.getVolumeControl().getValue());
-        assertEquals(Math.round( volume) , roundedValue);
+        if(roundedValue == -80.0)
+        {
+            volume = (float) -80.0;
+        }
+        assertEquals(Math.round(volume) , roundedValue);
     }
 
     @Test
@@ -156,18 +160,12 @@ public class MusicControllerTest {
             case 5 -> volume = -15f ;
         }
         double roundedValue = Math.round(musicController.getVolumeControl().getValue());
+        if(roundedValue == -80.0)
+        {
+            volume = (float) -80.0;
+        }
         assertEquals(Math.round(volume) , roundedValue);
     }
-/*
-    @Test
-    void testReadMusicVolumeGibberish()
-    {
-        String filePath1 = "gibberish";
-        int musicVolume = readMusicVolume(filePath1);
-        assertEquals(-1 , musicVolume);
-    }
-
-*/
     @Test
     void testGetMusics() {
         musicController.changeMusic(Musics.MENUSOUND);

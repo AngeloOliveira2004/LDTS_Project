@@ -27,12 +27,28 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 
 Initial Menu
 
-<img src="./docs/Asteroids.gif" alt="Example GIF" width="400"/>
+Instructions Menu
+
+<img src="./docs/Instructions.png" alt="Ins" width="400"/>
+
+Settings Menu
+
+<img src="./docs/Settings.png" alt="Ins" width="400"/>
+
+Leaderboard Menu
+
+<img src="./docs/LeaderBoard.png" alt="Ins" width="400"/>
+
+GameOver Menu
+
+<img src="./docs/GameOver.png" alt="Ins" width="400"/>
+
+Pause Menu
+
+<img src="./docs/PauseMenu.png" alt="Ins" width="400"/>
 
 ### All Instances of the Menu
 <img src="./docs/Menu.gif" alt="Example GIF" width="400"/>
-
-
 
 ### DESIGN
 
@@ -67,23 +83,6 @@ A game usually is divided into different parts, in this game we also decided to 
 > - Encapsulation: Each state encapsulates its behavior, making it easier to add new states without modifying already pre-existing code.
 > - Separation of Concerns: The State pattern helps separate the concerns related to different states, helping with a more linear and cleaner design.
 > - Flexibility: Adding new states or modifying the behavior of existing states can be done independently, without affecting other parts of the code.
-
-
-# Playing Music/Sounds depending on the state
-
-**Observer**
-
-**Problem in Context:**
-
-In this game, the sound system needs to react to changes in the game state. For example, when transitioning from a MenuState to an GameState, the audio system music needs update, and certain elements might need to be reset (Main music) or initialized (shot or enemies sound).
-
-<img src="./docs/observer.png" alt="Example GIF" width="400"/>
-
-**Consequences:**
-
-> - Loose Coupling: The Observer pattern promotes loose coupling between the game state and its observers. The game state doesn't need to know the specific details of its observers, allowing for easier maintenance and modification.
-> - Separation of Concerns: Observers are responsible for their own reactions to state changes which enhances the detachment of certain parts of the code.
-> - Unexpected updates: The issue of unexpected updates in the Observer pattern can arise, in this case, when they receive notifications too frequently. This can lead to unnecessary computations, potential performance overhead, and unintended side effects, but it can be with some minor tweaks resolved/mitigated.
 
 # Architectural Pattern
 
@@ -148,4 +147,15 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 
 Note: This image is available in the docs folder , it is recommended to open it for full coverage and better view of the design.
 
+# Tests coverage:
+
+GameViewer and MenuController will nt be tested as they are untestable
+
+**Code Coverage**
+
+<img src="./docs/Coverage.png" alt="" width="1400"/>
+
+**Pitest**
+
+<img src="./docs/Pitest.png" alt="" width="1400"/>
 

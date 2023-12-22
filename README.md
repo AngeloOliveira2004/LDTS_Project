@@ -16,16 +16,21 @@ This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oli
 > - **Invincibility** - After a collision that results in the loss of a life, the spaceship will be invincible for a short amount o time. In addition, the spaceship will appear white in some parts to indicate that it is invincible.
 > - **Menu** - A simple menu where you are able to start a game , check the settings where you can increase , decrease the difficulty or the volume of the music , check the leaderboard and the top 5 scores and the acronym names of the people you did it, and check the instructions of the game.
 > - **Pause Menu** - While you are playing if you press esc a pause menu will appear, the game will be paused, and you can either go back to the main menu or resume the game.
-> - **Enemies** - The main game has several different enemies. The ones planned are: <br> **normal enemies** : simply shoot in front and move; <br> **kamikazes** : will track the player's position and explode if they collide with the player <br> **strong enemies** - similar to the normal enemies but with more health and slower movement speed.
+> - **Enemies** - The main game has several different enemies. The ones planned are: <br> 
+> - **Normal enemies** : simply shoot in front and move; <br> 
+> - **Kamikazes** : will track the player's position and explode if they collide with the player <br> 
+> - **Strong enemies** - similar to the normal enemies but with more health and slower movement speed.
 >- **Music** - The game has two musics, a menu theme and a Game theme that alternate with each other according to the state of the game.
 
 
 ### Game Preview
-<img src="./docs/Shooting.gif" alt="Example GIF" width="400"/>
+<img src="./docs/GameExample.gif" alt="Example GIF" width="400"/>
 
 ### Menus
 
 Initial Menu
+
+<img src="./docs/MainMenu.png" alt="Ins" width="400"/>
 
 Instructions Menu
 
@@ -46,9 +51,6 @@ GameOver Menu
 Pause Menu
 
 <img src="./docs/PauseMenu.png" alt="Ins" width="400"/>
-
-### All Instances of the Menu
-<img src="./docs/Menu.gif" alt="Example GIF" width="400"/>
 
 ### DESIGN
 
@@ -148,8 +150,6 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 Note: This image is available in the docs folder , it is recommended to open it for full coverage and better view of the design.
 
 # Tests coverage:
-
-GameViewer and MenuController will nt be tested as they are untestable
 
 **Code Coverage**
 

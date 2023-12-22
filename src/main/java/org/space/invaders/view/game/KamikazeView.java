@@ -14,7 +14,7 @@ public class KamikazeView extends View{
     private static final int CHAR_HEIGHT = 1;
     private static final int CHAR_WIDTH = 1;
     ArrayList<Position> positions;
-    private static final String[] KamikazeModel = new String[]{
+    static final String[] KamikazeModel = new String[]{
             "      OYYO      ",
             "       OO       ",
             " C     CC     C ",
@@ -53,4 +53,5 @@ public class KamikazeView extends View{
     public void draw() throws IOException {
     }
     public String[] getDesign(){return  KamikazeModel;}
+    public void setKamikazeEnemy(KamikazeEnemy kamikazeEnemy){this.kamikazeEnemy = kamikazeEnemy;}
 }

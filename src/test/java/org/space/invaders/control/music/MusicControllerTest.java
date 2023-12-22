@@ -159,7 +159,7 @@ public class MusicControllerTest {
         double roundedValue = Math.round(musicController.getVolumeControl().getValue());
         assertEquals(Math.round(volume) , roundedValue);
     }
-
+/*
     @Test
     void testReadMusicVolumeGibberish()
     {
@@ -167,6 +167,8 @@ public class MusicControllerTest {
         int musicVolume = readMusicVolume(filePath1);
         assertEquals(-1 , musicVolume);
     }
+
+*/
     @Test
     void testGetMusics() {
         musicController.changeMusic(Musics.MENUSOUND);

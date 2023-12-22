@@ -11,7 +11,7 @@ public class DefaultEnemyView extends View {
     private static final int CHAR_HEIGHT = 1;
     private static final int CHAR_WIDTH = 1;
 
-    private static final String[] DefaultEnemyModel = new String[]{
+    static final String[] DefaultEnemyModel = new String[]{
             "     C   C      ",
             "     C   C      ",
             "    AAAAAAAGG   ",
@@ -50,4 +50,6 @@ public class DefaultEnemyView extends View {
     public String[] getDesign() {
         return DefaultEnemyModel;
     }
-    }
+
+    public void setDefaultEnemy(DefaultEnemy defaultEnemy){this.defaultEnemy = defaultEnemy;}
+}

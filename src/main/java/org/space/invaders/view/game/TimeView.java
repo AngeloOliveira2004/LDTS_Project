@@ -34,9 +34,8 @@ public class TimeView extends View{
 
         Position position = new Position(10, 295);
         actualDraw(position , timeString,elapsedTimeInSeconds);
-
     }
-    private void actualDraw(Position position , String[] model, long elapsedTimeInSeconds)
+    public void actualDraw(Position position , String[] model, long elapsedTimeInSeconds)
     {
         String time_Value = String.valueOf(elapsedTimeInSeconds);
         ArrayList<Position> positions = new ArrayList<>();
@@ -53,4 +52,10 @@ public class TimeView extends View{
         }
 
     }
+
+    public boolean getFirstTime()
+    {
+        return first_time;
+    }
+
 }

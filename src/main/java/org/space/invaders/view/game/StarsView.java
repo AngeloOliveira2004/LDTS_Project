@@ -12,7 +12,7 @@ import java.util.List;
 import static org.space.invaders.model.game.map.Stars.STAR_SPEED;
 
 public class StarsView extends View{
-    private final List<Stars.StarPosition> starPositions;
+    private List<Stars.StarPosition> starPositions;
     public StarsView(TextGraphics textGraphics, Stars stars){
         super(0, 0, textGraphics);
         starPositions = stars.getStarPosition();
@@ -26,11 +26,6 @@ public class StarsView extends View{
             int x = starPosition.getX();
             int y = starPosition.getY();
             this.graphics.setCharacter(x, y, character);
-        }
-    }
-    public void moveStars(){
-        for(Stars.StarPosition starPosition: starPositions){
-            int y = starPosition.getY();
         }
     }
 

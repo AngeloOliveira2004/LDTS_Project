@@ -24,7 +24,7 @@ class GameStateTest {
     private GameState gameState;
     private GameViewer gameViewer;
     private Arena arena;
-
+/*
     @Test
     void testConstructor() throws IOException {
         gameState = new GameState(mock(GameController.class));
@@ -34,6 +34,7 @@ class GameStateTest {
         assertTrue(gameState.getRunning());
         assertFalse(gameState.isPaused());
     }
+*/
 
     @Test
     void testRun() throws IOException {

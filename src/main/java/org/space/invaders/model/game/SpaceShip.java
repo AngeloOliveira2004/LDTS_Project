@@ -54,7 +54,7 @@ public class SpaceShip extends Element {
 
     @Override
     public String[] getDesign() {
-        return spaceshipView.getDesign();
+        return spaceshipView.getDesign1();
     }
     public void calculateInvincibility()
     {

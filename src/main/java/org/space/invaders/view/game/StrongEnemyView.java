@@ -12,7 +12,7 @@ public class StrongEnemyView extends View {
     private static final int CHAR_WIDTH = 1;
 
 
-    private static final String[] StrongEnemyModel = new String[]{
+    static final String[] StrongEnemyModel = new String[]{
             "     C   C      ",
             "     C   C      ",
             "    RRRRRRRGG   ",
@@ -50,5 +50,9 @@ public class StrongEnemyView extends View {
 
     public String[] getDesign() {
         return StrongEnemyModel;
+    }
+
+    public void setStrongEnemy(StrongEnemy strongEnemy) {
+        this.strongEnemy = strongEnemy;
     }
 }

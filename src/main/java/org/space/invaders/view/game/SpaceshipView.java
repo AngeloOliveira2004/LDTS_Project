@@ -12,7 +12,7 @@ public class SpaceshipView extends View{
     private SpaceShip spaceShip;
     private static final int CHAR_HEIGHT = 1;
     private static final int CHAR_WIDTH = 1;
-    private static final String[] SpaceShipModel = new String[]{
+    static final String[] SpaceShipModel = new String[]{
             "            RR            ",
             "           RRRR           ",
             "          CCbbCC          ",
@@ -40,7 +40,7 @@ public class SpaceshipView extends View{
             "      Y   ROYYOR   Y      ",
             "            YY            ",
     };
-    private static final String[] InvincibleSpaceShipModel = new String[]{
+    static final String[] InvincibleSpaceShipModel = new String[]{
             "            RR            ",
             "           RRRR           ",
             "          CCbbCC          ",
@@ -69,7 +69,7 @@ public class SpaceshipView extends View{
             "            YY            ",
     };
 
-    private static final String[] MiniSpaceShipModel = new String[]{
+    static final String[] MiniSpaceShipModel = new String[]{
             "       RR       ",
             "      RRRR      ",
             "      CbbC      ",
@@ -87,7 +87,7 @@ public class SpaceshipView extends View{
             "      ROOR      ",
             "     ROYYOR     ",
     };
-    private static final String[] InvincibleMiniSpaceShipModel = new String[]{
+    static final String[] InvincibleMiniSpaceShipModel = new String[]{
             "       RR       ",
             "      RRRR      ",
             "      CbbC      ",
@@ -106,7 +106,6 @@ public class SpaceshipView extends View{
             "     ROYYOR     ",
     };
 
-    private static final String[] MiniSpaceShipModelWithFlames = {"A" , " "};
     public SpaceshipView(SpaceShip spaceShip , TextGraphics textGraphics)
     {
         super(CHAR_HEIGHT , CHAR_WIDTH , textGraphics);
@@ -168,5 +167,10 @@ public class SpaceshipView extends View{
         int y = (int)spaceShip.getPosition().getY();
         drawImage(InvincibleSpaceShipModel, x, y , positions);
     }
-    public String[] getDesign(){return  SpaceShipModel;}
+    public String[] getDesign1(){return  SpaceShipModel;}
+    public String[] getDesign2(){return  InvincibleSpaceShipModel;}
+    public String[] getDesign3(){return  MiniSpaceShipModel;}
+    public String[] getDesign4(){return  InvincibleMiniSpaceShipModel;}
+
+    public void setSpaceShip(SpaceShip spaceShip){this.spaceShip = spaceShip;}
 }

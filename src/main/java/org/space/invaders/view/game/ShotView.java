@@ -34,6 +34,10 @@ public class ShotView extends View{
                 new TerminalSize(1,1), ' ');
         shotController.update();
         shot.resetCount();
+    }
+    public void setShotController(ShotController shotController){this.shotController = shotController;}
 
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

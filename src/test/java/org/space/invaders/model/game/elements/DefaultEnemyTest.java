@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.space.invaders.view.game.DefaultEnemyView;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 

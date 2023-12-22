@@ -13,7 +13,7 @@ import org.space.invaders.model.game.menu.MenuModel;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class MenuViewTest {

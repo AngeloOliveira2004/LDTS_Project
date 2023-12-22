@@ -2,7 +2,9 @@ package org.space.invaders.control.game;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import org.junit.Before;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

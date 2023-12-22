@@ -9,7 +9,7 @@ import org.space.invaders.states.menustates.GameOverState;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class GameControllerTest{

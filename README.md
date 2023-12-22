@@ -192,7 +192,11 @@ Check the [link](./docs/pitest.html) to HTML file with Pit Test for more detaile
 
 <img src="./docs/Pitest.png" alt="" width="1400"/>
 
-Self-Evaluation:
+### Code Smells 
+
+We were not able to find any code smells
+
+### Self-Evaluation:
 
 **José Costa** 40% <br>
 **Ângelo Oliveira** 40% <br>

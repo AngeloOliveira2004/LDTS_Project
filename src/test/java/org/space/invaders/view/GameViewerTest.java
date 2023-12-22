@@ -42,7 +42,7 @@ class GameViewerTest {
     void tearDown() {
         assertDoesNotThrow(() -> gameViewer.close());
     }
-/*
+
     @Test
     void testDrawElements() throws IOException {
         when(mockArena.getStars()).thenReturn(new Stars());
@@ -106,5 +106,5 @@ class GameViewerTest {
 
         assertEquals(keyStroke, result);
     }
- */
+
 }

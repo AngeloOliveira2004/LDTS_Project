@@ -40,11 +40,10 @@ public class GameViewer {
         screen = new TerminalScreen(terminal);
         screen.startScreen();
         textGraphics = screen.newTextGraphics();
-
     }
 
     public void drawElements(Arena arena) throws IOException {
-        // TODO: Implement drawing game elements based on the game state
+
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.fillRectangle(new TerminalPosition(0, 0), screen.getTerminalSize(), ' ');
         arena.getStars().draw(textGraphics);
@@ -88,4 +87,5 @@ public class GameViewer {
         gameController.setGameState(null);
     }
     public TextGraphics getTextGraphics(){return textGraphics;}
+
 }

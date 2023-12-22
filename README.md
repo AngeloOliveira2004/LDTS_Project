@@ -4,7 +4,7 @@
 
 >World Thruster is a space-themed game where the main objective is to survive the longest amount of time and accumulate the highest amount of points to climb up the leaderboards. In this game your skills will be tested against several enemies that will try to kill you. If your lives reach end or the enemies get to the Earth that you are trying to protect you lose. Are you up to the challenge?
 
-This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*up202206009@fe.up.pt*) 
+This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo Sousa* (*up202206009@fe.up.pt*) 
 
 ### IMPLEMENTED FEATURES
 
@@ -184,7 +184,7 @@ Check the [link](./docs/coverage.html) to HTML file with Coverage Report for mor
 
 <img src="./docs/Coverage8.png" alt="" width="1400"/>
 
-Before you try to test the code coverage on your know , be sure you volume and difficulty are set to
+In the event of the tests failing try running them again, and they should all pass.
 
 **Pit Test / Mutation Test**
 
@@ -192,3 +192,8 @@ Check the [link](./docs/pitest.html) to HTML file with Pit Test for more detaile
 
 <img src="./docs/Pitest.png" alt="" width="1400"/>
 
+Self-Evaluation:
+
+**José Costa** 40% <br>
+**Ângelo Oliveira** 40% <br>
+**Bernardo Sousa** 20%

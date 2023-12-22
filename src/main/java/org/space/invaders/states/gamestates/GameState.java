@@ -88,7 +88,7 @@ public void run() throws IOException{
 
     @Override
     public void close() throws IOException {
-
+        gameViewer.close();
     }
 
     private void handleInput(KeyStroke keyStroke) throws IOException {

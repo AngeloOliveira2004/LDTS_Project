@@ -2,40 +2,53 @@
 
 ### Description
 
->In this exciting fixed shooter game that resembles the old "Space Invaders", your main objective is to survive the longest amount of time possible. You will control a spaceship and battle several enemies through your journey to the top of the leaderboard.
-Are you able to do it?
+>World Thruster is a space-themed game where the main objective is to survive the longest amount of time and accumulate the highest amount of points to climb up the leaderboards. In this game your skills will be tested against several enemies that will try to kill you. If your lives reach end or the enemies get to the Earth that you are trying to protect you lose. Are you up to the challenge?
 
 This project was developed by *José Costa* (up202207871@fe.up.pt)  *Ângelo Oliveira*(up202207798@fe.up.pt) and *Bernardo* (*up202206009@fe.up.pt*) 
 
 ### IMPLEMENTED FEATURES
 
-> - **Movement** - The game character will be able to move in all major directions - up , down , left , right 
-> - **Movement** - The game character will be able to move in all major directions - up , down , left , right 
-> - **Shot** - When the space bar is pressed a beam is shot from the spaceship
-> - **Map** - Stars around the map will be well distributed across all screen
-> - **Simple Collisions** - No star will be visible if the spaceship is on top of it and the spaceship will not be able to leave the screen
-> - **Simples Animation** - When either the right arrow key or left arrow key the spaceship will lean accordingly in order to give the sensation of turning
-> - **Simple Menu** - A simple menu where you wil be able to start a game 
+> - **Movement** - The game character is able to move in all major directions - up , down , left , right.
+> - **Shrinking** - The main character is able to shrink it's size in order to increase his velocity but reducing the damage and reach of the shot.
+> - **Shot** - When the space bar is pressed a shot is shot from the spaceship. When the spaceship is in mini form thus shot reach and damage will be reduced. 
+> - **Map** - Stars around the map are well distributed across all screen. Furthermore, they are random and new ones will be generated in the beginning of each game.
+> - **Simple Collisions** - No star will be visible if the spaceship is on top of it and the spaceship will not be able to leave the screen. Furthermore, collisions with enemies and enemies' shots are also implemented, 1 life will be lost for each collision.
+> - **Invincibility** - After a collision that results in the loss of a life, the spaceship will be invincible for a short amount o time. In addition, the spaceship will appear white in some parts to indicate that it is invincible.
+> - **Menu** - A simple menu where you are able to start a game , check the settings where you can increase , decrease the difficulty or the volume of the music , check the leaderboard and the top 5 scores and the acronym names of the people you did it, and check the instructions of the game.
+> - **Pause Menu** - While you are playing if you press esc a pause menu will appear, the game will be paused, and you can either go back to the main menu or resume the game.
+> - **Enemies** - The main game has several different enemies. The ones planned are: <br> **normal enemies** : simply shoot in front and move; <br> **kamikazes** : will track the player's position and explode if they collide with the player <br> **strong enemies** - similar to the normal enemies but with more health and slower movement speed.
+>- **Music** - The game has two musics, a menu theme and a Game theme that alternate with each other according to the state of the game.
 
-### PLANNED FEATURES
 
-> - **Shrinking** - The main character will be able to shrink it's size in order to increase his velocity but reducing the damage and reach of the shot.
->- **Super Shot** - The main character will be able to periodically use a super shot that will be wider and *stronger* than the normal one.
-> - **Enemies** - The main game will have several different enemies. The ones planned are: <br> **normal enemies** : simply shoot in front and stay still; <br> **asteroids** : which are immortal , can only be dodged and will track the player's position <br> **kamikazes** : will track the player's position and explode if they collide with the player <br> **boss** - a bigger and tougher enemy with more health and damage
->- **Rest of the Menu** - Other functionalities of the menu such as Configurations , Instructions , Leaderboard and Exit
->- **Music** - It is planned that both the menu and game will have different musics.
->- **Sounds Effects**  - The game will have sound effects for when the spaceship moves and shot
-
-### Shooting and Enemies Movement Mockup
+### Game Preview
 <img src="./docs/Shooting.gif" alt="Example GIF" width="400"/>
 
-### Asteroids Dodging Mechanic
-<img src="./docs/Asteroids.gif" alt="Example GIF" width="400"/>
+### Menus
+
+Initial Menu
+
+Instructions Menu
+
+<img src="./docs/Instructions.png" alt="Ins" width="400"/>
+
+Settings Menu
+
+<img src="./docs/Settings.png" alt="Ins" width="400"/>
+
+Leaderboard Menu
+
+<img src="./docs/LeaderBoard.png" alt="Ins" width="400"/>
+
+GameOver Menu
+
+<img src="./docs/GameOver.png" alt="Ins" width="400"/>
+
+Pause Menu
+
+<img src="./docs/PauseMenu.png" alt="Ins" width="400"/>
 
 ### All Instances of the Menu
 <img src="./docs/Menu.gif" alt="Example GIF" width="400"/>
-
-
 
 ### DESIGN
 
@@ -70,23 +83,6 @@ A game usually is divided into different parts, in this game we also decided to 
 > - Encapsulation: Each state encapsulates its behavior, making it easier to add new states without modifying already pre-existing code.
 > - Separation of Concerns: The State pattern helps separate the concerns related to different states, helping with a more linear and cleaner design.
 > - Flexibility: Adding new states or modifying the behavior of existing states can be done independently, without affecting other parts of the code.
-
-
-# Playing Music/Sounds depending on the state
-
-**Observer**
-
-**Problem in Context:**
-
-In this game, the sound system needs to react to changes in the game state. For example, when transitioning from a MenuState to an GameState, the audio system music needs update, and certain elements might need to be reset (Main music) or initialized (shot or enemies sound).
-
-<img src="./docs/observer.png" alt="Example GIF" width="400"/>
-
-**Consequences:**
-
-> - Loose Coupling: The Observer pattern promotes loose coupling between the game state and its observers. The game state doesn't need to know the specific details of its observers, allowing for easier maintenance and modification.
-> - Separation of Concerns: Observers are responsible for their own reactions to state changes which enhances the detachment of certain parts of the code.
-> - Unexpected updates: The issue of unexpected updates in the Observer pattern can arise, in this case, when they receive notifications too frequently. This can lead to unnecessary computations, potential performance overhead, and unintended side effects, but it can be with some minor tweaks resolved/mitigated.
 
 # Architectural Pattern
 
@@ -150,3 +146,16 @@ The game loop pattern ensures that the game runs smoothly and consistently, crea
 <img src="./docs/UML_LDTS.jpg" alt="Example GIF" width="1400"/>
 
 Note: This image is available in the docs folder , it is recommended to open it for full coverage and better view of the design.
+
+# Tests coverage:
+
+GameViewer and MenuController will nt be tested as they are untestable
+
+**Code Coverage**
+
+<img src="./docs/Coverage.png" alt="" width="1400"/>
+
+**Pitest**
+
+<img src="./docs/Pitest.png" alt="" width="1400"/>
+

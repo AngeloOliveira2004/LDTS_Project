@@ -198,6 +198,10 @@ Check the [link](./docs/pitest.html) to HTML file with Pit Test for more detaile
 
 -> Dead Code that resulted of inheritance
 
+### Credits/Source
+
+The manner in which elements are structured and colors are configured on the display, along with the utilization of the View abstract class, has been inspired by the video game "Asteroids." This particular approach was chosen as the alternative method opposed to the others that we tested such as, translating HSV values into CSV with pixel positions using scripts in Python, FontForge, and other avenues which, were, exhaustively explored. However, none of these methods yielded outcomes that approximated the desired visual effect, which was previously perceived as unattainable. The inspiration and solution were eventually enlightened upon encountering the project "Asteroids" made by Afonso Baldo, João Teixeira and José Gaspar´, that gave us a quality background for us to work from.
+
 ### Self-Evaluation:
 
 **José Costa** 40% <br>
